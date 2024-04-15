@@ -1,0 +1,144 @@
+using Maths.BeadStair.ColorSlection;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+namespace Maths.BeadStair.ColorandCount
+{
+    public class GameController_ColorAndCount : MonoBehaviour
+    {
+        public ColorSelection_ColorAndCount[] all_CollerSelection;
+        public int level;
+        public static GameController_ColorAndCount instace;
+        public AllCollors selectedcollor;
+        public AllCollors selectedcollorDone;
+        public Marble_ColorAndCount[] allmarble;
+        public TextMeshProUGUI Hinttext;
+
+        [Space(10)]
+        public GameObject Sketchpen;
+        public GameObject DrawnNO;
+        public GestureRecognizer.Recognizer Ai_reconginzer;
+        public ExampleGestureHandler Draw;
+        public Sprite NormalInput, CurrectAnswerInput, WrongInput;
+        public SpriteRenderer InputBox;
+        public Button CollorButton, NumberButton;
+
+        [Space(10)]
+        public GameObject gameCompleted_animation;
+        public GameObject wrongAnswer_animtion;
+        public GameObject Party_pop;
+        private void Awake()
+        {
+            instace = this;
+
+            Hinttext.text = "Count the Beads";
+            Ai_reconginzer.Recognigingnumber = (level + 1).ToString();
+            Ai_reconginzer.Changerecogniger();
+        }
+        public void ResetColler()
+        {
+           
+            for (int i = 0; i < all_CollerSelection.Length; i++)
+            {
+
+                all_CollerSelection[i].Selectedobj.SetActive(false);
+
+            }
+
+        }
+        public void NextButton()
+        {
+
+            if ((level + 1) == Draw.no)
+            {
+                allmarble[level].GetComponent<Collider2D>().enabled = true;
+                InputBox.sprite = CurrectAnswerInput;
+                Draw.textResult = null;
+               /// nodify.enabled = false;
+                CollorButton.gameObject.SetActive(true);
+                Sketchpen.SetActive(true);
+                // sketch.ClearButton();
+                CollorButton.gameObject.SetActive(true);
+                NumberButton.gameObject.SetActive(false);
+                DrawnNO.SetActive(false);
+                Hinttext.color = allmarble[level].colors;
+                Hinttext.text =
+                  "<color=white>Color the " + (level + 1) +
+                  " bead with </color> " + allmarble[level].thiscolor;
+            }
+            else
+            {
+                DrawnNO.SetActive(false);
+                Draw.textResult = null;
+                // sketch.ClearButton();
+                InputBox.sprite = WrongInput;
+                StartCoroutine(resetInput());
+            }
+
+        }
+        IEnumerator resetInput()
+        {
+            wrongAnswer_animtion.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            wrongAnswer_animtion.SetActive(false);
+            Draw.textResult = InputBox.GetComponentInChildren<TextMeshPro>();
+            Draw.textResult.text = "";
+            InputBox.sprite = NormalInput;
+            DrawnNO.SetActive(true);
+        }
+        IEnumerator LevelCompleted()
+        {
+            gameCompleted_animation.SetActive(true);
+            yield return new WaitForSeconds(2);
+            SceneManager.LoadScene(0);
+        }
+
+        IEnumerator WaitforReloding()
+        {
+            CollorButton.gameObject.SetActive(false);
+            Party_pop.SetActive(true);
+       
+            yield return new WaitForSeconds(4);
+            Party_pop.SetActive(false);
+            Hinttext.color = Color.white;
+            Hinttext.text = "Count the Beads";
+            allmarble[level].gameObject.SetActive(false);
+            level++;
+            Ai_reconginzer.Recognigingnumber = (level + 1).ToString();
+            Ai_reconginzer.Changerecogniger();
+            if (level > 9)
+            {
+                StartCoroutine(LevelCompleted());
+               //return null;
+            }
+            allmarble[level].GetComponent<Collider2D>().enabled = false;
+            allmarble[level].gameObject.SetActive(true);
+            Draw.textResult = InputBox.GetComponentInChildren<TextMeshPro>();
+            Draw.textResult.text = "";
+            InputBox.sprite = NormalInput;
+            //   nodify.enabled = true;
+            Sketchpen.SetActive(false);
+            DrawnNO.SetActive(true);
+            // NumberButton.gameObject.SetActive(true);
+            
+        }
+
+        public void ColorSelectionDone()
+        {
+            if (selectedcollorDone == allmarble[level].thiscolor)
+            {
+                StartCoroutine(WaitforReloding());
+
+
+            }
+
+
+
+        }
+
+    }
+
+}
