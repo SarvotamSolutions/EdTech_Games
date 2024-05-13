@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-
 namespace Maths.Substraction.Caluculation
 {
 
-    public class GameController : MonoBehaviour
+    public class GameController : Singleton<GameController>
     {
         public SpriteRenderer BreadIcon1;
         public SpriteRenderer BreadIcon2;
         public TextMeshPro[] Inputtext;
         public ExampleGestureHandler AiHandler;
         public GestureRecognizer.Recognizer Ai_recognizer;
-
+        public bool Drag;
         public Answer[] allanswer;
-        [SerializeField]private int[] number;
-        private int no;
+        public int[] number;
+        public Draging[] option;
+        public int no;
         private int relod;
         public Sprite[] randomsprite;
         public Sprite WrongAnswer,currectAnswer;
@@ -45,22 +45,60 @@ namespace Maths.Substraction.Caluculation
             Inputtext[no].text = "";
             Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite;
             wrongAnswer_animtion.SetActive(false);
+            gamePlay = true;
         }
         private void Start()
         {
             relod++;
             no = 0;
+          
+
 
             AiHandler.textResult = Inputtext[0];
-            number[0] = Random.Range(0, allanswer.Length - 2);
+            number[0] = Random.Range(5, allanswer.Length - 2);
             number[1] = Random.Range(0, allanswer.Length);
             Ai_recognizer.Recognigingnumber = (number[0] + 1).ToString();
             Ai_recognizer.Changerecogniger();
-            while (number[0] < number[1])
+            while (number[0] <= number[1])
             {
                 number[1] = Random.Range(0, allanswer.Length);
             }
             number[2] = (number[0] + 1) - (number[1] + 1);
+            if (Drag)
+            {
+                int k=0;
+                int n = Random.Range(0, 4);
+                for (int d = 0; d < option.Length; d++)
+                {
+                    if(d == n)
+                    {
+                        option[d].no = Random.Range(0, 10);
+                        for (int i = 0; i < number.Length; i++)
+                        {
+                            if(option[d].no== number[i])
+                            {
+                                option[d].no = Random.Range(0, 10);
+                                i = -1;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if (k < 2)
+                        {
+                            option[d].no = number[k] + 1;
+                        }
+                        else
+                        {
+                            option[d].no = number[k];
+                        }
+                            k++;
+                    }
+                    option[d].Textchange();
+
+                }
+            }
             int no2 = Random.Range(0, randomsprite.Length);
             for (int i = 0; i <= number[0]; i++)
             {
@@ -81,13 +119,26 @@ namespace Maths.Substraction.Caluculation
         {
             
         }
+
+        public bool Neartodestination(GameObject obj)
+        {
+            if (Vector3.Distance(Inputtext[no].transform.position, obj.transform.position) < 1)
+            {
+                AiHandler.no = obj.GetComponent<Draging>().no;
+                gamePlay = false;
+                NextButton();
+                return true;
+            }
+            
+            return false;
+        }
         public void NextButton()
         {
             if (no < 2)
             {
                 if (AiHandler.no == (number[no] + 1))
                 {
-                   
+                    gamePlay = true;
                     // DrawCanvas[no].SetActive(false);
                     //.ClearButton();
                     Debug.Log("Currect answer");
@@ -100,6 +151,12 @@ namespace Maths.Substraction.Caluculation
                     Ai_recognizer.Changerecogniger();
                     //DrawCanvas[no].SetActive(true);
                     AiHandler.textResult= Inputtext[no];
+
+                    if (Drag)
+                    {
+                        Inputtext[no - 1].text = (number[no-1] + 1).ToString();
+                      
+                    }
                 }
                 else
                 {
@@ -119,6 +176,11 @@ namespace Maths.Substraction.Caluculation
                     {
                         StartCoroutine(LevelCompleted());
                         return;
+                    }
+                    if (Drag)
+                    {
+                        Inputtext[no].text = (number[no]).ToString();
+
                     }
 
                    // DrawCanvas[no].SetActive(false);
@@ -170,11 +232,11 @@ namespace Maths.Substraction.Caluculation
             // DrawCanvas[2].SetActive(false);
             AiHandler.textResult = Inputtext[0];
             Inputtext[0].transform.parent.GetComponent<SpriteRenderer>().color = Color.blue;
-            number[0] = Random.Range(0, allanswer.Length - 2);
+            number[0] = Random.Range(5, allanswer.Length - 2);
             number[1] = Random.Range(0, allanswer.Length);
             Ai_recognizer.Recognigingnumber = (number[0] + 1).ToString();
             Ai_recognizer.Changerecogniger();
-            while (number[0] < number[1])
+            while (number[0] <= number[1])
             {
                 number[1] = Random.Range(0, allanswer.Length);
             }
@@ -187,12 +249,45 @@ namespace Maths.Substraction.Caluculation
                 BreadIcon1.transform.GetChild(i).gameObject.SetActive(true);
                 BreadIcon1.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = randomsprite[no2];
             }
-            no2 = Random.Range(0, randomsprite.Length);
+           
+
+            if (Drag)
+            {
+                int k = 0;
+                int n = Random.Range(0, 4);
+                for (int d = 0; d < option.Length; d++)
+                {
+                    option[d].gameObject.SetActive(true);
+                    if (d == n)
+                    {
+                        option[d].no = Random.Range(0, 10);
+                        
+
+                    }
+                    else
+                    {
+                        if (k < 2)
+                        {
+                            option[d].no = number[k]+1;
+                        }
+                        else
+                        {
+                            option[d].no = number[k];
+                        }
+                        k++;
+                    }
+                    option[d].Textchange();
+
+                }
+            }
+
+           // no2 = Random.Range(0, randomsprite.Length);
             for (int i = 0; i <= number[1]; i++)
             {
                 BreadIcon2.transform.GetChild(i).gameObject.SetActive(true);
                 BreadIcon2.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = randomsprite[no2];
             }
+            gamePlay = true;
         }
     }
 }

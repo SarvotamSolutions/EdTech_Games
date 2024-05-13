@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 
 namespace Maths.Substraction.DragingObject
@@ -13,36 +14,64 @@ namespace Maths.Substraction.DragingObject
         private Vector3 lastpos;
         private void OnMouseDown()
         {
+            if (!GameController.Instance.gamePlay)
+                return;
             clicked = true;
-            lastpos = transform.position;
+           
         }
 
+        private void Start()
+        {
+            lastpos = transform.position;
+        }
         private void OnMouseUp()
         {
+            if (!GameController.Instance.gamePlay)
+                return;
             clicked = false;
-            if (GameController.instance.Neartodestination(this.gameObject))
+            if (GameController.Instance.Neartodestination(this.gameObject))
             {
+                if (GameController.Instance.allobj[GameController.Instance.getno].bird)
+                {
+                    GameController.Instance.dustbin.GetComponent<SpriteRenderer>().sprite = GameController.Instance.closeDustBinSprite;
+                   
+                    transform.parent = GameController.Instance.dustbin.transform;
+                    transform.DOMoveX(transform.position.x + 10,.25f);
+                    transform.DOMoveY(transform.position.y + 10, .25f);
+                    StartCoroutine(BirdMove());
+                }
+                else
+                {
+                    GameController.Instance.dustbin.GetComponent<SpriteRenderer>().sprite = GameController.Instance.closeDustBinSprite;
+                    transform.parent = GameController.Instance.dustbin.transform;
 
-                GameController.instance.dustbin.GetComponent<SpriteRenderer>().sprite = GameController.instance.closeDustBinSprite;
-                transform.parent = GameController.instance.dustbin.transform;
-
-                gameObject.SetActive(false);
-                transform.position = lastpos;
+                    gameObject.SetActive(false);
+                    transform.position = lastpos;
+                }
             }
             transform.position = lastpos;
+
+        }
+        IEnumerator BirdMove()
+        {
+            yield return new WaitForSeconds(.25f);
+           
+
+            transform.position = lastpos;
+            gameObject.SetActive(false);
 
         }
         private void Update()
         {
             if (Input.GetMouseButton(0) && clicked)
             {
-                if (GameController.instance.Neartodestination(this.gameObject))
+                if (GameController.Instance.Neartodestination(this.gameObject))
                 {
-                    GameController.instance.dustbin.GetComponent<SpriteRenderer>().sprite = GameController.instance.OpenDustbinSprite;
+                    GameController.Instance.dustbin.GetComponent<SpriteRenderer>().sprite = GameController.Instance.OpenDustbinSprite;
                 }
                 else
                 {
-                    GameController.instance.dustbin.GetComponent<SpriteRenderer>().sprite = GameController.instance.closeDustBinSprite;
+                    GameController.Instance.dustbin.GetComponent<SpriteRenderer>().sprite = GameController.Instance.closeDustBinSprite;
                 }
                     Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 pos.z = 0;

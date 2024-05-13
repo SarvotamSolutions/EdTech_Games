@@ -59,6 +59,7 @@ namespace Maths.Number1to100.Putting_numbers_Board
                 //Ai.textResult = null;
                 while (selectedno.competed == true)
                 {
+                    Debug.Log(selectedno + "CCC");
                     selectno++;
                     Debug.Log(selectno);
                     if(selectno > 99)

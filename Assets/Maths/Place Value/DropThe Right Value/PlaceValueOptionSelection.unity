@@ -2320,6 +2320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd7d5b4a313ea3439e9663de6da7b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePlay: 1
   questiontext: {fileID: 828422706}
   number: 0
   dropbox: {fileID: 164863785}

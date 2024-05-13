@@ -6,9 +6,8 @@ using UnityEngine.SceneManagement;
 
 namespace Maths.Times.Selecttime
 {
-    public class GameController : MonoBehaviour
+    public class GameController : Singleton<GameController>
     {
-        public static GameController instance;
         public GameObject[] Option;
         public int HourCout;
         public int MinitCount;
@@ -31,10 +30,7 @@ namespace Maths.Times.Selecttime
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene(0);
         }
-        private void Awake()
-        {
-            instance = this;
-        }
+       
 
         // Start is called before the first frame update
         void Start()
@@ -80,6 +76,7 @@ namespace Maths.Times.Selecttime
                 }
 
             }
+            gamePlay = true;
 
         }
 

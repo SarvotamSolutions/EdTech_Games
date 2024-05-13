@@ -8,11 +8,13 @@ using DG.Tweening;
 namespace Maths.Money.AddMoney
 {
 
-    public class Gamecontroll : MonoBehaviour
+    public class Gamecontroll : Singleton<Gamecontroll>
     {
-        public static Gamecontroll instace;
+        
         public Color yellow, darkyellow,green,red;
+       // public Color flickinganimtion;
         public GameObject dropcoin;
+        public GameObject dropcoinfliker;
 
         public float totalmoneyadded;
         public TextMeshPro totalMoneyaddedtext;
@@ -42,13 +44,10 @@ namespace Maths.Money.AddMoney
             Priceplace.color = yellow;
             ResetButton();
             wrongAnswer_animtion.SetActive(false);
+            gamePlay = true;
         }
 
-        private void Awake()
-        {
-            instace = this;
-
-        }
+     
         private void Start()
         {
             StartCoroutine(addmoneyanimation());
@@ -56,19 +55,21 @@ namespace Maths.Money.AddMoney
             int no = Random.Range(0, 50);
             float add = .05f * no;
             MoneyneedtoBuy += add;
-            moneyneedto_buy_text.text = MoneyneedtoBuy.ToString("0.00") + " $";
+            moneyneedto_buy_text.text = "$ "+ MoneyneedtoBuy.ToString("0.00") ;
         }
         IEnumerator addmoneyanimation()
         {
+            dropcoinfliker.GetComponent<SpriteRenderer>().DOFade(0f, 1);
             addmoneyimage.transform.DOMoveY(addmoneyimage.transform.position.y + .1f, 1);
             yield return new WaitForSeconds(1);
+            dropcoinfliker.GetComponent<SpriteRenderer>().DOFade(1f, 1);
             addmoneyimage.transform.DOMoveY(addmoneyimage.transform.position.y - .1f, 1);
             yield return new WaitForSeconds(1);
             StartCoroutine(addmoneyanimation());
         }
         public bool Neartodestination(GameObject objects)
         {
-            if (Vector3.Distance(objects.transform.position, dropcoin.transform.position) < 1)
+            if (Vector3.Distance(objects.transform.position, dropcoin.transform.position) < 2)
             {
                
                 return true;
@@ -80,8 +81,8 @@ namespace Maths.Money.AddMoney
         }
 
         public void NextButton()
-        { 
-
+        {
+            gamePlay = false;
             if(totalMoneyaddedtext.text == moneyneedto_buy_text.text)
             {
                 Priceplace.color = green;
@@ -114,8 +115,9 @@ namespace Maths.Money.AddMoney
             int no = Random.Range(0, 50);
             float add = .05f * no;
             MoneyneedtoBuy += add;
-            totalMoneyaddedtext.text = totalmoneyadded.ToString("0.00") + " $";
-            moneyneedto_buy_text.text = MoneyneedtoBuy.ToString("0.00") + " $";
+            totalMoneyaddedtext.text = "$ " +totalmoneyadded.ToString("0.00");
+            moneyneedto_buy_text.text = "$ "+ MoneyneedtoBuy.ToString("0.00");
+            gamePlay = true;
         }
 
         public void ResetButton()
@@ -124,7 +126,7 @@ namespace Maths.Money.AddMoney
             addmoneyimage.SetActive(true);
             Priceplace.color = yellow;
             totalmoneyadded = 0;
-            totalMoneyaddedtext.text = totalmoneyadded.ToString("0.00") + " $";
+            totalMoneyaddedtext.text = "$ "+ totalmoneyadded.ToString("0.00");
            // resetbutton.SetActive(false);
         }
     }

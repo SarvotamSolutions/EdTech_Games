@@ -164,8 +164,6 @@ namespace GestureRecognizer
 
             callback.Invoke(result);
         }
-
-
         private GestureData NormalizeData(GestureData data, bool normalizeScale)
         {
             if (normalizeScale)
@@ -205,7 +203,10 @@ namespace GestureRecognizer
                     swap(low, i);
                     foreach (var p in GenPermutations(list, low + 1))
                     {
+
                         result.Add(new List<int>(p));
+                      //
+
                     }
                     swap(low, i);
                 }

@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 
 namespace Maths.TeenBeads.drop10to20
 {
-    public class GameController : MonoBehaviour
+    public class GameController : Singleton<GameController>
     {
       
 
-        public static GameController instance;
+
         public Sprite currectanswer;
         public Sprite wrongAnswer;
         public Sprite normalAnswer;
@@ -28,7 +28,7 @@ namespace Maths.TeenBeads.drop10to20
 
         private void Awake()
         {
-            instance = this;
+        
             TextUpdate();
         }
         
@@ -74,6 +74,7 @@ namespace Maths.TeenBeads.drop10to20
 
                 //allsprite[no].transform.GetChild(0).GetComponent<TextMeshPro>().text = (10 + (no + 1)).ToString();
             }
+            gamePlay = true;
         }
 
         IEnumerator WrongAnswerAnimation(GameObject obj)
@@ -85,6 +86,7 @@ namespace Maths.TeenBeads.drop10to20
             wrongAnswer_animtion.SetActive(false);
             allsprite[no].sprite = normalAnswer;
             obj.transform.position = obj.GetComponent<Drager>().lastpos;
+            gamePlay = true;
 
         }
         IEnumerator LevelCompleted()
@@ -99,6 +101,7 @@ namespace Maths.TeenBeads.drop10to20
         {
             if (Vector3.Distance(obj.transform.position, droppos[no].transform.position) <4f)
             {
+                gamePlay = false;
                 allsprite[no].transform.GetChild(0).GetComponent<TextMeshPro>().text = (10+obj.GetComponent<Drager>().no).ToString();
                 if (obj.GetComponent<Drager>().no == no + 1)
                 {

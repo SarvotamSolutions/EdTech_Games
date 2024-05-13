@@ -206,6 +206,8 @@ namespace Maths.TeenBeads.Number
 
         }
         public GameObject sidepanel;
+        public GameObject equationNextbutton;
+
         public void NextButton()
         {
             if(drawnno.no == Number1)
@@ -217,6 +219,7 @@ namespace Maths.TeenBeads.Number
                 Nextbuttton.SetActive(false);
                 FinalButton.SetActive(true);
                 sidepanel.SetActive(true);
+            
             }
             else
             {
@@ -248,6 +251,8 @@ namespace Maths.TeenBeads.Number
                 DropNumber.sprite = currectanswer;
                 stage_two_firstText.text = (Number1).ToString();
                 stage_two_secondText.text = (Number2 ).ToString();
+                FinalButton.SetActive(false);
+                equationNextbutton.SetActive(true);
                // StartCoroutine(Reloding());
             }
             else

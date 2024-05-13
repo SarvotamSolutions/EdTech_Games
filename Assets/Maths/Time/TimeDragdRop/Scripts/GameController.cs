@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 namespace Maths.Times.DragDrop
 {
-    public class GameController : MonoBehaviour
+    public class GameController : Singleton<GameController>
     {
-        public static GameController instance;
+  
 
         public GameObject[] ClockTimer;
         public GameObject[] OPtionTime;
@@ -39,12 +39,10 @@ namespace Maths.Times.DragDrop
             ClockTimer[selctedno].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = selctanswerarrow;
             ClockSprite.sprite = NormalClock;
             wrongAnswer_animtion.SetActive(false);
+            gamePlay = true;
           //  AiCanvas.SetActive(true);
         }
-        private void Awake()
-        {
-            instance = this;
-        }
+   
         private void Start()
         {
             for (int i = 0; i < OPtionTime.Length; i++)
@@ -81,6 +79,7 @@ namespace Maths.Times.DragDrop
             
             if (Vector3.Distance(obj.transform.position, ClockTimer[selctedno].transform.position) < 1)
             {
+                gamePlay = false;
                 if (ClockTimer[selctedno].name == obj.GetComponent<Draging>().no.ToString())
                 {
                 //    
@@ -99,6 +98,7 @@ namespace Maths.Times.DragDrop
                         ClockSprite.sprite = Currectclock;
                         StartCoroutine(LevelCompleted());
                     }
+                    gamePlay = true;
 
                     return true;
                 }

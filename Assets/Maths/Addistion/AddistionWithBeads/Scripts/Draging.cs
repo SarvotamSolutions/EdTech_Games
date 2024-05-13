@@ -12,12 +12,19 @@ namespace Maths.Addision.BeadsCount
         private Vector3 lastpos;
         private void OnMouseDown()
         {
+            if (!GameController.instance.gamePlay)
+                return;
             clicked = true;
+          
+        }
+        private void Start()
+        {
             lastpos = transform.position;
         }
-
         private void OnMouseUp()
         {
+            if (!GameController.instance.gamePlay)
+                return;
             clicked = false;
             if (GameController.instance.Neartodestination(this.gameObject))
             {

@@ -17,6 +17,8 @@ namespace Maths.Addision.AddisitonwithColors
         }
         private void OnMouseDown()
         {
+            if (!GameCondtroller.Instance.gamePlay)
+                return;
             clicked = true;
            
         }
@@ -24,18 +26,21 @@ namespace Maths.Addision.AddisitonwithColors
         public float speed;
         private void OnMouseUp()
         {
+            if (!GameCondtroller.Instance.gamePlay)
+                return;
             clicked = false;
-            if (GameCondtroller.instace.Neartodestination2(this.gameObject))
+            if (GameCondtroller.Instance.Neartodestination2(this.gameObject))
             {
-                if (no == GameCondtroller.instace.Total)
+                GameCondtroller.Instance.gamePlay = false;
+                if (no == GameCondtroller.Instance.Total)
                 {
                     
-                    GetComponent<SpriteRenderer>().sprite = GameCondtroller.instace.currectAnswer;
+                    GetComponent<SpriteRenderer>().sprite = GameCondtroller.Instance.currectAnswer;
                     StartCoroutine(Wairrelod());
                 }
                 else
                 {
-                    GetComponent<SpriteRenderer>().sprite = GameCondtroller.instace.WrongAnswer;
+                    GetComponent<SpriteRenderer>().sprite = GameCondtroller.Instance.WrongAnswer;
                     StartCoroutine(WrongAnimtaion());
                 }
                 //   GameCondtroller.instace.totalmoneyadded += Moneyvlaue;
@@ -67,19 +72,20 @@ namespace Maths.Addision.AddisitonwithColors
 
         IEnumerator Wairrelod()
         {
-            GameCondtroller.instace.Party_pop.SetActive(true);
+            GameCondtroller.Instance.Party_pop.SetActive(true);
             yield return new WaitForSeconds(3);
             transform.position = lastpos;
-            GameCondtroller.instace.Party_pop.SetActive(false);
-            GameCondtroller.instace.ResetingGame();
+            GameCondtroller.Instance.Party_pop.SetActive(false);
+            GameCondtroller.Instance.ResetingGame();
         } 
         IEnumerator WrongAnimtaion()
         {
-            GameCondtroller.instace.wrongAnswer_animtion.SetActive(true);
+            GameCondtroller.Instance.wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
             transform.position = lastpos;
-            GetComponent<SpriteRenderer>().sprite = GameCondtroller.instace.normalAnswer;
-            GameCondtroller.instace.wrongAnswer_animtion.SetActive(false);
+            GetComponent<SpriteRenderer>().sprite = GameCondtroller.Instance.normalAnswer;
+            GameCondtroller.Instance.wrongAnswer_animtion.SetActive(false);
+            GameCondtroller.Instance.gamePlay = true;
         }
         // Start is called before the first frame update
         private void Update()

@@ -1,4 +1,4 @@
-using DesignPatterns.Singleton;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,58 +13,123 @@ namespace Laguage.beginning_sounds.DragandDrop
         public SpriteRenderer CheckAnswerSprite;
         public Sprite currectanswer, wrongAnswer, normalAnswer;
 
-
-        public SpriteRenderer[] alloption;
-        public void Start()
+        protected override void Start()
         {
-            GameStart();
+            base.Start();
+           // GameStart();
         }
-
-        void GameStart()
+        
+      
+        public override void GameStart()
         {
-         
+         //   base.GameStart();
             int no = 0;
             reloding++;
-            if (reloding > 10)
+            if (reloding > allCharacter.Length)
             {
                 StartCoroutine(LevelCompleted());
                 return;
             }
-
-
-            int answeroption = Random.Range(0, alloption.Length);
-            // allno.Add(no);
-            for (int i = 0; i < alloption.Length; i++)
+            int answerno = Random.Range(0, allCharacter.Length);
+            for (int j = 0; j < AllAnswerNo.Count; j++)
             {
-                no = Random.Range(0, allCharacter.Length);
-                for (int j = 0; j < allno.Count; j++)
+                if (AllAnswerNo[j] == answerno)
                 {
-                    if (no == allno[j])
+                    answerno = Random.Range(0, allCharacter.Length);
+                    j = -1;
+                }
+            }
+            int answeroption = Random.Range(0, alloption.Length);
+            int i = 0;
+            foreach (var option in alloption)
+            {
+
+                no = Random.Range(0, allCharacter.Length);
+                if (no == answerno)
+                {
+                    no = Random.Range(0, allCharacter.Length);
+                }
+                for (int j = 0; j < OptionNO.Count; j++)
+                {
+                    if (no == OptionNO[j])
                     {
                         no = Random.Range(0, allCharacter.Length);
+                        if (no == answerno)
+                        {
+                            no = Random.Range(0, allCharacter.Length);
+                        }
                         j = -1;
                     }
                 }
+
                 if (i == answeroption)
                 {
-                  
-                    question_text.text = allCharacter[no].letter;
-                    //question_sprite.sprite = allcharacter[no].Icon;
-                    letter = allCharacter[no].letter;
-                  //  alloption[i].GetChild(0).GetComponent<SpriteRenderer>().sprite = allcharacter[no].relatedsdprite;
-                 //   alloption[i].GetComponent<Drager>().no = allcharacter[no].letter;
+                    letter = allCharacter[answerno].Letter;
+                   // Icon.sprite = Icon ? allCharacter[answerno].sameLetter[Random.Range(0, allCharacter[answerno].sameLetter.Length)].Icon : null;
+                    option.no = allCharacter[answerno].Letter;
+                    AllAnswerNo.Add(answerno);
+                    OptionNO.Add(answerno);
+                    alloption[i].Icon.sprite = allCharacter[answerno].sameLetter[Random.Range(0, allCharacter[answerno].sameLetter.Length)].Icon;
+                    question_text.text = allCharacter[answerno].Letter;
                 }
                 else
                 {
-                  
-                   
+                    option.no = allCharacter[no].Letter;
+                    OptionNO.Add(no);
+                    alloption[i].Icon.sprite = allCharacter[no].sameLetter[Random.Range(0, allCharacter[no].sameLetter.Length)].Icon;
                 }
-                alloption[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = allCharacter[no].Icon;
-                alloption[i].GetComponent<Drager>().no = allCharacter[no].letter;
-                allno.Add(no);
 
+                i++;
 
             }
+
+         
+            //   int no = 0;
+            //   reloding++;
+            //   if (reloding > allCharacter.Length)
+            //   {
+            //       StartCoroutine(LevelCompleted());
+            //       return;
+            //   }
+
+            ////   int answer = Random.Ran
+            //   int answeroption = Random.Range(0, alloption.Length);
+            //   // allno.Add(no);
+            //   for (int i = 0; i < alloption.Length; i++)
+            //   {
+            //       no = Random.Range(0, allCharacter.Length);
+            //       for (int j = 0; j < OptionNO.Count; j++)
+            //       {
+            //           if (no == OptionNO[j])
+            //           {
+            //               no = Random.Range(0, allCharacter.Length);
+            //               j = -1;
+
+            //           }
+            //       }
+            //       if (i == answeroption)
+            //       {
+
+            //           question_text.text = allCharacter[no].Letter;
+            //           //question_sprite.sprite = allcharacter[no].Icon;
+            //           letter = allCharacter[no].Letter;
+            //           AllAnswerNo.Add(no);
+            //           //  alloption[i].GetChild(0).GetComponent<SpriteRenderer>().sprite = allcharacter[no].relatedsdprite;
+            //           //   alloption[i].GetComponent<Drager>().no = allcharacter[no].letter;
+            //       }
+            //       else
+            //       {
+
+
+            //       }
+            //       alloption[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = allCharacter[no].sameLetter[Random.Range(0,2)].Icon;
+            //       alloption[i].GetComponent<Drager>().no = allCharacter[no].Letter;
+            //       OptionNO.Add(no);
+
+
+
+            //   }
+            gamePlay = true;
         }
 
 
@@ -82,23 +147,26 @@ namespace Laguage.beginning_sounds.DragandDrop
                     selectedoption.transform.GetChild(1).GetComponent<SpriteRenderer>().color = currect_answer_color;
                     //currect answer
                     CurrectAnswer();
+                    return true;
 
                 }
                 else
                 {
+                    gamePlay = false;
                     arrow.color = wrong_answer_color;
                     CheckAnswerSprite.sprite = wrongAnswer;
                     selectedoption.transform.GetChild(1).GetComponent<SpriteRenderer>().color = wrong_answer_color;
                     StartCoroutine(WaitWrongAnimtion());
-                    //wrong asnwer
-
+                   // wrong asnwer
+                    return true;
                 }
             }
             else
             {
 
             }
-            return base.Neartodestination();
+
+            return false;
         }
         public void CurrectAnswer()
         {
@@ -110,6 +178,7 @@ namespace Laguage.beginning_sounds.DragandDrop
 
         IEnumerator RelodingThe_Level()
         {
+            gamePlay = false;
             Party_pop.SetActive(true);
             yield return new WaitForSeconds(2);
             Party_pop.SetActive(false);

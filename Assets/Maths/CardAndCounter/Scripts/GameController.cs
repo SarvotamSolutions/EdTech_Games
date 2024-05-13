@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 
 namespace Maths.CountAndCards.count
 {
-    public class GameController : MonoBehaviour
+    public class GameController :Singleton<GameController>
     {
-        public static GameController instace;
+    
         public int no;
         public List<int> allno = new List<int>();
         public Transform droper,Holder;
@@ -18,20 +18,23 @@ namespace Maths.CountAndCards.count
         public Button nextbutton;
         public TextMeshPro QuestionText;
         public SpriteRenderer BOx;
+        public bool hint;
 
         [Space(10)]
         public GameObject OddevenDropbox;
         public GameObject OddevenBox;
         public GameObject oddevenButtonPanel;
         public Sprite CurrectAnswerButton, WrongAnswerButton, NormalAnswerButton;
+        public Vector3 distance;
 
         [Space(10)]
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
         public GameObject Party_pop;
+        
         private void Start()
         {
-            instace = this;
+       
             no = Random.Range(1, 11);
             QuestionText.text = no.ToString();
             allno.Add(no);
@@ -39,6 +42,7 @@ namespace Maths.CountAndCards.count
 
         public void Answer()
         {
+            gamePlay = false;
             nextbutton.transform.gameObject.SetActive(false);
 
             if(no == droper.childCount - 1)
@@ -89,6 +93,7 @@ namespace Maths.CountAndCards.count
 
                 }
             }
+            gamePlay = true;
         }
 
         public void OddevenOptionOppen()
@@ -112,6 +117,8 @@ namespace Maths.CountAndCards.count
 
         public void OddButton(Image rendere)
         {
+            if (!gamePlay)
+                return;
             int nos = no % 2;
             Debug.Log(nos);
             if (nos == 1)
@@ -127,6 +134,8 @@ namespace Maths.CountAndCards.count
         }
         public void EvenButton(Image rendere)
         {
+            if (!gamePlay)
+                return;
             int nos = no % 2;
             Debug.Log(nos);
             if (nos == 0)
@@ -142,6 +151,7 @@ namespace Maths.CountAndCards.count
         }
         IEnumerator ODdevenReset(bool currectAnswer,Image image)
         {
+            gamePlay = false;
             if (!currectAnswer)
             {
 
@@ -175,6 +185,7 @@ namespace Maths.CountAndCards.count
                 image.sprite = NormalAnswerButton;
                 wrongAnswer_animtion.SetActive(false);
             }
+            gamePlay = true;
 
         }
         IEnumerator LevelCompleted()
@@ -186,7 +197,7 @@ namespace Maths.CountAndCards.count
         }
         public void RelodingLevel()
         {
-
+            gamePlay = false;
           
             if (allno.Count >= 10)
             {
@@ -206,6 +217,8 @@ namespace Maths.CountAndCards.count
             }
             QuestionText.text = no.ToString();
             allno.Add(no);
+            gamePlay = true;
+
         }
     }
 }

@@ -8,7 +8,7 @@ using TMPro;
 
 namespace Maths.placeHolder.selectNO
 {
-    public class GameController : MonoBehaviour
+    public class GameController : Singleton<GameController>
     {
         public Sprite[] iconsprite;
         public SpriteRenderer icon;
@@ -35,6 +35,11 @@ namespace Maths.placeHolder.selectNO
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
             wrongAnswer_animtion.SetActive(false);
+            foreach (var item in AnswerButton)
+            {
+                item.GetComponent<Image>().sprite = normalanswer;
+            }
+            gamePlay = true;
         }
 
         public void Start()
@@ -48,8 +53,12 @@ namespace Maths.placeHolder.selectNO
 
         public void Answer(int answerNO)
         {
-            if(answerNO == no)
+            if (!gamePlay)
+                return;
+            gamePlay = false;
+            if (answerNO == no)
             {
+                
                 AnswerButton[no].GetComponent<Image>().sprite = currectanswerButton;
                 if (allno.Count >= 3)
                 {
@@ -90,7 +99,7 @@ namespace Maths.placeHolder.selectNO
             icon.sprite = iconsprite[no];
 
             allno.Add(no);
-
+            gamePlay = true;
         }
     }
 }

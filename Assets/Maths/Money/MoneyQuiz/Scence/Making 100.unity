@@ -1129,6 +1129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d741e89fe6d08e140b898290a776596a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePlay: 1
   dropplace: {fileID: 969775936}
   allcoinname:
   - nikel

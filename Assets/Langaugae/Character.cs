@@ -9,8 +9,9 @@ namespace Laguage
         public string name;
         public Sprite Icon;
         public string letter;
-        public Sprite relatedsdprite; 
+        public Sprite relatedsdprite;
+ 
 
     }
-
+   
 }

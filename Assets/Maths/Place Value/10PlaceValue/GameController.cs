@@ -7,9 +7,8 @@ using UnityEngine.SceneManagement;
 
 namespace Maths.placeHolder.value
 {
-    public class GameController : MonoBehaviour
+    public class GameController : Singleton<GameController>
     {
-        public static GameController instance;
         public GameObject dropLoction;
         public GameObject parent;
         public GameObject insasiteobj;
@@ -50,6 +49,7 @@ namespace Maths.placeHolder.value
             Reseting();
             ansercheck.color = Color.white;
             wrongAnswer_animtion.SetActive(false);
+            gamePlay = true;
         }
 
         public void loadPoint()
@@ -62,11 +62,7 @@ namespace Maths.placeHolder.value
             text.text = totalpoint.ToString();
         }
 
-        private void Awake()
-        {
-            instance = this;
-        }
-
+      
         public bool Neartodestination(GameObject obj,GameObject droploction)
         {
             if (Vector3.Distance(obj.transform.position, droploction.transform.position) < 1)
@@ -84,10 +80,11 @@ namespace Maths.placeHolder.value
 
             return false;
         }
+        public int maxno;
         // Start is called before the first frame update
         void Start()
         {
-            no = Random.Range(1, 9999);
+            no = Random.Range(1,maxno);
             addno.Add(no);
 
             if (randomno)
@@ -98,6 +95,7 @@ namespace Maths.placeHolder.value
         public SpriteRenderer ansercheck;
         public void totalcheck()
         {
+            gamePlay = false;
             if(no == totalpoint)
             {
                 ansercheck.color =Color.green;
@@ -175,7 +173,7 @@ namespace Maths.placeHolder.value
 
                 }
             }
-            no = Random.Range(1, 9999);
+            no = Random.Range(1, maxno);
             //for (int i = 0; i < addno.Count; i++)
             //{
             //    if(addno[i] == no)
@@ -194,7 +192,7 @@ namespace Maths.placeHolder.value
 
             //}
             //checkobj.sprite = normlsprite;
-
+            gamePlay = true;
         }
 
         public void NextButton(bool final)

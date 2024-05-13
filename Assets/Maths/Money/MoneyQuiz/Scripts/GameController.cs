@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 
 namespace Maths.Money.MoneyQuiz
 {
-    public class GameController : MonoBehaviour
+    public class GameController : Singleton<GameController>
     {
-        public static GameController instace;
+      
         public GameObject dropplace;
         public string[] allcoinname;
         public GameObject Win;
@@ -45,12 +45,9 @@ namespace Maths.Money.MoneyQuiz
 
             }
             wrongAnswer_animtion.SetActive(false);
+            gamePlay = true;
         }
-        private void Awake()
-        {
-            instace = this;
-        }
-
+  
         // Start is called before the first frame update
         void Start()
         {
@@ -70,7 +67,7 @@ namespace Maths.Money.MoneyQuiz
             if (Vector3.Distance(obj.transform.position, dropplace.transform.position)<1)
             {
 
-               
+                gamePlay = false;
                 Transform test = obj.transform.parent;
                 obj.transform.parent = dropplace.transform;
                 obj.transform.localPosition =Vector3.zero;
@@ -129,6 +126,7 @@ namespace Maths.Money.MoneyQuiz
             }
             allno.Add(no);
             text.text = allcoinname[no];
+            gamePlay = true;
 
         }
     }

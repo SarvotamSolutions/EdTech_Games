@@ -9,16 +9,25 @@ namespace Maths.placeValue.Dropbeads
         public int no;
         private bool canChnagepos;
         public  Vector3 lastpos;
+
+        private void Start()
+        {
+            lastpos = transform.position;
+        }
         private void OnMouseDown()
         {
+            if (!GameController.Instance.gamePlay)
+                return;
             clicked = true;
-            lastpos = transform.position;
+            
         }
 
         private void OnMouseUp()
         {
+            if (!GameController.Instance.gamePlay)
+                return;
             clicked = false;
-            if (GameController.instance.Neartodestination(this.gameObject))
+            if (GameController.Instance.Neartodestination(this.gameObject))
             {
 
                // transform.position = lastpos;

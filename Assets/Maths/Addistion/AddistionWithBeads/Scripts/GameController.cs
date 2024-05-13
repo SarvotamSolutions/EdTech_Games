@@ -8,7 +8,7 @@ using GestureRecognizer;
 
 namespace Maths.Addision.BeadsCount
 {
-    public class GameController : MonoBehaviour
+    public class GameController :Singleton<GameController>
     {
 
         [Header("Ai")]
@@ -61,6 +61,7 @@ namespace Maths.Addision.BeadsCount
             AiDrawtext.textResult = input.transform.GetChild(0).GetComponent<TextMeshPro>();
             input.transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
             wrongAnswer_animtion.SetActive(false);
+            gamePlay = true;
         }
         private void Awake()
         {
@@ -255,7 +256,7 @@ namespace Maths.Addision.BeadsCount
 
 
                 }
-
+                gamePlay = true;
             }
         }
         public bool Neartodestination(GameObject obj)
@@ -263,7 +264,7 @@ namespace Maths.Addision.BeadsCount
 
             if (Vector3.Distance(obj.transform.position, spriteinputs[2].transform.position) < 1)
             {
-
+                gamePlay = false;
 
                 if(obj.GetComponent<Draging>().no == Numbers[2])
                 {

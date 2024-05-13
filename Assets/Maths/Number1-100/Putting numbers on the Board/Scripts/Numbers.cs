@@ -9,12 +9,20 @@ namespace Maths.Number1to100.Putting_numbers_Board
     {
         public int no;
         public bool competed;
-       
-        private void Awake()
+
+        private void Start()
         {
+          
+            if (GameController.instace.randomNo)
+                competed = Random.Range(0, 2) == 1 ? true : false;
+            if (no == 1)
+                competed = false;
             no =int.Parse(gameObject.name);
-            if(competed)
+            if (competed)
+            {
+                GetComponent<SpriteRenderer>().sprite = GameController.instace.currectanswer;
                 transform.GetChild(0).GetComponent<TextMeshPro>().text = no.ToString();
+            }
             else
                 transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
         }

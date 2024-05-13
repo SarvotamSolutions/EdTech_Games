@@ -278,6 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8248ed4bf78540458ca4905e67a6671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePlay: 1
   ClockTimer:
   - {fileID: 593280569}
   - {fileID: 342862993}

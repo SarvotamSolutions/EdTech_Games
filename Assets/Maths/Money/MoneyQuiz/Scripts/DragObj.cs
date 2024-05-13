@@ -12,18 +12,23 @@ namespace Maths.Money.MoneyQuiz
         public Vector3 permantlastpos;
         private void OnMouseDown()
         {
+            if (!GameController.Instance.gamePlay)
+                return;
             clicked = true;
-            lastpos = transform.position;
+           // lastpos = transform.position;
             
         }
         private void Start()
         {
             permantlastpos = transform.position;
+            lastpos = transform.position;
         }
         private void OnMouseUp()
         {
+            if (!GameController.Instance.gamePlay)
+                return;
             clicked = false;
-            if (GameController.instace.Neartodestination(this.gameObject))
+            if (GameController.Instance.Neartodestination(this.gameObject))
             {
                 // transform.position = lastpos;
                 // gameObject.SetActive(false);

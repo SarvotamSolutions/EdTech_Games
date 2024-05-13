@@ -2819,6 +2819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f1e43064d40aa4caa124dab96ed94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePlay: 1
   no: 0
   allno: 
   droper: {fileID: 1951671794}
@@ -2832,12 +2833,14 @@ MonoBehaviour:
   nextbutton: {fileID: 2095587990}
   QuestionText: {fileID: 234705019}
   BOx: {fileID: 1047154176}
+  hint: 0
   OddevenDropbox: {fileID: 879389064}
   OddevenBox: {fileID: 668207536}
   oddevenButtonPanel: {fileID: 254991574}
   CurrectAnswerButton: {fileID: 21300000, guid: 2ce93e3d25024ab479deb34c0c5358a3, type: 3}
   WrongAnswerButton: {fileID: 21300000, guid: 91a9ac823d049d9478189e609db69ead, type: 3}
   NormalAnswerButton: {fileID: 21300000, guid: a9d526e488946a84e9fed058c098ccf0, type: 3}
+  distance: {x: 0, y: 0, z: 0}
   gameCompleted_animation: {fileID: 410335203}
   wrongAnswer_animtion: {fileID: 122234811}
   Party_pop: {fileID: 752375145}

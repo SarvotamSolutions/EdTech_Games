@@ -1,13 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Drager : DragerForall
+namespace Laguage.beginning_sounds.DragandDrop
 {
-    public override void Start()
+    public class Drager : DragerForall
     {
-        base.Start();
+        public override void Start()
+        {
+            base.Start();
+        }
+
+        protected override void OnMouseDown()
+        {
+            if (!GameController.Instance.gamePlay)
+                return;
+            base.OnMouseDown();
+        }
+        protected override void OnMouseUp()
+        {
+
+            if (!GameController.Instance.gamePlay || !clicked )
+                return;
+           
+            base.OnMouseUp();
+           // transform.position = lastpos;
+            if(GameController.Instance.Neartodestination())
+            {
+
+            }
+            else
+            {
+                transform.position = lastpos;
+            }
+        }
+     
     }
-
-
 }

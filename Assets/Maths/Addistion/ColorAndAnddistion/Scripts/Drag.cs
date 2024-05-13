@@ -17,19 +17,23 @@ namespace Maths.Addision.AddisitonwithColors
         }
         private void OnMouseDown()
         {
+            if (!GameCondtroller.Instance.gamePlay)
+                return;
             clicked = true;
-            lastpos = transform.position;
+           
         }
 
         private void OnMouseUp()
         {
+            if (!GameCondtroller.Instance.gamePlay)
+                return;
             clicked = false;
-            if (GameCondtroller.instace.Neartodestination(this.gameObject))
+            if (GameCondtroller.Instance.Neartodestination(this.gameObject))
             {
                 transform.position = lastpos;
                 this.gameObject.SetActive(false);
 
-                if (GameCondtroller.instace.checkForThirdStage())
+                if (GameCondtroller.Instance.checkForThirdStage())
                 {
 
                 }

@@ -12,22 +12,22 @@ namespace Maths.Addision.AddisitonwithColors
         {
             if (clicked)
                 return;
-            if(GameCondtroller.instace.selectedcollor == color)
+            if(GameCondtroller.Instance.selectedcollor == color)
             {
                 clicked = true;
 
-                float ypos = (float)GameCondtroller.instace.number1 / 2f;
-                GameCondtroller.instace.Particalblast.gameObject.transform.position = transform.position;
+                float ypos = (float)GameCondtroller.Instance.number1 / 2f;
+                GameCondtroller.Instance.Particalblast.gameObject.transform.position = transform.position;
                 Vector3 pos = new Vector3(0, ypos, 0);
-                var ph = GameCondtroller.instace.Particalblast.shape;
+                var ph = GameCondtroller.Instance.Particalblast.shape;
                 ph.position = pos;
-                ph.scale = new Vector3(1, GameCondtroller.instace.number1, 1);
-                GameCondtroller.instace.Particalblast.Play();
-                GetComponent<SpriteRenderer>().sprite = GameCondtroller.instace.allBeadsWithColors[(int)color];
-                GameCondtroller.instace.stage1Colored++;
-                if (GameCondtroller.instace.stage1Colored >= 2)
+                ph.scale = new Vector3(1, GameCondtroller.Instance.number1, 1);
+                GameCondtroller.Instance.Particalblast.Play();
+                GetComponent<SpriteRenderer>().sprite = GameCondtroller.Instance.allBeadsWithColors[(int)color];
+                GameCondtroller.Instance.stage1Colored++;
+                if (GameCondtroller.Instance.stage1Colored >= 2)
                 {
-                    GameCondtroller.instace.SetStage2();
+                    GameCondtroller.Instance.SetStage2();
                 }
             }
         }

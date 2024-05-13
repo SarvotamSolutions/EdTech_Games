@@ -9,23 +9,32 @@ namespace Maths.TeenBeads.drop10to20
         public int no;
         private bool canChnagepos;
         public Vector3 lastpos;
-
+        bool firsttime = false;
 
         private void Start()
         {
+            firsttime = true;
             //   lastpos = transform.position;
             transform.parent.SetSiblingIndex(Random.Range(0, transform.parent.parent.childCount));
+            
         }
         private void OnMouseDown()
         {
-            clicked = true;
+            if (!GameController.Instance.gamePlay)
+                return;
+            if(firsttime)
             lastpos = transform.position;
+            clicked = true;
+            firsttime = false;
+            
         }
 
         private void OnMouseUp()
         {
+            if (!GameController.Instance.gamePlay)
+                return;
             clicked = false;
-            GameObject obj = GameController.instance.Neartodestination(this.gameObject);
+            GameObject obj = GameController.Instance.Neartodestination(this.gameObject);
 
             if (obj != null)
             {

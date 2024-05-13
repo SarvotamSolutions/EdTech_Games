@@ -2,13 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 namespace Maths.Substraction.DragingObject
 {
-
-    public class GameController : MonoBehaviour
+    [System.Serializable]
+    public class obj
     {
-        public static GameController instance;
+
+        public Sprite background;
+        public Sprite[] objecticon;
+        public Sprite[] droingplace;
+        public bool bird;
+        public Sprite birdsprite;
+    }
+
+
+    public class GameController : Singleton<GameController>
+    {
+        public obj[] allobj;
         public GameObject papercontins;
         public GameObject dustbin;
 
@@ -36,20 +49,24 @@ namespace Maths.Substraction.DragingObject
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
             wrongAnswer_animtion.SetActive(false);
+            gamePlay = true;
         }
-
-        private void Awake()
-        {
-            instance = this;
-        }
+        public Image bg;
+      
         public void Start()
         {
             Relod();
         }
+        public int getno;
         void Relod()
         {
+            
             reloding++;
-            numbers[0] = Random.Range(1, 11);
+            getno = Random.Range(0, allobj.Length);
+            OpenDustbinSprite = allobj[getno].droingplace[0];
+            closeDustBinSprite = allobj[getno].droingplace[1];
+            dustbin.GetComponent<SpriteRenderer>().sprite = closeDustBinSprite;
+            numbers[0] = Random.Range(5, 11);
             numbers[1] = Random.Range(1, 10);
             while (numbers[0] < numbers[1])
             {
@@ -60,6 +77,7 @@ namespace Maths.Substraction.DragingObject
             {
                 if (no < numbers[0])
                 {
+                    papercontins.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allobj[getno].objecticon[Random.Range(0, allobj[getno].objecticon.Length)];
 
                 }
                 else
@@ -71,8 +89,10 @@ namespace Maths.Substraction.DragingObject
 
 
             }
+            bg.sprite = allobj[getno].background;
             numbers[2] = numbers[0] - numbers[1];
             TextChange();
+            gamePlay = true;
         }
         void TextChange()
         {
@@ -85,16 +105,25 @@ namespace Maths.Substraction.DragingObject
         {
             if (Vector3.Distance(obj.transform.position, dustbin.transform.position) < 2)
             {
-
+                if (allobj[getno].bird)
+                {
+                    obj.GetComponent<SpriteRenderer>().sprite = allobj[getno].birdsprite;
+                    
+                }
 
                 return true;
 
             }
+            if (allobj[getno].bird)
+            {
+                obj.GetComponent<SpriteRenderer>().sprite = allobj[getno].objecticon[0];
 
+            }
             return false;
         }
         public void GameCompleted()
         {
+            gamePlay = false;
             if (papercontins.transform.childCount == numbers[2])
             {
                 numberText[2].text = papercontins.transform.childCount.ToString();
@@ -120,6 +149,23 @@ namespace Maths.Substraction.DragingObject
                 {
                     dustbin.transform.GetChild(i).gameObject.SetActive(true);
                     dustbin.transform.GetChild(i).transform.parent = papercontins.transform;
+
+                }
+                int no = 0;
+                for (int i = papercontins.transform.childCount - 1; i >= 0; i--)
+                {
+                    if (no < numbers[0])
+                    {
+                        papercontins.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allobj[getno].objecticon[Random.Range(0, allobj[getno].objecticon.Length)];
+
+                    }
+                    else
+                    {
+                        papercontins.transform.GetChild(i).gameObject.SetActive(false);
+                        papercontins.transform.GetChild(i).transform.SetParent(dustbin.transform);
+                    }
+                    no++;
+
 
                 }
                 StartCoroutine(WrongAnswerAnimation());

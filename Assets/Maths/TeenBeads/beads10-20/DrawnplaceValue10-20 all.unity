@@ -2140,6 +2140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee7afedb0acd5d44b962d42e27989df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePlay: 1
   currectanswer: {fileID: 21300000, guid: c29d19386e3285f4c8ec60af35c2d3b7, type: 3}
   wrongAnswer: {fileID: 21300000, guid: 038981b0edc7f494cb6455539a3c9a18, type: 3}
   normalAnswer: {fileID: 21300000, guid: 11da5f566a171254ea6a70c349726912, type: 3}

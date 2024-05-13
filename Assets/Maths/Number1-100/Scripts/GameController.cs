@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 namespace Maths.Number1to100.dragandrop
 {
-    public class GameController : MonoBehaviour
+    public class GameController : Singleton<GameController>
     {
-        public static GameController instance;
+
 
         public GameObject[] option;
         public GameObject[] question;
@@ -16,43 +16,96 @@ namespace Maths.Number1to100.dragandrop
         int deactive;
         int answerchoice;
         int reloding;
+        public int multiplenumber;
+        public bool relodOption;
+        public int timecanrelod;
+        public bool multipleChoice;
         public int addno;
         public List<int> alloption = new List<int>(12);
+        public bool randomno;
 
-        private void Awake()
-        {
-            instance = this;
-
-        }
 
         public bool Neartodestination(GameObject obj)
         {
-            Debug.Log(Vector3.Distance(obj.transform.position, question[deactive].transform.position));
-            if (Vector3.Distance(obj.transform.position, question[deactive].transform.position) < 1)
+            if (multipleChoice) 
             {
-
-                if (obj.GetComponent<Drag>().no == deactive+addno + 1)
+                if (Vector3.Distance(obj.transform.position, question[alloption[deactive]].transform.position) < 1)
                 {
-                    question[deactive].transform.GetChild(0).GetComponent<TextMeshPro>().text = (deactive+addno + 1).ToString();
-                    question[deactive].GetComponent<SpriteRenderer>().sprite = currectanswer;
-                    if (reloding > 9)
+                    if (obj.GetComponent<Drag>().no == alloption[deactive]+1)
                     {
-                        StartCoroutine(LevelCompleted());
+                        question[alloption[deactive]].transform.GetChild(0).GetComponent<TextMeshPro>().text = (alloption[deactive]+1).ToString();
+                        question[alloption[deactive]].GetComponent<SpriteRenderer>().sprite = currectanswer;
+                        deactive++;
 
+
+                        obj.gameObject.SetActive(false);
+                        
+                     
+                        if (deactive == option.Length)
+                        {
+                            if (relodOption)
+                            {
+                                foreach (var item in option)
+                                {
+                                    item.SetActive(true);
+
+                                }
+                                for (int i = addno; i < 10+addno; i++)
+                                {
+                                    question[i].SetActive(false);
+                                }
+                                deactive = 0;
+                                addno += 10;
+                                if(addno<100)
+                                RelodOption();
+                                else
+                                    StartCoroutine(LevelCompleted());
+                            }
+                            else
+                            StartCoroutine(LevelCompleted());
+                        }
+                        
                     }
-                    
-                    addno = Random.Range(0,5)*20;
-                    StartCoroutine(Reseting());
+                    else
+                    {
+                        Debug.Log("Eror");
+                        question[alloption[deactive]].transform.GetChild(0).GetComponent<TextMeshPro>().text = (obj.GetComponent<Drag>().no).ToString();
+                        question[alloption[deactive]].GetComponent<SpriteRenderer>().sprite = wronganswer;
+                        StartCoroutine(wrongAnimationforMultipleChoic());
+                    }
+                       
+                  
                 }
-                else
+            }
+            else
+            {
+                Debug.Log(Vector3.Distance(obj.transform.position, question[deactive].transform.position));
+                if (Vector3.Distance(obj.transform.position, question[deactive].transform.position) < 1)
                 {
-                    question[deactive].transform.GetChild(0).GetComponent<TextMeshPro>().text = obj.GetComponent<Drag>().no.ToString();
-                    question[deactive].GetComponent<SpriteRenderer>().sprite = wronganswer;
-                    StartCoroutine(WrongAnswerAnimation());
+
+                    if (obj.GetComponent<Drag>().no == deactive + addno + 1)
+                    {
+                        question[deactive].transform.GetChild(0).GetComponent<TextMeshPro>().text = (deactive + addno + 1).ToString();
+                        question[deactive].GetComponent<SpriteRenderer>().sprite = currectanswer;
+                        if (reloding > 9)
+                        {
+                            StartCoroutine(LevelCompleted());
+
+                        }
+
+                        addno = addno + 1 * 10;
+                        StartCoroutine(Reseting());
+                    }
+                    else
+                    {
+                        question[deactive].transform.GetChild(0).GetComponent<TextMeshPro>().text = obj.GetComponent<Drag>().no.ToString();
+                        question[deactive].GetComponent<SpriteRenderer>().sprite = wronganswer;
+                        StartCoroutine(WrongAnswerAnimation());
+                    }
+
+
+                    return true;
                 }
-
-
-                return true;
             }
 
 
@@ -70,8 +123,64 @@ namespace Maths.Number1to100.dragandrop
             SceneManager.LoadScene(0);
 
         }
+        public void RelodOption()
+        {
+            for (int i = 0; i < option.Length; i++)
+            {
+
+                alloption[i] = Random.Range(addno, option.Length +addno);
+                for (int j = 0; j < option.Length; j++)
+                {
+
+                    if (alloption[i] == alloption[j] && i != j)
+                    {
+                        alloption[i] = Random.Range(addno, option.Length+addno);
+
+                        j = -1;
+                    }
+                }
+                option[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = (alloption[i] + 1).ToString();
+                option[i].GetComponent<Drag>().no = (alloption[i] + 1);
+            }
+            alloption.Sort();
+            foreach (var item in alloption)
+            {
+                question[item].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
+                question[item].GetComponent<SpriteRenderer>().sprite = answeroption;
+            }
+
+            //for (int i = 0; i < alloption.Count; i++)
+            //{
+            //    question[alloption[i]].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
+            //    question[alloption[i]].GetComponent<SpriteRenderer>().sprite = answeroption;
+            //}
+            //for (int i = 0; i < question.Length; i++)
+            //{
+            //    if(Random.Range(0,2) == 1)
+            //    {
+            //        if(question.)
+            //        qestioncount++;
+            //        question[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
+            //        question[i].GetComponent<SpriteRenderer>().sprite = answeroption;
+            //    }
+            //}
+        
+        }
+        IEnumerator wrongAnimationforMultipleChoic()
+        {
+            gamePlay = false;
+            wrongAnswer_animtion.SetActive(true);
+            yield return new WaitForSeconds(2);
+            question[alloption[deactive]].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
+            question[alloption[deactive]].GetComponent<SpriteRenderer>().sprite =answeroption;
+
+        
+            wrongAnswer_animtion.SetActive(false);
+            gamePlay = true;
+        }
         IEnumerator WrongAnswerAnimation()
         {
+            gamePlay = false;
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
             question[deactive].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
@@ -81,10 +190,11 @@ namespace Maths.Number1to100.dragandrop
                 item.SetActive(true);
             }
             wrongAnswer_animtion.SetActive(false);
-
+            gamePlay = true;
         }
         IEnumerator Reseting()
         {
+            gamePlay = false;
             Party_pop.SetActive(true);
             yield return new WaitForSeconds(3);
             Party_pop.SetActive(false);
@@ -101,53 +211,156 @@ namespace Maths.Number1to100.dragandrop
 
 
             Reloding();
+            gamePlay = true;
 
         }
         void Reloding()
         {
 
             Debug.Log("XXX");
-            deactive = Random.Range(0, question.Length);
-            for (int i = 0; i < question.Length; i++)
+
+
+            if (!multipleChoice)
             {
-                question[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = (addno + i + 1).ToString();
+               
+                    for (int i = 0; i < question.Length; i++)
+                    {
+                        question[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = (addno + i + 1).ToString();
+                    }
+
+                    deactive = Random.Range(0, question.Length);
+                    question[deactive].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    question[deactive].GetComponent<SpriteRenderer>().sprite = answeroption;
+                    answerchoice = Random.Range(0, option.Length);
+                    alloption[answerchoice] = deactive + 1;
+
+                    for (int i = 0; i < option.Length; i++)
+                    {
+                        if (answerchoice == i)
+                        {
+                            option[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = (deactive + addno + 1).ToString();
+                            option[i].GetComponent<Drag>().no = (deactive + addno + 1);
+                        }
+                        else
+                        {
+                            int no = Random.Range(1 + addno, 11 + addno);
+                            for (int j = 0; j < alloption.Count; j++)
+                            {
+                                if (alloption[j] == no)
+                                {
+                                    no = Random.Range(1 + addno, 11 + addno);
+                                    j = -1;
+                                }
+
+                            }
+                            alloption[i] = no;
+                            option[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = no.ToString();
+                            option[i].GetComponent<Drag>().no = no;
+                        }
+
+
+
+                    }
+
+                
+
             }
-
-          
-            question[deactive].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
-            question[deactive].GetComponent<SpriteRenderer>().sprite = answeroption;
-
-
-
-            answerchoice = Random.Range(0, option.Length);
-            alloption[answerchoice] = deactive + 1;
-            for (int i = 0; i < option.Length; i++)
+            else
             {
-                if (answerchoice== i)
+                if (relodOption)
                 {
-                    option[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = (deactive +addno + 1).ToString();
-                    option[i].GetComponent<Drag>().no = (deactive+addno + 1);
+
                 }
                 else
                 {
-                    int no = Random.Range(1 + addno, 21 + addno);
-                    for (int j = 0; j < alloption.Count; j++)
+                    for (int i = 0; i < question.Length; i++)
                     {
-                        if (alloption[j] == no)
+                        question[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = (addno + i + 1).ToString();
+                    }
+                }
+                if (randomno)
+                {
+                    for (int i = 0; i < option.Length; i++)
+                    {
+
+                        alloption[i] = Random.Range(0, question.Length);
+                        for (int j = 0; j < option.Length; j++)
                         {
-                            no = Random.Range(1+addno, 21+addno);
-                            j = -1;
+
+                            if (alloption[i] == alloption[j] && i != j)
+                            {
+                                alloption[i] = Random.Range(0, option.Length);
+
+                                j = -1;
+                            }
                         }
+                        option[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = (alloption[i] + 1).ToString();
+                        option[i].GetComponent<Drag>().no = (alloption[i] + 1);
+                    }
+                    alloption.Sort();
+                    foreach (var item in alloption)
+                    {
+                        question[item].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
+                        question[item].GetComponent<SpriteRenderer>().sprite = answeroption;
+                    }
+                }
+                else
+                {
+                    if (relodOption)
+                    {
 
                     }
-                    alloption[i] = no;
-                    option[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = no.ToString();
-                    option[i].GetComponent<Drag>().no = no;
+                    else
+                    {
+                        for (int i = 0; i < question.Length; i++)
+                        {
+                            question[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = (addno + i + 1).ToString();
+                        }
+                    }
+                    // int qestioncount = 0;
+                    for (int i = 0; i < option.Length; i++)
+                    {
+
+                        alloption[i] = Random.Range(0, option.Length);
+                        for (int j = 0; j < option.Length; j++)
+                        {
+
+                            if (alloption[i] == alloption[j] && i != j)
+                            {
+                                alloption[i] = Random.Range(0, option.Length);
+
+                                j = -1;
+                            }
+                        }
+                        option[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = (alloption[i] + 1).ToString();
+                        option[i].GetComponent<Drag>().no = (alloption[i] + 1);
+                    }
+                    alloption.Sort();
+                    foreach (var item in alloption)
+                    {
+                        question[item].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
+                        question[item].GetComponent<SpriteRenderer>().sprite = answeroption;
+                    }
                 }
-
-
-
+                //for (int i = 0; i < alloption.Count; i++)
+                //{
+                //    question[alloption[i]].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
+                //    question[alloption[i]].GetComponent<SpriteRenderer>().sprite = answeroption;
+                //}
+                //for (int i = 0; i < question.Length; i++)
+                //{
+                //    if(Random.Range(0,2) == 1)
+                //    {
+                //        if(question.)
+                //        qestioncount++;
+                //        question[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
+                //        question[i].GetComponent<SpriteRenderer>().sprite = answeroption;
+                //    }
+                //}
             }
+
+
+
         }
         private void Start()
         {

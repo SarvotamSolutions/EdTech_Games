@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UiDrager : MonoBehaviour, IPointerDownHandler,IDragHandler
+public class UiDrager : MonoBehaviour//, IPointerDownHandler,IDragHandler
 {
     public RectTransform drager;
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        drager.anchoredPosition += eventData.delta;
+    //public void OnDrag(PointerEventData eventData)
+    //{
+    //    drager.anchoredPosition += eventData.delta;
       
-       // transform.position = Input.mousePosition;
-    }
+    //   // transform.position = Input.mousePosition;
+    //}
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
+    //public void OnPointerDown(PointerEventData eventData)
+    //{
         
-    }
+    //}
 }

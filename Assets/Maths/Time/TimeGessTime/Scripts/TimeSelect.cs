@@ -10,25 +10,29 @@ namespace Maths.Times.Selecttime
 
         private void OnMouseUpAsButton()
         {
-            if (GameController.instance.HourCout == hour && GameController.instance.MinitCount == Minits)
+            if (!GameController.Instance.gamePlay)
+                return;
+            GameController.Instance.gamePlay = false;
+            if (GameController.Instance.HourCout == hour && GameController.Instance.MinitCount == Minits)
             {
-                GetComponent<SpriteRenderer>().sprite = GameController.instance.currectanswer;
-                StartCoroutine(GameController.instance.WaitforRelod());
+                GetComponent<SpriteRenderer>().sprite = GameController.Instance.currectanswer;
+                StartCoroutine(GameController.Instance.WaitforRelod());
 
             }
             else
             {
 
-                GetComponent<SpriteRenderer>().sprite = GameController.instance.wrongAnswer;
+                GetComponent<SpriteRenderer>().sprite = GameController.Instance.wrongAnswer;
                 StartCoroutine(WrongAnswerAnimtion());
             }
         }
         IEnumerator WrongAnswerAnimtion()
         {
-            GameController.instance.wrongAnswer_animtion.SetActive(true);
+            GameController.Instance.wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
-            GameController.instance.wrongAnswer_animtion.SetActive(false);
-            GetComponent<SpriteRenderer>().sprite = GameController.instance.NormalAnswer;
+            GameController.Instance.wrongAnswer_animtion.SetActive(false);
+            GetComponent<SpriteRenderer>().sprite = GameController.Instance.NormalAnswer;
+            GameController.Instance.gamePlay = true;
         }
     }
 }

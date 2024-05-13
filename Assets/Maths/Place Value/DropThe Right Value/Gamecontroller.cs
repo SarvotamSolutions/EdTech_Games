@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 
 namespace Maths.placeValue.slectOption
 {
-    public class Gamecontroller : MonoBehaviour
+    public class Gamecontroller : Singleton<Gamecontroller>
     {
-        public static Gamecontroller instace;
+    
         public TextMeshPro questiontext;
         public int number;
         public SpriteRenderer dropbox;
@@ -27,7 +27,7 @@ namespace Maths.placeValue.slectOption
         public GameObject Party_pop;
         private void Start()
         {
-            instace = this;
+          
 
             number = Random.Range(10, 99);
             answerno = Random.Range(0, 4);
@@ -67,7 +67,7 @@ namespace Maths.placeValue.slectOption
             wrongAnswer_animtion.SetActive(false);
             obj.GetComponent<SpriteRenderer>().sprite = normalsprite;
             obj.transform.position = obj.lastpos;
-
+            gamePlay = true;
         }
         public void resetgame(DragDroper obj)
         {
@@ -121,7 +121,7 @@ namespace Maths.placeValue.slectOption
 
 
             }
-
+            gamePlay = true;
 
         }
 
@@ -132,8 +132,11 @@ namespace Maths.placeValue.slectOption
             {
 
 
-                if(obj)
-                   return true;
+                if (obj)
+                {
+                   
+                    return true;
+                }
             }
 
             return false;

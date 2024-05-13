@@ -5,7 +5,7 @@ using TMPro;
 
 public class DragerForall : MonoBehaviour
 {
-    private bool clicked;
+    protected bool clicked;
     public SpriteRenderer Border;
     public SpriteRenderer Icon;
     public TextMeshPro text;
@@ -26,6 +26,7 @@ public class DragerForall : MonoBehaviour
 
      
         clicked = true;
+        Debug.Log("SELECTION");
         GameControllerforAll.Instance.selectedoption = this;
 
         AddSetOrderLayer(transform.GetComponent<SpriteRenderer>());
@@ -40,9 +41,46 @@ public class DragerForall : MonoBehaviour
             AddSetOrderLayer(text);
 
     }
-    public void AddSetOrderLayer(SpriteRenderer sprite)
+  
+    protected virtual void OnMouseUp()
+    {
+
+        if (!clicked)
+            return;
+        Debug.Log("selection");
+        clicked = false;
+        RemoveSetOrderLayer(transform.GetComponent<SpriteRenderer>());
+
+        if (Border)
+        {
+         //   Border.color = Color.white;
+            RemoveSetOrderLayer(Icon);
+            RemoveSetOrderLayer(Border);
+        }
+        if (text)
+            RemoveSetOrderLayer(text);
+
+    }
+    protected virtual void OnMouseDrag()
     {
        
+    }
+    protected virtual void Update()
+    {
+
+        if (Input.GetMouseButton(0) && clicked)
+        {
+            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            pos.z = 0;
+            transform.position = pos;
+        }
+
+
+    }
+
+    public void AddSetOrderLayer(SpriteRenderer sprite)
+    {
+
         sprite.sortingOrder += maxmimumorderlayer;
     }
     public void RemoveSetOrderLayer(SpriteRenderer removeingsprite)
@@ -61,43 +99,5 @@ public class DragerForall : MonoBehaviour
         removeingsprite.sortingOrder -= maxmimumorderlayer;
     }
 
-    protected virtual void OnMouseUp()
-    {
-        clicked = false;
-        RemoveSetOrderLayer(transform.GetComponent<SpriteRenderer>());
-
-        if (Border)
-        {
-            Border.color = Color.white;
-            RemoveSetOrderLayer(Icon);
-            RemoveSetOrderLayer(Border);
-        }
-        if (text)
-            RemoveSetOrderLayer(text);
-        if (GameControllerforAll.Instance.Neartodestination())
-        {
-
-        }
-        else
-        {
-            transform.position = lastpos;
-        }
-
-    }
-    protected virtual void OnMouseDrag()
-    {
-       
-    }
-    private void Update()
-    {
-        if (Input.GetMouseButton(0) && clicked)
-        {
-            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pos.z = 0;
-            transform.position = pos;
-        }
-
-
-    }
 
 }

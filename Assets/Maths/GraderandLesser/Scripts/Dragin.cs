@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 namespace Maths.graterAndLesser
 {
     public class Dragin : MonoBehaviour
@@ -9,57 +9,122 @@ namespace Maths.graterAndLesser
         private bool clicked;
         private bool canChnagepos;
         public Vector3 lastpos;
-        public bool grater;
+        public bool grater ,lesser;
 
+        public int id;
         private void Start()
         {
             lastpos = transform.position;
+            TextUpdate();
         }
         private void OnMouseDown()
         {
-            if (!GameController.instance.GraterorLessselct)
+            if (!GameController.Instance.gamePlay)
                 return;
-
+            //if (!GameController.instance.GraterorLessselct)
+            //    return;
+            GameController.Instance.drager = this.gameObject;
             clicked = true;
             lastpos = transform.position;
         }
 
         private void OnMouseUp()
         {
-
+            if (!GameController.Instance.gamePlay)
+                return;
 
             clicked = false;
-            if (Vector3.Distance(transform.position, GameController.instance.dropingobj.transform.position) < 1)
+            if (Vector3.Distance(transform.position, GameController.Instance.inputs[GameController.Instance.no].transform.position) < 1)
             {
 
-                if (grater && GameController.instance.Numbers[0] > GameController.instance.Numbers[1])
+              
+                canChnagepos = true;
+                if (grater || lesser)
                 {
-                    GameController.instance.GraterorLessselct = false;
-                    canChnagepos = true;
-                    transform.position = GameController.instance.dropingobj.transform.position;
-                    GameController.instance.FinalCheck(this.GetComponent<SpriteRenderer>());
+                    GameController.Instance.gamePlay = false;
 
+                    //  transform.position = GameController.instance.dropingobj.transform.position;
+                    //GameController.instance.GraterorLessselct = false;
+                    if (grater && GameController.Instance.Numbers[0] > GameController.Instance.Numbers[1])
+                    {
+                        GameController.Instance.inputs[GameController.Instance.no].color = Color.white;
+                        GameController.Instance.inputs[GameController.Instance.no].sprite = GameController.Instance.currectAnswer;
+                        GameController.Instance.input_text[GameController.Instance.no].text = ">";
+                        //GameController.instance.Answering();
+                      //  canChnagepos = true;
+
+                        GameController.Instance.FinalCheck(this.GetComponent<SpriteRenderer>());
+
+                    }
+                    else
+                    if (!grater && GameController.Instance.Numbers[0] < GameController.Instance.Numbers[1])
+                    {
+                        GameController.Instance.inputs[GameController.Instance.no].color = Color.white;
+                        GameController.Instance.inputs[GameController.Instance.no].sprite = GameController.Instance.currectAnswer;
+                        GameController.Instance.input_text[GameController.Instance.no].text = "<";
+                        //  GameController.instance.Answering();
+                        //  transform.position = GameController.instance.dropingobj.transform.position;
+                        GameController.Instance.FinalCheck(this.GetComponent<SpriteRenderer>());
+                    }
+                    else
+                    {
+                      
+                        GameController.Instance.WrongAnimation();
+                    }
                 }
                 else
-                if (!grater && GameController.instance.Numbers[0] < GameController.instance.Numbers[1])
                 {
-                    GameController.instance.GraterorLessselct = false;
-                    canChnagepos = true;
-                    transform.position = GameController.instance.dropingobj.transform.position;
-                    GameController.instance.FinalCheck(this.GetComponent<SpriteRenderer>());
-                }
-                else
-                {
-                    transform.position = lastpos;
+                    Debug.Log(GameController.Instance.Numbers[GameController.Instance.no]);
+                    Debug.Log(GameController.Instance.allno[id]);
+                    if (GameController.Instance.allno[id] == GameController.Instance.Numbers[GameController.Instance.no]+1)
+                    {
+                        GameController.Instance.Answering();
+                        if(GameController.Instance.no >= 2)
+                        {
+                            GameController.Instance.graterlessparent.SetActive(true);
+                            GameController.Instance.optioncontins.SetActive(false);
+                        }
+                        transform.gameObject.SetActive(false);
+                     //   transform.position = GameController.instance.inputs[GameController.instance.no].transform.position;
+                       
+                    }
+                    else
+                    {
+
+                          GameController.Instance.gamePlay = false;
+                        GameController.Instance.input_text[GameController.Instance.no].text = GameController.Instance.allno[id].ToString();
+                        GameController.Instance.WrongAnimation();
+                        //wrong answer
+                    }
+                    //normal answer
+
+                   
+
+
+
                 }
                 //gameObject.SetActive(false);
                 //transform.position = lastpos;
+                //transform.position = lastpos;
+                transform.gameObject.SetActive(false);
+
             }
             else
             {
-                transform.position = lastpos;
             }
+                transform.position = lastpos;
 
+        }
+        public void TextUpdate()
+        {
+            if (!grater && !lesser)
+            {
+                GetComponentInChildren<TextMeshPro>().text = GameController.Instance.allno[id].ToString();
+            }
+        }
+        private void OnEnable()
+        {
+            
         }
         private void Update()
         {

@@ -33,13 +33,27 @@ public class ExampleGestureHandler : MonoBehaviour {
 		{
 
 			notext += result.gesture.id;
-			no = int.Parse(notext);
-			if (textResult)
+			if (int.TryParse(notext, out no))
 			{
-				textResult.text = no.ToString();
+
+
+				//no = int.Parse(notext);
+				if (textResult)
+				{
+					textResult.text = no.ToString();
+				}
+				else if (textResultUI)
+					textResultUI.text = no.ToString();
+            }
+            else
+            {
+				if (textResult)
+				{
+					textResult.text = notext;
+				}
+				else if (textResultUI)
+					textResultUI.text =notext;
 			}
-			else if (textResultUI)
-				textResultUI.text = no.ToString();
 			//StartCoroutine (Blink (result.gesture.id));
 		} else 
 		{

@@ -6,11 +6,10 @@ using UnityEngine.SceneManagement;
 
 namespace Maths.Addision.AddisitonwithColors
 {
-    public class GameCondtroller : MonoBehaviour
+    public class GameCondtroller : Singleton<GameCondtroller>
     {
         public ParticleSystem Particalblast;
 
-        public static GameCondtroller instace;
         public ColorSkeckPen[] all_CollerSelection;
         public GameObject[] DragOption;
         public AllCollors selectedcollor;
@@ -57,11 +56,7 @@ namespace Maths.Addision.AddisitonwithColors
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene(0);
         }
-        private void Awake()
-        {
-            instace = this;
-          
-        }
+       
         private void Start()
         {
            
@@ -142,6 +137,7 @@ namespace Maths.Addision.AddisitonwithColors
             withoutcolor2.sprite = allbeadswithoutColors[number2];
             withoutcolors1.GetComponent<BeadsSelecting>().color = (AllCollors)number1;
             withoutcolor2.GetComponent<BeadsSelecting>().color = (AllCollors)number2;
+            gamePlay = true;
         }
         public void SetStage2()
         {
@@ -167,6 +163,7 @@ namespace Maths.Addision.AddisitonwithColors
         {
             if (Vector3.Distance(obj.transform.position, dropplace.transform.position) < 1)
             {
+                gamePlay = false;
                 obj.transform.position = dropplace.transform.position;
                 return true;
             }
@@ -175,9 +172,10 @@ namespace Maths.Addision.AddisitonwithColors
 
         public bool Neartodestination(GameObject obj)
         {
+            
             if(Vector3.Distance(obj.transform.position,inputfild1.transform.position)<1 && obj.GetComponent<Drag>().no == number1)
             {
-
+               
                 float ypos = (float)number1 / 2f;
                 Particalblast.gameObject.transform.position = withoutcolors1.transform.position;
                 Vector3 pos = new Vector3(0, ypos, 0);
@@ -191,6 +189,7 @@ namespace Maths.Addision.AddisitonwithColors
             }
             else if (Vector3.Distance(obj.transform.position, inputfild1.transform.position) < 1 && obj.GetComponent<Drag>().no != number1)
             {
+                gamePlay = false;
                 float ypos = (float)number1 / 2f;
                 Particalblast.gameObject.transform.position = withoutcolors1.transform.position;
                 Vector3 pos = new Vector3(0, ypos, 0);
@@ -203,6 +202,8 @@ namespace Maths.Addision.AddisitonwithColors
                 StartCoroutine(WrongAnswerAnimation(inputfild1.GetComponent<SpriteRenderer>()));
 
             }
+
+
             if (Vector3.Distance(obj.transform.position, inputfile2.transform.position) < 1 && obj.GetComponent<Drag>().no == number2)
             {
 
@@ -218,6 +219,7 @@ namespace Maths.Addision.AddisitonwithColors
             }
             else if (Vector3.Distance(obj.transform.position, inputfile2.transform.position) < 1 && obj.GetComponent<Drag>().no != number2)
             {
+                gamePlay = false;
                 float ypos = (float)number2 / 2f;
                 Particalblast.gameObject.transform.position = withoutcolor2.transform.position;
                 Vector3 pos = new Vector3(0, ypos, 0);
@@ -234,11 +236,13 @@ namespace Maths.Addision.AddisitonwithColors
 
         IEnumerator WrongAnswerAnimation(SpriteRenderer input)
         {
+            gamePlay = false;
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
             input.sprite = NormalInput;
             input.transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
             wrongAnswer_animtion.SetActive(false);
+            gamePlay = true;
         }
         public bool checkForThirdStage()
         {

@@ -12,17 +12,21 @@ namespace Maths.placeValue.inofDroper
 
         private void Start()
         { 
-         //   lastpos = transform.position;
+            lastpos = transform.position;
             
         }
         private void OnMouseDown()
         {
+            if (!GameController.instance.gamePlay)
+                return;
             clicked = true;
-            lastpos = transform.position;
+            //lastpos = transform.position;
         }
 
         private void OnMouseUp()
         {
+            if (!GameController.instance.gamePlay)
+                return;
             clicked = false;
             if (GameController.instance.Neartodestination(this.gameObject))
             {

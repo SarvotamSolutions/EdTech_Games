@@ -35,7 +35,7 @@ namespace Maths.Times.ClockTimeSet
                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 ////
              
-                pos = new Vector3(Mathf.Clamp(pos.x, -7, 7), Mathf.Clamp(pos.y, -7,7), 0);
+            //    pos = new Vector3(Mathf.Clamp(pos.x, -7, 7), Mathf.Clamp(pos.y, -7,7), 0);
                 pos.z = 0;
                
                 obj.transform.position = pos;
@@ -76,7 +76,7 @@ namespace Maths.Times.ClockTimeSet
         IEnumerator RotatePointer()
         {
             activate = false;
-            yield return new WaitForSeconds(.075f);
+            yield return new WaitForSeconds(.005f);
             activate = true;
             Vector3 rotate = new Vector3(0, 0, transform.localEulerAngles.z +6f);
             time = time - 1;
@@ -121,7 +121,7 @@ namespace Maths.Times.ClockTimeSet
         IEnumerator RotatePointerDecress()
         {
            
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.005f);
 
 
             Vector3 rotate = new Vector3(0, 0, transform.localEulerAngles.z -6f);

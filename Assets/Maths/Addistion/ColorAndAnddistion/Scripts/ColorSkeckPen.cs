@@ -19,8 +19,8 @@ namespace Maths.Addision.AddisitonwithColors
 
         public void SelectedColor()
         {
-            GameCondtroller.instace.ResetColler();
-            GameCondtroller.instace.selectedcollor = thiscolor;
+            GameCondtroller.Instance.ResetColler();
+            GameCondtroller.Instance.selectedcollor = thiscolor;
             Selectedobj.SetActive(true);
 
         }

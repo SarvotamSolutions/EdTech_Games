@@ -16,18 +16,22 @@ namespace Maths.Money.AddMoney
         }
         private void OnMouseDown()
         {
+            if (!Gamecontroll.Instance.gamePlay)
+                return;
             clicked = true;
-            lastpos = transform.position;
+          //  lastpos = transform.position;
         }
         public bool droped;
         public float speed;
         private void OnMouseUp()
         {
+            if (!Gamecontroll.Instance.gamePlay)
+                return;
             clicked = false;
-            if (Gamecontroll.instace.Neartodestination(this.gameObject))
+            if (Gamecontroll.Instance.Neartodestination(this.gameObject))
             {
-                Gamecontroll.instace.totalmoneyadded += Moneyvlaue;
-                Gamecontroll.instace.totalMoneyaddedtext.text = Gamecontroll.instace.totalmoneyadded.ToString("0.00") + " $";
+                Gamecontroll.Instance.totalmoneyadded += Moneyvlaue;
+                Gamecontroll.Instance.totalMoneyaddedtext.text = "$ "+ Gamecontroll.Instance.totalmoneyadded.ToString("0.00") ;
                 droped = true;
               //  transform.position += Vector3.down *19;
             }
@@ -51,18 +55,18 @@ namespace Maths.Money.AddMoney
         {
             if (clicked)
             {
-                if (Gamecontroll.instace.Neartodestination(this.gameObject) && Gamecontroll.instace.addmoneyimage.activeInHierarchy)
+                if (Gamecontroll.Instance.Neartodestination(this.gameObject) && Gamecontroll.Instance.addmoneyimage.activeInHierarchy)
                 {
                     Debug.Log("XXX");
-                    Gamecontroll.instace.addmoneyimage.SetActive(false);
-                    Gamecontroll.instace.Priceplace.color = Gamecontroll.instace.darkyellow;
+                    Gamecontroll.Instance.addmoneyimage.SetActive(false);
+                    Gamecontroll.Instance.Priceplace.color = Gamecontroll.Instance.darkyellow;
 
                 }
-                else if (!Gamecontroll.instace.Neartodestination(this.gameObject) && !Gamecontroll.instace.addmoneyimage.activeInHierarchy)
+                else if (!Gamecontroll.Instance.Neartodestination(this.gameObject) && !Gamecontroll.Instance.addmoneyimage.activeInHierarchy)
                 {
                     Debug.Log("YYY");
-                    Gamecontroll.instace.addmoneyimage.SetActive(true);
-                    Gamecontroll.instace.Priceplace.color = Gamecontroll.instace.yellow;
+                    Gamecontroll.Instance.addmoneyimage.SetActive(true);
+                    Gamecontroll.Instance.Priceplace.color = Gamecontroll.Instance.yellow;
                 }
             }
             if (Input.GetMouseButton(0) && clicked)
@@ -83,10 +87,10 @@ namespace Maths.Money.AddMoney
             yield return new WaitForSeconds(.5f);
             droped = false;
             transform.position = lastpos;
-            if (!Gamecontroll.instace.addmoneyimage.activeInHierarchy)
+            if (!Gamecontroll.Instance.addmoneyimage.activeInHierarchy)
             {
-                Gamecontroll.instace.addmoneyimage.SetActive(true);
-                Gamecontroll.instace.Priceplace.color = Gamecontroll.instace.yellow;
+                Gamecontroll.Instance.addmoneyimage.SetActive(true);
+                Gamecontroll.Instance.Priceplace.color = Gamecontroll.Instance.yellow;
             }
             StopAllCoroutines();
         }

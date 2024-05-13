@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 namespace Maths.placeValue.inofDroper
 {
-    public class GameController : MonoBehaviour
+    public class GameController : Singleton<GameController>
     {
         public static GameController instance;
         public GameObject[] dropbox;
 
         public Transform Holder;
 
-        public Sprite currectanswer, wronganswer;
+        public Sprite currectanswer, wronganswer,normlAnswer;
 
         [Space(10)]
         public GameObject gameCompleted_animation;
@@ -35,7 +35,7 @@ namespace Maths.placeValue.inofDroper
             Debug.Log(Vector3.Distance(obj.transform.position, dropbox[drag.no].transform.position));
             if (Vector3.Distance(obj.transform.position, dropbox[drag.no].transform.position) < 1)
             {
-
+            
               //  Transform tempstorefile = obj.transform.parent;
                 obj.transform.parent = dropbox[drag.no].transform;
                 obj.transform.position = dropbox[drag.no].transform.position;
@@ -47,12 +47,33 @@ namespace Maths.placeValue.inofDroper
                 }
                 return true;
             }
+            for (int i = 0; i < dropbox.Length; i++)
+            {
+                if (Vector3.Distance(obj.transform.position, dropbox[i].transform.position) < 1)
+                {
+                    gamePlay = false;
+                    obj.GetComponent<SpriteRenderer>().sprite = wronganswer;
+                    obj.transform.position = dropbox[i].transform.position;
+                    StartCoroutine(WrongAnswer(obj));
+                    return true;
+                }
+            }
+     
 
-        
+
+
             return false;
         }
 
-
+        IEnumerator WrongAnswer(GameObject obj)
+        {
+            wrongAnswer_animtion.SetActive(true);
+            yield return new WaitForSeconds(2);
+            wrongAnswer_animtion.SetActive(false);
+            obj.GetComponent<SpriteRenderer>().sprite = normlAnswer;
+            obj.transform.position = obj.GetComponent<Drager>().lastpos;
+            gamePlay = true;
+        }
         IEnumerator LevelCompleted()
         {
             gameCompleted_animation.SetActive(true);

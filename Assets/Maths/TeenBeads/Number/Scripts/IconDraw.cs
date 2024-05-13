@@ -32,16 +32,13 @@ namespace Maths.TeenBeads.Number
             if (!droppos)
                 droppos = GameController.instance.ObjectDroping;
             clicked = false;
-            if (Vector3.Distance(transform.position,droppos.transform.position) < 1)
+            if (Vector3.Distance(transform.position,droppos.transform.position) < 2)
             {
                 if (increser)
                 {
                     canChnagepos = true;
                     GameController.instance.Number2++;
                     GameController.instance.Number2text.text = GameController.instance.Number2.ToString();
-
-                  
-                   
                 }
                 else
                 {

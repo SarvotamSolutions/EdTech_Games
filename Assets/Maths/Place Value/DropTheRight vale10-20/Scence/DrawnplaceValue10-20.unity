@@ -1013,6 +1013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c28b2513327ef4ba515f45a944ee31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePlay: 1
   Question_text: {fileID: 1427928143}
   droppostion: {fileID: 1780354189}
   currectAnswer: {fileID: 21300000, guid: c29d19386e3285f4c8ec60af35c2d3b7, type: 3}
@@ -1023,6 +1024,7 @@ MonoBehaviour:
   gameCompleted_animation: {fileID: 1637405814}
   wrongAnswer_animtion: {fileID: 1560192244}
   Party_pop: {fileID: 418873114}
+  Distance: {x: 5, y: 1}
 --- !u!4 &566518914
 Transform:
   m_ObjectHideFlags: 0
@@ -2036,8 +2038,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Drag the right bead to make 10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 495f4f3e53f368c48b03abec92d2616c, type: 2}
+  m_sharedMaterial: {fileID: 5023563039106739789, guid: 495f4f3e53f368c48b03abec92d2616c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2068,7 +2070,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2128,7 +2130,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -95.99, y: -135.28998}
+  m_AnchoredPosition: {x: -226, y: -135.28998}
   m_SizeDelta: {x: 1158.15, y: 164.3}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1427928141

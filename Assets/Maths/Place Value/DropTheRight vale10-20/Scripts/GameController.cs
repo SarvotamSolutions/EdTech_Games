@@ -6,9 +6,8 @@ using UnityEngine.SceneManagement;
 
 namespace Maths.placeValue.Dropbeads
 {
-    public class GameController : MonoBehaviour
+    public class GameController : Singleton<GameController>
     {
-        public static GameController instance;
         public TextMeshPro Question_text;
         int amount;
         public GameObject droppostion;
@@ -22,24 +21,23 @@ namespace Maths.placeValue.Dropbeads
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
         public GameObject Party_pop;
-        private void Awake()
-        {
-            instance = this;
-        }
+      
         private void Start()
         {
             amount = Random.Range(11, 20);
             Question_text.text = amount.ToString();
             infotext.text = "Drag the right bead to make " + amount;
         }
+        public Vector2 Distance;
         public bool Neartodestination(GameObject obj)
         {
 
-            if (Vector3.Distance(obj.transform.position, droppostion.transform.position) < 1)
+            if (obj.transform.position.x - droppostion.transform.position.x < Distance.x &&
+                obj.transform.position.y - droppostion.transform.position.x < Distance.y)
             {
 
                 obj.transform.position = droppostion.transform.position;
-
+                gamePlay = false;
                 Drager drag = obj.GetComponent<Drager>();
                 if(drag.no +10 == amount)
                 {
@@ -63,6 +61,7 @@ namespace Maths.placeValue.Dropbeads
             wrongAnswer_animtion.SetActive(false);
             checkAnswer.sprite = normalAnswer;
             obj.transform.position = obj.GetComponent<Drager>().lastpos;
+            gamePlay = true;
 
         }
         IEnumerator LevelCompleted()
@@ -86,6 +85,7 @@ namespace Maths.placeValue.Dropbeads
             {
                 StartCoroutine(LevelCompleted());
             }
+            gamePlay = true;
         }
     }
 

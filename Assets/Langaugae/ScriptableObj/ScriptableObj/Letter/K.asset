@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f479317009ffc648a8ef6d01a1cda5d, type: 3}
+  m_Name: K
+  m_EditorClassIdentifier: 
+  sameLetter:
+  - {fileID: 11400000, guid: 93eb4e4f2fd2b1545a9f70a16376986b, type: 2}
+  - {fileID: 11400000, guid: 0e2f648a9d3b2d445a11862df0416ce6, type: 2}
+  Letter: K
+  letterSprite: {fileID: 21300000, guid: 7f41ed2b7841de743808419a39519c02, type: 3}

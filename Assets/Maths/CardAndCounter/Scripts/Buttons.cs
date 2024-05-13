@@ -12,36 +12,65 @@ namespace Maths.CountAndCards.count
         public void OnBeginDrag(PointerEventData eventData)
         {
 
+            if (!GameController.Instance.gamePlay)
+                return;
             transform.parent = parent;
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-
+            if (!GameController.Instance.gamePlay)
+                return;
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
             transform.position = pos;
         }
-
+        
         public void OnDrop(PointerEventData eventData)
         {
 
+            if (!GameController.Instance.gamePlay)
+                return;
             Debug.Log(Vector3.Distance(transform.position, DropingParent.transform.GetChild(DropingParent.childCount - 1).transform.position));
-            if (Vector3.Distance(transform.position, DropingParent.transform.GetChild(DropingParent.childCount - 1).transform.position) < 90.01f)
+            if (!GameController.Instance.hint)
             {
-                transform.parent = DropingParent;
-                transform.SetAsFirstSibling();
-                if(GameController.instace.no== DropingParent.childCount - 1)
+                if (Vector3.Distance(transform.position, DropingParent.transform.GetChild(DropingParent.childCount - 1).transform.position) < 90.01f)
                 {
-                    DropingParent.GetChild(DropingParent.childCount - 1).gameObject.SetActive(false);
-                    Debug.Log("level completed");
+                    transform.parent = DropingParent;
+                    transform.SetAsFirstSibling();
+                    if (GameController.Instance.no == DropingParent.childCount - 1)
+                    {
+                        DropingParent.GetChild(DropingParent.childCount - 1).gameObject.SetActive(false);
+                        Debug.Log("level completed");
+                    }
+                    //     Debug.Log(GameController.instance.numbers);
                 }
-                //     Debug.Log(GameController.instance.numbers);
+                else
+                {
+
+                    transform.parent = DraginParent;
+                }
             }
             else
             {
+                if (Mathf.Abs(transform.position.x-DropingParent.transform.position.x) < GameController.Instance.distance.x &&
+                    Mathf.Abs(transform.position.y - DropingParent.transform.position.x) < GameController.Instance.distance.y)
+                {
+                    GameController.Instance.distance.y +=.5f;
+                    transform.parent = DropingParent;
+                    transform.SetAsFirstSibling();
+                    //if (GameController.instace.no == DropingParent.childCount - 1)
+                    //{
+                    //    DropingParent.GetChild(DropingParent.childCount - 1).gameObject.SetActive(false);
+                    //    Debug.Log("level completed");
+                    //}
+                    //     Debug.Log(GameController.instance.numbers);
+                }
+                else
+                {
 
-                transform.parent = DraginParent;
+                    transform.parent = DraginParent;
+                }
             }
         }
 

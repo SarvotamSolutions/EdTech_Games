@@ -1,4 +1,4 @@
-using DesignPatterns.Singleton;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,14 +26,17 @@ public class GameControllerforAll : Singleton<GameControllerforAll>
     public DragerForall selectedoption;
 
     [Space(15)]
-    public GameObject droping_place;
-    public Character[] allCharacter;
+    public SpriteRenderer[] droping_place;
+    public AllCharacter[] allCharacter;
+    public Character SelectedCharcter;
     public string letter;
-    protected List<int> allno = new List<int>();
-
+    protected List<int> OptionNO = new List<int>();
+    protected List<int> AllAnswerNo = new List<int>();
     public int reloding;
     [Space(15)]
     [Header("Animation")]
+    public LineRenderer selected_Line;
+ 
     public GameObject gameCompleted_animation;
     public GameObject wrongAnswer_animtion;
     public GameObject Party_pop;
@@ -51,36 +54,62 @@ public class GameControllerforAll : Singleton<GameControllerforAll>
     public virtual void GameStart()
     {
         int no = 0;
+
         reloding++;
-        if (reloding > 10)
+        if (reloding > allCharacter.Length)
         {
             StartCoroutine(LevelCompleted());
             return;
         }
-
+        int answerno = Random.Range(0, allCharacter.Length);
+        for (int j = 0; j < AllAnswerNo.Count; j++)
+        {
+            if(AllAnswerNo[j]== answerno)
+            {
+                answerno = Random.Range(0, allCharacter.Length);
+                j = -1;
+            }
+        }
         int answeroption = Random.Range(0, alloption.Length);
+        Debug.Log(answerno);
         int i = 0;
         foreach (var option in alloption)
         {
 
             no = Random.Range(0, allCharacter.Length);
-            for (int j = 0; j < allno.Count; j++)
+            if (no == answerno)
             {
-                if (no == allno[j])
+                no = Random.Range(0, allCharacter.Length);
+            }
+            for (int j = 0; j < OptionNO.Count; j++)
+            {
+                if (no == OptionNO[j])
                 {
                     no = Random.Range(0, allCharacter.Length);
+                    if (no == answerno)
+                    {
+                        no = Random.Range(0, allCharacter.Length);
+                    }
                     j = -1;
                 }
             }
-            option.no = allCharacter[no].letter;
+          
             if(i== answeroption)
             {
-                letter = allCharacter[no].letter;
-                Icon.sprite = Icon ? allCharacter[no].Icon:null;
+                letter = allCharacter[answerno].Letter;
+                Icon.sprite = Icon ? allCharacter[answerno].sameLetter[Random.Range(0, allCharacter[answerno].sameLetter.Length)].Icon:null;
+                option.no = allCharacter[answerno].Letter;
+                AllAnswerNo.Add(answerno);
+                OptionNO.Add(answerno);
+            }
+            else
+            {
+                option.no = allCharacter[no].Letter;
+                OptionNO.Add(no);
             }
 
             i++;
-            allno.Add(no);
+           
         }
       
         //for (int i = 0; i < alloption.Length; i++)
@@ -119,10 +148,12 @@ public class GameControllerforAll : Singleton<GameControllerforAll>
     public virtual bool Neartodestination()
     {
 
-        if (Vector3.Distance(selectedoption.transform.position, droping_place.transform.position) < 2.5f)
+
+       /// Debug.Log(Vector3.Distance(selectedoption.transform.position, droping_place[0].transform.position));
+        if (Vector3.Distance(selectedoption.transform.position, droping_place[0].transform.position) < 2.5f)
         {
 
-            selectedoption.transform.position = droping_place.transform.position;
+            selectedoption.transform.position = droping_place[0].transform.position;
             return true;
         }
 
@@ -143,6 +174,7 @@ public class GameControllerforAll : Singleton<GameControllerforAll>
         wrongAnswer_animtion.SetActive(true);
         yield return new WaitForSeconds(2);
         wrongAnswer_animtion.SetActive(false);
+        gamePlay = true;
         ResetingDrage();
     }
 
@@ -155,6 +187,10 @@ public class GameControllerforAll : Singleton<GameControllerforAll>
         }
         selectedoption.transform.position = selectedoption.lastpos;
         selectedoption = null;
-        allno.Clear();
+        OptionNO.Clear();
     }
+
+    public virtual void CurrectAnswer() { }
+
+    public virtual void WrongAnswer() { }
 }

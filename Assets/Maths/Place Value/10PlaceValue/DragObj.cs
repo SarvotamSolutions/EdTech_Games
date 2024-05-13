@@ -17,12 +17,17 @@ namespace Maths.placeHolder.value
         }
         private void OnMouseDown()
         {
+            if (!GameController.Instance.gamePlay)
+                return;
             clicked = true;
-            lastpos = transform.position;
+           // lastpos = transform.position;
         }
 
         private void OnMouseUp()
         {
+            if (!GameController.Instance.gamePlay)
+                return;
+
             clicked = false;
             transform.position = lastpos;
             if (enterted)
@@ -31,42 +36,42 @@ namespace Maths.placeHolder.value
                 {
                     case 1000:
 
-                        if(GameController.instance.thousandcount == 10)
+                        if(GameController.Instance.thousandcount == 10)
                         {
                             return;
                         }
-                        droploction.transform.GetChild(GameController.instance.thousandcount).gameObject.SetActive(true);
-                        GameController.instance.thousandcount++;
+                        droploction.transform.GetChild(GameController.Instance.thousandcount).gameObject.SetActive(true);
+                        GameController.Instance.thousandcount++;
                         break;
 
                     case 100:
-                        if (GameController.instance.hundredcount == 10)
+                        if (GameController.Instance.hundredcount == 10)
                         {
                             return;
                         }
-                        droploction.transform.GetChild(GameController.instance.hundredcount).gameObject.SetActive(true);
-                        GameController.instance.hundredcount++;
+                        droploction.transform.GetChild(GameController.Instance.hundredcount).gameObject.SetActive(true);
+                        GameController.Instance.hundredcount++;
                         break;
 
                     case 10:
-                        if (GameController.instance.tencount == 10)
+                        if (GameController.Instance.tencount == 10)
                         {
                             return;
                         }
-                        droploction.transform.GetChild(GameController.instance.tencount).gameObject.SetActive(true);
-                        GameController.instance.tencount++;
+                        droploction.transform.GetChild(GameController.Instance.tencount).gameObject.SetActive(true);
+                        GameController.Instance.tencount++;
                         break;
 
                     case 1:
-                        if (GameController.instance.onecount == 10)
+                        if (GameController.Instance.onecount == 10)
                         {
                             return;
                         }
-                        droploction.transform.GetChild(GameController.instance.onecount).gameObject.SetActive(true);
-                        GameController.instance.onecount++;
+                        droploction.transform.GetChild(GameController.Instance.onecount).gameObject.SetActive(true);
+                        GameController.Instance.onecount++;
                         break;
                 }
-                GameController.instance.loadPoint();
+                GameController.Instance.loadPoint();
                
 
             }

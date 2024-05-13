@@ -11,14 +11,22 @@ namespace Maths.TeenBeads.Caluclation
         private Vector3 lastpos;
         private void OnMouseDown()
         {
+            if (!GameController.Instance.gamePlay)
+                return;
             clicked = true;
+           
+        }
+        private void Start()
+        {
             lastpos = transform.position;
         }
-
         private void OnMouseUp()
         {
+            if (!GameController.Instance.gamePlay)
+                return;
+
             clicked = false;
-            if (GameController.instance.Neartodestination(this.gameObject))
+            if (GameController.Instance.Neartodestination(this.gameObject))
             {
 
                 
@@ -30,7 +38,7 @@ namespace Maths.TeenBeads.Caluclation
         }
         private void Update()
         {
-            if (GameController.instance.Completed)
+            if (GameController.Instance.Completed)
                 return;
             if (Input.GetMouseButton(0) && clicked)
             {

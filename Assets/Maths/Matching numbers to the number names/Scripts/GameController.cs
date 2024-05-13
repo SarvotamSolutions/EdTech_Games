@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 
 namespace Maths.matchingNumbers
 {
-    public class GameController : MonoBehaviour
+    public class GameController : Singleton<GameController>
     {
-        public static GameController instance;
+    
         public LineRenderer selected_line;
 
         public GameObject[] allAnsweroption;
-        public GameObject[] allstringOption;
+        public Selectbox[] allstringOption;
 
         public NumberwithText[] alltext;
         public int[] selctedOption;
@@ -22,8 +22,10 @@ namespace Maths.matchingNumbers
 
         public bool placevalue;
         public Sprite currectanswer, currectAnswerOption,selectanswer,selectOption,wronganswer,wrongansweroption;
+        public bool mulitipleloop;
 
         public Material wrongmatrial, currectmateral, normalmateral;
+        public bool textmatch;
         [Space(10)]
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
@@ -34,14 +36,40 @@ namespace Maths.matchingNumbers
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene(0);
         }
-        private void Awake()
-        {
-            instance = this;
-        }
+        public Color currectanswer_Colors, wronganswer_colors, selectedanswer_colors;
         public int addno;
+        public int relidingtime;
+        
         // Start is called before the first frame update
         void Start()
         {
+            GameStart();
+         
+        }
+        public List<int> answertext = new List<int>();
+        void Reseting()
+        {
+            relidingtime++;
+            if (relidingtime > 5)
+            {
+                StartCoroutine(LevelCompleted());
+                return;
+            }
+            totalanswered = 0;
+            for (int i = 0; i < selctedOption.Length; i++)
+            {
+                answertext.Add(selctedOption[i]);
+            }
+            foreach (var item in allstringOption)
+            {
+                item.Reseting();
+            }
+
+            GameStart();
+        }
+        void GameStart()
+        {
+            bool loaded = false;
             for (int i = 0; i < selctedOption.Length; i++)
             {
 
@@ -49,14 +77,73 @@ namespace Maths.matchingNumbers
                 {
                     int no = Random.Range(0, alltext.Length);
 
+                    
                     for (int j = 0; j < selctedOption.Length; j++)
                     {
-                        if (no == selctedOption[j] - addno)
+
+                        if (answertext.Count < 25)
                         {
-                            no = Random.Range(0, alltext.Length);
-                            j = -1;
+                            Debug.Log(answertext.Count);
+                            for (int k  = 0; k < answertext.Count; k++)
+                            {
+                                if (no == answertext[k])
+                                {
+                                    no = Random.Range(0, alltext.Length);
+                                    k = -1;
+                                }
+                            }
+                            if (no == selctedOption[j] - addno)
+                            {
+
+
+
+                                no = Random.Range(0, alltext.Length);
+                                j = -1;
+
+
+                            }
                         }
+                        else
+                        {
+                            int reminno =0;
+                            if (!loaded)
+                            {
+                                for (int k = 0; k < answertext.Count; k++)
+                                {
+                                    if (no == answertext[k])
+                                    {
+                                        no = Random.Range(0, alltext.Length);
+                                        k = -1;
+                                        Debug.Log("checking");
+
+                                    }
+                                    else
+                                    {
+                                        loaded = true;
+                                        Debug.Log("breaking");
+                                        reminno = no;
+                                        //  break;
+                                    }
+                                }
+
+                            }
+                            Debug.Log(reminno);
+                            if (no == selctedOption[j] - addno)
+                            {
+
+
+
+                                no = Random.Range(0, alltext.Length);
+                                j = -1;
+
+                            }
+
+                        }
+                        
+
                     }
+
+
                     selctedOption[i] = no + addno;
                     allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text = alltext[no].nowithstring;
                 }
@@ -72,8 +159,8 @@ namespace Maths.matchingNumbers
                         }
                     }
                     selctedOption[i] = no + addno;
-                    allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text = ""+(selctedOption[i] / 10) + " tens and " + (selctedOption[i] % 10) + " ones ";
-                //    allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text = alltext[no].nowithstring;
+                    allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text = "" + (selctedOption[i] / 10) + " tens and " + (selctedOption[i] % 10) + " ones ";
+                    //    allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text = alltext[no].nowithstring;
                 }
             }
             Switch();
@@ -81,11 +168,11 @@ namespace Maths.matchingNumbers
             {
                 if (placevalue)
                 {
-                    
+
                     allAnsweroption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text = (selctedOption[i]).ToString();
                 }
                 else
-                    allAnsweroption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text = (selctedOption[i]+1).ToString();
+                    allAnsweroption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text = alltext[selctedOption[i]].no.ToString();
             }
 
             if (!placevalue)
@@ -114,12 +201,12 @@ namespace Maths.matchingNumbers
             {
                 for (int i = 0; i < allstringOption.Length; i++)
                 {
-                    
+
 
                     for (int k = 0; k < selctedOption.Length; k++)
                     {
-                        Debug.Log(allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text+ "   ." + "" + (selctedOption[k] / 10) + " tens and " + (selctedOption[i] % 10) + " ones ");
-                        if(allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text == "" + (selctedOption[k] / 10) + " tens and " + (selctedOption[k] % 10) + " ones ")
+                        Debug.Log(allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text + "   ." + "" + (selctedOption[k] / 10) + " tens and " + (selctedOption[i] % 10) + " ones ");
+                        if (allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text == "" + (selctedOption[k] / 10) + " tens and " + (selctedOption[k] % 10) + " ones ")
                         {
 
                             allstringOption[i].GetComponent<Selectbox>().Answeroption = allAnsweroption[k];
@@ -131,10 +218,15 @@ namespace Maths.matchingNumbers
             }
 
         }
-
         public void ScenecChange()
         {
-            StartCoroutine(LevelCompleted());
+            if(!mulitipleloop)
+                StartCoroutine(LevelCompleted());
+            else
+            {
+                Reseting();
+               
+            }
         }
         void Switch()
         {
@@ -171,7 +263,7 @@ namespace Maths.matchingNumbers
     [System.Serializable]
     public class NumberwithText 
     {
-        public int no;
+        public string no;
         public string nowithstring;
     
     }

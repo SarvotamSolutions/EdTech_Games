@@ -6,9 +6,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 namespace Maths.TeenBeads.Caluclation
 {
-    public class GameController : MonoBehaviour
+    public class GameController : Singleton<GameController>
     {
-        public static GameController instance;
         public bool Completed;
         public int question1, quesiton2,Answer;
         public TextMeshPro Question1Text, AnswerText,questiion2Text;
@@ -25,10 +24,6 @@ namespace Maths.TeenBeads.Caluclation
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
         public GameObject Party_pop;
-        private void Awake()
-        {
-            instance = this;
-        }
 
         private void Start()
         {
@@ -37,21 +32,8 @@ namespace Maths.TeenBeads.Caluclation
             Answer = question1 + quesiton2;
             int answerno_opetion = Random.Range(0, 4);
             SettingGame(answerno_opetion);
-           // Option[0].transform.parent.GetComponent<Button>().onClick.AddListener(() => SelctButton(answerOption[0].Getno(),
-            //             Option[0].transform.parent.GetComponent<Image>()));   
-            //Option[1].transform.parent.GetComponent<Button>().onClick.AddListener(() => SelctButton(answerOption[1].Getno(),
-            //             Option[1].transform.parent.GetComponent<Image>()));   
-            //Option[2].transform.parent.GetComponent<Button>().onClick.AddListener(() => SelctButton(answerOption[2].Getno(),
-            //             Option[2].transform.parent.GetComponent<Image>()));  
-            //Option[3].transform.parent.GetComponent<Button>().onClick.AddListener(() => SelctButton(answerOption[3].Getno(),
-            //             Option[3].transform.parent.GetComponent<Image>()));
-
-
             Question1Text.text = question1.ToString();
             AnswerText.text = Answer.ToString();
-
-          
-
         }
 
         public bool Neartodestination(GameObject obj)
@@ -121,6 +103,7 @@ namespace Maths.TeenBeads.Caluclation
 
             Question1Text.text = question1.ToString();
             AnswerText.text = Answer.ToString();
+            gamePlay = true;
 
         }
         public List<int> selctedno = new List<int> { 0, 0, 0, 0 };
@@ -180,6 +163,7 @@ namespace Maths.TeenBeads.Caluclation
         }
         public void SelctButton(int no, SpriteRenderer parentimage)
         {
+            gamePlay = false;
             for (int i = 0; i < Option.Length; i++)
             {
                 Option[i].GetComponent<SpriteRenderer>().color = Color.white;
@@ -222,6 +206,7 @@ namespace Maths.TeenBeads.Caluclation
 
 
             }
+            gamePlay = true;
 
 
         }

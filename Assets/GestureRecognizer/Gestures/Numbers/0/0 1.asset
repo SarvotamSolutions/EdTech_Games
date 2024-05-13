@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce0fdb4e39b5744abf0c061bd2a3e30, type: 3}
+  m_Name: 0 1
+  m_EditorClassIdentifier: 
+  id: 0
+  points: []
+  gesture:
+    lines:
+    - points:
+      - {x: 0.24875621, y: 0.37810946}
+      - {x: 0.1915423, y: 0.31094524}
+      - {x: 0.1840796, y: 0.24626864}
+      - {x: 0.1915423, y: 0.18656714}
+      - {x: 0.25124374, y: 0.1268657}
+      - {x: 0.27860695, y: 0.1243781}
+      - {x: 0.31094524, y: 0.1243781}
+      - {x: 0.36567166, y: 0.18159205}
+      - {x: 0.37810946, y: 0.2437811}
+      - {x: 0.3681592, y: 0.30845776}
+      - {x: 0.30597016, y: 0.37810946}
+      closedLine: 1
+  useLinesOrder: 0
+  useLinesDirections: 1

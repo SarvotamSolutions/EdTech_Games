@@ -2117,6 +2117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d291069afb5279448fd405cdade83e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePlay: 1
   Completed: 0
   question1: 0
   quesiton2: 0

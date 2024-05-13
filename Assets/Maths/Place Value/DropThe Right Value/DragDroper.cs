@@ -9,31 +9,41 @@ namespace Maths.placeValue.slectOption
         public int no;
         private bool canChnagepos;
         public Vector3 lastpos;
-        private void OnMouseDown()
+        private void Start()
         {
-            clicked = true;
             lastpos = transform.position;
+        }
+        private void OnMouseDown()
+
+        {
+            if (!Gamecontroller.Instance.gamePlay)
+                return;
+            clicked = true;
+            
         }
 
         private void OnMouseUp()
         {
+            if (!Gamecontroller.Instance.gamePlay)
+                return;
+          
             clicked = false;
-            Gamecontroller.instace.dropbox.color = Color.white;
-            if (Gamecontroller.instace.Neartodestination(this.gameObject))
+            Gamecontroller.Instance.dropbox.color = Color.white;
+            if (Gamecontroller.Instance.Neartodestination(this.gameObject))
             {
+                Gamecontroller.Instance.gamePlay = false;
 
-                
-                transform.position = Gamecontroller.instace.dropbox.transform.position;
+                transform.position = Gamecontroller.Instance.dropbox.transform.position;
 
-                if(Gamecontroller.instace.number == no)
+                if(Gamecontroller.Instance.number == no)
                 {
-                    GetComponent<SpriteRenderer>().sprite = Gamecontroller.instace.currectanswer;
-                    Gamecontroller.instace.resetgame(this);
+                    GetComponent<SpriteRenderer>().sprite = Gamecontroller.Instance.currectanswer;
+                    Gamecontroller.Instance.resetgame(this);
                 }
                 else
                 {
-                    GetComponent<SpriteRenderer>().sprite = Gamecontroller.instace.wronganswer;
-                    StartCoroutine(Gamecontroller.instace.WairforRelode(this));
+                    GetComponent<SpriteRenderer>().sprite = Gamecontroller.Instance.wronganswer;
+                    StartCoroutine(Gamecontroller.Instance.WairforRelode(this));
                 }
                 // gameObject.SetActive(false);
 
@@ -53,13 +63,13 @@ namespace Maths.placeValue.slectOption
         {
             if (Input.GetMouseButton(0) && clicked)
             {
-                if (Gamecontroller.instace.Neartodestination(this.gameObject))
+                if (Gamecontroller.Instance.Neartodestination(this.gameObject))
                 {
-                    Gamecontroller.instace.dropbox.color = Color.black;
+                    Gamecontroller.Instance.dropbox.color = Color.black;
                 }
                 else
                 {
-                    Gamecontroller.instace.dropbox.color = Color.white;
+                    Gamecontroller.Instance.dropbox.color = Color.white;
                 }
 
                Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
