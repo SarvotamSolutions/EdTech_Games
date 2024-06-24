@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace Maths.NumberRoads.Building_Number_rods
         private bool canChnagepos;
         public Vector3 lastpos;
 
-
+        public bool full;
         private void Start()
         {
                lastpos = transform.position;

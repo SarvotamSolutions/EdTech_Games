@@ -31,7 +31,7 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
                 && Mathf.Abs(dropplace[no].transform.position.y - selecteddraging.transform.position.y) < Distance.y)
             {
            
-                if(no ==8 && firstanswer)
+                if(no ==10 && firstanswer)
                 {
                     StartCoroutine(LevelCompleted());
                     //level Complete

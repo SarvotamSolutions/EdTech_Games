@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Yoyo
   m_EditorClassIdentifier: 
-  name: Mouse
+  name: Yoyo
   Icon: {fileID: 21300000, guid: 1a6ecdce8be0f0b4297a7fd878592536, type: 3}
   letter: M
   relatedsdprite: {fileID: 0}

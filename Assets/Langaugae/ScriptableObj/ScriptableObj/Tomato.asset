@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Tomato
   m_EditorClassIdentifier: 
-  name: Mouse
+  name: Tomoto
   Icon: {fileID: 21300000, guid: 96b589fcfb17bb049942f0bb9024cf8b, type: 3}
   letter: M
   relatedsdprite: {fileID: 0}

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f479317009ffc648a8ef6d01a1cda5d, type: 3}
+  m_Name: Sink
+  m_EditorClassIdentifier: 
+  sameLetter:
+  - {fileID: 11400000, guid: f5c5e7abdb896324cb037f564704a7a3, type: 2}
+  - {fileID: 11400000, guid: d25f02a57a4caab4893caaaeed4cf1c8, type: 2}
+  - {fileID: 11400000, guid: 4abbb461403cb364b8e81828d36696d6, type: 2}
+  - {fileID: 11400000, guid: da0f28e174db3504b9fccb1299fb56bd, type: 2}
+  - {fileID: 11400000, guid: 2844aaa57666f3e4596aa9c508ecebec, type: 2}
+  - {fileID: 11400000, guid: 8f14acf3193610548b74a13110ab9d89, type: 2}
+  - {fileID: 11400000, guid: c92f11f939ae3834dbdbd62d44c29f24, type: 2}
+  - {fileID: 11400000, guid: 80c2c6762d99ae640af9c90cce064bc9, type: 2}
+  Letter: sink
+  letterSprite: {fileID: 21300000, guid: 705f9189f8c07e544ac904fa917c5532, type: 3}
+  RelatedCharacter: []
+  hintcolor: {r: 0, g: 0, b: 0, a: 0}

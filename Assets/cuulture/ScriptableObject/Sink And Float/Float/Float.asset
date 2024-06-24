@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f479317009ffc648a8ef6d01a1cda5d, type: 3}
+  m_Name: Float
+  m_EditorClassIdentifier: 
+  sameLetter:
+  - {fileID: 11400000, guid: ddf7ff1ab3c6dbb4baa60b2b0348df01, type: 2}
+  - {fileID: 11400000, guid: b75309f55174dd84f9f7194f51cbf66e, type: 2}
+  - {fileID: 11400000, guid: a164c60298e2b6a4b8b66f1e5c75d30b, type: 2}
+  - {fileID: 11400000, guid: 1876273d7d5d03747b50eeb4a8b53f74, type: 2}
+  - {fileID: 11400000, guid: d9d26ab685901ae4797d5840d5755abd, type: 2}
+  - {fileID: 11400000, guid: 877d47a724a1f3c4eac4d07223c5e6ca, type: 2}
+  - {fileID: 11400000, guid: 82915da29de305b418634a6dcc64933e, type: 2}
+  - {fileID: 11400000, guid: 6888eb20c89b93d409694242c07d668e, type: 2}
+  Letter: float
+  letterSprite: {fileID: 21300000, guid: b7a5ba2c29ace1d4d9586a04413aa9b6, type: 3}
+  RelatedCharacter: []
+  hintcolor: {r: 0, g: 0, b: 0, a: 0}

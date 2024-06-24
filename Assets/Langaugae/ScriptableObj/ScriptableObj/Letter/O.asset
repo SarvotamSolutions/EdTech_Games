@@ -16,4 +16,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c2a51e99986c46b4096d30651beaf17b, type: 2}
   - {fileID: 11400000, guid: 5370aebdb7355534686212ed871f99a5, type: 2}
   Letter: O
-  letterSprite: {fileID: 21300000, guid: 4cf0e4420f622a240bbfa444d1938976, type: 3}
+  letterSprite: {fileID: 21300000, guid: b1d39a5efe2b48645a1ea5440d9a9235, type: 3}
+  RelatedCharacter: []
+  hintcolor: {r: 0, g: 0, b: 0, a: 0}

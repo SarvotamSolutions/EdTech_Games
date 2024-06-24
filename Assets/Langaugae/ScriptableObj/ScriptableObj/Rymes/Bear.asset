@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Bear
   m_EditorClassIdentifier: 
-  name: Bear
+  name: bear
   Icon: {fileID: 21300000, guid: 06102e7ab1aec7843a075854362d485a, type: 3}
   letter: ear
   relatedsdprite: {fileID: 21300000, guid: 1f34e9dc06a37614ab61bb4d6b15864d, type: 3}

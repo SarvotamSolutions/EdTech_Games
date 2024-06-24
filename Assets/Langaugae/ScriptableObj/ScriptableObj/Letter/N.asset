@@ -16,4 +16,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: db730ec03ffb5ea499014ead72b63bb4, type: 2}
   - {fileID: 11400000, guid: d24bf039c1c8cf0429d2d061b3b2b569, type: 2}
   Letter: N
-  letterSprite: {fileID: 21300000, guid: 9d6b9b37ea5b6424fbfb1c450b4cb225, type: 3}
+  letterSprite: {fileID: 21300000, guid: 7e0ceb31ab9ea404d9aafa4ced5d77dc, type: 3}
+  RelatedCharacter: []
+  hintcolor: {r: 0, g: 0, b: 0, a: 0}

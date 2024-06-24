@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Umbrella
   m_EditorClassIdentifier: 
-  name: Mouse
+  name: Umbrella
   Icon: {fileID: 21300000, guid: 7580e9177ce10f84fb7e33b824b3a6b4, type: 3}
   letter: M
   relatedsdprite: {fileID: 0}

@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce0fdb4e39b5744abf0c061bd2a3e30, type: 3}
   m_Name: PatternN
   m_EditorClassIdentifier: 
-  id: N
+  id: n
   points: []
   gesture:
     lines:
     - points:
       - {x: 0.25, y: 0.125}
-      - {x: 0.25, y: 0.875}
-      - {x: 0.75, y: 0.125}
-      - {x: 0.75, y: 0.875}
+      - {x: 0.24875621, y: 0.69154227}
+      - {x: 0.51741296, y: 0.86567163}
+      - {x: 0.75124377, y: 0.6865672}
+      - {x: 0.76119405, y: 0.124378085}
       closedLine: 0
   useLinesOrder: 0
   useLinesDirections: 0

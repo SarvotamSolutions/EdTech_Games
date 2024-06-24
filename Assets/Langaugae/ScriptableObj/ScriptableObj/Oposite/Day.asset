@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Day
   m_EditorClassIdentifier: 
-  name: Day
-  Icon: {fileID: 21300000, guid: 85de7e943140aee4ba92b7fa3b06963c, type: 3}
+  name: day
+  Icon: {fileID: 21300000, guid: fa282b9aa7f2b7b45952d5153c433434, type: 3}
   letter: 2
-  relatedsdprite: {fileID: 21300000, guid: 0694b523bfc75a34e96b1dfd7c4c89a6, type: 3}
+  relatedsdprite: {fileID: 21300000, guid: 5276459382ab77445ad2ce56bfea5c78, type: 3}

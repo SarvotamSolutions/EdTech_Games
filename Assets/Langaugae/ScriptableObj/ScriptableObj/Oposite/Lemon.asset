@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Lemon
   m_EditorClassIdentifier: 
-  name: lemon
+  name: sour
   Icon: {fileID: 21300000, guid: 78240b9dcea6d58428c731d37e1f536d, type: 3}
   letter: 3
   relatedsdprite: {fileID: 21300000, guid: 59e15e9e301ff494e96e9b754c25dd1c, type: 3}

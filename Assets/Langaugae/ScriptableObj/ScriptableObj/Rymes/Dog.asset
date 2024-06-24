@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Dog
   m_EditorClassIdentifier: 
-  name: Dog
+  name: dog
   Icon: {fileID: 21300000, guid: 90b0214e054cf334583bc3bd6b3cd9b5, type: 3}
   letter: og
   relatedsdprite: {fileID: 21300000, guid: 57253d2c2ecd2704aa7267beacaa21e5, type: 3}

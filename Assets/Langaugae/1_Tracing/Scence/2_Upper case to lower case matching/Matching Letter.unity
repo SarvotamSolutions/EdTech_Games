@@ -390,8 +390,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: d9cebc6ba46dbed4894b2260c49872d7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a8350857ce3fe8b47858d602f309976b, type: 3}
+  m_Color: {r: 1, g: 0.6862745, b: 0.007843138, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1110,8 +1110,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: d9cebc6ba46dbed4894b2260c49872d7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a8350857ce3fe8b47858d602f309976b, type: 3}
+  m_Color: {r: 1, g: 0.6862745, b: 0.007843138, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2022,7 +2022,7 @@ MonoBehaviour:
   line: {fileID: 0}
   Answeroption: {fileID: 0}
   arrow: {fileID: 1932853180}
-  alpanull: {r: 0, g: 0, b: 0, a: 0}
+  alpanull: {r: 1, g: 0.6862745, b: 0.007843138, a: 1}
 --- !u!1 &552938572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2297,7 +2297,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.23530734, y: 0}
+  m_Offset: {x: 0.7279711, y: 0.15158904}
   m_SpriteTilingProperty:
     border: {x: 0.72999996, y: 0.83, z: 0.75, w: 0.68}
     pivot: {x: 0.5, y: 0.5}
@@ -2308,7 +2308,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.990615, y: 2.32}
+  m_Size: {x: 4.005287, y: 1.6378496}
   m_EdgeRadius: 0
 --- !u!114 &581367966
 MonoBehaviour:
@@ -2325,7 +2325,7 @@ MonoBehaviour:
   line: {fileID: 0}
   Answeroption: {fileID: 0}
   arrow: {fileID: 552938572}
-  alpanull: {r: 0, g: 0, b: 0, a: 0}
+  alpanull: {r: 1, g: 0.6862745, b: 0.007843138, a: 1}
 --- !u!1 &604038429
 GameObject:
   m_ObjectHideFlags: 0
@@ -2541,7 +2541,7 @@ MonoBehaviour:
   line: {fileID: 0}
   Answeroption: {fileID: 0}
   arrow: {fileID: 876345645}
-  alpanull: {r: 0, g: 0, b: 0, a: 0}
+  alpanull: {r: 1, g: 0.6862745, b: 0.007843138, a: 1}
 --- !u!1 &630776946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2872,8 +2872,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: d9cebc6ba46dbed4894b2260c49872d7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a8350857ce3fe8b47858d602f309976b, type: 3}
+  m_Color: {r: 1, g: 0.6862745, b: 0.007843138, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4562,7 +4562,7 @@ MonoBehaviour:
   line: {fileID: 0}
   Answeroption: {fileID: 0}
   arrow: {fileID: 630776946}
-  alpanull: {r: 0, g: 0, b: 0, a: 0}
+  alpanull: {r: 1, g: 0.6862745, b: 0.007843138, a: 1}
 --- !u!1 &1082784770
 GameObject:
   m_ObjectHideFlags: 0
@@ -5364,8 +5364,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: d9cebc6ba46dbed4894b2260c49872d7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a8350857ce3fe8b47858d602f309976b, type: 3}
+  m_Color: {r: 1, g: 0.6862745, b: 0.007843138, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5620,8 +5620,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: d9cebc6ba46dbed4894b2260c49872d7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a8350857ce3fe8b47858d602f309976b, type: 3}
+  m_Color: {r: 1, g: 0.6862745, b: 0.007843138, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5762,7 +5762,7 @@ MonoBehaviour:
   line: {fileID: 0}
   Answeroption: {fileID: 0}
   arrow: {fileID: 1102504971}
-  alpanull: {r: 0, g: 0, b: 0, a: 0}
+  alpanull: {r: 1, g: 0.6862745, b: 0.007843138, a: 1}
 --- !u!1 &1502116967
 GameObject:
   m_ObjectHideFlags: 0
@@ -5860,14 +5860,17 @@ MonoBehaviour:
   - no: Z
     nowithstring: z
   selctedOption: ffffffffffffffffffffffffffffffffffffffff
+  stepLoop: 0
   totalanswered: 0
   placevalue: 0
   currectanswer: {fileID: 21300000, guid: 2ce93e3d25024ab479deb34c0c5358a3, type: 3}
   currectAnswerOption: {fileID: 21300000, guid: 504e37a132e09ff40b5aabdab5a9fc22, type: 3}
-  selectanswer: {fileID: 21300000, guid: a9d526e488946a84e9fed058c098ccf0, type: 3}
-  selectOption: {fileID: 21300000, guid: 7cac5945acc4aa642ab30f41ac238783, type: 3}
+  DefaltAnwer: {fileID: 0}
+  DefaltOption: {fileID: 0}
   wronganswer: {fileID: 21300000, guid: 91a9ac823d049d9478189e609db69ead, type: 3}
   wrongansweroption: {fileID: 21300000, guid: dafcd130740a9574fbb5053619e2c540, type: 3}
+  SelectAnswer: {fileID: 0}
+  SelectOption: {fileID: 0}
   mulitipleloop: 1
   wrongmatrial: {fileID: 2100000, guid: dfa58561d13b2c44281691b04c0b1788, type: 2}
   currectmateral: {fileID: 2100000, guid: e24013b46ffd36e4790dbd81bff32919, type: 2}
@@ -5880,6 +5883,9 @@ MonoBehaviour:
   wronganswer_colors: {r: 1, g: 0, b: 0, a: 1}
   selectedanswer_colors: {r: 0, g: 0.2381134, b: 1, a: 1}
   addno: 0
+  relidingtime: 0
+  maxreloding: 5
+  answertext: 
 --- !u!4 &1502116969
 Transform:
   m_ObjectHideFlags: 0

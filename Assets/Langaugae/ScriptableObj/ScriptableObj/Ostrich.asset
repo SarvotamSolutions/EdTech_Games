@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Ostrich
   m_EditorClassIdentifier: 
-  name: Mouse
+  name: Ostrich
   Icon: {fileID: 21300000, guid: 2c267d0a09467204f81199024a7fabd9, type: 3}
   letter: M
   relatedsdprite: {fileID: 0}

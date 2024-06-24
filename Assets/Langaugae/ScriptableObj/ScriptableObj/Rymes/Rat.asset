@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Rat
   m_EditorClassIdentifier: 
-  name: Rat
+  name: rat
   Icon: {fileID: 21300000, guid: 19e78bc2d1f5b3b45bff25b5a8a457ee, type: 3}
   letter: at
   relatedsdprite: {fileID: 21300000, guid: 739da7faf23269d428348ca35d6debf7, type: 3}

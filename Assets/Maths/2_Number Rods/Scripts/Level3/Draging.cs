@@ -14,7 +14,7 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
         private bool canChnagepos;
         public Vector3 lastpos;
         public bool Leftside;
-
+        public bool full;
         private void Start()
         {
             border = transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -61,38 +61,57 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
                     GetComponent<Collider2D>().enabled = false;
                     border.gameObject.SetActive(true);
                     GameController.Instance.draginno = 10 - GameController.Instance.draginno;
-
-                    if (GameController.Instance.firstanswer)
+                   
+                    if (GameController.Instance.firstanswer|| (full && Leftside))
                     {
+                        Debug.Log("CCCC final" + GameController.Instance.draginno);
                         GameController.Instance.firstanswer = false;
                         GameController.Instance.no++;
-                        GameController.Instance.draginno = 10 - (GameController.Instance.no + 1);
+                        GameController.Instance.draginno = 10 - (GameController.Instance.no);
                         GameController.Instance.dropplace[GameController.Instance.no].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 2;
-                        GameController.Instance.holder2.Remove(GameController.Instance.holder2[0]);
-                        foreach (var item in GameController.Instance.holder2)
+                        
+                        if (!full)
                         {
-                            if (item)
-                                item.GetComponent<Collider2D>().enabled = false;
+                            GameController.Instance.holder2.Remove(GameController.Instance.holder2[0]);
                         }
-
-                        foreach (var item in GameController.Instance.holder1)
+                        else
                         {
-                            if (item)
-                                item.GetComponent<Collider2D>().enabled = true;
-                        }
 
+                        }
+                      
                         GetComponent<Collider2D>().enabled = false;
-                        GameController.Instance.blocker1.SetActive(true);
-                        GameController.Instance.blocker2.SetActive(false);
+                        if (no == -9)
+                        {
+                            GameController.Instance.firstanswer = true;
+                        }
+                        else
+                        {
+                            foreach (var item in GameController.Instance.holder2)
+                            {
+                                if (item)
+                                    item.GetComponent<Collider2D>().enabled = false;
+                            }
+
+                            foreach (var item in GameController.Instance.holder1)
+                            {
+                                if (item)
+                                    item.GetComponent<Collider2D>().enabled = true;
+                            }
+
+                            GameController.Instance.blocker1.SetActive(true);
+                            GameController.Instance.blocker2.SetActive(false);
+                        }
                         GameController.Instance.hinttext.text = "drage and drop the number rod " + GameController.Instance.draginno;
                         GameController.Instance.gamePlay = true;
-
+                        
                     }
-                    else
+                    else 
                     {
+                        Debug.Log("CCCC" + GameController.Instance.draginno);
                         //GetComponent<Collider2D>().enabled = false;
                         GameController.Instance.hinttext.text = "drag the right no to make 10";
-                        GameController.Instance.firstanswer = true;
+                          
+                            GameController.Instance.firstanswer = true;
                         GameController.Instance.holder1.Remove(GameController.Instance.holder1[0]);
                         foreach (var item in GameController.Instance.holder2)
                         {
@@ -110,6 +129,12 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
                         GetComponent<Collider2D>().enabled = false;
                         GameController.Instance.gamePlay = true;
                     }
+                   // }
+                    //else
+                    //{
+                    //    GetComponent<Collider2D>().enabled = false;
+                    //    GameController.Instance.gamePlay = true;
+                    //}
                     GameController.Instance.selecteddraging = null;
                 }
                 else
@@ -123,6 +148,7 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
             }
             else
             {
+               // GameController.Instance.no++;
                 transform.position = lastpos;
                 GameController.Instance.selecteddraging = null;
             }

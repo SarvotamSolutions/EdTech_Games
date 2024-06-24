@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Robot
   m_EditorClassIdentifier: 
-  name: Mouse
+  name: Robot
   Icon: {fileID: 21300000, guid: 53d4c7d6b2dcd2a42b9d91f1da3bffa0, type: 3}
   letter: M
   relatedsdprite: {fileID: 0}
