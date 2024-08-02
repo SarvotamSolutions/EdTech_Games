@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: d715f5b1039e5824a92dc80528fb95fb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Maths/1_Tracing/DrawNumber.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Maths/1_Tracing/DrawNumber WithoutColorNew.unity
+    guid: 1d83d3d395a5ce14a940cf5373b54659
   - enabled: 1
     path: Assets/Maths/1_Tracing/DrawNumber Color.unity
     guid: 2a402b79bc2ab304d9083405ef213fe8
@@ -25,9 +28,9 @@ EditorBuildSettings:
       Building the number rod.unity
     guid: 2500affc5bb797a4aa6abc8af0905789
   - enabled: 1
-    path: Assets/Maths/2_Number Rods/Scence/4_Build and write the number rod/LEVEL
-      2 Build and Write Numerroads.unity
-    guid: 6b1f0e258f66a204c86d3a08bfba058f
+    path: Assets/Maths/2_Number Rods/Scence/3_Building the number rod/LEVEL 1.5 -
+      Building the number rod withAI.unity
+    guid: 4a6aa800c51dd52488bd43a24cab9bfa
   - enabled: 1
     path: Assets/Maths/2_Number Rods/Scence/5_Making 10 with number rods/LEVEL 3.unity
     guid: 5151b3da2cf079a48839695ea2fe40d4
@@ -39,10 +42,22 @@ EditorBuildSettings:
       1 - Random order counting.unity
     guid: 4ea7d5a820cd2c348bea2b0ed4f8246c
   - enabled: 1
+    path: Assets/Maths/3_CountingWiithControlles/Sccence/1_Counting_with_controlles/Level1_Counting_without_Controlls
+      1.unity
+    guid: 5c846e093fcc6a341a38462f0621d105
+  - enabled: 1
+    path: Assets/Maths/3_CountingWiithControlles/Sccence/2_Random_roder_Counting/LEVEL
+      1 - Random order counting without helop.unity
+    guid: f0a969f12204a2344a554bdae26c6241
+  - enabled: 1
+    path: Assets/Maths/5_Mixed counting/Scence/4_Filling in missing numbers/LEVEL
+      2 - Fill in the missing number.unity
+    guid: d79e12a037142d14292feddabac34a74
+  - enabled: 0
     path: Assets/Maths/4_Counting without control/Scence/1_Counting without control
       (Objects)/Level1_Counting_without_Controlls.unity
     guid: 63032ab4d3d20fc48aa840cf60b70b60
-  - enabled: 1
+  - enabled: 0
     path: Assets/Maths/4_Counting without control/Scence/2_Order counting/Matching
       Number To The Correct Number Object.unity
     guid: a1772b354ec2b1d4d87db87ecf21b244
@@ -51,29 +66,36 @@ EditorBuildSettings:
       and drop/LEVEL 0 - matching number to the object.unity
     guid: 871cda8114d01d2409711965d402e874
   - enabled: 1
+    path: Assets/Maths/3_CountingWiithControlles/Sccence/2_Random_roder_Counting/LEVEL
+      1 - mixedcounting.unity
+    guid: a16f1ee5745e4a645aa944d8caf9d473
+  - enabled: 0
+    path: Assets/Maths/2_Number Rods/Scence/4_Build and write the number rod/LEVEL
+      2 Build and Write Numerroads.unity
+    guid: 6b1f0e258f66a204c86d3a08bfba058f
+  - enabled: 0
     path: Assets/Maths/5_Mixed counting/Scence/2_matching numbers to the correct
       number of objects drag and drop/LEVEL 1 - matching the objects with the number.unity
     guid: d8e5f2f39764bc14d931cd1bd6110f2b
   - enabled: 1
-    path: Assets/Maths/5_Mixed counting/Scence/3_Random order counting/LEVEL 1.5
-      - Random order counting.unity
-    guid: 96877c5886d736840800df2469f2b446
-  - enabled: 1
-    path: Assets/Maths/5_Mixed counting/Scence/4_Filling in missing numbers/LEVEL
-      2 - Fill in the missing number.unity
-    guid: d79e12a037142d14292feddabac34a74
+    path: Assets/Maths/3_CountingWiithControlles/Sccence/1_Counting_with_controlles/Level1_Counting_without_Controlls_MixedCounting.unity
+    guid: eaefa40b63d9be743aecd339979fd521
   - enabled: 1
     path: Assets/Maths/6_Bead Stair/Scence/1_Coloring bead stair/Building The Bead
       Stair Color.unity
     guid: 61f14b7dc2f43074ba4c7dd5df79a1e9
-  - enabled: 1
-    path: Assets/Maths/6_Bead Stair/Scence/3_Building the bead stair/Building The
-      Bead Sta.unity
-    guid: 68d645814dcb5ad4faaf7e9a11da4c9b
+  - enabled: 0
+    path: Assets/Maths/5_Mixed counting/Scence/3_Random order counting/LEVEL 1.5
+      - Random order counting.unity
+    guid: 96877c5886d736840800df2469f2b446
   - enabled: 1
     path: Assets/Maths/6_Bead Stair/Scence/2_Counting bead stair/Building The Bead
       Stair  Number.unity
     guid: 0805c40ae3f617849b3522825dafe6d9
+  - enabled: 1
+    path: Assets/Maths/6_Bead Stair/Scence/3_Building the bead stair/Building The
+      Bead Sta.unity
+    guid: 68d645814dcb5ad4faaf7e9a11da4c9b
   - enabled: 1
     path: Assets/Maths/6_Bead Stair/Scence/4_Counting bead stair/CountingBeadINAi.unity
     guid: ac23d094840265643a3a6bd1e28676a7
@@ -82,6 +104,9 @@ EditorBuildSettings:
       Numbers With The Beads.unity
     guid: eb1a6bbfe888b6d47a7eed5ba8ec2823
   - enabled: 1
+    path: Assets/Maths/2_Number Rods/Scence/5_Making 10 with number rods/BuildingBuidstair.unity
+    guid: dfd861babf998e74999b4ec6bfa5c0a0
+  - enabled: 0
     path: Assets/Maths/6_Bead Stair/Scence/6_Making 10 with the bead stair/LEVEL
       4.unity
     guid: 91d50d06a593522488ad8b2571a30864
@@ -89,6 +114,9 @@ EditorBuildSettings:
     path: Assets/Maths/7_Numbers And Counter/Scence/1_Cards And Counter.unity
     guid: 10997213759a4e641b22854da9a61589
   - enabled: 1
+    path: Assets/Maths/7_Numbers And Counter/Scence/1_Cards And Counter 1.unity
+    guid: 9352706e75ebd574f9ff8a32e76b291c
+  - enabled: 0
     path: Assets/Maths/7_Numbers And Counter/Scence/2_Cards And Counter withoutHint.unity
     guid: a63a759406ae13d4092b382d646cdc5c
   - enabled: 1
@@ -102,12 +130,24 @@ EditorBuildSettings:
       Object.unity
     guid: 638fa21e0d984bc4fa11b3d082e2c1cb
   - enabled: 1
+    path: Assets/Maths/9_GraderandLesser/Scence/1_GraterThenLesserThendrag and drop
+      Object 1.unity
+    guid: 59211511c049aad4aa4a66aab0da2021
+  - enabled: 0
     path: Assets/Maths/9_GraderandLesser/Scence/2_GraterThenLesserThendrag and drop.unity
     guid: c8457d396d746b1469ae6dc2d68aba01
   - enabled: 1
+    path: Assets/Maths/9_GraderandLesser/Scence/1_GraterThenLesserThendrag and drop
+      Object Ai.unity
+    guid: 116676404661e8240a2608e0e99eee24
+  - enabled: 0
     path: Assets/Maths/9_GraderandLesser/Scence/3_GraterThenLesserThen with obeject.unity
     guid: 9876ada9c186adc42a454250672b1108
   - enabled: 1
+    path: Assets/Maths/9_GraderandLesser/Scence/1_GraterThenLesserThendrag and drop
+      Object Ai beads.unity
+    guid: c2dc3717e5b7ede4ba76625f64320023
+  - enabled: 0
     path: Assets/Maths/9_GraderandLesser/Scence/4_GraterThenLesserThen.unity
     guid: 80eeefe8cd9f3c6479bd12072db64f39
   - enabled: 1
@@ -123,6 +163,10 @@ EditorBuildSettings:
     path: Assets/Maths/10_Number1-100/Scence/4_Putting numbers on the Board Random.unity
     guid: 086fe56731762114f97c8bc06a085ea6
   - enabled: 1
+    path: Assets/Maths/10_Number1-100/Scence/4_Putting numbers on the Board Random
+      All.unity
+    guid: 35512d8b50b58bd44a79b5c2ec948d69
+  - enabled: 0
     path: Assets/Maths/10_Number1-100/Scence/5_Putting numbers on the Board.unity
     guid: 20b7a6119c43cef47aa53cd64b9084b8
   - enabled: 1
@@ -135,17 +179,25 @@ EditorBuildSettings:
     guid: a0a655a9b3afcfe4f8ea41c264309318
   - enabled: 1
     path: Assets/Maths/14_Time/SetingTime/Scence/Matches The Hour, And The Small
-      Hour Hand.unity
-    guid: 034314c2d35ef2c47801abf8ec1fc4b3
+      Hour Hand (Defualt).unity
+    guid: 1cbc2bb69cf77f04c929937392a6c90b
   - enabled: 1
     path: Assets/Maths/11_Matching numbers to the number names/Scence/Number 1-10.unity
     guid: fd69801354075eb4e936b783fecd7bde
-  - enabled: 1
+  - enabled: 0
     path: Assets/Maths/11_Matching numbers to the number names/Scence/Number 10-20.unity
     guid: 8c9d7efdf92cd5548887c54d350f93ca
   - enabled: 1
+    path: Assets/Maths/11_Matching numbers to the number names/Scence/Number 10-20
+      new.unity
+    guid: 26c1fb2ccabe6c544bced32266f04c9e
+  - enabled: 0
     path: Assets/Maths/11_Matching numbers to the number names/Scence/Number 20-30.unity
     guid: 76bc3c504809f1e46a091a62ccff912b
+  - enabled: 1
+    path: Assets/Maths/11_Matching numbers to the number names/Scence/Number 20-30
+      new.unity
+    guid: ae36604e9d496e0489d809b764e4710e
   - enabled: 1
     path: Assets/Maths/12_Addistion/ColorAndAnddistion/Scence/Color And Addition.unity
     guid: d121260299bd9bc47bed43ddb0927d6c
@@ -165,6 +217,9 @@ EditorBuildSettings:
     path: Assets/Maths/13_Subtraction/Scence/Solve The Equation.unity
     guid: 0a25e2e67d29f414d9f55694fb48bc1f
   - enabled: 1
+    path: Assets/Maths/13_Subtraction/Scence/Subtraction With Beads 1.unity
+    guid: 064f558bf528bf74ca9da9055fdbf7df
+  - enabled: 0
     path: Assets/Maths/13_Subtraction/Scence/Subtraction With Beads.unity
     guid: 61b836eb4673127428dbdf26e3d2127d
   - enabled: 1
@@ -179,12 +234,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Maths/15_Place Value/10PlaceValue/PlaceValueset1-99.unity
     guid: 318d6de5ced52b949a230eb0875f50dd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Maths/15_Place Value/10PlaceValue/PlaceValueset 1-999.unity
     guid: 8bb379fbc8a007c4199bddf6896f69df
   - enabled: 1
+    path: Assets/Maths/15_Place Value/10PlaceValue/PlaceValueset1-999 new.unity
+    guid: 8eb9c3c7b99299d49afbb7cda7926d55
+  - enabled: 0
     path: Assets/Maths/15_Place Value/10PlaceValue/PlaceValueset 1-9999.unity
     guid: d7eeabf558570aa41af9fa4e72b4cae8
+  - enabled: 1
+    path: Assets/Maths/15_Place Value/10PlaceValue/PlaceValueset1-9999 new 1.unity
+    guid: 3ddcd578ed8d5134e91b08ebec2f145f
   - enabled: 0
     path: Assets/Maths/15_Place Value/10PlaceValue/Making 100.unity
     guid: 44db9fa36e8b7c147bc753ad2cf0e584
@@ -195,6 +256,10 @@ EditorBuildSettings:
     path: Assets/Maths/15_Place Value/DropTheValueOfPlaceOrder/Scence/DraworderPlacevalue.unity
     guid: 8ff600d5f8d4bb74486a7f8667337b9c
   - enabled: 1
+    path: Assets/Maths/11_Matching numbers to the number names/Scence/Matching PlaceValue
+      New 1.unity
+    guid: 41275acf1ab28794bb46aaf0d07a0bb7
+  - enabled: 0
     path: Assets/Maths/11_Matching numbers to the number names/Scence/Matching PlaceValue.unity
     guid: 4afac0740d94c5e4d8086f575a753d3a
   - enabled: 1
@@ -216,15 +281,25 @@ EditorBuildSettings:
     path: Assets/Langaugae/1_Tracing/Scence/1_Tracing lower case/Small_nocolors.unity
     guid: 137e5945648bef24987ba1fa85c1e0e4
   - enabled: 0
-    path: Assets/Langaugae/1_Tracing/extra nonuse/Small_1Colors.unity
-    guid: 2999a269af60d4f438cbde2c03d4ec3c
-  - enabled: 1
     path: Assets/Langaugae/1_Tracing/Scence/1.5_racing lower case Rainbow Tr/Small_3Colors.unity
     guid: a0a60596ed437e64dac6a01247013f85
   - enabled: 1
+    path: Assets/Langaugae/1_Tracing/Scence/1_Tracing lower case/Small_nocolors 1.unity
+    guid: b3f68264318e6424181fa85164cdf69b
+  - enabled: 0
+    path: Assets/Langaugae/1_Tracing/extra nonuse/Small_1Colors.unity
+    guid: 2999a269af60d4f438cbde2c03d4ec3c
+  - enabled: 1
     path: Assets/Langaugae/1_Tracing/Scence/1_Tracing Upper case/Capital_noColors.unity
     guid: b094c939cb8a19a4b8b82b565eea664e
+  - enabled: 0
+    path: Assets/Langaugae/1_Tracing/extra nonuse/Cpital_1Colors.unity
+    guid: 1a9de4af0b73fe149b75266eb2761763
   - enabled: 1
+    path: Assets/Langaugae/1_Tracing/Scence/1_Tracing Upper case/Capital_noColors 
+      withcolors.unity
+    guid: 253a06fd0e8091a43b8cf27cad938a55
+  - enabled: 0
     path: Assets/Langaugae/1_Tracing/Scence/1.5_Tracing Upper case Rainbow Tracing/Cpital
       3Colors.unity
     guid: 556840696e674694d8682bd1da37dd56
@@ -232,11 +307,8 @@ EditorBuildSettings:
     path: Assets/Langaugae/1_Tracing/Scence/2_Upper case to lower case matching/Matching
       Letter.unity
     guid: 27e8e5e4dfcefd346a039dbe50fc74e3
-  - enabled: 0
-    path: Assets/Langaugae/1_Tracing/extra nonuse/Cpital_1Colors.unity
-    guid: 1a9de4af0b73fe149b75266eb2761763
   - enabled: 1
-    path: Assets/Langaugae/2_Beginning sounds/Beginning sounds/MatchinngLeter.unity
+    path: Assets/Langaugae/2_Beginning sounds/Beginning sounds/Scence/MatchinngLeter.unity
     guid: 91d95854c44fae24cab469734ef77ff7
   - enabled: 1
     path: Assets/Langaugae/2_Beginning sounds/MatchImage/Scence/tEST.unity
@@ -253,10 +325,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Langaugae/2_Beginning sounds/Drag and Drop/Scence/Sorting Image.unity
     guid: e40a583f5e429d14a895304c79745276
-  - enabled: 1
+  - enabled: 0
     path: Assets/Langaugae/2_Beginning sounds/Beginning sounds/Matching_theRyne.unity
     guid: cf9c615833f3e9145988b15c732857f2
   - enabled: 1
+    path: Assets/Langaugae/2_Beginning sounds/Beginning sounds/Matching_the Rymenew.unity
+    guid: f8d778aa4eda4764db23393814e1a2c7
+  - enabled: 1
+    path: Assets/Langaugae/2_Beginning sounds/MatchImage/Scence/tEST 1.unity
+    guid: 4aa70b3f0badc0c4a938df32769f3c71
+  - enabled: 0
     path: Assets/Langaugae/2_Beginning sounds/MatchImage/Scence/Mathcing ryme.unity
     guid: 22ba30356a391e442b3e27dd7d12e60c
   - enabled: 1
@@ -266,104 +344,223 @@ EditorBuildSettings:
     path: Assets/Langaugae/2_Beginning sounds/Beginning sounds/Matching_the Oposite.unity
     guid: cf139af401fec154aaa19c1a91758d3d
   - enabled: 1
-    path: Assets/Langaugae/2_Beginning sounds/MatchImage/Scence/Draging_the_sequence.unity
+    path: Assets/Langaugae/2_Beginning sounds/MatchImage/Scence/Draging_the_sequence
+      Level 2.unity
     guid: b3d1d590ea86a494e928427e2d15914f
   - enabled: 1
     path: Assets/Langaugae/2_Beginning sounds/MatchImage/Scence/Draging_the_sequence
+      Level 1.unity
+    guid: 327e0a9f82cb87e40ac506a87314e8ad
+  - enabled: 0
+    path: Assets/Langaugae/2_Beginning sounds/MatchImage/Scence/Draging_the_sequence
       1.unity
     guid: b7143be940a1e9b43baf2803d632a7e6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Langaugae/7_Vowels Mixed/Drag and drop vowels A.unity
     guid: f3d4a06cfc8cddc4daf81eb5ddb3aa21
-  - enabled: 1
+  - enabled: 0
     path: Assets/Langaugae/7_Vowels Mixed/Matching Name a.unity
     guid: 0f98748acaa4f6349961f46034259002
   - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/Fillling Missing Constant a.unity
-    guid: 3561493809626be439975e2dad4ba657
+    path: Assets/Langaugae/7_Vowels Mixed/New/a/Drag and drop A.unity
+    guid: 66e0e97968d1dac4c8512574eeffe4f4
   - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/a/Drag and drop the words.unity
+    guid: c09d68b476bd8764d9227f38fbed28ab
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/a/Fillling Missing Constant a.unity
+    guid: 3561493809626be439975e2dad4ba657
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/New/a/Fillling Missing Constant a 1.unity
+    guid: df9e17f28256ed94496731954772a010
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/a/Fillling Missing Constant Ending.unity
+    guid: 64fb4cf0cd38fde42bd40f185307dda3
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/a/Fillling Missing Constant AllLetter.unity
+    guid: df619e9b70f55ac45a953afb9a045486
+  - enabled: 0
     path: Assets/Langaugae/7_Vowels Mixed/Fillling Missing Constant Ending a.unity
     guid: 1a17c59891fcc684296a519f67497fa0
-  - enabled: 1
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/New/Fillling Missing Constant a ending.unity
+    guid: ddd4bfe86ee0ef146bdc3edac60f3410
+  - enabled: 0
     path: Assets/Langaugae/7_Vowels Mixed/SpillWord a.unity
     guid: c953c9fbe666c924a969c547a5c0e4f5
   - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/e1/Drag and drop e.unity
+    guid: eb2a34f772e806d43a455295e6912612
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/e1/Drag and drop the words e.unity
+    guid: 6ddf102fc3d9d16428ee6870d72149eb
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/e1/Fillling Missing Constant e.unity
+    guid: eb14009697720f6458052e08b2368662
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/e1/Fillling Missing Constant Ending
+      e.unity
+    guid: 831bf44730f724f4390881f7ebee5e8e
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/e1/Fillling Missing Constant AllLetter
+      e.unity
+    guid: d62bfc15dcf6ec34b898b0a6918063bb
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/New/e1/Drag and drop e.unity
+    guid: eb2a34f772e806d43a455295e6912612
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/New/e1/Drag and drop the words e.unity
+    guid: 6ddf102fc3d9d16428ee6870d72149eb
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/New/e1/Fillling Missing Constant e.unity
+    guid: eb14009697720f6458052e08b2368662
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/New/e1/Fillling Missing Constant Ending
+      e.unity
+    guid: 831bf44730f724f4390881f7ebee5e8e
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/New/e1/Fillling Missing Constant AllLetter
+      e.unity
+    guid: d62bfc15dcf6ec34b898b0a6918063bb
+  - enabled: 0
     path: Assets/Langaugae/7_Vowels Mixed/Drag and drop vowels e.unity
     guid: e438c52e056681e458337bc3fabad3fd
   - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/i/Drag and drop i.unity
+    guid: ca086bb9290c2484083b99ac2695a0c9
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/i/Drag and drop the words i.unity
+    guid: b7f5cdf3ce5532f41be0be0cf715a6ff
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/i/Fillling Missing Constant i.unity
+    guid: c700b070babfac04f9e2b52096438b04
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/i/Fillling Missing Constant Ending
+      i.unity
+    guid: 31d830389397f1c469daf44c38846ed3
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/i/Fillling Missing Constant AllLetter
+      i.unity
+    guid: f174ff77787ff2c49b4cbb033c038ced
+  - enabled: 0
     path: Assets/Langaugae/7_Vowels Mixed/Matching Name e.unity
     guid: c7d57bb40f3387c488dd3c1dbd25938f
   - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/Fillling Missing Constant e.unity
-    guid: f37e8df1c6ef2ed4fad59ff54deccaa3
+    path: Assets/Langaugae/7_Vowels Mixed/New/o/Drag and drop o.unity
+    guid: fd652880c18391f4093a86bfc5e70796
   - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/Fillling Missing Constant Ending e.unity
-    guid: 16918a73f0d49f446ae44da91b8996cb
+    path: Assets/Langaugae/7_Vowels Mixed/New/o/Drag and drop the words o.unity
+    guid: c3cfcad11265f674e9a2eba4b796e6af
   - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/o/Fillling Missing Constant o.unity
+    guid: a094dc29a33d83b4086470f8fa6a7463
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/o/Fillling Missing Constant Ending
+      o.unity
+    guid: a04a0b17ca7365649bce4377c4daf46d
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/o/Fillling Missing Constant AllLetter
+      o.unity
+    guid: 06cbdd89b33138246bae79f0cdf33460
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/New/o/Drag and drop o.unity
+    guid: fd652880c18391f4093a86bfc5e70796
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/New/o/Drag and drop the words o.unity
+    guid: c3cfcad11265f674e9a2eba4b796e6af
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/New/o/Fillling Missing Constant o.unity
+    guid: a094dc29a33d83b4086470f8fa6a7463
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/u/Drag and drop u.unity
+    guid: 810abdfd3ed9a254dabdd9c4ed54d6d8
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/u/Drag and drop the words u.unity
+    guid: 3aaef2ba454c91b409f5aa9cecceafc4
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/u/Fillling Missing Constant u.unity
+    guid: b4dc8a6adff367046894f57956b03eb9
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/u/Fillling Missing Constant Ending
+      u.unity
+    guid: 29d9b01cdc2c26b49bf12212750414ed
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/u/Fillling Missing Constant AllLetter
+      u.unity
+    guid: b40518c46b259424a9f31b05f0a8fb3d
+  - enabled: 0
     path: Assets/Langaugae/7_Vowels Mixed/SpillWord e.unity
     guid: 68367d488d7c6a3418cb28bdf2842960
   - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/Drag and drop vowels i.unity
-    guid: 286585d5e842c0046abdde84b0720937
+    path: Assets/Langaugae/7_Vowels Mixed/New/Mixed/Drag and drop Mixed.unity
+    guid: 0f8977251f4e65143a2ad3befb49c71f
   - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/Matching Name i.unity
-    guid: b5375943590770e42b91f4dcdaaa2f0a
+    path: Assets/Langaugae/7_Vowels Mixed/New/Mixed/Drag and drop the words Mixed.unity
+    guid: 64d118c89ff5abc4884c25f585bf727b
   - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/Fillling Missing Constant i.unity
-    guid: b159e917465ac8940834a2d69bf069a4
+    path: Assets/Langaugae/7_Vowels Mixed/New/Mixed/Fillling Missing Constant Mixed.unity
+    guid: a8977fb0a809dfe4a80dc45536a07c75
   - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/Fillling Missing Constant Ending i.unity
-    guid: 28b22150fb8d2b54483353d98cb05fb9
+    path: Assets/Langaugae/7_Vowels Mixed/New/Mixed/Fillling Missing Constant AllLetter
+      Mixed.unity
+    guid: 0e01ba3bdd99a81449fd7c89ff134f6f
   - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/SpillWord i.unity
-    guid: cbda000011d10c541bc584d4fa8e09bd
-  - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/Drag and drop vowels o.unity
-    guid: 6b068499d953ba940a06983d66746d61
-  - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/Matching Name o.unity
-    guid: 40704eec477e5414aba71d8fbaa609fc
-  - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/Fillling Missing Constant o.unity
-    guid: eae5d309f9c72b944a471f7b54791717
-  - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/Fillling Missing Constant Ending o.unity
-    guid: 454b811bbf17dd74f8da21a86dfc38e9
-  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/Mixed/Fillling Missing vowels AllLetter
+      Mixed.unity
+    guid: 675ad849353eb204f9af17929e18d060
+  - enabled: 0
     path: Assets/Langaugae/7_Vowels Mixed/SpillWord o.unity
     guid: ecc09dff5fd4aa04784457727b9993ad
   - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/Drag and drop vowels u.unity
-    guid: 7c7fea1b563388341b3e0373a7f1de63
-  - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/Matching Name u.unity
-    guid: 63d4964c756dbcf4db6465148bcaa2fb
-  - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/Fillling Missing Constant u.unity
-    guid: 3503a06db2da9124faf6db5733de3a46
-  - enabled: 1
-    path: Assets/Langaugae/7_Vowels Mixed/Fillling Missing Constant Ending u.unity
-    guid: df0a7adee8d99f648990e7bd2c2c76c9
-  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/Mixed/Fillling Missing Constant Ending
+      Mixed.unity
+    guid: 3ce6183054656d045a2f067720267da6
+  - enabled: 0
     path: Assets/Langaugae/7_Vowels Mixed/SpillWord u.unity
     guid: 456ec004cea6c3845a65c33781bcd28c
-  - enabled: 1
-    path: Assets/Langaugae/2_Beginning sounds/Drag and Drop/Scence/Drag and drop
-      vowels.unity
-    guid: 656570baed3e18542ba1d265389a3d62
-  - enabled: 1
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/Mixed new/Drag and drop A.unity
+    guid: 3cc304e76f540584c87e735c38b64fef
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/Mixed new/tEST 2.unity
+    guid: 5786df716b7f93544ad9396ff9801a7d
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/Mixed new/Fillling Missing Constant Mixed.unity
+    guid: 0e2ccc9fdede38142a52ea54b4740ba9
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/Mixed new/Fillling Missing vowels   Mixed.unity
+    guid: 4a2535554e1e09f4a8f96981638f3d8b
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/Mixed new/Fillling Missing Constant  AllLetter
+      Mixed.unity
+    guid: 2bd7593981740de4e96e00063dec5f42
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/Mixed new/Fillling Missing Constan mixed
+      Ending.unity
+    guid: c6daaa58e2f1d96419f1b990bc065d28
+  - enabled: 0
     path: Assets/Langaugae/2_Beginning sounds/MatchImage/Scence/Matching Name mixedVowels.unity
     guid: 12a8bc5cf142eec48a0a05c0759e6683
-  - enabled: 1
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/Mixed new/Fillling Missing Constant a.unity
+    guid: ecdcebbb5f229fc4a9f78c11ee9e89a4
+  - enabled: 0
     path: Assets/Langaugae/6_Vowels/Fillling Missing Constant MixedVovels.unity
     guid: 630bc330ea1e46a4b870446734700f5a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Langaugae/6_Vowels/SpillWord middle mixed vowells.unity
     guid: d51f847a5be36bf4ba0553eb3d0faa71
-  - enabled: 1
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/Mixed new/Fillling Missing Constant middle
+      a 1.unity
+    guid: e35267b19c61f3842a0f6e90af95b3a5
+  - enabled: 0
     path: Assets/Langaugae/6_Vowels/SpillWord mixed vowells.unity
     guid: 4b4022f10b3bab044b0b89393849542d
-  - enabled: 1
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/Mixed new/Fillling Missing Constant a ending.unity
+    guid: 6def8353413127541b0a555f409ac42c
+  - enabled: 0
     path: Assets/Langaugae/6_Vowels/Fillling Missing Constant Ending MixedVovels.unity
     guid: e691f187993985f4aaef8eaad0216962
   - enabled: 1
@@ -376,14 +573,29 @@ EditorBuildSettings:
     path: Assets/Langaugae/8_Sight words/LEVEL 2 - Months.unity
     guid: 3aa0ec48e065769498717d291663dcf4
   - enabled: 1
+    path: Assets/Langaugae/8_Sight words/LEVEL 2 - Day New.unity
+    guid: d6bbadb78f2469d42ae179abddcc4ee4
+  - enabled: 0
     path: Assets/Langaugae/8_Sight words/LEVEL 2 -Days.unity
     guid: 8467e7968fdec7042923b6ea288b1c57
   - enabled: 1
     path: Assets/Langaugae/8_Sight words/CompletetheSentence.unity
     guid: 41aa1c61f40c7984482b186ffd61df95
-  - enabled: 1
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/New/Mixed/Fillling Missing Constant AllLetter
+      Mixed one leeter.unity
+    guid: 7205f3162576168488fc1244ab110b66
+  - enabled: 0
     path: Assets/Langaugae/6_Vowels/SpillWord mixed vowells new.unity
     guid: 105949806c864214fa0b3144dad364e2
+  - enabled: 0
+    path: Assets/Langaugae/7_Vowels Mixed/New/u/Fillling Missing Constant AllLetter
+      u 1.unity
+    guid: a90067b5990ea4442a2417cfaea4b55b
+  - enabled: 1
+    path: Assets/Langaugae/7_Vowels Mixed/New/Mixed/Fillling Missing vowels AllLetter
+      Mixed new type.unity
+    guid: 3e6ce874fb0484049b38efa177bc6938
   - enabled: 1
     path: Assets/Langaugae/2_Beginning sounds/Beginning sounds/Matching the Right
       sentence.unity
@@ -437,66 +649,28 @@ EditorBuildSettings:
     path: Assets/cuulture/2_Countries/Info/LandWateAirInfo.unity
     guid: 8059efb1a07736542887c40bf05b88ad
   - enabled: 1
-    path: Assets/cuulture/Sorting Land Water Air 1.unity
-    guid: c318a9b8d555ed24fb6481258fd4fb01
-  - enabled: 1
     path: Assets/cuulture/Sorting Land Water Air.unity
     guid: 088be12ef40560248896254b6023c3b2
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/cuulture/2_Countries/Info/CreatureInfo.unity
-    guid: 435f2de6336d1f4469f3e69a8828ece4
+    path: Assets/Langaugae/7_Vowels Mixed/New/Mixed/Fillling Missing Constant AllLetter
+      Mixed.unity
+    guid: 0e01ba3bdd99a81449fd7c89ff134f6f
   - enabled: 1
-    path: Assets/cuulture/MultipleCreatureSelect.unity
-    guid: 2e529d7a9c457a2469eef039290fe8ef
+    path: Assets/Langaugae/7_Vowels Mixed/New/Mixed/Fillling Missing Constant Ending
+      Mixed.unity
+    guid: 3ce6183054656d045a2f067720267da6
   - enabled: 1
-    path: Assets/cuulture/2_Countries/Info/Planand AnimalInfo.unity
-    guid: 7b35f0b829c10364e8dca50311a95f7c
+    path: Assets/Langaugae/7_Vowels Mixed/New/Mixed/Drag and drop Mixed.unity
+    guid: 0f8977251f4e65143a2ad3befb49c71f
   - enabled: 1
-    path: Assets/cuulture/Multiple living and nonliving.unity
-    guid: b3af8314966aac74cade2b48b5fa5238
+    path: Assets/Langaugae/7_Vowels Mixed/New/o/Fillling Missing Constant Ending
+      o.unity
+    guid: a04a0b17ca7365649bce4377c4daf46d
   - enabled: 1
-    path: Assets/cuulture/2_Countries/Info/Living And Nonlivinginof.unity
-    guid: 6a99c834167471a48aff495945aa13a2
+    path: Assets/Langaugae/7_Vowels Mixed/New/u/Fillling Missing Constant AllLetter
+      u.unity
+    guid: b40518c46b259424a9f31b05f0a8fb3d
   - enabled: 1
-    path: Assets/cuulture/MultiplePalnt and AnimalSelect.unity
-    guid: dccde2b86d4b6da4cb544486f758d121
-  - enabled: 1
-    path: Assets/cuulture/2_Countries/Info/Verterbrate and Interverterbrate.unity
-    guid: 4ce805dd28354694faf8516f28dea941
-  - enabled: 0
-    path: Assets/cuulture/Sorting Creatures.unity
-    guid: 2825539df4e8ed742a3695a6b7c9a5a9
-  - enabled: 1
-    path: Assets/cuulture/Multiple Verterbretate and invertebrate.unity
-    guid: 20af51ac603823c4bbeb8df1472bd937
-  - enabled: 1
-    path: Assets/cuulture/2_Countries/Info/HumanBodyInfo.unity
-    guid: e6aa78be1582bdf4bb2da77fce9c2459
-  - enabled: 1
-    path: Assets/cuulture/2_Countries/Info/HumanBodySelction.unity
-    guid: aaf255f8d7c79d54b8ed30c02394c246
-  - enabled: 1
-    path: Assets/cuulture/2_Countries/DragAndDrop/HumanBodyDraganddrop.unity
-    guid: 8ee17b394f3e5ad45b2dd39c80f8cb47
-  - enabled: 1
-    path: Assets/cuulture/2_Countries/Info/SkeletonInfo.unity
-    guid: e3e67ed9ec933ba4d87cf9286336583f
-  - enabled: 1
-    path: Assets/cuulture/2_Countries/Info/SkeltonSelection.unity
-    guid: aa1cdcb22066a1a4e9752ffdbcef36f7
-  - enabled: 1
-    path: Assets/cuulture/2_Countries/Info/birdInfo.unity
-    guid: 1b5cf0a4420682647b8968443f84674b
-  - enabled: 1
-    path: Assets/cuulture/2_Countries/Info/BirdSelection.unity
-    guid: 4e4e65ba6576acb4bab3c6825a77bfe9
-  - enabled: 1
-    path: Assets/cuulture/2_Countries/DragAndDrop/BirdsDragdrop.unity
-    guid: 84cf222047538cc4d802a816006f7844
-  - enabled: 1
-    path: Assets/cuulture/2_Countries/Info/FishSelection.unity
-    guid: 4114854ac434ae346b8eb5ad8267e986
+    path: Assets/Langaugae/7_Vowels Mixed/New/Mixed/Fillling Missing Constant Mixed.unity
+    guid: a8977fb0a809dfe4a80dc45536a07c75
   m_configObjects: {}
