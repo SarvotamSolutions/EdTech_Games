@@ -24,7 +24,6 @@ public class RotateObjectController : MonoBehaviour
         foreach (Touch touch in Input.touches) {
             Debug.Log("Touching at: " + touch.position);
             Ray camRay = cam.ScreenPointToRay (touch.position);
-            RaycastHit raycastHit;
             //if(Physics.Raycast (camRay, out raycastHit, 10))
             //{
                 if (touch.phase == TouchPhase.Began) {

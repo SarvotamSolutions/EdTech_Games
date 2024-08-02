@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
+  m_Name: Koala
+  m_EditorClassIdentifier: 
+  Name: Koala
+  Icon: {fileID: 21300000, guid: 451aceb4eb8818b48b48989aaa34dc7d, type: 3}
+  letter: K
+  relatedsdprite: {fileID: 0}
+  Sound: {fileID: 8300000, guid: dc5db1533cdb7d34da307b25760fe910, type: 3}

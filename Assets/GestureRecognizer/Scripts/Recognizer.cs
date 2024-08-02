@@ -98,7 +98,7 @@ namespace GestureRecognizer
             char[] allno = Recognigingnumber.ToCharArray();
             for (int i = 0; i < allno.Length; i++)
             {
-                Debug.Log(allno[i] +" ");
+                //Debug.Log(allno[i] +" ");
             }
             foreach (var item in allpatterns)
             {

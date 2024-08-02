@@ -8,6 +8,7 @@ namespace Maths.TeenBeads.Number
 {
     public class GameController : MonoBehaviour
     {
+        public Totorial totorialcheck;
         public static GameController instance;
         public ExampleGestureHandler drawnno;
         public GestureRecognizer.Recognizer Ai_recognizer;
@@ -18,23 +19,26 @@ namespace Maths.TeenBeads.Number
         List<int> allno = new List<int>();
 
 
+
         [Space(10)]
         public GameObject Contins1,Contins2;
         public GameObject DrawCanvas;
         public GameObject ObjectDroping;
         public TextMeshPro Number2text,Number1text;
         public SpriteRenderer Inputfild,DropNumber;
-        public Sprite currectanswer, WrongAnswer, NormalAnswer;
-        public GameObject Nextbuttton, FinalButton;
+        public Sprite currectanswer, WrongAnswer, NormalAnswer, NormalAnswerStage2;
+        public GameObject  FinalButton;
         public GameObject TotalTen;
         public GameObject Stage_one_parent;
+        public Sprite finalanswer;
+        public Color newcolor;
 
         [Space(10)]
         public GameObject stage_two_parent;
         public SpriteRenderer stage_two_droperfirst,stage_two_dropersecondtext,Stage_two_droperAnser;
         public TextMeshPro stage_two_firstText, stage_two_secondText;
         public GameObject stage_two_optionContenr;
-        public Sprite stage_two_normalinput_sprite;
+        public Sprite stage_two_normalinput_sprite,finalanswersprite;
         public int stagetwoDrop;
 
         [Space(10)]
@@ -54,28 +58,28 @@ namespace Maths.TeenBeads.Number
             allno.Add(Number1);
             Ai_recognizer.Recognigingnumber = Number1.ToString();
             Ai_recognizer.Changerecogniger();
-            Contins1.transform.GetChild(1).gameObject.SetActive(Number1 > 5);
-            if(Contins1.transform.GetChild(1).gameObject.activeInHierarchy)
-            {
-                for (int i = 0; i < Contins1.transform.GetChild(0).childCount; i++)
-                {
+            
+            //if(Contins1.transform.GetChild(1).gameObject.activeInHierarchy)
+            //{
+            //    for (int i = 0; i < Contins1.transform.GetChild(0).childCount; i++)
+            //    {
 
-                    Contins1.transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
-                }
-                //privous Contins all active
-                int no = Number1-5;
-                for (int i = 0; i < no; i++)
-                {
-                    Contins1.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
-                }
+            //        Contins1.transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
+            //    }
+            //    //privous Contins all active
+            //    int no = Number1-5;
+            //    for (int i = 0; i < no; i++)
+            //    {
+            //        Contins1.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
+            //    }
 
-            }
-            else
+            //}
+            //else
+            //}
+            //{
+            for (int i = 0; i <Number1; i++)
             {
-                for (int i = 0; i <Number1; i++)
-                {
-                    Contins1.transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
-                }
+                Contins1.transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
             }
 
         }
@@ -88,14 +92,32 @@ namespace Maths.TeenBeads.Number
         {
             stagetwoDrop = 0;
             
-            ObjectDroping.SetActive(false);
+          //  ObjectDroping.SetActive(false);
             DrawCanvas.SetActive(false);
+            ObjectDroping.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
             TotalTen.SetActive(true);
             FinalButton.SetActive(false);
             Party_pop.SetActive(true);
 
             Debug.Log("Coming here");
             yield return new WaitForSeconds(2);
+            for (int i = 0; i < Contins1.transform.GetChild(0).childCount; i++)
+            {
+                Contins1.transform.GetChild(0).GetChild(i).gameObject.SetActive(false);
+            }
+
+            for (int i = ObjectDroping.transform.GetChild(0).childCount - 1; i >= 0; i--)
+            {
+                ObjectDroping.transform.GetChild(0).GetChild(i).transform.position = ObjectDroping.transform.GetChild(0).GetChild(i).GetComponent<IconDraw>().lastpos;
+                ObjectDroping.transform.GetChild(0).GetChild(i).transform.parent = sidepanel.transform;
+            }
+            Contins1.transform.parent = Stage_one_parent.transform;
+            Contins2.transform.parent = Stage_one_parent.transform;
+            Contins1.GetComponent<SpriteRenderer>().sprite = NormalAnswer;
+            Contins2.GetComponent<SpriteRenderer>().sprite = NormalAnswer;
+            //Contins1.transform.position = secondstage1.transform.position;
+            //Contins2.transform.position = secondstage2.transform.position;
+
             Stage_one_parent.SetActive(true);
             stage_two_parent.SetActive(false);
             for (int i = 0; i < stage_two_optionContenr.transform.childCount; i++)
@@ -105,11 +127,13 @@ namespace Maths.TeenBeads.Number
             }
            
            
-            Stage_two_droperAnser.sprite = stage_two_normalinput_sprite;
+            Stage_two_droperAnser.sprite = finalanswersprite;
             stage_two_droperfirst.sprite = stage_two_normalinput_sprite;
             stage_two_dropersecondtext.sprite = stage_two_normalinput_sprite;
 
 
+            secondstage1.GetComponentInChildren<TextMeshPro>().text = "";
+            secondstage2.GetComponentInChildren<TextMeshPro>().text = "";
             Stage_two_droperAnser.GetComponentInChildren<TextMeshPro>().text = "";
             stage_two_droperfirst.GetComponentInChildren<TextMeshPro>().text = "";
             stage_two_dropersecondtext.GetComponentInChildren<TextMeshPro>().text = "";
@@ -118,6 +142,8 @@ namespace Maths.TeenBeads.Number
             Debug.Log("witing");
             ObjectDroping.SetActive(true);
             DrawCanvas.SetActive(true);
+            ObjectDroping.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+
             TotalTen.SetActive(false);
             drawnno.textResult = Number1text;
             Party_pop.SetActive(false);
@@ -131,29 +157,33 @@ namespace Maths.TeenBeads.Number
 
                 Contins1.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
             }
-            Contins1.transform.GetChild(1).gameObject.SetActive(false);
-            Contins1.gameObject.SetActive(true);
+            
+            //Contins1.gameObject.SetActive(true);
             DrawCanvas.gameObject.SetActive(true);
+            ObjectDroping.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+
             Inputfild.sprite = NormalAnswer;
             DropNumber.sprite = NormalAnswer;
+            Number2text.color = newcolor;
+
             Number2 = 0;
             Number2text.text = "";
             Inputfild.GetComponentInChildren<TextMeshPro>().text = "";
+            Number1text.color = newcolor;
 
             for (int i = 0; i < Contins2.transform.childCount; i++)
             {
                 Contins2.transform.GetChild(i).gameObject.SetActive(true);
             }
             RelodingFuntion();
-            Nextbuttton.SetActive(true);
-         
+           
 
 
         }
         IEnumerator LevelCompleted()
         {
             gameCompleted_animation.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(5);
             SceneManager.LoadScene(0);
 
         }
@@ -180,51 +210,79 @@ namespace Maths.TeenBeads.Number
             allno.Add(Number1);
 
             Contins1.transform.GetChild(1).gameObject.SetActive(Number1 > 5);
-            if (Contins1.transform.GetChild(1).gameObject.activeInHierarchy)
-            {
-                for (int i = 0; i < Contins1.transform.GetChild(0).childCount; i++)
-                {
+            //if (Contins1.transform.GetChild(1).gameObject.activeInHierarchy)
+            //{
+            //    //for (int i = 0; i < Contins1.transform.GetChild(0).childCount; i++)
+            //    //{
 
-                    Contins1.transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
-                }
-                //privous Contins all active
-                int no = Number1 - 5;
-                for (int i = 0; i < no; i++)
-                {
-                    Contins1.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
-                }
+            //    //    Contins1.transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
+            //    //}
+            //    //privous Contins all active
+            //  //  int no = Number1 - 5;
+            //    for (int i = 0; i < no; i++)
+            //    {
+            //        Contins1.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
+            //    }
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
+            //}
                 for (int i = 0; i < Number1; i++)
                 {
                     Contins1.transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
                 }
-            }
 
 
         }
         public GameObject sidepanel;
         public GameObject equationNextbutton;
 
+        public GameObject secondstage1, secondstage2;
+        public void SecondStageActivate()
+        {
+            Debug.Log("second Stage Activated");
+            totorialcheck.directionWindow();
+            Stage_one_parent.gameObject.SetActive(false);
+            stage_two_parent.gameObject.SetActive(true);
+            Contins1.transform.parent = stage_two_parent.transform;
+            Contins2.transform.parent = stage_two_parent.transform;
+            Contins1.GetComponent<SpriteRenderer>().sprite = NormalAnswerStage2;
+            Contins2.GetComponent<SpriteRenderer>().sprite = NormalAnswerStage2;
+            Contins1.transform.position = secondstage1.transform.position;
+            Contins2.transform.position = secondstage2.transform.position;
+            Stage_two_droperAnser.GetComponentInChildren<TextMeshPro>().text = "";
+            stage_two_droperfirst.GetComponentInChildren<TextMeshPro>().text = "";
+            stage_two_dropersecondtext.GetComponentInChildren<TextMeshPro>().text = ""; 
+            Stage_two_droperAnser.GetComponentInChildren<TextMeshPro>().color = Color.white;
+            stage_two_droperfirst.GetComponentInChildren<TextMeshPro>().color = newcolor;
+            stage_two_dropersecondtext.GetComponentInChildren<TextMeshPro>().color = newcolor;
+        }
         public void NextButton()
         {
             if(drawnno.no == Number1)
             {
                 drawnno.textResult = null;
-                Contins1.gameObject.SetActive(false);
+                Debug.Log("first stage");
+              //  Contins1.gameObject.SetActive(false);
                 DrawCanvas.gameObject.SetActive(false);
+                ObjectDroping.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+
                 Inputfild.sprite = currectanswer;
-                Nextbuttton.SetActive(false);
+                Number1text.color = Color.white;
+              
                 FinalButton.SetActive(true);
                 sidepanel.SetActive(true);
+                totorialcheck.directionWindow();
             
             }
             else
             {
                 drawnno.textResult = null;
                 Inputfild.sprite = WrongAnswer;
+                Number1text.color = Color.white;
+                Number2text.color = Color.white;
+
                 wrongAnswer_animtion.SetActive(true);
                 StartCoroutine(WrongAnimtion());
             }
@@ -232,11 +290,16 @@ namespace Maths.TeenBeads.Number
         IEnumerator WrongAnimtion()
         {
             yield return new WaitForSeconds(2);
+            Debug.Log(ObjectDroping.transform.GetChild(0).childCount);
+            
             drawnno.textResult = Number1text;
             Inputfild.sprite = NormalAnswer;
             Number1text.text = "";
+            Number1text.color = newcolor;
+
 
             wrongAnswer_animtion.SetActive(false);
+           
         }
 
     
@@ -244,11 +307,15 @@ namespace Maths.TeenBeads.Number
         {
             if(Number1 + Number2 == 10)
             {
-                ObjectDroping.SetActive(false);
+              //  ObjectDroping.SetActive(false);
                 DrawCanvas.SetActive(false);
+
                 TotalTen.SetActive(true);
                 sidepanel.SetActive(false);
                 DropNumber.sprite = currectanswer;
+                Number2text.color = Color.white;
+
+
                 stage_two_firstText.text = (Number1).ToString();
                 stage_two_secondText.text = (Number2 ).ToString();
                 FinalButton.SetActive(false);
@@ -258,6 +325,8 @@ namespace Maths.TeenBeads.Number
             else
             {
                 DropNumber.sprite = WrongAnswer;
+                Number2text.color = Color.white;
+
                 StartCoroutine(ResetFInsih());
             }
         }
@@ -266,8 +335,16 @@ namespace Maths.TeenBeads.Number
         {
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
+        
+            for (int i = ObjectDroping.transform.GetChild(0).childCount-1; i >=0; i--)
+            {
+                ObjectDroping.transform.GetChild(0).GetChild(i).transform.position = ObjectDroping.transform.GetChild(0).GetChild(i).GetComponent<IconDraw>().lastpos;
+                ObjectDroping.transform.GetChild(0).GetChild(i).transform.parent = sidepanel.transform;
+            }
             wrongAnswer_animtion.SetActive(false);
             DropNumber.sprite = NormalAnswer;
+            Number2text.color = newcolor;
+
             Number2 = 0;
             Number2text.text = "";
             for (int i = 0; i < Contins2.transform.childCount; i++)

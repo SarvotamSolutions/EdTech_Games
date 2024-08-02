@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Elephant
   m_EditorClassIdentifier: 
-  name: Elephant
+  Name: Elephant
   Icon: {fileID: 21300000, guid: b4bcf1b8adcb1ea4a91b6ed0b43d59c6, type: 3}
   letter: E
   relatedsdprite: {fileID: 0}

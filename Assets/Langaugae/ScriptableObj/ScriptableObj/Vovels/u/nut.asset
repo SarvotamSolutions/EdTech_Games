@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: nut
   m_EditorClassIdentifier: 
-  name: nut
-  Icon: {fileID: 21300000, guid: fed56d2361c8eb74c853b42ad4e76bb8, type: 3}
+  Name: nut
+  Icon: {fileID: 21300000, guid: 1ef1c826e4d724a42a0c8cda18eb3255, type: 3}
   letter: nut
   relatedsdprite: {fileID: 21300000, guid: 06102e7ab1aec7843a075854362d485a, type: 3}
+  Sound: {fileID: 8300000, guid: 06fd1775953569146b75e76050bb47c6, type: 3}

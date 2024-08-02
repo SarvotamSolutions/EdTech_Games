@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,12 +8,14 @@ namespace Maths.placeValue.inofDroper
 {
     public class GameController : Singleton<GameController>
     {
+        public Totorial totorial;
         public static GameController instance;
         public GameObject[] dropbox;
+        List<int> dropanswerint = new List<int>();
 
         public Transform Holder;
 
-        public Sprite currectanswer, wronganswer,normlAnswer;
+        public Sprite currectanswer, wronganswer,normlAnswer,normalQuestion;
 
         [Space(10)]
         public GameObject gameCompleted_animation;
@@ -33,15 +36,20 @@ namespace Maths.placeValue.inofDroper
         {
             Drager drag = obj.GetComponent<Drager>();
             Debug.Log(Vector3.Distance(obj.transform.position, dropbox[drag.no].transform.position));
-            if (Vector3.Distance(obj.transform.position, dropbox[drag.no].transform.position) < 1)
+            if (Vector3.Distance(obj.transform.position, dropbox[drag.no].transform.position) < 3)
             {
-            
-              //  Transform tempstorefile = obj.transform.parent;
-                obj.transform.parent = dropbox[drag.no].transform;
-                obj.transform.position = dropbox[drag.no].transform.position;
-                obj.GetComponent<SpriteRenderer>().sprite = currectanswer;
 
-                if(Holder.childCount == 0)
+                dropbox[drag.no].transform.GetComponent<SpriteRenderer>().sprite = currectanswer;
+                dropbox[drag.no].transform.GetComponentInChildren<TextMeshPro>().text = obj.GetComponentInChildren<TextMeshPro>().text;
+              //  Transform tempstorefile = obj.transform.parent;
+               // obj.transform.parent = dropbox[drag.no].transform;
+               // obj.transform.position = dropbox[drag.no].transform.position;
+                obj.GetComponent<SpriteRenderer>().sprite = currectanswer;
+                Destroy(obj);
+                dropanswerint.Add(drag.no);
+
+                Debug.Log(Holder.childCount);
+                if(Holder.childCount == 1)
                 {
                     StartCoroutine(LevelCompleted());
                 }
@@ -49,12 +57,23 @@ namespace Maths.placeValue.inofDroper
             }
             for (int i = 0; i < dropbox.Length; i++)
             {
-                if (Vector3.Distance(obj.transform.position, dropbox[i].transform.position) < 1)
+                for (int j = 0; j <dropanswerint.Count; j++)
+                {
+                    if (dropanswerint[j] == i)
+                    {
+                        return false;
+                    }
+
+                }
+                if (Vector3.Distance(obj.transform.position, dropbox[i].transform.position) < 1f )
                 {
                     gamePlay = false;
-                    obj.GetComponent<SpriteRenderer>().sprite = wronganswer;
-                    obj.transform.position = dropbox[i].transform.position;
-                    StartCoroutine(WrongAnswer(obj));
+                    dropbox[i].transform.GetComponent<SpriteRenderer>().sprite = wronganswer;
+                    dropbox[i].transform.GetComponentInChildren<TextMeshPro>().text = obj.GetComponentInChildren<TextMeshPro>().text;
+
+                    obj.gameObject.SetActive(false);
+                    //obj.transform.position = dropbox[i].transform.position;
+                    StartCoroutine(WrongAnswer(obj,i));
                     return true;
                 }
             }
@@ -65,10 +84,14 @@ namespace Maths.placeValue.inofDroper
             return false;
         }
 
-        IEnumerator WrongAnswer(GameObject obj)
+        IEnumerator WrongAnswer(GameObject obj,int L)
         {
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
+            Drager drag = obj.GetComponent<Drager>();
+            dropbox[L].transform.GetComponent<SpriteRenderer>().sprite = normalQuestion;
+            dropbox[L].transform.GetComponentInChildren<TextMeshPro>().text = "";
+            obj.SetActive(true);
             wrongAnswer_animtion.SetActive(false);
             obj.GetComponent<SpriteRenderer>().sprite = normlAnswer;
             obj.transform.position = obj.GetComponent<Drager>().lastpos;
@@ -76,6 +99,7 @@ namespace Maths.placeValue.inofDroper
         }
         IEnumerator LevelCompleted()
         {
+
             gameCompleted_animation.SetActive(true);
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene(0);

@@ -17,22 +17,30 @@ public class ButtonClick : MonoBehaviour
     public Sprite[] allicon;
     public string[] allinfo;
     public string[] allname;
-    public GameObject[] allclickhere;
     public Transform inforWindow;
     public bool selection;
     public GameObject addmoneyimage;
     private void Start()
     {
-        //if (selection)
-        //{
-        //    StartCoroutine(addmoneyanimation());
+        if (selection)
+        {
+            StartCoroutine(addmoneyanimation());
 
 
-        //}
-       // gameObject.SetActive(false);
+        }
+        
     }
 
-  
+    IEnumerator addmoneyanimation()
+    {
+       // dropcoinfliker.GetComponent<SpriteRenderer>().DOFade(0f, 1);
+        addmoneyimage.transform.DOMoveY(addmoneyimage.transform.position.y + .1f, 1);
+        yield return new WaitForSeconds(1);
+   //     dropcoinfliker.GetComponent<SpriteRenderer>().DOFade(1f, 1);
+        addmoneyimage.transform.DOMoveY(addmoneyimage.transform.position.y - .1f, 1);
+        yield return new WaitForSeconds(1);
+        StartCoroutine(addmoneyanimation());
+    }
     public void OnMouseUpAsButton()
     {
         Events.Invoke();
@@ -43,27 +51,15 @@ public class ButtonClick : MonoBehaviour
         if (iconset)
         {
             no++;
-            inforWindow.DOScaleY(0, .5f);
-            if (no>= allicon.Length)
+          
+            if(no>= allicon.Length)
                 StartCoroutine(LevelComplete());
             else
             {
-                allclickhere[no].SetActive(true);
-                allclickhere[no - 1].SetActive(false);
                 icon.sprite = allicon[no];
                 infotext.text = allinfo[no];
                 nametext.text = allname[no];
-                Debug.Log("xxx");
-                Debug.Log(nametext.transform.parent.GetComponent<SpriteRenderer>().size.x);
-                float nos =(float)allname[no].Length;
-                if (nos > 10)
-                    nos = nos / 1.75f;
-                
-                nametext.transform.parent.GetComponent<SpriteRenderer>().size = new Vector2(nos, 2.5f);
-                this.gameObject.SetActive(false);
             }
-
-           
         }
         else
         {
@@ -84,7 +80,6 @@ public class ButtonClick : MonoBehaviour
     public void ShowInfo()
     {
         inforWindow.DOScaleY(1, .5f);
-        this.gameObject.SetActive(true);
     }
     IEnumerator LevelComplete()
     {

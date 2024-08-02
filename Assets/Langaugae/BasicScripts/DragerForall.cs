@@ -5,6 +5,9 @@ using TMPro;
 
 public class DragerForall : MonoBehaviour
 {
+    public AudioSource sound;
+    public AudioSource letterSoundClip;
+    public AudioClip pickup, drop,lettersound;
     protected bool clicked;
     public SpriteRenderer Border;
     public SpriteRenderer background;
@@ -19,19 +22,22 @@ public class DragerForall : MonoBehaviour
 
     public virtual void Start()
     {
+        //sound = GetComponent<AudioSource>();
         lastpos = transform.position;
         if (text &&  TextUpdate)
             text.text = no;
     }
     protected virtual void OnMouseDown()
     {
-
+        if (GameControllerforAll.Instance.totorial.totorialplaying)
+            return;
      
         clicked = true;
         Debug.Log("SELECTION");
         GameControllerforAll.Instance.selectedoption = this;
-
-       // AddSetOrderLayer(transform.GetComponent<SpriteRenderer>());
+        sound.clip = pickup;
+        sound.Play();
+        // AddSetOrderLayer(transform.GetComponent<SpriteRenderer>());
         if (Border)
         {
             Border.color = GameControllerforAll.Instance.sellect_answer_color;
@@ -39,6 +45,7 @@ public class DragerForall : MonoBehaviour
         }
         if (Icon)
             AddSetOrderLayer(Icon);
+        if(background)
         AddSetOrderLayer(background);
         if (text)
             AddSetOrderLayer(text);
@@ -47,9 +54,12 @@ public class DragerForall : MonoBehaviour
   
     protected virtual void OnMouseUp()
     {
+    
 
-        if (!clicked)
+        if (!clicked || GameControllerforAll.Instance.totorial.totorialplaying)
             return;
+       
+      
         Debug.Log("selection");
         clicked = false;
        // RemoveSetOrderLayer(transform.GetComponent<SpriteRenderer>());
@@ -61,6 +71,7 @@ public class DragerForall : MonoBehaviour
         }
         if(Icon)
             RemoveSetOrderLayer(Icon);
+        if(background)
         RemoveSetOrderLayer(background);
         if (text)
             RemoveSetOrderLayer(text);

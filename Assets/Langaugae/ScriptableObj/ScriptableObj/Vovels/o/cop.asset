@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: cop
   m_EditorClassIdentifier: 
-  name: cop
+  Name: cop
   Icon: {fileID: 21300000, guid: a21a5b37bff11bb49aab21529173b4f3, type: 3}
   letter: cop
   relatedsdprite: {fileID: 21300000, guid: 40121bce474dc654fb9f37f43b5d18a7, type: 3}
+  Sound: {fileID: 8300000, guid: 5b7f111f81af10b4792d42dc55544404, type: 3}

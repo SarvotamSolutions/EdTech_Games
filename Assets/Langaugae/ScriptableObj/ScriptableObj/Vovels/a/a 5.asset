@@ -18,3 +18,4 @@ MonoBehaviour:
   letterSprite: {fileID: 21300000, guid: 1dc56b2e849e37b41ae89994d72c40f0, type: 3}
   RelatedCharacter: []
   hintcolor: {r: 0, g: 0, b: 0, a: 0}
+  lettersound: {fileID: 0}

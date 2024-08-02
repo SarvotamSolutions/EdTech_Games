@@ -7,6 +7,7 @@ namespace Maths.Number1to10.numberWithObject
 {
     public class ObjectSlection : MonoBehaviour
     {
+        private AudioSource sound;
 
         private SpriteRenderer this_Sprite;
 
@@ -21,14 +22,17 @@ namespace Maths.Number1to10.numberWithObject
         }
         void Start()
         {
-
+            sound = GetComponent<AudioSource>();
         }
 
 
         private void OnMouseDown()
         {
-            if (!GameManager.Instance.gamePlay)
+            if (!GameManager.Instance.gamePlay || GameManager.Instance.totorialcheck.totorialplaying)
                 return;
+
+ 
+            sound.Play();
             this_Sprite.sprite = GameManager.Instance.ClickedSprite[GameManager.Instance.IconspriteID];
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;

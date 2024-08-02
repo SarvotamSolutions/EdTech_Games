@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Ball
   m_EditorClassIdentifier: 
-  name: Ball
+  Name: Ball
   Icon: {fileID: 21300000, guid: 3cd582185264f4f40b05b538c2fe29ab, type: 3}
   letter: B
   relatedsdprite: {fileID: 0}

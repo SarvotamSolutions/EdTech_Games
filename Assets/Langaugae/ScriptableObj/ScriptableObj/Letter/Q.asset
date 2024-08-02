@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Q
   m_EditorClassIdentifier: 
   sameLetter:
-  - {fileID: 11400000, guid: fe2a6286e718e5943996e3a7f48f0a88, type: 2}
-  - {fileID: 11400000, guid: 3bc20931b7dcde14eb4c370bbbe211d7, type: 2}
+  - {fileID: 11400000, guid: 2d8841513c9c2de4cb4b4634af64d353, type: 2}
+  - {fileID: 11400000, guid: 94b32e64483252c489c04aa54f495cdc, type: 2}
+  - {fileID: 11400000, guid: b0beafd1a00ec9e4ca682a64e3c7ce8b, type: 2}
+  - {fileID: 11400000, guid: b8c75945197854f4486c44b2e51fa4be, type: 2}
   Letter: Q
-  letterSprite: {fileID: 21300000, guid: 70878b88eb664f44aa4f6e990b9371ba, type: 3}
+  letterSprite: {fileID: 21300000, guid: 05572ea05e879794bbe708bf16c1cc5c, type: 3}
   RelatedCharacter: []
-  hintcolor: {r: 0, g: 0, b: 0, a: 0}
+  hintcolor: {r: 0.38431373, g: 0.28627452, b: 0.14117648, a: 1}
+  lettersound: {fileID: 8300000, guid: 05247304ba550c142bca9500e9748070, type: 3}

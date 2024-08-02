@@ -7,32 +7,36 @@ namespace Maths.Number1to10
 {
     public class DragingObj : MonoBehaviour
     {
+        private AudioSource sound;
+        public AudioClip pickup, drop;
         public int answer;
         public bool currectAnswer;
         public Transform parent;
         [SerializeField] private SpriteRenderer Background;
         private void Start()
         {
+            sound = GetComponent<AudioSource>();
             lastpos = transform.position;
         }
         void CurrectAnswer()
         {
             GameManager.Instance.gamePlay = false;
-           
-            Background.color = GameManager.Instance.currect;
-            GameManager.Instance.arrow.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.currectArrow;
-            GameManager.Instance.QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.CurrectAnswer;
+            //Background.color = GameManager.Instance.currect;
+            Background.sprite = GameManager.Instance.CurrectAnswer;
+           // GameManager.Instance.arrow.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.currectArrow;
+           // GameManager.Instance.QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.CurrectAnswer;
             GameManager.Instance.CurrectanswerOBj.SetActive(true);
             StartCoroutine(LevelCompleted());
         }
 
         IEnumerator LevelCompleted()
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(GameManager.Instance.currectanswerInterverl);
+            Background.sprite = GameManager.Instance.IncompleteAnswer;
             transform.position = lastpos;
             Background.color = GameManager.Instance.noseclting;
             GameManager.Instance.arrow.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IcompletArrow;
-            GameManager.Instance.QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IncompleteAnswer;
+        //    GameManager.Instance.QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IncompleteAnswer;
             GameManager.Instance.DropingParent.GetChild(0).GetComponent<DragingObj>().Background.color = GameManager.Instance.noseclting;
             GameManager.Instance.DropingParent.GetChild(0).transform.parent = GameManager.Instance.OptionParent;
             GameManager.Instance.GameReset();
@@ -47,18 +51,20 @@ namespace Maths.Number1to10
         IEnumerator WrongAnserAnimation()
         {
             GameManager.Instance.gamePlay = false;
-            Background.color = GameManager.Instance.wrong;
+            Background.sprite = GameManager.Instance.WrongAnswer;
+            //Background.color = GameManager.Instance.wrong;
             GameManager.Instance.arrow.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.wrongArrow;
-            GameManager.Instance.QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.WrongAnswer;
+          //  GameManager.Instance.QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.WrongAnswer;
             yield return new WaitForSeconds(.5f);
             GameManager.Instance.WrongAnswer_animation.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(GameManager.Instance.wronganswerInterval);
             transform.position = lastpos;
             GameManager.Instance.gamePlay = true;
             GameManager.Instance.WrongAnswer_animation.SetActive(false);
             Background.color = GameManager.Instance.noseclting;
             GameManager.Instance.arrow.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IcompletArrow;
-            GameManager.Instance.QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IncompleteAnswer;
+            Background.sprite = GameManager.Instance.IncompleteAnswer;
+            //  GameManager.Instance.QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IncompleteAnswer;
             GameManager.Instance.DropingParent.GetChild(0).GetComponent<DragingObj>().Background.color = GameManager.Instance.noseclting;
             GameManager.Instance.DropingParent.GetChild(0).transform.parent = GameManager.Instance.OptionParent;
         }
@@ -71,7 +77,7 @@ namespace Maths.Number1to10
         public void OrderSetting()
         {
             Background.sortingOrder = 4;
-            GetComponent<SpriteRenderer>().sortingOrder = 3;
+            GetComponent<SpriteRenderer>().sortingOrder = 5;
         }
 
 
@@ -81,8 +87,11 @@ namespace Maths.Number1to10
         private Vector3 lastpos;
         private void OnMouseDown()
         {
-            if (!GameManager.Instance.gamePlay)
+            if (!GameManager.Instance.gamePlay || GameManager.Instance.totorialcheck.totorialplaying )
                 return;
+            lastpos = transform.position;
+            sound.clip = pickup;
+            sound.Play();
             OrderSetting();
                     //if (EventSystem.current.IsPointerOverGameObject()) return;
             clicked = true;
@@ -92,10 +101,12 @@ namespace Maths.Number1to10
 
         private void OnMouseUp()
         {
-            if (!GameManager.Instance.gamePlay)
+            if (!GameManager.Instance.gamePlay || GameManager.Instance.totorialcheck.totorialplaying || !clicked)
                 return;
+            sound.clip = drop;
+            sound.Play();
             Background.sortingOrder = 3;
-            GetComponent<SpriteRenderer>().sortingOrder = 2;
+            GetComponent<SpriteRenderer>().sortingOrder = 4;
             clicked = false;
             if (GameManager.Instance.Neartodestination(this.gameObject))
             {
@@ -118,10 +129,10 @@ namespace Maths.Number1to10
             {
                 transform.position = lastpos;
                 Background.color = GameManager.Instance.noseclting;
-                GameManager.Instance.QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IncompleteAnswer;
+              //  GameManager.Instance.QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IncompleteAnswer;
                 parent = GameManager.Instance.OptionParent;
             }
-            GameManager.Instance.DropingParent.GetComponent<SpriteRenderer>().color = Color.white;
+            //GameManager.Instance.DropingParent.GetComponent<SpriteRenderer>().color = Color.white;
             //if (GameController.instance.Neartodestination(this.gameObject))
             //{
             //    transform.position = lastpos;

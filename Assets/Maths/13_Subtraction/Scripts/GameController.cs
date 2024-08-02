@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -9,11 +9,15 @@ namespace Maths.Substraction.Caluculation
 
     public class GameController : Singleton<GameController>
     {
+        public Totorial totoralcheck;
         public SpriteRenderer BreadIcon1;
         public SpriteRenderer BreadIcon2;
         public TextMeshPro[] Inputtext;
         public ExampleGestureHandler AiHandler;
         public Image background;
+        public SpriteRenderer Minus;
+        public SpriteRenderer Equal;
+        public SpriteRenderer OptBG;
         public GestureRecognizer.Recognizer Ai_recognizer;
         public bool Drag;
         public Answer[] allanswer;
@@ -23,13 +27,21 @@ namespace Maths.Substraction.Caluculation
         private int relod;
         public Sprite[] randomsprite;
         public Sprite[] randombackground;
-        public Sprite WrongAnswer,currectAnswer;
+        public Sprite[] randomAnsBG;
+        public Sprite[] randomOptBG;
+        public Sprite[] randomMinus;
+        public Sprite[] randomEqual;
+        public Sprite[] randomWrongAnswer;
+        public Sprite[] randomcurrectAnswer;
+        public Color[] randomTextColor;
         //public GameObject Drawcanvas;
-        public Sprite Inputsprite;
+        public Sprite[] Inputsprite;
         [Space(10)]
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
         public GameObject Party_pop;
+        int RandomNo;
+        [SerializeField] float duration;
         IEnumerator LevelCompleted()
         {
             gameCompleted_animation.SetActive(true);
@@ -37,17 +49,18 @@ namespace Maths.Substraction.Caluculation
             SceneManager.LoadScene(0);
 
         }
-        public Color selctedcolr,DefaltColor,wrongAnswer;
+        public Color selctedcolr;
         IEnumerator WrongAnswerAnimation()
         {
-           // Drawcanvas.SetActive(false);
+            // Drawcanvas.SetActive(false);
             wrongAnswer_animtion.SetActive(true);
+            Inputtext[no].text = AiHandler.no.ToString();
             yield return new WaitForSeconds(2);
-           // Drawcanvas.SetActive(true);
+            // Drawcanvas.SetActive(true);
             AiHandler.textResult = Inputtext[no];
             Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().color = selctedcolr;
-            Inputtext[no].text = "";
-            Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite;
+            Inputtext[no].text = "?";
+            Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite[RandomNo];
             wrongAnswer_animtion.SetActive(false);
             gamePlay = true;
         }
@@ -55,12 +68,13 @@ namespace Maths.Substraction.Caluculation
         {
             relod++;
             no = 0;
-          
+
 
 
             AiHandler.textResult = Inputtext[0];
             number[0] = Random.Range(5, allanswer.Length - 2);
             number[1] = Random.Range(0, allanswer.Length);
+
             Ai_recognizer.Recognigingnumber = (number[0] + 1).ToString();
             Ai_recognizer.Changerecogniger();
             while (number[0] <= number[1])
@@ -70,16 +84,17 @@ namespace Maths.Substraction.Caluculation
             number[2] = (number[0] + 1) - (number[1] + 1);
             if (Drag)
             {
-                int k=0;
-                int n = Random.Range(0, 4);
+                int k = 0;
+                int n = Random.Range(0, 2);
+                int n2 = Random.Range(2, 5);
                 for (int d = 0; d < option.Length; d++)
                 {
-                    if(d == n)
+                    if (d == n || d == n2)
                     {
                         option[d].no = Random.Range(0, 10);
                         for (int i = 0; i < number.Length; i++)
                         {
-                            if(option[d].no== number[i])
+                            if (option[d].no == number[i])
                             {
                                 option[d].no = Random.Range(0, 10);
                                 i = -1;
@@ -97,7 +112,7 @@ namespace Maths.Substraction.Caluculation
                         {
                             option[d].no = number[k];
                         }
-                            k++;
+                        k++;
                     }
                     option[d].Textchange();
 
@@ -110,32 +125,44 @@ namespace Maths.Substraction.Caluculation
                 BreadIcon1.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = randomsprite[no2];
             }
 
-        //    no2 = Random.Range(0, randomsprite.Length);
+            //no2 = Random.Range(0, randomsprite.Length);
+
             for (int i = 0; i <= number[1]; i++)
             {
                 BreadIcon2.transform.GetChild(i).gameObject.SetActive(true);
                 BreadIcon2.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = randomsprite[no2];
             }
+            RandomNo = no2;
             background.sprite = randombackground[no2];
-            // BreadIcon1.sprite = allanswer[number[0]].beads;
-            //   BreadIcon2.sprite = allanswer[number[1]].beads;
-        }
-      
-        private void Update()
-        {
+
+            Minus.sprite = randomMinus[no2];
+            Equal.sprite = randomEqual[no2];
+            OptBG.sprite = randomOptBG[no2];
+            for (int k = 0; k < option.Length; k++)
+            {
+                option[k].transform.GetComponentInChildren<TextMeshPro>().color = randomTextColor[no2];
+            }
             
+            Inputtext[0].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite[no2];
+            Inputtext[1].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite[no2];
+            Inputtext[2].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite[no2];
+            // BreadIcon1.sprite = allanswer[number[0]].beads;
+
+            //   BreadIcon2.sprite = allanswer[number[1]].beads;
+
         }
+
 
         public bool Neartodestination(GameObject obj)
         {
-            if (Vector3.Distance(Inputtext[no].transform.position, obj.transform.position) < 1)
+            if (Vector3.Distance(Inputtext[no].transform.position, obj.transform.position) < 3 )
             {
                 AiHandler.no = obj.GetComponent<Draging>().no;
                 gamePlay = false;
                 NextButton();
                 return true;
             }
-            
+
             return false;
         }
         public void NextButton()
@@ -147,27 +174,28 @@ namespace Maths.Substraction.Caluculation
                     gamePlay = true;
                     // DrawCanvas[no].SetActive(false);
                     //.ClearButton();
-                    Debug.Log("Currect answer");
+                    //Debug.Log("Currect answer");
+                    allanswer[number[no]].box = randomcurrectAnswer[RandomNo];
                     Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().sprite = allanswer[number[no]].box;
 
                     no++;
                     Ai_recognizer.Recognigingnumber = no == 1 ? (number[no] + 1).ToString() : number[no].ToString();
-                    Inputtext[no-1].transform.parent.GetComponent<SpriteRenderer>().color = Color.white;
-                    Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().color =  selctedcolr;
+                    Inputtext[no - 1].transform.parent.GetComponent<SpriteRenderer>().color = Color.white;
+                    Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().color = selctedcolr;
                     Ai_recognizer.Changerecogniger();
                     //DrawCanvas[no].SetActive(true);
-                    AiHandler.textResult= Inputtext[no];
+                    AiHandler.textResult = Inputtext[no];
 
                     if (Drag)
                     {
-                        Inputtext[no - 1].text = (number[no-1] + 1).ToString();
-                      
+                        Inputtext[no - 1].text = (number[no - 1] + 1).ToString();
+
                     }
                 }
                 else
                 {
                     AiHandler.textResult = null;
-                    Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().sprite = WrongAnswer;
+                    Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().sprite = randomWrongAnswer[RandomNo];
                     StartCoroutine(WrongAnswerAnimation());
                 }
             }
@@ -175,8 +203,9 @@ namespace Maths.Substraction.Caluculation
             {
                 if (AiHandler.no == (number[no]))
                 {
-                    Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().color = Color.white;
-                    Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().sprite = currectAnswer;
+                    //Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().color = Color.white;
+                    Debug.Log("Come On");
+                    Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().sprite = randomcurrectAnswer[RandomNo];
                     AiHandler.textResult = null;
                     if (relod > 10)
                     {
@@ -189,20 +218,21 @@ namespace Maths.Substraction.Caluculation
 
                     }
 
-                   // DrawCanvas[no].SetActive(false);
-                 //   DrawCanvas[no].GetComponent<MouseSketch>().ClearButton();
-                  
+                    // DrawCanvas[no].SetActive(false);
+                    //   DrawCanvas[no].GetComponent<MouseSketch>().ClearButton();
+
                     StartCoroutine(Relod());
+
                 }
                 else
                 {
                     AiHandler.textResult = null;
-                    Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().sprite = WrongAnswer;
+                    Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().sprite = randomWrongAnswer[RandomNo];
                     StartCoroutine(WrongAnswerAnimation());
                 }
             }
 
-        
+
 
         }
         public GameObject canvsobj;
@@ -210,7 +240,7 @@ namespace Maths.Substraction.Caluculation
         {
             canvsobj.SetActive(false);
             Party_pop.SetActive(true);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(duration);
             canvsobj.SetActive(true);
             for (int i = 0; i <= number[0]; i++)
             {
@@ -223,13 +253,20 @@ namespace Maths.Substraction.Caluculation
                 BreadIcon2.transform.GetChild(i).gameObject.SetActive(false);
 
             }
+            allanswer[number[no]].box = randomcurrectAnswer[RandomNo];
             Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().sprite = allanswer[number[no]].box;
             for (int i = 0; i < Inputtext.Length; i++)
             {
 
-                Inputtext[i].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite;
+                Inputtext[i].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite[RandomNo];
+                Inputtext[i].transform.parent.GetComponent<SpriteRenderer>().color = new Color(1,1,1,0.5f);
                 Inputtext[i].text = "";
+
             }
+                Inputtext[0].transform.parent.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1f);
+
+
+
             Party_pop.SetActive(false);
             relod++;
             no = 0;
@@ -237,7 +274,7 @@ namespace Maths.Substraction.Caluculation
             //   DrawCanvas[0].SetActive(true);
             // DrawCanvas[2].SetActive(false);
             AiHandler.textResult = Inputtext[0];
-            Inputtext[0].transform.parent.GetComponent<SpriteRenderer>().color =selctedcolr;
+            Inputtext[0].transform.parent.GetComponent<SpriteRenderer>().color = selctedcolr;
             number[0] = Random.Range(5, allanswer.Length - 2);
             number[1] = Random.Range(0, allanswer.Length);
             Ai_recognizer.Recognigingnumber = (number[0] + 1).ToString();
@@ -255,26 +292,28 @@ namespace Maths.Substraction.Caluculation
                 BreadIcon1.transform.GetChild(i).gameObject.SetActive(true);
                 BreadIcon1.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = randomsprite[no2];
             }
-           
+
+
 
             if (Drag)
             {
                 int k = 0;
-                int n = Random.Range(0, 4);
+                int n = Random.Range(0, 2);
+                int n2 = Random.Range(2, 5);
                 for (int d = 0; d < option.Length; d++)
                 {
                     option[d].gameObject.SetActive(true);
-                    if (d == n)
+                    if (d == n || d == n2)
                     {
                         option[d].no = Random.Range(0, 10);
-                        
+
 
                     }
                     else
                     {
                         if (k < 2)
                         {
-                            option[d].no = number[k]+1;
+                            option[d].no = number[k] + 1;
                         }
                         else
                         {
@@ -287,14 +326,29 @@ namespace Maths.Substraction.Caluculation
                 }
             }
 
-           // no2 = Random.Range(0, randomsprite.Length);
+            // no2 = Random.Range(0, randomsprite.Length);
             for (int i = 0; i <= number[1]; i++)
             {
                 BreadIcon2.transform.GetChild(i).gameObject.SetActive(true);
                 BreadIcon2.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = randomsprite[no2];
             }
+            RandomNo = no2;
             background.sprite = randombackground[no2];
+
+            Minus.sprite = randomMinus[no2];
+            Equal.sprite = randomEqual[no2];
+            OptBG.sprite = randomOptBG[no2];
+            for (int k = 0; k < option.Length; k++)
+            {
+                option[k].transform.GetComponentInChildren<TextMeshPro>().color = randomTextColor[no2];
+            }
+            Inputtext[0].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite[no2];
+            Inputtext[1].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite[no2];
+            Inputtext[2].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite[no2];
+
             gamePlay = true;
+
+
         }
     }
 }

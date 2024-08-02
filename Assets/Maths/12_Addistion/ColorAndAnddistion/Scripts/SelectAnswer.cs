@@ -1,3 +1,4 @@
+using Maths.Substraction.DragingObject;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,15 @@ namespace Maths.Addision.AddisitonwithColors
     public class SelectAnswer : MonoBehaviour
     {
         public int no;
+
+        public AudioSource sound;
+        public AudioClip pickup, drop;
         private bool clicked;
         public float Moneyvlaue;
         private bool canChnagepos;
-        private Vector3 lastpos;
+        public Vector3 lastpos;
+        public bool droped;
+        public float speed;
 
         private void Start()
         {
@@ -19,41 +25,42 @@ namespace Maths.Addision.AddisitonwithColors
         {
             if (!GameCondtroller.Instance.gamePlay)
                 return;
+            sound.clip = pickup;
+            sound.Play();
             clicked = true;
-           
+
         }
-        public bool droped;
-        public float speed;
         private void OnMouseUp()
         {
             if (!GameCondtroller.Instance.gamePlay)
                 return;
+            sound.clip = drop;
+            sound.Play();
             clicked = false;
             if (GameCondtroller.Instance.Neartodestination2(this.gameObject))
             {
+                GameCondtroller.Instance.currentanswertext.text = no.ToString();
                 GameCondtroller.Instance.gamePlay = false;
                 if (no == GameCondtroller.Instance.Total)
                 {
-                    
-                    GetComponent<SpriteRenderer>().sprite = GameCondtroller.Instance.currectAnswer;
-                    StartCoroutine(Wairrelod());
+
+                    GameCondtroller.Instance.currectanswerimage.sprite = GameCondtroller.Instance.currectAnswer;
+
+                    GameCondtroller.Instance.StartCoroutine(GameCondtroller.Instance.Wairrelod(this.gameObject));
                 }
                 else
                 {
-                    GetComponent<SpriteRenderer>().sprite = GameCondtroller.Instance.WrongAnswer;
-                    StartCoroutine(WrongAnimtaion());
+
+                    GameCondtroller.Instance.currectanswerimage.sprite = GameCondtroller.Instance.WrongAnswer;
+
+                    GameCondtroller.Instance.StartCoroutine(GameCondtroller.Instance.WrongAnimtaion(this.gameObject));
+
                 }
-                //   GameCondtroller.instace.totalmoneyadded += Moneyvlaue;
-                //  GameCondtroller.instace.totalMoneyaddedtext.text = Gamecontroll.instace.totalmoneyadded.ToString("0.00") + " $";
+
                 droped = true;
-                //  transform.position += Vector3.down *19;
+
             }
-            //this.gameObject.SetActive(false);
 
-            //if (GameCondtroller.instace.checkForThirdStage())
-            //{
-
-            //}
 
             else
             {
@@ -63,31 +70,7 @@ namespace Maths.Addision.AddisitonwithColors
 
         }
 
-        public void OnMouseUpAsButton()
-        {
-           
 
-
-        }
-
-        IEnumerator Wairrelod()
-        {
-            GameCondtroller.Instance.Party_pop.SetActive(true);
-            yield return new WaitForSeconds(3);
-            transform.position = lastpos;
-            GameCondtroller.Instance.Party_pop.SetActive(false);
-            GameCondtroller.Instance.ResetingGame();
-        } 
-        IEnumerator WrongAnimtaion()
-        {
-            GameCondtroller.Instance.wrongAnswer_animtion.SetActive(true);
-            yield return new WaitForSeconds(2);
-            transform.position = lastpos;
-            GetComponent<SpriteRenderer>().sprite = GameCondtroller.Instance.normalAnswer;
-            GameCondtroller.Instance.wrongAnswer_animtion.SetActive(false);
-            GameCondtroller.Instance.gamePlay = true;
-        }
-        // Start is called before the first frame update
         private void Update()
         {
             if (Input.GetMouseButton(0) && clicked)

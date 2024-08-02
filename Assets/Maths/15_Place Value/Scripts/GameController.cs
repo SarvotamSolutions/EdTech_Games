@@ -10,6 +10,7 @@ namespace Maths.placeHolder.selectNO
 {
     public class GameController : Singleton<GameController>
     {
+        public Totorial totoria;
         public Sprite[] iconsprite;
         public SpriteRenderer icon;
         public GameObject[] AnswerButton;
@@ -18,6 +19,7 @@ namespace Maths.placeHolder.selectNO
         public Sprite wronganswerButton;
         public int no;
         private List<int> allno = new List<int>();
+        public Color TextColor;
 
         [Space(10)]
         public GameObject gameCompleted_animation;
@@ -38,13 +40,14 @@ namespace Maths.placeHolder.selectNO
             foreach (var item in AnswerButton)
             {
                 item.GetComponent<Image>().sprite = normalanswer;
+                item.GetComponentInChildren<TextMeshProUGUI>().color = TextColor;
             }
             gamePlay = true;
         }
 
         public void Start()
         {
-            no = Random.Range(0, 3);
+            no = Random.Range(0, 4);
             icon.sprite = iconsprite[no];
 
             allno.Add(no);
@@ -53,14 +56,15 @@ namespace Maths.placeHolder.selectNO
 
         public void Answer(int answerNO)
         {
-            if (!gamePlay)
+            if (!gamePlay || totoria.totorialplaying)
                 return;
             gamePlay = false;
             if (answerNO == no)
             {
                 
                 AnswerButton[no].GetComponent<Image>().sprite = currectanswerButton;
-                if (allno.Count >= 3)
+                AnswerButton[no].GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
+                if (allno.Count >= 4)
                 {
                     StartCoroutine(LevelCompleted());
                      return;
@@ -70,19 +74,24 @@ namespace Maths.placeHolder.selectNO
             else
             {
                 AnswerButton[answerNO].GetComponent<Image>().sprite = wronganswerButton;
+                AnswerButton[answerNO].GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
                 StartCoroutine(WrongAnswerAnimation());
             }
         }
 
         IEnumerator WaitForrelod()
         {
-            yield return new WaitForSeconds(1f);
 
+            Party_pop.SetActive(true);
+            yield return new WaitForSeconds(3f);
+            Party_pop.SetActive(false);
             foreach (var item in AnswerButton)
             {
                 item.GetComponent<Image>().sprite = normalanswer;
+                item.GetComponentInChildren<TextMeshProUGUI>().color = TextColor;
+
             }
-            no = Random.Range(0, 3);
+            no = Random.Range(0, 4);
 
 
          
@@ -91,7 +100,7 @@ namespace Maths.placeHolder.selectNO
                 if(allno[i] == no)
                 {
                     i = -1;
-                    no = Random.Range(0, 3);
+                    no = Random.Range(0, 4);
                 }
 
             }

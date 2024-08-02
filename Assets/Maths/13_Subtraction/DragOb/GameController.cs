@@ -12,26 +12,38 @@ namespace Maths.Substraction.DragingObject
     {
 
         public Sprite background;
+        public Sprite ObectPlacedBGSprite;
+        public Sprite QuestionBGSprite;
         public Sprite[] objecticon;
         public Sprite[] droingplace;
         public bool bird;
         public Sprite birdsprite;
+        public Color questionTextColor;
+        public string HeadingText;
     }
 
 
     public class GameController : Singleton<GameController>
     {
+        // #69B6EA (144,61,179) color code for question text if allobj = 0
+        // #723DB3 (105,182,234) color code for question text if allobj = 1
+        // #94682E (148,104,46) color code for question text if allobj = 2
+        public Totorial totorial;
         public obj[] allobj;
         public GameObject papercontins;
         public GameObject dustbin;
-
+        public SpriteRenderer ObjectPlacedBG;
+        public SpriteRenderer QuestionBG;
         public TextMeshPro[] numberText;
         public int[] numbers;
         public Sprite OpenDustbinSprite;
         public Sprite closeDustBinSprite;
+        public TextMeshPro Heading;
+        public Button NextButton;
         private int reloding;
+        int randomNo;
 
-        public Sprite currectanswer, wronganswer, normalanswer;
+        public Color currectanswer, wronganswer, normalanswer;
 
         [Space(10)]
         public GameObject gameCompleted_animation;
@@ -49,10 +61,15 @@ namespace Maths.Substraction.DragingObject
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
             wrongAnswer_animtion.SetActive(false);
+            numberText[2].transform.GetComponent<TextMeshPro>().text = "?";
+            numberText[2].transform.GetComponent<TextMeshPro>().color = allobj[randomNo].questionTextColor;
+            numberText[2].transform.parent.GetComponent<SpriteRenderer>().color = Color.white;
             gamePlay = true;
+            NextButton.interactable = true;
+
         }
         public Image bg;
-      
+
         public void Start()
         {
             Relod();
@@ -60,7 +77,7 @@ namespace Maths.Substraction.DragingObject
         public int getno;
         void Relod()
         {
-            
+
             reloding++;
             getno = Random.Range(0, allobj.Length);
             OpenDustbinSprite = allobj[getno].droingplace[0];
@@ -90,9 +107,53 @@ namespace Maths.Substraction.DragingObject
 
             }
             bg.sprite = allobj[getno].background;
+            Heading.text = allobj[getno].HeadingText;
+            randomNo = getno;
+            ObjectPlacedBG.sprite = allobj[getno].ObectPlacedBGSprite;
+            QuestionBG.sprite = allobj[getno].QuestionBGSprite;
+            if (getno == 2)
+            {
+                ObjectPlacedBG.sortingOrder = 2;
+                numberText[0].color = allobj[getno].questionTextColor;
+                numberText[1].color = allobj[getno].questionTextColor;
+                numberText[2].color = allobj[getno].questionTextColor;
+            }
+            else
+            {
+                ObjectPlacedBG.sortingOrder = 0;
+                numberText[0].color = allobj[getno].questionTextColor;
+                numberText[1].color = allobj[getno].questionTextColor;
+                numberText[2].color = allobj[getno].questionTextColor;
+            }
+            /*//if (getno == 2)
+            //{
+            //    ObjectPlacedBG.sortingOrder = 2;
+            //    numberText[0].color = new Color(0.5803922f, 0.4078431f, 0.1803922f, 1f);
+            //    numberText[1].color = new Color(0.5803922f, 0.4078431f, 0.1803922f, 1f);
+            //    numberText[2].color = new Color(0.5803922f, 0.4078431f, 0.1803922f, 1f);
+            //}
+            //else if (getno == 1)
+            //{
+            //    ObjectPlacedBG.sortingOrder = 0;
+            //    numberText[0].color = new Color(0.4470588f, 0.2392157f, 0.7019608f, 1f);
+            //    numberText[1].color = new Color(0.4470588f, 0.2392157f, 0.7019608f, 1f);
+            //    numberText[2].color = new Color(0.4470588f, 0.2392157f, 0.7019608f, 1f);
+            //}
+            //else if (getno == 0)
+            //{
+            //    ObjectPlacedBG.sortingOrder = 0;
+            //    numberText[0].color = new Color(0.4117647f, 0.7137255f, 0.9176471f, 1f);
+            //    numberText[1].color = new Color(0.4117647f, 0.7137255f, 0.9176471f, 1f);
+            //    numberText[2].color = new Color(0.4117647f, 0.7137255f, 0.9176471f, 1f);
+            //}*/
+
+            numberText[2].transform.parent.GetComponent<SpriteRenderer>().enabled = true;
+
             numbers[2] = numbers[0] - numbers[1];
             TextChange();
             gamePlay = true;
+            NextButton.interactable = true;
+
         }
         void TextChange()
         {
@@ -103,12 +164,12 @@ namespace Maths.Substraction.DragingObject
         }
         public bool Neartodestination(GameObject obj)
         {
-            if (Vector3.Distance(obj.transform.position, dustbin.transform.position) < 2)
+            if (Vector3.Distance(obj.transform.position, dustbin.transform.position) < 4)
             {
                 if (allobj[getno].bird)
                 {
                     obj.GetComponent<SpriteRenderer>().sprite = allobj[getno].birdsprite;
-                    
+
                 }
 
                 return true;
@@ -123,15 +184,21 @@ namespace Maths.Substraction.DragingObject
         }
         public void GameCompleted()
         {
+            if (totorial.totorialplaying)
+                return;
+
             gamePlay = false;
+            NextButton.interactable = false;
             if (papercontins.transform.childCount == numbers[2])
             {
                 numberText[2].text = papercontins.transform.childCount.ToString();
-                for (int i = 0; i < numberText.Length; i++)
-                {
+                //for (int i = 0; i < numberText.Length; i++)
+                //{
 
-                    numberText[i].transform.parent.GetComponent<SpriteRenderer>().sprite = currectanswer;
-                }
+                numberText[2].transform.parent.GetComponent<SpriteRenderer>().color = currectanswer;
+                numberText[2].transform.GetComponent<TextMeshPro>().color = Color.white;
+
+                //}
                 numberText[2].transform.parent.GetComponent<SpriteRenderer>().enabled = true;
                 StartCoroutine(waitForLoad());
                 Debug.Log("currect Answer");
@@ -139,11 +206,12 @@ namespace Maths.Substraction.DragingObject
             else
             {
                 numberText[2].text = papercontins.transform.childCount.ToString();
-                for (int i = 0; i < numberText.Length; i++)
-                {
+                //for (int i = 0; i < numberText.Length; i++)
+                //{
 
-                    numberText[i].transform.parent.GetComponent<SpriteRenderer>().sprite = wronganswer;
-                }
+                numberText[2].transform.parent.GetComponent<SpriteRenderer>().color = wronganswer;
+                numberText[2].transform.GetComponent<TextMeshPro>().color = Color.white;
+                //}
                 numberText[2].transform.parent.GetComponent<SpriteRenderer>().enabled = true;
                 for (int i = dustbin.transform.childCount - 1; i >= 0; i--)
                 {
@@ -180,11 +248,11 @@ namespace Maths.Substraction.DragingObject
             {
                 numberText[2].transform.parent.GetComponent<SpriteRenderer>().enabled = false;
                 numberText[2].text = "?";
-                for (int i = 0; i < numberText.Length; i++)
-                {
+                //for (int i = 0; i < numberText.Length; i++)
+                //{
 
-                    numberText[i].transform.parent.GetComponent<SpriteRenderer>().sprite = normalanswer;
-                }
+                numberText[2].transform.parent.GetComponent<SpriteRenderer>().color = normalanswer;
+                //}
                 for (int i = dustbin.transform.childCount - 1; i >= 0; i--)
                 {
                     dustbin.transform.GetChild(i).gameObject.SetActive(true);

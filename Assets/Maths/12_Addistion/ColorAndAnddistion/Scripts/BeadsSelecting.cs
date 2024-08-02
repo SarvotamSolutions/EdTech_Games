@@ -10,7 +10,7 @@ namespace Maths.Addision.AddisitonwithColors
         public bool clicked;
         private void OnMouseUpAsButton()
         {
-            if (clicked)
+            if (clicked || GameCondtroller.Instance.totorial.totorialplaying)
                 return;
             if(GameCondtroller.Instance.selectedcollor == color)
             {

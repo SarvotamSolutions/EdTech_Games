@@ -8,15 +8,24 @@ namespace Laguage.Sequence
     {
         public Sprite SelectedDrop;
         public Sprite defaltspritre, wrongsprite, currectsprite;
-
-        private void Start()
+        public Sprite defaultDroppingPlace, trueDroppingPlace, falseDroppingPlace;
+        public SpriteRenderer DroppingPlaceBG;
+        public static GameController Ins;
+        private void Awake()
         {
+            Ins = this;
+        }
 
+        protected override void CurrectAnimtionCompleted()
+        {
+            DroppingPlaceBG.sprite = defaultDroppingPlace;
+
+            base.CurrectAnimtionCompleted();
         }
 
         public override bool Neartodestination()
         {
-            if (Vector3.Distance(selectedoption.transform.position, droping_place[reloding].transform.position) <distangedrage )
+            if (Vector3.Distance(selectedoption.transform.position, droping_place[reloding].transform.position) < distangedrage)
             {
                 selectedoption.transform.position = droping_place[reloding].transform.position;
                 return true;
@@ -27,24 +36,25 @@ namespace Laguage.Sequence
         public override void CurrectAnswer()
         {
             droping_place[reloding - 1].enabled = false;
-            StartCoroutine(WaitForCurrectanimtion());
             selectedoption.GetComponent<Collider2D>().enabled = false;
-          
+
             if (defaltspritre)
             {
                 selectedoption.background.sprite = currectsprite;
 
             }
-            
-            if (reloding > droping_place.Length-1)
+
+            if (reloding > droping_place.Length - 1)
             {
+                //StartCoroutine(WaitForCurrectanimtion());
                 StartCoroutine(LevelCompleted());
             }
             else
             {
+                StartCoroutine(WaitForCurrectanimtion());
                 droping_place[reloding].sprite = SelectedDrop;
             }
-            
+
             base.CurrectAnswer();
         }
         public override void WrongAnswer()
@@ -64,6 +74,10 @@ namespace Laguage.Sequence
                 selectedoption.background.sprite = defaltspritre;
 
             }
+            DroppingPlaceBG.sprite = defaultDroppingPlace;
+
+            selectedoption.text.color = selectedoption.GetComponent<Drag>().NormalText;
+
             selectedoption.Border.color = Color.white;
             gamePlay = true;
             base.ResetingDrage();

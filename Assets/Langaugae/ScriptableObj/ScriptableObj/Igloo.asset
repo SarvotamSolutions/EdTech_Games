@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Igloo
   m_EditorClassIdentifier: 
-  name: Igloo
+  Name: Igloo
   Icon: {fileID: 21300000, guid: 7dd78a40d4c03a548b7b2e32f5d6ff8e, type: 3}
   letter: I
   relatedsdprite: {fileID: 0}

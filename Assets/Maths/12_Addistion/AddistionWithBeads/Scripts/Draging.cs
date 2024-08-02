@@ -6,6 +6,8 @@ namespace Maths.Addision.BeadsCount
 { 
     public class Draging : MonoBehaviour
     {
+        public AudioSource sound;
+        public AudioClip pickup, drop;
         private bool clicked;
         public int no;
         private bool canChnagepos;
@@ -14,6 +16,8 @@ namespace Maths.Addision.BeadsCount
         {
             if (!GameController.instance.gamePlay)
                 return;
+            sound.clip = pickup;
+            sound.Play();
             clicked = true;
           
         }
@@ -25,6 +29,8 @@ namespace Maths.Addision.BeadsCount
         {
             if (!GameController.instance.gamePlay)
                 return;
+            sound.clip = drop;
+            sound.Play();
             clicked = false;
             if (GameController.instance.Neartodestination(this.gameObject))
             {

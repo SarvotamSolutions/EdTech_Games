@@ -6,6 +6,8 @@ namespace Maths.CountAndCards.count
 {
     public class Buttons : MonoBehaviour, IBeginDragHandler, IDragHandler, IDropHandler
     {
+        private AudioSource sound;
+        public AudioClip pickup, drop;
         public Transform parent;
         public Transform DropingParent;
         public Transform DraginParent;
@@ -14,6 +16,9 @@ namespace Maths.CountAndCards.count
 
             if (!GameController.Instance.gamePlay)
                 return;
+            sound.clip = pickup;
+            sound.Play();
+
             transform.parent = parent;
         }
 
@@ -31,6 +36,9 @@ namespace Maths.CountAndCards.count
 
             if (!GameController.Instance.gamePlay)
                 return;
+
+            sound.clip = drop;
+            sound.Play();
             Debug.Log(Vector3.Distance(transform.position, DropingParent.transform.GetChild(DropingParent.childCount - 1).transform.position));
             if (!GameController.Instance.hint)
             {
@@ -53,7 +61,7 @@ namespace Maths.CountAndCards.count
             }
             else
             {
-                if (Mathf.Abs(transform.position.x-DropingParent.transform.position.x) < GameController.Instance.distance.x &&
+                if (Mathf.Abs(transform.position.x - DropingParent.transform.position.x) < GameController.Instance.distance.x &&
                     Mathf.Abs(transform.position.y - DropingParent.transform.position.x) < GameController.Instance.distance.y)
                 {
                     GameController.Instance.distance.y +=.5f;
@@ -77,13 +85,16 @@ namespace Maths.CountAndCards.count
         // Start is called before the first frame update
         void Start()
         {
-
+            sound = GetComponent<AudioSource>();
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            if (Input.GetMouseButtonUp(0))
+            {
+                
+            }
         }
     }
 

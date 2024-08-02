@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
+  m_Name: Onion
+  m_EditorClassIdentifier: 
+  Name: Onion
+  Icon: {fileID: 21300000, guid: 0c842a24e88c6484ba2f02d6cb913995, type: 3}
+  letter: O
+  relatedsdprite: {fileID: 0}
+  Sound: {fileID: 8300000, guid: 2efdcf60f5e7bbf449020e7ed5b351be, type: 3}

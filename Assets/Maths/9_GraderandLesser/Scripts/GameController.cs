@@ -17,6 +17,9 @@ namespace Maths.graterAndLesser
     public class GameController : Singleton<GameController>
     {
 
+
+        public Color curect, wrong, selected, nonselected;
+        public Totorial totorialcheck;
         [Header("Ai")]
         public mode gamemode;
         public ExampleGestureHandler AiDrawtext;
@@ -41,7 +44,7 @@ namespace Maths.graterAndLesser
         public GameObject graterlessparent, optioncontins;
         public List<int> allno= new List<int>();
         public int numbertimes;
-
+        public float currectanswerinteval;
         [Space(10)]
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
@@ -148,7 +151,7 @@ namespace Maths.graterAndLesser
             input_text[no-1].text = (Numbers[no - 1]+1).ToString();
             inputs[no - 1].sprite = currectAnswer;
             inputs[no - 1].color = Color.white;
-            inputs[no].color = Color.blue;
+            inputs[no].color = selected;
             AiDrawtext.textResult = input_text[no];
         }
 
@@ -268,7 +271,7 @@ namespace Maths.graterAndLesser
             yield return new WaitForSeconds(2);
             Debug.Log("not coming");
             inputs[no].sprite = normalAnswer;
-            inputs[no].color = Color.blue;
+            inputs[no].color = selected;
             //inputs[0].sprite = inputs[0].sprite == currectAnswer ? currectAnswer : normalAnswer;
             input_text[no].text = "";
             //Firsttext.text = inputs[0].sprite == currectAnswer ? Firsttext.text : "";
@@ -321,11 +324,10 @@ namespace Maths.graterAndLesser
             no = 0;
             Party_pop.SetActive(true);
             AiDrawtext.transform.parent.transform.gameObject.SetActive(false);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(currectanswerinteval);
             Party_pop.SetActive(false);
          
           
-            inputs[0].color = Color.blue;
             foreach (var item in input_text)
             {
              
@@ -336,8 +338,10 @@ namespace Maths.graterAndLesser
             {
                 item.sortingOrder = 0;
                 item.sprite = normalAnswer;
+                item.color = nonselected;
             }
 
+            inputs[0].color = selected;
 
             inputs[0].sortingOrder = 2;
             input_text[0].sortingOrder = 2;
@@ -395,7 +399,9 @@ namespace Maths.graterAndLesser
                 for (int i = 0; i < optioncontins.transform.childCount; i++)
                 {
                     optioncontins.transform.GetChild(i).gameObject.SetActive(true);
-                    optioncontins.transform.GetChild(i).GetComponent<Dragin>().TextUpdate();
+
+                    if(optioncontins.transform.GetChild(i).TryGetComponent<Dragin>(out Dragin drag))
+                        drag.TextUpdate();
 
                 }
                 for (int i = 0; i < graterlessparent.transform.childCount; i++)

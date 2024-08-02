@@ -3542,15 +3542,8 @@ MonoBehaviour:
   - {fileID: 2109680993}
   - {fileID: 628383327}
   - {fileID: 348567039}
-  brushsize: {x: 0.5, y: 0.5}
+  brushsize: {x: 0.25, y: 0.25}
   backhold: {fileID: 27141102}
-  fillamount:
-  - 0.36
-  - 0.005
-  - 0.015
-  - 0.006
-  - 0.006
-  - 0.012
   gameCompleted_animation: {fileID: 1371778530}
   wrongAnswer_animtion: {fileID: 0}
   Party_pop: {fileID: 218376096}
@@ -4349,14 +4342,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13be321fff1c45a0abdd760e86384f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  revealedAt: 0
+  revealedAt: 0.75
   brushMaterial: {fileID: 0}
   brushScale: {x: 0, y: 0}
   interpolationMaxCount: 4
   interpolationMinDistance: 8
   maskTextureScale: 1
   maxMaskTextureSize: 512
-  gridScale: 4
+  gridScale: 2
 --- !u!114 &1623987057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5581,7 +5574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13be321fff1c45a0abdd760e86384f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  revealedAt: 0.978
+  revealedAt: 0.75
   brushMaterial: {fileID: 0}
   brushScale: {x: 0, y: 0}
   interpolationMaxCount: 4

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: pen
   m_EditorClassIdentifier: 
-  name: pen
-  Icon: {fileID: 21300000, guid: 3dad014d91910b84da2759345b47beef, type: 3}
+  Name: pen
+  Icon: {fileID: 21300000, guid: 27109805f0d816043b4f210b22d02ca5, type: 3}
   letter: pen
   relatedsdprite: {fileID: 21300000, guid: 06102e7ab1aec7843a075854362d485a, type: 3}
+  Sound: {fileID: 8300000, guid: d5eebb3d4271bb048b94ce574e399f06, type: 3}

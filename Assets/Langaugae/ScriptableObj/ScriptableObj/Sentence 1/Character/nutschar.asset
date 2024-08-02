@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
+  m_Name: nutschar
+  m_EditorClassIdentifier: 
+  Name: The nuts are in the bag.
+  Icon: {fileID: 21300000, guid: be851a19a4acf3c4fb70efa93ee6dab5, type: 3}
+  letter: The nuts are in the bag.
+  relatedsdprite: {fileID: 21300000, guid: 40121bce474dc654fb9f37f43b5d18a7, type: 3}
+  Sound: {fileID: 8300000, guid: a7c2659f20468c34588fd76a68da07c8, type: 3}

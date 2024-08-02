@@ -15,6 +15,7 @@ namespace GestureRecognizer {
 	/// </summary>
 	public class DrawDetector : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler {
 
+		public AudioSource dragsound;
 		public UnityEvent called;
 	//	public delegate void ClickEventHandler();
 	//	public event ClickEventHandler OnClick;
@@ -114,9 +115,9 @@ namespace GestureRecognizer {
 			GetComponent<ExampleGestureHandler>().no = 0;
 			GetComponent<ExampleGestureHandler>().notext = "";
             if (GetComponent<ExampleGestureHandler>().textResult)
-                GetComponent<ExampleGestureHandler>().textResult.text = "";
+                GetComponent<ExampleGestureHandler>().textResult.text = "?";
             else if (GetComponent<ExampleGestureHandler>().textResultUI)
-                GetComponent<ExampleGestureHandler>().textResultUI.text = "";
+                GetComponent<ExampleGestureHandler>().textResultUI.text = "?";
 
 
 
@@ -128,7 +129,8 @@ namespace GestureRecognizer {
 		IEnumerator storecorotine;
 		public void OnBeginDrag (PointerEventData eventData)
 		{
-
+			dragsound.Play();
+			Debug.Log("drag started");
 			infotext.gameObject.SetActive(false);
 			if (data.lines.Count >= maxLines) {
 				switch (removeStrategy)
@@ -162,13 +164,14 @@ namespace GestureRecognizer {
 				data.LastLine.points.Add (fixedPos);
 				UpdateLines ();
 			}
+			
 		}
 
 		public void OnEndDrag (PointerEventData eventData)
 		{
 			StartCoroutine (OnEndDragCoroutine (eventData));
 
-
+			dragsound.Stop();
 		}
 
 		IEnumerator OnEndDragCoroutine(PointerEventData eventData){
@@ -226,10 +229,16 @@ namespace GestureRecognizer {
 		IEnumerator waitForClear()
         {
 			yield return new WaitForSeconds(1);
-			if(transform.GetComponent<ExampleGestureHandler>().notext != "")
+			if (transform.GetComponent<ExampleGestureHandler>().notext != "")
 				called.Invoke();
 			else
+			{
+					transform.GetComponent<ExampleGestureHandler>().notext = "?";
+				//if (transform.GetComponent<ExampleGestureHandler>().textResult)
+				//else
+				//	transform.GetComponent<ExampleGestureHandler>().textResultUI.text = "?";
 				transform.DOShakePosition(1, power, vibtation);
+			}
 			ClearLines();
         }
 	}

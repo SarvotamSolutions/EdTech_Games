@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: web
   m_EditorClassIdentifier: 
-  name: web
-  Icon: {fileID: 21300000, guid: 204752cacce43d44ea2efb91bc4f3be7, type: 3}
+  Name: web
+  Icon: {fileID: 21300000, guid: 8c4db3b05fd93cb448e389aeb3d6fcef, type: 3}
   letter: web
   relatedsdprite: {fileID: 21300000, guid: 06102e7ab1aec7843a075854362d485a, type: 3}
+  Sound: {fileID: 8300000, guid: 9158ed9c195205048b60822f737a9788, type: 3}

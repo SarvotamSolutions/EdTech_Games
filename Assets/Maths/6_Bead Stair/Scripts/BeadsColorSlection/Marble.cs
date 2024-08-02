@@ -33,10 +33,11 @@ namespace Maths.BeadStair.ColorSlection
         }
         private void OnMouseUpAsButton()
         {
-            if (completed || !GameController.Instance.gamePlay)
+            if (completed || !GameController.Instance.gamePlay || GameController.Instance.totorialcheck.totorialplaying)   
                 return;
             if (thiscolor == GameController.Instance.selectedcollor && thiscolor == GameController.Instance.allmarble[GameController.Instance.level].thiscolor)
             {
+
                 Debug.Log("XXx");
                 completed = true;
                 rendring.sprite = ColorMarble;
@@ -50,6 +51,8 @@ namespace Maths.BeadStair.ColorSlection
                 }
                 else
                     StartCoroutine(LevelComplted());
+
+               GameController.Instance.totorialcheck.directionWindow();
             }
             else
             {
@@ -71,7 +74,7 @@ namespace Maths.BeadStair.ColorSlection
         IEnumerator LevelComplted()
         {
             GameController.Instance.gameCompleted_animation.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(3);
             SceneManager.LoadScene(0);
         }
     }

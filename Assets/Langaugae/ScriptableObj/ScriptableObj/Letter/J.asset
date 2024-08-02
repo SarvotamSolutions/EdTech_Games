@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: J
   m_EditorClassIdentifier: 
   sameLetter:
-  - {fileID: 11400000, guid: 95f08757f0a08ad4987bffcfe9f3aa66, type: 2}
-  - {fileID: 11400000, guid: 13e5867ad2f4cfb48b99dd6e291c4e41, type: 2}
+  - {fileID: 11400000, guid: 7f9af5530e0056247a193d2939ccb962, type: 2}
+  - {fileID: 11400000, guid: 7bf145081ef83354492b10dbd5f8d62f, type: 2}
+  - {fileID: 11400000, guid: 67432cd380f53834ca77aae7ea1471ca, type: 2}
+  - {fileID: 11400000, guid: dfd6174d5214cb74ead8c2acfcefc032, type: 2}
   Letter: J
-  letterSprite: {fileID: 21300000, guid: a1506a582690e124b839ebdfba38063f, type: 3}
+  letterSprite: {fileID: 21300000, guid: d39480337268a964882891d4df9cb862, type: 3}
   RelatedCharacter: []
-  hintcolor: {r: 0, g: 0, b: 0, a: 0}
+  hintcolor: {r: 0.38431373, g: 0.28627452, b: 0.14117648, a: 1}
+  lettersound: {fileID: 8300000, guid: 39177066e4ecc004d9569b5c245fa5f3, type: 3}

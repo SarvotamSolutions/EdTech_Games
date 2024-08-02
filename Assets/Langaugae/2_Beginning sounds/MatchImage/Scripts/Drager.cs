@@ -8,19 +8,24 @@ namespace Laguage.beginning_sounds.match_images
         private bool clicked;
         private bool canChnagepos;
         public GameController controler;
+        public Color imagecolor;
       //  public Transform background;
         public int rotionno;
 
         public override void Start()
         {
             base.Start();
+            Icon.color = imagecolor;
         }
 
         protected override void OnMouseDown()
         {
 
-            if (!GameController.Instance.gamePlay)
+
+            if (!GameController.Instance.gamePlay  || GameController.Instance.totorial.totorialplaying)
                 return;
+
+
             clicked = true;
            // transform.GetComponent<SpriteRenderer>().sprite = controler.alldirectionanswer[0];
            // transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = controler.border[0];
@@ -45,7 +50,7 @@ namespace Laguage.beginning_sounds.match_images
 
         protected override void OnMouseUp()
         {
-            if (!GameController.Instance.gamePlay)
+            if (!GameController.Instance.gamePlay || GameController.Instance.totorial.totorialplaying || !clicked)
                 return;
             //GameController.Instance.droping_place.sortingOrder = 2;
 
@@ -58,22 +63,34 @@ namespace Laguage.beginning_sounds.match_images
             clicked = false;
             if (GameController.Instance.Neartodestination())
             {
+                sound.PlayOneShot(drop);
+                letterSoundClip.clip = GameController.Instance.lettersound;
+                letterSoundClip.PlayDelayed(.2f);
                 GameController.Instance.gamePlay = false;
 
-               
+                GameController.Instance.droping_place[0].enabled = false;
                  transform.position = GameController.Instance.droping_place[0].transform.GetChild(rotionno + 1).transform.position;
                
                 transform.parent = GameController.Instance.droping_place[0].transform;
-                transform.localScale = new Vector3(.9f, .9f, .9f);
+                transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
+
+                Icon.color = Color.white;
                 if (no == GameController.Instance.letter)
                 {
-                    Border.color = GameController.Instance.currect_answer_color;
+                    if (controler.rotate == false)
+                    {
+                        Border.sprite = GameController.Instance.currect_answer[0];
+                    }
                     GameController.Instance.CurrectAnswer();
                 }
                 else
                 {
-                    Border.color = GameController.Instance.wrong_answer_color;
-                    Debug.Log("bORDER");
+                    if (controler.rotate == false)
+                    {
+                        Debug.Log("the Rotaion option set to off");
+                        Border.sprite = GameController.Instance.wrong_answer[0];
+                    }
+                   
                     
                     GameController.Instance.WrongAnswer();
                 }
@@ -81,7 +98,9 @@ namespace Laguage.beginning_sounds.match_images
             }
             else
             {
+                sound.PlayOneShot(drop);
                 Border.color = Color.white;
+                Icon.color = imagecolor;
                 // transform.GetComponent<SpriteRenderer>().sprite = controler.alldirectionanswer[rotionno];
                 //  transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = controler.border[rotionno];
                 transform.position = lastpos;

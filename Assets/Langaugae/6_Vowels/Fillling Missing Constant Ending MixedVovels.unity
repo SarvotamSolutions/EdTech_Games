@@ -325,7 +325,6 @@ MonoBehaviour:
   text: {fileID: 2099829120}
   no: s
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &68044533
@@ -487,7 +486,6 @@ MonoBehaviour:
   text: {fileID: 134492573}
   no: q
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!61 &80855120
@@ -597,7 +595,6 @@ MonoBehaviour:
   text: {fileID: 1585029141}
   no: y
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &84657207
@@ -1077,7 +1074,6 @@ MonoBehaviour:
   text: {fileID: 255207731}
   no: p
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &96272040
@@ -1297,7 +1293,6 @@ MonoBehaviour:
   text: {fileID: 266976157}
   no: n
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &127543679
@@ -1605,7 +1600,6 @@ MonoBehaviour:
   text: {fileID: 1726328707}
   no: j
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &139584729
@@ -1741,7 +1735,6 @@ MonoBehaviour:
   text: {fileID: 90874743}
   no: d
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &146734853
@@ -1877,7 +1870,6 @@ MonoBehaviour:
   text: {fileID: 904818481}
   no: t
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &187170673
@@ -3298,7 +3290,6 @@ MonoBehaviour:
   text: {fileID: 910979144}
   no: g
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &459049530
@@ -4893,7 +4884,6 @@ MonoBehaviour:
   text: {fileID: 1432071326}
   no: c
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &740679798
@@ -5157,7 +5147,6 @@ MonoBehaviour:
   text: {fileID: 1191048220}
   no: z
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!4 &788026908
@@ -5363,7 +5352,6 @@ MonoBehaviour:
   text: {fileID: 1264571683}
   no: w
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!61 &803470822
@@ -6499,7 +6487,6 @@ MonoBehaviour:
   text: {fileID: 718260146}
   no: h
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &943324721
@@ -7215,7 +7202,7 @@ SpriteRenderer:
   m_Size: {x: 10.024875, y: 6.9900002}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1060536187
@@ -7850,7 +7837,6 @@ MonoBehaviour:
   text: {fileID: 1265883565}
   no: r
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!61 &1150052752
@@ -8697,7 +8683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePlay: 1
-  currect_answer_color: {r: 0.18039216, g: 0.7254902, b: 0.16078432, a: 1}
+  currect_answer_color: {r: 0.24885845, g: 1, b: 0, a: 1}
   wrong_answer_color: {r: 1, g: 0, b: 0, a: 1}
   sellect_answer_color: {r: 0, g: 0.28241897, b: 1, a: 1}
   TextQuestion: 0
@@ -8750,9 +8736,6 @@ MonoBehaviour:
   blankno: 0
   ending: 1
   allleter: 0
-  middle: 0
-  starting: 0
-  keybordpaneel: {fileID: 59944377}
 --- !u!1 &1399397139
 GameObject:
   m_ObjectHideFlags: 0
@@ -9258,7 +9241,6 @@ MonoBehaviour:
   text: {fileID: 94158547}
   no: l
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &1582634774
@@ -9920,7 +9902,6 @@ MonoBehaviour:
   text: {fileID: 649883175}
   no: x
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &1637799957
@@ -10228,7 +10209,6 @@ MonoBehaviour:
   text: {fileID: 1646344039}
   no: f
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &1681135248
@@ -10792,7 +10772,6 @@ MonoBehaviour:
   text: {fileID: 1091022427}
   no: b
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &1758103893
@@ -11100,7 +11079,6 @@ MonoBehaviour:
   text: {fileID: 860733931}
   no: m
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &1805183909
@@ -11564,7 +11542,6 @@ MonoBehaviour:
   text: {fileID: 1713830702}
   no: k
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &1865739523
@@ -11952,7 +11929,6 @@ MonoBehaviour:
   text: {fileID: 761787254}
   no: v
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &1924665778
@@ -12758,7 +12734,6 @@ MonoBehaviour:
   text: {fileID: 893962857}
   no: z
   maxmimumorderlayer: 4
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
   controler: {fileID: 1369266334}
 --- !u!212 &2131029274

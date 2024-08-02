@@ -539,7 +539,6 @@ MonoBehaviour:
   text: {fileID: 0}
   no: 
   maxmimumorderlayer: 2
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
 --- !u!1001 &296843897
 PrefabInstance:
@@ -1668,7 +1667,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 0
   m_fontSizeMax: 72
-  m_fontStyle: 8
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2217,7 +2216,6 @@ MonoBehaviour:
   text: {fileID: 0}
   no: 
   maxmimumorderlayer: 2
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
 --- !u!1 &1631745195
 GameObject:
@@ -2351,7 +2349,6 @@ MonoBehaviour:
   text: {fileID: 0}
   no: 
   maxmimumorderlayer: 2
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}
 --- !u!1 &1728680423
 GameObject:
@@ -2637,5 +2634,4 @@ MonoBehaviour:
   text: {fileID: 0}
   no: 
   maxmimumorderlayer: 2
-  TextUpdate: 1
   lastpos: {x: 0, y: 0, z: 0}

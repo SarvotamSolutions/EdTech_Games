@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 {
     public class GameController : Singleton<GameController>
     {
-
+        public Totorial totorialcheck;
         public Color red, blue, green,vilot;
         public LineRenderer selectedline;
         public AllCharacter[] alltypeofCharacter;
@@ -25,7 +25,10 @@ using UnityEngine.SceneManagement;
         public Sprite Currectanswer, wronganswer, Selectanswer;
         public int totalanswered;
         public int relodtime;
-        
+
+        private int[] allrandomno; 
+
+
         [Space(10)]
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
@@ -39,6 +42,7 @@ using UnityEngine.SceneManagement;
         }
         void GameStart()
         {
+            int j = 0;
           
             totalanswered = 0;
             currentno.Clear();
@@ -67,14 +71,20 @@ using UnityEngine.SceneManagement;
                 }
                 allselectedno.Add(randomno);
                 currentno.Add(randomno);
-                item.sprite = alltypeofCharacter[randomno].sameLetter[Random.Range(0, alltypeofCharacter[randomno].sameLetter.Length)].Icon;
-               
+                int randomnno = Random.Range(0, alltypeofCharacter[randomno].sameLetter.Length);
+                item.sprite = alltypeofCharacter[randomno].sameLetter[randomnno].Icon;
+                alldrager[j].wordsSound = alltypeofCharacter[randomno].sameLetter[randomnno].Sound;
+
                 item.transform.SetSiblingIndex(Random.Range(0, item.transform.parent.childCount));
+                j++;
             }
             for (int i = 0; i < alltext.Length; i++)
             {
-                alldrager[i].Answeroption = iconOption[i].gameObject; 
+                
+                alldrager[i].Answeroption = iconOption[i].gameObject;
                 alltext[i].text = alltypeofCharacter[currentno[i]].Letter;
+                alltext[i].color = vilot;
+                alldrager[i].lettersound = alltypeofCharacter[currentno[i]].lettersound;
                 alldrager[i].Answeroption.transform.parent.SetSiblingIndex(Random.Range(0,4));
             }
             gamePlay = true;
@@ -96,14 +106,16 @@ using UnityEngine.SceneManagement;
         {
             gamePlay = false;
             gameCompleted_animation.SetActive(true);
-            yield return new WaitForSeconds(2);
+            gameCompleted_animation.GetComponent<AudioSource>().PlayDelayed(1);
+            yield return new WaitForSeconds(4);
             SceneManager.LoadScene(0);
 
         }
         IEnumerator ComplteAnimation()
         {
             Party_pop.SetActive(true);
-            yield return new WaitForSeconds(3);
+            Party_pop.GetComponent<AudioSource>().PlayDelayed(1);
+            yield return new WaitForSeconds(4);
             Party_pop.SetActive(false);
             foreach (var item in alldrager)
             {

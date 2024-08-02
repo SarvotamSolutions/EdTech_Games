@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Leaves
   m_EditorClassIdentifier: 
-  name: Leaves
+  Name: Leaves
   Icon: {fileID: 21300000, guid: 3897813bbb7025645811a18b5e11795a, type: 3}
   letter: L
   relatedsdprite: {fileID: 0}

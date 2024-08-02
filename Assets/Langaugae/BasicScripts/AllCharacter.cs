@@ -11,5 +11,6 @@ namespace Laguage
         public Sprite letterSprite;
         public Character[] RelatedCharacter;
         public Color hintcolor;
+        public AudioClip lettersound;
     }
 }

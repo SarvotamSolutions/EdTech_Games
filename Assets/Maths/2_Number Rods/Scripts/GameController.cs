@@ -9,9 +9,12 @@ namespace Maths.NumberRoads
 {
     public class GameController : MonoBehaviour
     {
+        public bool gameplay;
         public bool onlycolor;
-
+        public Color Selct, notselect;
         public static GameController instace;
+        public Totorial totorialcheck;
+        public TextMeshPro TitleText;
       //  public ExampleGestureHandler ai;
        // public GestureRecognizer.Recognizer aireconniger;
         public bool red;
@@ -23,7 +26,7 @@ namespace Maths.NumberRoads
         public GameObject Redselected, blueSeleceted, rednotselected, bluenotselecected;
 
 
-        public Sprite bluwin, redwin,notfilled,inpuselected,inputNot_selected;
+        public Sprite bluwin, redwin,inpuselected,inputNot_selected;
         public Gradient currectcolor;
         public Gradient Wrongcolor;
 
@@ -69,6 +72,8 @@ namespace Maths.NumberRoads
         }
         public void RedSelected(bool redSelected)
         {
+            if (totorialcheck.totorialplaying)
+                return;
             if (redSelected)
             {
                 red = true;
@@ -91,11 +96,20 @@ namespace Maths.NumberRoads
         {
             if (all_color_holder[0].transform.GetChild(0).TryGetComponent<Collider2D>(out Collider2D colider))
             {
-                Debug.Log("getting collider");
-               // no++;
+                totorialcheck.directionWindow();
+                Debug.Log("draged the object now need to collor te the road");
+                int redno = (no+1) / 2;
+                Debug.Log(redno);
+                
+      
+                redno = no % 2 == 0 ? redno + 1 : redno;
+             
+                TitleText.text = "Color the "+ redno + " rod red and " + (no + 1) / 2 +" rod blue";
+                // no++;
                 for (int i = 0; i < all_color_holder[no].transform.childCount; i++)
                 {
                     all_color_holder[no ].transform.GetChild(i).GetComponent<SpriteRenderer>().sortingOrder = 2;
+                    all_color_holder[no ].transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = inpuselected;
                     all_color_holder[no ].transform.GetChild(i).GetComponent<Collider2D>().enabled = true;
                    // all_color_holder[no - 2].transform.GetChild(i).GetComponent<Collider2D>().enabled = false;
                 }
@@ -107,7 +121,7 @@ namespace Maths.NumberRoads
             }
             else
             {
-                Debug.Log(no);
+                //TitleText.text = "Color the ""road red ";
                 for (int i = 0; i < all_color_holder[no - 1].transform.childCount; i++)
                 {
                     all_color_holder[no - 1].transform.GetChild(i).GetComponent<SpriteRenderer>().sortingOrder = 2;
@@ -197,11 +211,13 @@ namespace Maths.NumberRoads
         }
         public IEnumerator WrongAnswerAnimation(TrailFiller filler)
         {
-         //   ai.gameObject.SetActive(false);
+            //   ai.gameObject.SetActive(false);
+            gameplay = false;
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
+            gameplay = true;
             //      inputfield.transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
-            filler.GetComponent<SpriteRenderer>().sprite = notfilled;
+            filler.GetComponent<SpriteRenderer>().sprite = inpuselected;
             filler.GetComponent<Collider2D>().enabled = true;
             filler.isFilled = false;
             filler.trailRenderer.Clear();

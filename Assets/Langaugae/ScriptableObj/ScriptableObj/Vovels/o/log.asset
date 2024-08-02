@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: log
   m_EditorClassIdentifier: 
-  name: log
-  Icon: {fileID: 21300000, guid: 87290c0da7206684097f07d23815e6aa, type: 3}
+  Name: log
+  Icon: {fileID: 21300000, guid: 2913b01fded55ef45aebac04ad709e57, type: 3}
   letter: log
   relatedsdprite: {fileID: 21300000, guid: 739da7faf23269d428348ca35d6debf7, type: 3}
+  Sound: {fileID: 8300000, guid: b53115bf04e649146bf70b8ed8b4e31e, type: 3}

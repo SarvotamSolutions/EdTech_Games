@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Net
   m_EditorClassIdentifier: 
-  name: net
+  Name: net
   Icon: {fileID: 21300000, guid: 5e759b9ec020cac409d7281e9f322057, type: 3}
   letter: net
   relatedsdprite: {fileID: 21300000, guid: 40121bce474dc654fb9f37f43b5d18a7, type: 3}
+  Sound: {fileID: 8300000, guid: 4af7556719dfba0458e94d895e47aca2, type: 3}

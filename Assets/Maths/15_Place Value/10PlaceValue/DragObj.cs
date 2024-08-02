@@ -5,6 +5,8 @@ namespace Maths.placeHolder.value
 {
     public class DragObj : MonoBehaviour
     {
+        public AudioSource sound;
+        public AudioClip pickup, drop;
         private bool clicked;
         public int no;
         private bool canChnagepos;
@@ -17,17 +19,20 @@ namespace Maths.placeHolder.value
         }
         private void OnMouseDown()
         {
-            if (!GameController.Instance.gamePlay)
+            if (!GameController.Instance.gamePlay || GameController.Instance.totorial.totorialplaying)
                 return;
+            sound.clip = pickup;
+            sound.Play();
             clicked = true;
            // lastpos = transform.position;
         }
 
         private void OnMouseUp()
         {
-            if (!GameController.Instance.gamePlay)
+            if (!GameController.Instance.gamePlay || GameController.Instance.totorial.totorialplaying)
                 return;
-
+            sound.clip = drop;
+            sound.Play();
             clicked = false;
             transform.position = lastpos;
             if (enterted)

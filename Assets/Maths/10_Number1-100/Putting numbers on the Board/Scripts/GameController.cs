@@ -7,12 +7,13 @@ namespace Maths.Number1to100.Putting_numbers_Board
 {
     public class GameController : MonoBehaviour
     {
-     
+        public Color textColor;
+        public float duration = 2;
         public static GameController instace;
         public ExampleGestureHandler Ai;
         public GestureRecognizer.Recognizer Ai_recognizer;
 
-        public Sprite currectanswer,selectedsprire, notselcted;
+        public Sprite currectanswer,selectedsprire, notselcted,wronganswer;
         public Numbers selectedno;
         //public GameObject AiCanvas;
         public Numbers[] allnumber;
@@ -32,14 +33,16 @@ namespace Maths.Number1to100.Putting_numbers_Board
         IEnumerator LevelCompleted()
         {
             gameCompleted_animation.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(duration);
             SceneManager.LoadScene(0);
 
         }
         IEnumerator WrongAnswerAnimation()
         {
             wrongAnswer_animtion.SetActive(true);
+
             yield return new WaitForSeconds(2);
+            selectedno.GetComponent<SpriteRenderer>().sprite = selectedsprire;
             wrongAnswer_animtion.SetActive(false);
          //   AiCanvas.SetActive(true);
         }
@@ -48,14 +51,16 @@ namespace Maths.Number1to100.Putting_numbers_Board
 
             instace = this;
         }
-
+        int resetno;
         public void Conform()
         {
             if(Ai.no == selectedno.no && !selectedno.competed)
             {
+                resetno++;
                 int selectno = 0;
                 selectedno.competed = true;
                 selectedno.GetComponent<SpriteRenderer>().sprite = currectanswer;
+                Ai.textResult.color = Color.white;
                 //Ai.textResult = null;
                 while (selectedno.competed == true)
                 {
@@ -68,12 +73,25 @@ namespace Maths.Number1to100.Putting_numbers_Board
                         return;
                     }
                     selectedno = allnumber[selectedno.no%100];
+
                 }
+                if (resetno >= 10)
+                {
+                    resetno = 0;
+                    Debug.Log(selectedno.no);
+                    for (int i = selectedno.no-1; i < selectedno.no+9; i++)
+                    {
+                        allnumber[i].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                    }
+                }
+
                 selectedno.SelectedthisNumber();
             }else if(Ai.no != selectedno.no)
             {
-           //     AiCanvas.SetActive(false);
-                Ai.textResult.text = "";
+                selectedno.GetComponent<SpriteRenderer>().sprite = wronganswer;
+
+                //     AiCanvas.SetActive(false);
+               // Ai.textResult.text = "";
                 Ai.no = 0;
                 StartCoroutine(WrongAnswerAnimation());
             }

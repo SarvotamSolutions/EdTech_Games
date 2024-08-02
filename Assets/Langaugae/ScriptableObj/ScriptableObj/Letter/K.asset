@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: K
   m_EditorClassIdentifier: 
   sameLetter:
-  - {fileID: 11400000, guid: 93eb4e4f2fd2b1545a9f70a16376986b, type: 2}
-  - {fileID: 11400000, guid: 0e2f648a9d3b2d445a11862df0416ce6, type: 2}
+  - {fileID: 11400000, guid: 4b10fd9efd0e0a14cb49410890ce1074, type: 2}
+  - {fileID: 11400000, guid: 7b7d386714359e941b0c03d3afc7764d, type: 2}
+  - {fileID: 11400000, guid: 8eecb0710e2076e4a9021bbdbcf6bdbc, type: 2}
+  - {fileID: 11400000, guid: 2346a605f7333304f8d3944a9c54af97, type: 2}
   Letter: K
-  letterSprite: {fileID: 21300000, guid: 693b9944057b82348b9a54cbae110951, type: 3}
+  letterSprite: {fileID: 21300000, guid: 804bb05759d1e194f93a9113688c18da, type: 3}
   RelatedCharacter: []
-  hintcolor: {r: 0, g: 0, b: 0, a: 0}
+  hintcolor: {r: 0.38431373, g: 0.28627452, b: 0.14117648, a: 1}
+  lettersound: {fileID: 8300000, guid: fb67b12ffa970b64999459b04db38918, type: 3}

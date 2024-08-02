@@ -8,6 +8,7 @@ namespace Maths.TeenBeads.Caluclation
 {
     public class GameController : Singleton<GameController>
     {
+        public Totorial totorial;
         public bool Completed;
         public int question1, quesiton2,Answer;
         public TextMeshPro Question1Text, AnswerText,questiion2Text;
@@ -50,7 +51,6 @@ namespace Maths.TeenBeads.Caluclation
             }
 
 
-            return false;
         }
 
         IEnumerator LevelCompleted()
@@ -62,6 +62,12 @@ namespace Maths.TeenBeads.Caluclation
         }
         void RelodingLevel()
         {
+
+            if (answerQuestionno.Count >= 10)
+            {
+                StartCoroutine(LevelCompleted());
+                return;
+            }
             quesiton2 = Random.Range(1, 11);
             foreach (var item in answerQuestionno)
             {
@@ -77,11 +83,7 @@ namespace Maths.TeenBeads.Caluclation
             {
                 Option[i].GetComponent<SpriteRenderer>().color = Color.white;
             }
-            if (answerQuestionno.Count >= 10)
-            {
-                StartCoroutine(LevelCompleted());
-                return;
-            }
+           
             answerOption.Clear();
             for (int i = 0; i < selctedno.Count; i++)
             {
@@ -151,7 +153,6 @@ namespace Maths.TeenBeads.Caluclation
            
 
 
-            int nos = 0;
             for (int i = 0; i < Option.Length; i++)
             {
 
@@ -173,14 +174,14 @@ namespace Maths.TeenBeads.Caluclation
             {
                 PartyBlast.SetActive(true);
                 Completed = true;
-                parentimage.color = Color.green;
+                //parentimage.color = Color.green;
                 inputfieldtext.sprite = currctanswer;
                 StartCoroutine(waitForLevelLoad());
 
             }
             else
             {
-                parentimage.color = Color.red;
+                //parentimage.color = Color.red;
                 inputfieldtext.sprite = wronganswer;
                 StartCoroutine(WrongAnswerAnimation());
             }
@@ -228,7 +229,7 @@ namespace Maths.TeenBeads.Caluclation
         }
         IEnumerator waitForLevelLoad()
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(2);
             Completed = false;
             PartyBlast.SetActive(false);
             RelodingLevel();

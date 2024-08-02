@@ -6,21 +6,25 @@ namespace Maths.graterAndLesser
 {
     public class Dragin : MonoBehaviour
     {
+        public AudioSource sound;
+        public AudioClip pickup, drop;
         private bool clicked;
-        private bool canChnagepos;
         public Vector3 lastpos;
         public bool grater ,lesser;
 
         public int id;
         private void Start()
         {
+            //sound = GetComponent<AudioSource>();
             lastpos = transform.position;
             TextUpdate();
         }
         private void OnMouseDown()
         {
-            if (!GameController.Instance.gamePlay)
+            if (!GameController.Instance.gamePlay || GameController.Instance.totorialcheck.totorialplaying)
                 return;
+            sound.clip = pickup;
+            sound.Play();
             //if (!GameController.instance.GraterorLessselct)
             //    return;
             GameController.Instance.drager = this.gameObject;
@@ -30,15 +34,16 @@ namespace Maths.graterAndLesser
 
         private void OnMouseUp()
         {
-            if (!GameController.Instance.gamePlay)
+            if (!GameController.Instance.gamePlay || GameController.Instance.totorialcheck.totorialplaying)
                 return;
 
             clicked = false;
-            if (Vector3.Distance(transform.position, GameController.Instance.inputs[GameController.Instance.no].transform.position) < 1)
+            sound.clip = drop;
+            sound.Play();
+            if (Vector3.Distance(transform.position, GameController.Instance.inputs[GameController.Instance.no].transform.position) < 3)
             {
 
               
-                canChnagepos = true;
                 if (grater || lesser)
                 {
                     GameController.Instance.gamePlay = false;
@@ -68,7 +73,7 @@ namespace Maths.graterAndLesser
                     }
                     else
                     {
-                      
+                        GameController.Instance.input_text[GameController.Instance.no].text = transform.GetChild(0).GetComponent<TextMeshPro>().text;
                         GameController.Instance.WrongAnimation();
                     }
                 }

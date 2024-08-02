@@ -15,7 +15,8 @@ MonoBehaviour:
   sameLetter:
   - {fileID: 11400000, guid: c99420e18bfc24148a0df323573b1ba2, type: 2}
   Letter: ate
-  letterSprite: {fileID: 21300000, guid: f2e10015ac672f544b928c2e129cc312, type: 3}
+  letterSprite: {fileID: 21300000, guid: 4020b1b809a105d43b5a85cbf894bdcb, type: 3}
   RelatedCharacter:
   - {fileID: 11400000, guid: 29f16ed21494e6b4691dd666a2f569b0, type: 2}
   hintcolor: {r: 0, g: 0, b: 0, a: 0}
+  lettersound: {fileID: 8300000, guid: 8d4f5ed487a52934f9f508d5f8aa1baa, type: 3}

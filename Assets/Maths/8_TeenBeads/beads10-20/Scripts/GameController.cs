@@ -8,9 +8,9 @@ namespace Maths.TeenBeads.drop10to20
 {
     public class GameController : Singleton<GameController>
     {
-      
 
 
+        public Totorial totorialcheck;
         public Sprite currectanswer;
         public Sprite wrongAnswer;
         public Sprite normalAnswer;
@@ -18,8 +18,8 @@ namespace Maths.TeenBeads.drop10to20
         public GameObject[] droppos;
         public SpriteRenderer[] allsprite;
         public float offset=2;
-       
 
+        public float curectanswerInteval, wronganswerInteval;
         public int no;
         [Space(10)]
         public GameObject gameCompleted_animation;
@@ -52,13 +52,14 @@ namespace Maths.TeenBeads.drop10to20
 
         IEnumerator CurrectAnswer()
         {
+            allsprite[no].transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.white;
             no++;
            
             allsprite[no-1].sprite = currectanswer;
             Party_pop.SetActive(true);
-            yield return new WaitForSeconds(3);
-            hintText.text = "Drag and join the right bead to make " + (no + 11).ToString();
-            hintText.transform.position = new Vector2(hintText.transform.position.x, hintText.transform.position.y - offset);
+            yield return new WaitForSeconds(curectanswerInteval);
+            //hintText.text = "Drag and join the right bead to make " + (no + 11).ToString();
+        //    hintText.transform.position = new Vector2(hintText.transform.position.x, hintText.transform.position.y - offset);
             Party_pop.SetActive(false);
             if (no >= 9)
             {
@@ -67,10 +68,10 @@ namespace Maths.TeenBeads.drop10to20
             }
             else
             {
-                allsprite[no].sortingOrder = 4;
+               // allsprite[no].sortingOrder = 4;
                 allsprite[no].transform.GetChild(0).GetComponent<TextMeshPro>().sortingOrder = 4;
-                allsprite[no].transform.parent.GetChild(1).GetComponent<SpriteRenderer>().sortingOrder = 4;
-                allsprite[no].transform.parent.GetChild(1).GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 5;
+                allsprite[no].transform.parent.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
+                allsprite[no].transform.parent.GetChild(1).GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
 
                 //allsprite[no].transform.GetChild(0).GetComponent<TextMeshPro>().text = (10 + (no + 1)).ToString();
             }
@@ -80,9 +81,13 @@ namespace Maths.TeenBeads.drop10to20
         IEnumerator WrongAnswerAnimation(GameObject obj)
         {
             allsprite[no].sprite = wrongAnswer;
+            TextMeshPro temptextesh = allsprite[no].transform.GetChild(0).GetComponent<TextMeshPro>();
+            Color tempcolr = temptextesh.color;
+            temptextesh.color = Color.white;
             wrongAnswer_animtion.SetActive(true);
-            yield return new WaitForSeconds(2);
-            allsprite[no].transform.GetChild(0).GetComponent<TextMeshPro>().text = 10.ToString();
+            yield return new WaitForSeconds(wronganswerInteval);
+            temptextesh.color = tempcolr;
+            temptextesh.text = 10.ToString();
             wrongAnswer_animtion.SetActive(false);
             allsprite[no].sprite = normalAnswer;
             obj.transform.position = obj.GetComponent<Drager>().lastpos;

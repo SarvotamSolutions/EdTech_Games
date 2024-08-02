@@ -9,9 +9,9 @@ namespace Maths.matchingNumbers
 {
     public class GameController : Singleton<GameController>
     {
-    
-        public LineRenderer selected_line;
 
+        public LineRenderer selected_line;
+        public Totorial totorialcheck;
         public GameObject[] allAnsweroption;
         public Selectbox[] allstringOption;
      
@@ -23,7 +23,7 @@ namespace Maths.matchingNumbers
 
         public bool placevalue;
         public Sprite currectanswer, currectAnswerOption, DefaltAnwer, DefaltOption, wronganswer, wrongansweroption, SelectAnswer, SelectOption;
-       
+
         public bool mulitipleloop;
 
         public Material wrongmatrial, currectmateral, normalmateral;
@@ -35,7 +35,8 @@ namespace Maths.matchingNumbers
         IEnumerator LevelCompleted()
         {
             gameCompleted_animation.SetActive(true);
-            yield return new WaitForSeconds(2);
+            gameCompleted_animation.GetComponent<AudioSource>().PlayDelayed(1);
+            yield return new WaitForSeconds(4.3f);
             SceneManager.LoadScene(0);
         }
         public Color currectanswer_Colors, wronganswer_colors, selectedanswer_colors;
@@ -48,7 +49,9 @@ namespace Maths.matchingNumbers
             GameStart();
          
         }
+
         public List<int> answertext = new List<int>();
+
         void Reseting()
         {
             relidingtime++;
@@ -69,6 +72,7 @@ namespace Maths.matchingNumbers
 
             GameStart();
         }
+
         void GameStart()
         {
             bool loaded = false;
@@ -150,11 +154,15 @@ namespace Maths.matchingNumbers
 
                         selctedOption[i] = no + addno;
                         allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text = alltext[no].nowithstring;
+                        allstringOption[i].pickup = alltext[no].Sound;
+                        allstringOption[i].drop = alltext[no].Sound;
                     }
                     else
                     {
                         selctedOption[i] = i + (relidingtime*5);
                         allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text = alltext[i +(relidingtime * 5)].nowithstring;
+                        allstringOption[i].pickup = alltext[i + (relidingtime * 5)].Sound;
+                        allstringOption[i].drop = alltext[i + (relidingtime * 5)].Sound;
                     }
                 }
                 else
@@ -170,6 +178,8 @@ namespace Maths.matchingNumbers
                     }
                     selctedOption[i] = no + addno;
                     allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text = "" + (selctedOption[i] / 10) + " tens and " + (selctedOption[i] % 10) + " ones ";
+                
+                    
                     //    allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text = alltext[no].nowithstring;
                 }
             }
@@ -228,15 +238,24 @@ namespace Maths.matchingNumbers
             }
 
         }
+
         public void ScenecChange()
         {
             if(!mulitipleloop)
                 StartCoroutine(LevelCompleted());
             else
             {
-                Reseting();
-               
+                //Reseting();
+                StartCoroutine(partypop());
             }
+        }
+        IEnumerator partypop()
+        {
+            Party_pop.SetActive(true);
+            Party_pop.GetComponent<AudioSource>().PlayDelayed(1);
+            yield return new WaitForSeconds(3);
+            Party_pop.SetActive(false);
+            Reseting();
         }
         void Switch()
         {
@@ -255,6 +274,7 @@ namespace Maths.matchingNumbers
 
           
         }
+
 
         // Update is called once per frame
         void Update()
@@ -275,7 +295,7 @@ namespace Maths.matchingNumbers
     {
         public string no;
         public string nowithstring;
-    
+        public AudioClip Sound;
     }
 
 

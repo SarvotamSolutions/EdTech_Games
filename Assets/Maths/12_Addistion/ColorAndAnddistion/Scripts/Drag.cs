@@ -6,6 +6,8 @@ namespace Maths.Addision.AddisitonwithColors
 {
     public class Drag : MonoBehaviour
     {
+        public AudioSource sound;
+        public AudioClip pickup, drop;
         private bool clicked;
         public int no;
         private bool canChnagepos;
@@ -19,6 +21,8 @@ namespace Maths.Addision.AddisitonwithColors
         {
             if (!GameCondtroller.Instance.gamePlay)
                 return;
+            sound.clip = pickup;
+            sound.Play();
             clicked = true;
            
         }
@@ -27,6 +31,8 @@ namespace Maths.Addision.AddisitonwithColors
         {
             if (!GameCondtroller.Instance.gamePlay)
                 return;
+            sound.clip = drop;
+            sound.Play();
             clicked = false;
             if (GameCondtroller.Instance.Neartodestination(this.gameObject))
             {

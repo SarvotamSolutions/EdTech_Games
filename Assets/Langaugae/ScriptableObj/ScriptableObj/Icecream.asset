@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Icecream
   m_EditorClassIdentifier: 
-  name: Icecream
+  Name: Icecream
   Icon: {fileID: 21300000, guid: b95b59ddb3a72d949bfab42aea30330e, type: 3}
   letter: I
   relatedsdprite: {fileID: 0}

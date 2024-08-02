@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: G
   m_EditorClassIdentifier: 
   sameLetter:
-  - {fileID: 11400000, guid: 97ebf82eaadb3264e8b383e8ddbf0181, type: 2}
-  - {fileID: 11400000, guid: 2861a35bd67ec0b4ab9f0a39807523b0, type: 2}
+  - {fileID: 11400000, guid: 730e34ceb63bd4d488de9245067470fa, type: 2}
+  - {fileID: 11400000, guid: 69eb8c2517dfb7e4286760cf9e7a8bc0, type: 2}
+  - {fileID: 11400000, guid: 78848da5e6b097a4e86600c6969060b3, type: 2}
+  - {fileID: 11400000, guid: 487526138f0930944a06eb5bf826ab1a, type: 2}
   Letter: G
-  letterSprite: {fileID: 21300000, guid: d4c6f5a81f709de48a8642faf11659e8, type: 3}
+  letterSprite: {fileID: 21300000, guid: 64fb0368b99215847b760d7dffc4080b, type: 3}
   RelatedCharacter: []
-  hintcolor: {r: 0, g: 0, b: 0, a: 0}
+  hintcolor: {r: 0.38431373, g: 0.28627452, b: 0.14117648, a: 1}
+  lettersound: {fileID: 8300000, guid: 5b1f2f5b0cd190540a84a2639f2abff2, type: 3}

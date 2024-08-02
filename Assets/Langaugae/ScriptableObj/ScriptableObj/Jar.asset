@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Jar
   m_EditorClassIdentifier: 
-  name: Jar
+  Name: Jar
   Icon: {fileID: 21300000, guid: cae54f51d525a104c9dc9a86cc30fb8b, type: 3}
   letter: J
   relatedsdprite: {fileID: 0}

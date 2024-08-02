@@ -57,7 +57,7 @@ public class ExampleGestureHandler : MonoBehaviour {
 			//StartCoroutine (Blink (result.gesture.id));
 		} else 
 		{
-			if (textResult)
+			if (textResult && textResult.text =="")
 				textResult.text = "?";
 			else if(textResultUI)
 				textResultUI.text = "?";

@@ -12,15 +12,18 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
         public GameObject[] dropplace;
         public int no;
         public Draging selecteddraging;
+        public Totorial totrial;
         public Vector2 Distance;
         public bool firstanswer;
         public int draginno;
+        public Sprite selctholder;
+        public Sprite completeholder,wronganswer;
 
         public TextMeshPro hinttext;
         public List<GameObject> holder1= new List<GameObject>(), holder2 = new List<GameObject>();
 
         public GameObject blocker1, blocker2;
-
+        public GameObject Holdingparent1, Holdingparent2;
         [Space(10)]
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
@@ -31,8 +34,10 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
                 && Mathf.Abs(dropplace[no].transform.position.y - selecteddraging.transform.position.y) < Distance.y)
             {
            
-                if(no ==10 && firstanswer)
+                if(no ==9 && firstanswer)
                 {
+                    Holdingparent1.SetActive(false);
+                    Holdingparent2.SetActive(false);
                     StartCoroutine(LevelCompleted());
                     //level Complete
                 }

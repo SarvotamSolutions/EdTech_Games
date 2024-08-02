@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Volcano
   m_EditorClassIdentifier: 
-  name: Volcano
+  Name: Volcano
   Icon: {fileID: 21300000, guid: d552762cba3eb5f4a993e0693a5b8fc0, type: 3}
-  letter: M
+  letter: V
   relatedsdprite: {fileID: 0}

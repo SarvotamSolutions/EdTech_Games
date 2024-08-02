@@ -44,7 +44,7 @@ namespace Maths.CountAndCards.count
         {
             gamePlay = false;
             nextbutton.transform.gameObject.SetActive(false);
-
+          
             if(no == droper.childCount - 1)
             {
                 BOx.sprite = currectanswerBox;
@@ -72,9 +72,11 @@ namespace Maths.CountAndCards.count
         }
         IEnumerator Reseting(bool currectanswer)
         {
-           
+            Color temcolor = BOx.gameObject.GetComponentInChildren<TextMeshPro>().color;
+            BOx.gameObject.GetComponentInChildren<TextMeshPro>().color = Color.white;
             droper.GetChild(droper.childCount - 1).gameObject.SetActive(false);
             yield return new WaitForSeconds(2f);
+            BOx.gameObject.GetComponentInChildren<TextMeshPro>().color = temcolor;
             BOx.sprite = NormalBox;
             wrongAnswer_animtion.SetActive(false);
             droper.GetChild(droper.childCount - 1).gameObject.SetActive(true);
@@ -106,6 +108,7 @@ namespace Maths.CountAndCards.count
 
             for (int i = droper.childCount-2; i >=0; i--)
             {
+                droper.GetChild(i).transform.GetComponent<Buttons>().enabled = false;
                 droper.GetChild(i).transform.parent = OddevenDropbox.transform;
             }
             OddevenDropbox.SetActive(true);
@@ -156,11 +159,13 @@ namespace Maths.CountAndCards.count
             {
 
             }
-           
+            Color temcolor = image.gameObject.GetComponentInChildren<TextMeshProUGUI>().color;
+            image.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
             if (currectAnswer)          
             {
                 Party_pop.SetActive(true);
                 yield return new WaitForSeconds(3);
+                image.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = temcolor;
                 Party_pop.SetActive(false);
                 image.sprite = NormalAnswerButton;
                 OddevenBox.SetActive(false);
@@ -168,6 +173,7 @@ namespace Maths.CountAndCards.count
                 oddevenButtonPanel.SetActive(false);
                 for (int i = OddevenDropbox.transform.childCount-1; i >=0; i--)
                 {
+                    OddevenDropbox.transform.GetChild(i).GetComponent<Buttons>().enabled = true;
                     OddevenDropbox.transform.GetChild(i).GetComponent<Image>().sprite = Normal;
                     OddevenDropbox.transform.GetChild(i).transform.parent = Holder;
                 }
@@ -182,6 +188,7 @@ namespace Maths.CountAndCards.count
             {
                 wrongAnswer_animtion.SetActive(true);
                 yield return new WaitForSeconds(2);
+                image.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = temcolor;
                 image.sprite = NormalAnswerButton;
                 wrongAnswer_animtion.SetActive(false);
             }
@@ -191,7 +198,7 @@ namespace Maths.CountAndCards.count
         IEnumerator LevelCompleted()
         {
             gameCompleted_animation.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(5.1f);
             SceneManager.LoadScene(0);
 
         }

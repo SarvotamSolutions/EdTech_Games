@@ -15,8 +15,9 @@ namespace Maths.placeValue.Dropbeads
         public SpriteRenderer checkAnswer;
         private int levelloaded;
         public TextMeshProUGUI infotext;
-  
 
+        public List<int> allno;
+        public float currectanswerInteval;
         [Space(10)]
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
@@ -25,6 +26,7 @@ namespace Maths.placeValue.Dropbeads
         private void Start()
         {
             amount = Random.Range(11, 20);
+            allno.Add(amount);
             Question_text.text = amount.ToString();
             infotext.text = "Drag the right bead to make " + amount;
         }
@@ -42,6 +44,11 @@ namespace Maths.placeValue.Dropbeads
                 if(drag.no +10 == amount)
                 {
                     checkAnswer.sprite = currectAnswer;
+                    if (levelloaded >= 8)
+                    {
+                        StartCoroutine(LevelCompleted());
+                         return true;
+                    }
                     StartCoroutine(ResetingLevel(obj));
                 }
                 else
@@ -56,8 +63,11 @@ namespace Maths.placeValue.Dropbeads
         }
         IEnumerator WrongAnswerAnimation(GameObject obj)
         {
+            Color tempcolor = Question_text.color;
+            Question_text.color = Color.white;
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
+            Question_text.color = tempcolor;
             wrongAnswer_animtion.SetActive(false);
             checkAnswer.sprite = normalAnswer;
             obj.transform.position = obj.GetComponent<Drager>().lastpos;
@@ -73,18 +83,30 @@ namespace Maths.placeValue.Dropbeads
         }
         IEnumerator ResetingLevel(GameObject obj)
         {
+            Color tempcolor = Question_text.color;
+            Question_text.color = Color.white;
+
+           
             Party_pop.SetActive(true);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(currectanswerInteval);
+            Question_text.color = tempcolor;
             Party_pop.SetActive(false);
             checkAnswer.sprite = normalAnswer;
             amount = Random.Range(11, 20);
+            for (int i = 0; i < allno.Count; i++)
+            {
+                if(amount== allno[i])
+                {
+                    amount = Random.Range(11, 20);
+                    i = -1;
+                }
+            }
+            allno.Add(amount);
+            infotext.text = "Drag the right bead to make " + amount;
             Question_text.text = amount.ToString();
             obj.transform.position = obj.GetComponent<Drager>().lastpos;
             levelloaded++;
-            if (levelloaded > 10)
-            {
-                StartCoroutine(LevelCompleted());
-            }
+           
             gamePlay = true;
         }
     }

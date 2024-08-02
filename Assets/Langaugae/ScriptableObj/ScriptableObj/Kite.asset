@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Kite
   m_EditorClassIdentifier: 
-  name: kite
+  Name: Kite
   Icon: {fileID: 21300000, guid: 39d40daadef5c1f4e8cb552d7e6d5ebd, type: 3}
   letter: K
   relatedsdprite: {fileID: 0}

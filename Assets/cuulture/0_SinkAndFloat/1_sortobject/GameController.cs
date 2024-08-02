@@ -46,7 +46,7 @@ namespace culture.sinkfloat1
                 
                 alloption[i].GetComponent<BoxCollider2D>().enabled = true;
                 alloption[i].no = allCharacter[randomchar].Letter;
-                alloption[i].text.text = allCharacter[randomchar].sameLetter[randomno].name;
+                alloption[i].text.text = allCharacter[randomchar].sameLetter[randomno].Name;
                 alloption[i].transform.position = alloption[i].lastpos;
                 // AllAnswerNo.Add()
                  alloption[i].Icon.sprite = allCharacter[randomchar].sameLetter[randomno].Icon;

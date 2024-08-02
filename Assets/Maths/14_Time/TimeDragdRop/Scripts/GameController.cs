@@ -8,8 +8,8 @@ namespace Maths.Times.DragDrop
 {
     public class GameController : Singleton<GameController>
     {
-  
 
+        public Totorial totorial;
         public GameObject[] ClockTimer;
         public GameObject[] OPtionTime;
 
@@ -26,7 +26,7 @@ namespace Maths.Times.DragDrop
         IEnumerator LevelCompleted()
         {
             gameCompleted_animation.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(5.6f);
             SceneManager.LoadScene(0);
         }
         IEnumerator WrongAnswerAnimation()
@@ -37,6 +37,7 @@ namespace Maths.Times.DragDrop
             yield return new WaitForSeconds(2);
             ClockTimer[selctedno].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
             ClockTimer[selctedno].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = selctanswerarrow;
+            ClockTimer[selctedno].transform.GetComponent<SpriteRenderer>().sprite = selctedclock;
             ClockSprite.sprite = NormalClock;
             wrongAnswer_animtion.SetActive(false);
             gamePlay = true;
@@ -85,7 +86,10 @@ namespace Maths.Times.DragDrop
                 //    
                     ClockTimer[selctedno].GetComponent<SpriteRenderer>().sprite = currectAnswer;
                     ClockTimer[selctedno].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = CurrectAnswerArrow;
-                    ClockTimer[selctedno].transform.GetChild(0).GetComponent<TextMeshPro>().text = obj.GetComponent<Draging>().no.ToString();
+                    Draging draging = obj.GetComponent<Draging>();
+                    //draging.sound.clip = draging.drop;
+                    //draging.sound.Play();
+                    ClockTimer[selctedno].transform.GetChild(0).GetComponent<TextMeshPro>().text = draging.no.ToString();
 
                     selctedno++;
                     if (selctedno < 12)

@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+
 namespace Maths.TeenBeads.Caluclation
 {
     public class Draging : MonoBehaviour
     {
+        public AudioSource sound;
+        public AudioClip pickup, drop;
         private bool clicked;
         public int no;
         private bool canChnagepos;
         private Vector3 lastpos;
         private void OnMouseDown()
         {
-            if (!GameController.Instance.gamePlay)
+            if (!GameController.Instance.gamePlay || GameController.Instance.totorial.totorialplaying)
                 return;
+            sound.clip = pickup;
+            sound.Play();
             clicked = true;
            
         }
@@ -22,9 +28,10 @@ namespace Maths.TeenBeads.Caluclation
         }
         private void OnMouseUp()
         {
-            if (!GameController.Instance.gamePlay)
+            if (!GameController.Instance.gamePlay || GameController.Instance.totorial.totorialplaying)
                 return;
-
+            sound.clip = drop;
+            sound.Play();
             clicked = false;
             if (GameController.Instance.Neartodestination(this.gameObject))
             {

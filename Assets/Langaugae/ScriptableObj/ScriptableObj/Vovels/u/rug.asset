@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: rug
   m_EditorClassIdentifier: 
-  name: rug
-  Icon: {fileID: 21300000, guid: 181d0ad901057d14b87afb08edaa56fb, type: 3}
+  Name: rug
+  Icon: {fileID: 21300000, guid: 68f3f826569bfd94f94d3a442121f00a, type: 3}
   letter: rug
   relatedsdprite: {fileID: 21300000, guid: 06102e7ab1aec7843a075854362d485a, type: 3}
+  Sound: {fileID: 8300000, guid: 17040efc4f1d33349a1c9c6279079380, type: 3}

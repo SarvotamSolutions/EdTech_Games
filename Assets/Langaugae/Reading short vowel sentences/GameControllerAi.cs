@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using GestureRecognizer;
 using TMPro;
+using UnityEngine.UI;
+
 namespace Laguage.ai
 {
     public class GameControllerAi : GameControllerforAll
     {
+        public Sprite SelectedSprite;
+        public Color ResetColor;
         public Recognizer recognizer; 
         public ExampleGestureHandler AItextcheck;
         public char[] allchar;
         public TextMeshPro[] alltext;
         int no;
+        public Sprite Normal, Wrong, Right,NormalDis;
         private void Start()
         {
             GameSet();
         }
+
         void GameSet()
         {
             if (reloding >= allCharacter.Length)
@@ -25,13 +31,13 @@ namespace Laguage.ai
                 StartCoroutine(LevelCompleted());
                 return;
             }
-            droping_place[no].color = sellect_answer_color;
+            droping_place[no].sprite = SelectedSprite;
             AItextcheck.textResult = alltext[no];
             allchar = allCharacter[reloding].Letter.ToCharArray();
             recognizer.Recognigingnumber = allCharacter[reloding].Letter[no].ToString();
             recognizer.Changerecogniger();
             Icon.sprite = allCharacter[reloding].letterSprite;
-
+            lettersound = allCharacter[reloding].sameLetter[0].Sound;
         }
         public void CheckAnswer()
         {
@@ -39,8 +45,10 @@ namespace Laguage.ai
 
             if(allchar[no].ToString() == AItextcheck.notext)
             {
-                Boarder.color = currect_answer_color;
-                droping_place[no].color = currect_answer_color;
+                //Boarder.color = currect_answer_color;
+                //droping_place[no].color = currect_answer_color;
+                droping_place[no].sprite = Right;
+                droping_place[no].gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.white;
                 no++;
                 if (no < alltext.Length)
                 {
@@ -52,6 +60,7 @@ namespace Laguage.ai
                 {
                     AItextcheck.textResult = null;
                     AItextcheck.transform.parent.gameObject.SetActive(false);
+                    letterSoundPlay();
                     StartCoroutine(WaitForCurrectanimtion());
                  
                 }
@@ -66,7 +75,10 @@ namespace Laguage.ai
             }
             else
             {
-                droping_place[no].color = wrong_answer_color;
+                //droping_place[no].color = wrong_answer_color;
+                droping_place[no].sprite = Wrong;
+                droping_place[no].gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.white;
+
             }
         }
 
@@ -75,16 +87,32 @@ namespace Laguage.ai
             base.CurrectAnimtionCompleted();
             reloding++;
             no = 0;
-            Boarder.color = Color.white;
+            //Boarder.color = Color.white;
             AItextcheck.textResult = alltext[no];
             foreach (var item in alltext)
             {
                 item.text = "?";
 
             }
-            foreach (var item in droping_place)
+            //foreach (var item in droping_place)
+            //{
+            //    //item.color = Color.white;
+            //    item.sprite = Normal;
+            //    item.gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().color = ResetColor;
+
+            //}
+            for(int k = 0;k < droping_place.Length;k++)
             {
-                item.color = Color.white;
+                if(k == 0)
+                {
+                    droping_place[k].sprite = Normal;
+                    droping_place[k].gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().color = ResetColor;
+                }
+                else
+                {
+                    droping_place[k].sprite = NormalDis;
+                    droping_place[k].gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().color = ResetColor;
+                }
 
             }
             AItextcheck.transform.parent.gameObject.SetActive(true);

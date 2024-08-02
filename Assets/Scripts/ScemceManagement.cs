@@ -4,17 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 public class ScemceManagement : MonoBehaviour
 {
-
-    public Scrollbar matchsSlide,langslide,cultureslide;
+    public float ontotorialsound = .1f;
+    public float ontotorialexitsound = .3f;
+    public Scrollbar matchsSlide,langslide;
     public Image maths, lang,culture;
     public Sprite selectedmaths, selectedlang, nonselectedmaths, nonselectedlang,cultureselect,culturenonselect;
     public GameObject mathsscreen, englishscreen,cultuurescrren;
     public bool menu;
+    public Button backbutton;
+
+
     private void Start()
     {
-
+        if (backbutton)
+        {
+            backbutton.interactable = false;
+           
+        }
         Input.multiTouchEnabled = false;
         Application.targetFrameRate = -60;
         if (menu)
@@ -27,7 +36,7 @@ public class ScemceManagement : MonoBehaviour
                 mathsselect();
 
             }
-            else if(PlayerPrefs.GetInt("activity") == 1)
+            else if (PlayerPrefs.GetInt("activity") == 1)
             {
                 langselect();
             }
@@ -35,8 +44,6 @@ public class ScemceManagement : MonoBehaviour
             {
                 cultureselects();
             }
-
-
             if (PlayerPrefs.HasKey("slideValuemathcs"))
             {
 
@@ -45,13 +52,10 @@ public class ScemceManagement : MonoBehaviour
             else
                 matchsSlide.value = 1;
 
-
-           // cultureselects();
             if (PlayerPrefs.HasKey("slideValuelanguage"))
             {
                 float value = PlayerPrefs.GetFloat("slideValuelanguage");
                 Debug.Log("value set" + PlayerPrefs.GetFloat("slideValuelanguage"));
-      
                 langslide.value = value;
                 Debug.Log(langslide.value);
 
@@ -63,22 +67,11 @@ public class ScemceManagement : MonoBehaviour
             }
 
 
-            if (PlayerPrefs.HasKey("slideValueculture"))
-            {
-               
-            
-                cultureslide.value = PlayerPrefs.GetFloat("slideValueculture");
-               
-
-            }
-            else
-            {
-                Debug.Log("XXXXX");
-                cultureslide.value = 1;
-            }
-
         }
-
+        else
+        {
+           // backgroundsound.clip = audioClips[Random.Range(0, audioClips.Length)];
+        }
 
 
     }
@@ -88,8 +81,32 @@ public class ScemceManagement : MonoBehaviour
     private void Update()
     {
         avgFrameRate = Time.frameCount / Time.time;
-        if(text)
-        text.text = avgFrameRate.ToString();
+        if (text)
+        {
+           // backgroundsound.volume = totorial.totorialplaying ? ontotorialsound : ontotorialexitsound;
+            text.text = avgFrameRate.ToString();
+            if (SoundManager.instance.totorial && !SoundManager.instance.totorial.totorialplaying && backbutton.interactable == false)
+            {
+                SoundManager.instance.backgroundsound.volume = ontotorialexitsound;
+                backbutton.interactable = true;
+                
+               
+              //  backgroundsound.Play();
+            }
+            else
+            if (SoundManager.instance.totorial== null)
+            {
+                SoundManager.instance.totorial = GameObject.Find("totorial").GetComponent<Totorial>();
+                SoundManager.instance.backgroundsound.Play();
+                SoundManager.instance.backgroundsound.volume = ontotorialsound;
+            }
+
+            if (Input.GetKeyUp(KeyCode.Escape))
+                SceneManager.LoadScene(0);
+        }
+
+       
+        
     }
 
     public void mathsselect()
@@ -126,7 +143,6 @@ public class ScemceManagement : MonoBehaviour
     {
         PlayerPrefs.SetFloat("slideValuemathcs", 1);
         PlayerPrefs.SetFloat("slideValuelanguage", 1);
-        PlayerPrefs.SetFloat("slideValueculture", 1);
     }
     public void LoadScence(int index)
     {
@@ -137,12 +153,14 @@ public class ScemceManagement : MonoBehaviour
         {
             if (menu)
             {
+               // SoundManager.instance.backgroundsound.Play();
                 PlayerPrefs.SetFloat("slideValuemathcs", matchsSlide.value);
                 Debug.Log(langslide.value);
                 PlayerPrefs.SetFloat("slideValuelanguage",langslide.value);
-                PlayerPrefs.SetFloat("slideValueculture",cultureslide.value);
                // newdata.value = matchsSlide.value;
             }
+           
+                
             SceneManager.LoadScene(index);
         }
         else

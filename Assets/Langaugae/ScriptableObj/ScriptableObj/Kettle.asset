@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Kettle
   m_EditorClassIdentifier: 
-  name: Kettle
+  Name: Kettle
   Icon: {fileID: 21300000, guid: e37f285df163ba84fb86f23a11327860, type: 3}
   letter: K
   relatedsdprite: {fileID: 0}

@@ -42,6 +42,9 @@ namespace Maths.Addision.BeadsCount
         public List<int> alloption = new List<int>(3);
 
         private int reloding;
+
+        public float currectanswerInterval;
+        public float wronganswerInterval;
         [Space(10)]
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
@@ -80,6 +83,7 @@ namespace Maths.Addision.BeadsCount
         //    }
 
         //}
+        public Color nonselctedcolor,selectedColor;
         int no;
         public void SetFirsttext()
         {
@@ -88,10 +92,11 @@ namespace Maths.Addision.BeadsCount
 
                 if (no < 2)
                 {
-                //    particalbalst.transform.position = firstinput.transform.position;
-                 //   particalbalst.GetComponent<ParticleSystem>().startColor = Color.green;
-                   // particalbalst.GetComponent<ParticleSystem>().Play();
+                    //    particalbalst.transform.position = firstinput.transform.position;
+                    //   particalbalst.GetComponent<ParticleSystem>().startColor = Color.green;
+                    // particalbalst.GetComponent<ParticleSystem>().Play();
 
+                   
                     spriteinputs[no].sprite = allsprite[Numbers[no]].box;
                     AiDrawtext.textResult = inputText[no + 1];
                    // firstbutton.gameObject.SetActive(false);
@@ -107,8 +112,8 @@ namespace Maths.Addision.BeadsCount
                         //AiDrawtext.GetComponent<DrawDetector>().enabled = false;
                         ThirdButton.gameObject.SetActive(true);
                         
-                        spriteinputs[no - 1].color = Color.white;
-                        spriteinputs[no].color = Color.blue;
+                        spriteinputs[no-1].color = nonselctedcolor;
+                        spriteinputs[no].color = selectedColor;
                         no = 0;
                         //spriteinputs[2].sprite = allsprite[Numbers[1]].box;
                         //AiDrawtext.textResult = null;
@@ -116,8 +121,8 @@ namespace Maths.Addision.BeadsCount
                     }
                     else
                     {
-                        spriteinputs[no].color = Color.blue;
-                        spriteinputs[no - 1].color = Color.white;
+                        spriteinputs[no].color = selectedColor;
+                        spriteinputs[no - 1].color = nonselctedcolor;
                     }
                 }
                 else
@@ -133,54 +138,24 @@ namespace Maths.Addision.BeadsCount
             {
                 AiDrawtext.textResult = null;
                 particalbalst.transform.position = spriteinputs[no].transform.position;
-                particalbalst.GetComponent<ParticleSystem>().startColor = Color.red;
-                particalbalst.GetComponent<ParticleSystem>().Play();
+               // particalbalst.GetComponent<ParticleSystem>().startColor = Color.red;
+              //  particalbalst.GetComponent<ParticleSystem>().Play();
                 spriteinputs[no].sprite = wrongAnswer;
                 StartCoroutine(WrongAnswerAnimation(spriteinputs[no]));
             }
 
 
         }
-        //public void SetSecondtext()
-        //{
-        //    if (AiDrawtext.no== (Numbers[1] + 1))
-        //    {
-        //        particalbalst.transform.position = spriteinputs[no].transform.position;
-        //        particalbalst.GetComponent<ParticleSystem>().startColor = Color.green;
-        //        particalbalst.GetComponent<ParticleSystem>().Play();
-        //        secondInput.sprite = allsprite[Numbers[1]].box;
-        //        AiDrawtext.textResult = null;
-        //        ThirdButton.gameObject.SetActive(true);
-        //        SecondButton.gameObject.SetActive(false);       
-              
-        //       // DrawCanvas.SetActive(false);
-        //    }
-        //    else
-        //    {
-        //        AiDrawtext.textResult = null;
-        //        particalbalst.transform.position = secondInput.transform.position;
-        //        particalbalst.GetComponent<ParticleSystem>().startColor = Color.red;
-        //        particalbalst.GetComponent<ParticleSystem>().Play();
-        //        secondInput.sprite = wrongAnswer;
-        //        StartCoroutine(WrongAnswerAnimation(secondInput));
-        //    }
 
-
-        //}
-        public GameObject winPanel;
         public GameObject canvaspanel;
         IEnumerator WaitRelod()
         {
             AiDrawtext.textResult = inputText[0];
-            winPanel.SetActive(true);
-            winPanel.transform.DOScale(new Vector3(2, 2, 2), 1);
             canvaspanel.SetActive(false);
             PartyBlast.gameObject.SetActive(true);
             yield return new WaitForSeconds(6);
             canvaspanel.SetActive(true);
             PartyBlast.gameObject.SetActive(false);
-            winPanel.transform.localScale = Vector3.zero;
-            winPanel.SetActive(false);
             for (int i = 0; i < alloption.Count; i++)
             {
                 alloption[i] = 0;
@@ -194,7 +169,8 @@ namespace Maths.Addision.BeadsCount
             {
                 item.sprite = NormalInput;
             }
-            spriteinputs[0].color = Color.blue;
+            spriteinputs[0].color = selectedColor;
+            spriteinputs[2].color = nonselctedcolor;
             ThirdButton.gameObject.SetActive(false);
             firstbutton.SetActive(true);
            

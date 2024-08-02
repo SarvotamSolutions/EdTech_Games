@@ -7,11 +7,13 @@ namespace Laguage.vowels
     {
         public GameCOntroller controler;
 
+
         protected override void OnMouseDown()
         {
-            if (!GameCOntroller.Instance.gamePlay)
+            if (!GameCOntroller.Instance.gamePlay )
                 return;
-
+            sound.clip =pickup;
+            sound.Play();
             base.OnMouseDown();
         }
         protected override void Update()
@@ -29,20 +31,34 @@ namespace Laguage.vowels
                 return;
 
             base.OnMouseUp();
-
+            
 
             if (GameCOntroller.Instance.Neartodestination())
             {
-                controler.question_text.text = "";
+                sound.clip = drop;
+                sound.Play();
+                controler.question_text.text = text.text;
+                letterSoundClip.clip = controler.lettersound;
+                if (controler.allleter)
+                {
+                    if(controler.blankno ==2)
+                        letterSoundClip.PlayDelayed(.2f);
+
+                }
+                else
+                letterSoundClip.PlayDelayed(.2f);
+             //   sound.clip = drop;
+                background.enabled = false;
+                text.enabled = false;
                 ///text.text = "";
                 ///
-                char[] letes = GameCOntroller.Instance.selectedCharacter.sameLetter[controler.letterno].name.ToCharArray();
+                char[] letes = GameCOntroller.Instance.selectedCharacter.sameLetter[controler.letterno].Name.ToCharArray();
+
                 Debug.Log(letes[controler.blankno]);
                 transform.position = GameCOntroller.Instance.droping_place[controler.blankno].transform.position;
                 if (no == letes[controler.blankno].ToString())
                 {
                     Border.color = GameCOntroller.Instance.currect_answer_color;
-                   
                     controler.CurrectAnswer();
 
                 }
@@ -54,6 +70,8 @@ namespace Laguage.vowels
             }
             else
             {
+                //sound.clip = drop;
+                //sound.Play();
                 transform.position = lastpos;
                 Border.color = controler.darkwhite;
             }

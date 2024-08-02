@@ -12,11 +12,12 @@ namespace Laguage.beginning_sounds.DragandDrop
         public bool letters;
         public SpriteRenderer CheckAnswerSprite;
         public Sprite currectanswer, wrongAnswer, normalAnswer;
-
+        public Color QuestionColor;
+        
         protected override void Start()
         {
-            base.Start();
-           // GameStart();
+         //  base.Start();
+            GameStart();
         }
         
       
@@ -30,6 +31,7 @@ namespace Laguage.beginning_sounds.DragandDrop
                 StartCoroutine(LevelCompleted());
                 return;
             }
+
             int answerno = Random.Range(0, allCharacter.Length);
             for (int j = 0; j < AllAnswerNo.Count; j++)
             {
@@ -38,106 +40,72 @@ namespace Laguage.beginning_sounds.DragandDrop
                     answerno = Random.Range(0, allCharacter.Length);
                     j = -1;
                 }
-            }
+            }// check answer is not added the same as prvious one
+
+            OptionNO.Add(answerno);
+            AllAnswerNo.Add(answerno);
             int answeroption = Random.Range(0, alloption.Length);
             int i = 0;
             foreach (var option in alloption)
             {
 
                 no = Random.Range(0, allCharacter.Length);
-                if (no == answerno)
-                {
-                    no = Random.Range(0, allCharacter.Length);
-                }
+                //if (no == answerno)
+                //{
+                //    no = Random.Range(0, allCharacter.Length);
+                //}
                 for (int j = 0; j < OptionNO.Count; j++)
                 {
                     if (no == OptionNO[j])
                     {
                         no = Random.Range(0, allCharacter.Length);
-                        if (no == answerno)
-                        {
-                            no = Random.Range(0, allCharacter.Length);
-                        }
+                        //if (no == answerno)
+                        //{
+                        //    no = Random.Range(0, allCharacter.Length);
+                        //}
                         j = -1;
                     }
                 }
+
 
                 if (i == answeroption)
                 {
                     letter = allCharacter[answerno].Letter;
                    // Icon.sprite = Icon ? allCharacter[answerno].sameLetter[Random.Range(0, allCharacter[answerno].sameLetter.Length)].Icon : null;
                     option.no = allCharacter[answerno].Letter;
-                    AllAnswerNo.Add(answerno);
-                    OptionNO.Add(answerno);
+                  
+                    
                     int randno = Random.Range(0, allCharacter[answerno].sameLetter.Length);
                     alloption[i].Icon.sprite = allCharacter[answerno].sameLetter[randno].Icon;
                     if (letters)
                     {
                         question_text.text = allCharacter[answerno].Letter;
+                        lettersound = allCharacter[answerno].lettersound;
                     }
                     else
                     {
                         Debug.Log("XX");
-                        question_text.text = allCharacter[answerno].sameLetter[randno].name;
+                        question_text.text = allCharacter[answerno].sameLetter[randno].Name;
+                        lettersound = allCharacter[answerno].sameLetter[randno].Sound;
                     }
+                    alloption[i].pickup = allCharacter[answerno].sameLetter[randno].Sound; 
                 }
                 else
                 {
+
                     option.no = allCharacter[no].Letter;
                     OptionNO.Add(no);
-                    alloption[i].Icon.sprite = allCharacter[no].sameLetter[Random.Range(0, allCharacter[no].sameLetter.Length)].Icon;
+                    int randno = Random.Range(0, Random.Range(0, allCharacter[no].sameLetter.Length));
+                    alloption[i].Icon.sprite = allCharacter[no].sameLetter[randno].Icon;
+                    alloption[i].pickup = allCharacter[no].sameLetter[randno].Sound;
                 }
 
                 i++;
 
             }
-
+          
          
-            //   int no = 0;
-            //   reloding++;
-            //   if (reloding > allCharacter.Length)
-            //   {
-            //       StartCoroutine(LevelCompleted());
-            //       return;
-            //   }
-
-            ////   int answer = Random.Ran
-            //   int answeroption = Random.Range(0, alloption.Length);
-            //   // allno.Add(no);
-            //   for (int i = 0; i < alloption.Length; i++)
-            //   {
-            //       no = Random.Range(0, allCharacter.Length);
-            //       for (int j = 0; j < OptionNO.Count; j++)
-            //       {
-            //           if (no == OptionNO[j])
-            //           {
-            //               no = Random.Range(0, allCharacter.Length);
-            //               j = -1;
-
-            //           }
-            //       }
-            //       if (i == answeroption)
-            //       {
-
-            //           question_text.text = allCharacter[no].Letter;
-            //           //question_sprite.sprite = allcharacter[no].Icon;
-            //           letter = allCharacter[no].Letter;
-            //           AllAnswerNo.Add(no);
-            //           //  alloption[i].GetChild(0).GetComponent<SpriteRenderer>().sprite = allcharacter[no].relatedsdprite;
-            //           //   alloption[i].GetComponent<Drager>().no = allcharacter[no].letter;
-            //       }
-            //       else
-            //       {
-
-
-            //       }
-            //       alloption[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = allCharacter[no].sameLetter[Random.Range(0,2)].Icon;
-            //       alloption[i].GetComponent<Drager>().no = allCharacter[no].Letter;
-            //       OptionNO.Add(no);
-
-
-
-            //   }
+          
             gamePlay = true;
         }
 
@@ -148,25 +116,40 @@ namespace Laguage.beginning_sounds.DragandDrop
             if (base.Neartodestination())
             {
                 Drager drag = selectedoption.GetComponent<Drager>();
-
+                GetComponent<AudioSource>().clip = lettersound;
+                GetComponent<AudioSource>().PlayDelayed(.3f);
                 if(drag.no == letter)
                 {
+                    
+                    //currect answer
+                    for(int k = 0; k < droping_place.Length;k++)
+                    {
+                        droping_place[k].gameObject.SetActive(false);
+                    }
+                    question_text.color = Color.white;
                     arrow.color = currect_answer_color;
+                    question_text.color = Color.white;
                     CheckAnswerSprite.sprite = currectanswer;
                     selectedoption.transform.GetChild(1).GetComponent<SpriteRenderer>().color = currect_answer_color;
-                    //currect answer
                     CurrectAnswer();
                     return true;
 
                 }
                 else
                 {
+                    // wrong asnwer
+                    for (int k = 0; k < droping_place.Length; k++)
+                    {
+                        droping_place[k].gameObject.SetActive(false);
+                    }
+                    question_text.color = Color.white;
+
                     gamePlay = false;
                     arrow.color = wrong_answer_color;
+                    question_text.color = Color.white;
                     CheckAnswerSprite.sprite = wrongAnswer;
                     selectedoption.transform.GetChild(1).GetComponent<SpriteRenderer>().color = wrong_answer_color;
                     StartCoroutine(WaitWrongAnimtion());
-                   // wrong asnwer
                     return true;
                 }
             }
@@ -189,7 +172,8 @@ namespace Laguage.beginning_sounds.DragandDrop
         {
             gamePlay = false;
             Party_pop.SetActive(true);
-            yield return new WaitForSeconds(2);
+            Party_pop.GetComponent<AudioSource>().PlayDelayed(1);
+            yield return new WaitForSeconds(CorrectAnswer_delayTime +1f);
             Party_pop.SetActive(false);
             ResetingDrage();
             GameStart();
@@ -199,6 +183,7 @@ namespace Laguage.beginning_sounds.DragandDrop
         public override void ResetingDrage()
         {
             arrow.color = Color.white;
+            question_text.color = QuestionColor;
             CheckAnswerSprite.sprite = normalAnswer;
             foreach (var item in alloption)
             {

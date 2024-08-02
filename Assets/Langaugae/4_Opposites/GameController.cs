@@ -10,6 +10,7 @@ namespace Laguage.Oposite.draganddrop
         List<int> alllettersaved = new List<int>();
         public Transform OptionParent;
         public SpriteRenderer outline;
+        public Sprite currectanswer, wronganswer, defaltanswer;
         public override void GameStart()
         {
             StartGame();
@@ -60,14 +61,14 @@ namespace Laguage.Oposite.draganddrop
                     //}
                     // int rotaionno = Random.Range(1, alldirectionanswer.Length);
                     Drag drag = alloption[i].GetComponent<Drag>();
-                  //  drag.rotionno = 0;
-                  //  drag.background.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                   // drag.Border.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                 //   drag.Icon.transform.position = drag.background.GetChild(0).transform.position;
-                    Icon.sprite = allCharacter[AnswerNumber].sameLetter[Random.Range(0, allCharacter[AnswerNumber].sameLetter.Length)].Icon;
+                   // drag.pickup = 
+                    int Randomno = Random.Range(0, allCharacter[AnswerNumber].sameLetter.Length);
+                    drag.pickup = allCharacter[AnswerNumber].RelatedCharacter[0].Sound;
+                    
+                    Icon.sprite = allCharacter[AnswerNumber].sameLetter[Randomno].Icon;
                     Boarder.color = allCharacter[AnswerNumber].hintcolor;
                     letter = allCharacter[AnswerNumber].Letter;
-
+                    lettersound = allCharacter[AnswerNumber].sameLetter[Randomno].Sound;
                     //  alloption[i].GetComponent<SpriteRenderer>().sprite = alldirectionanswer[0];
                     // alloption[i].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = border[0];
                     alloption[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = allCharacter[AnswerNumber].letterSprite;
@@ -104,6 +105,8 @@ namespace Laguage.Oposite.draganddrop
                         //j = -1;
                     }
                     Debug.Log(no + "option" + AnswerNumber);
+                    drag.pickup = allCharacter[no].RelatedCharacter[0].Sound;
+                    
                     alloption[i].Border.color = allCharacter[no].hintcolor;
                     alloption[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = allCharacter[no].letterSprite;
                     drag.no = allCharacter[no].Letter;
@@ -145,7 +148,7 @@ namespace Laguage.Oposite.draganddrop
         public override void CurrectAnswer()
         {
 
-            outline.color = currect_answer_color;
+            outline.sprite = currectanswer;
             droping_place[0].color = currect_answer_color;
             StartCoroutine(RelodingThe_Level());
             base.CurrectAnswer();
@@ -159,8 +162,9 @@ namespace Laguage.Oposite.draganddrop
         IEnumerator RelodingThe_Level()
         {
             Party_pop.SetActive(true);
-            yield return new WaitForSeconds(3);
-
+            Party_pop.GetComponent<AudioSource>().PlayDelayed(1);
+            yield return new WaitForSeconds(CorrectAnswer_delayTime+1);
+            outline.sprite = defaltanswer;
             Party_pop.SetActive(false);
             Drag drage = droping_place[0].transform.GetComponentInChildren<Drag>();
             Debug.Log("RELODING");
@@ -169,7 +173,7 @@ namespace Laguage.Oposite.draganddrop
             drage.transform.localScale = Vector3.one;
             drage.transform.position = drage.lastpos;
             droping_place[0].color = Color.white;
-            outline.color = new Color(1, 1, 1, .75f);
+            outline.color = new Color(1, 1, 1, 1f);
             
             OptionNO.Clear();
             StartGame();
@@ -182,7 +186,9 @@ namespace Laguage.Oposite.draganddrop
             drage.Border.color = wrong_answer_color;
             Debug.Log("WRONG ANSWER");
             wrongAnswer_animtion.SetActive(true);
-            yield return new WaitForSeconds(2);
+            wrongAnswer_animtion.GetComponent<AudioSource>().PlayDelayed(1);
+            yield return new WaitForSeconds(WrongAnswer_delayTime+1);
+            outline.sprite = defaltanswer;
             selectedoption.Border.color = drage.Icon_Colors;
             gamePlay = true;
             wrongAnswer_animtion.SetActive(false);
@@ -195,14 +201,14 @@ namespace Laguage.Oposite.draganddrop
             drage.transform.localScale = Vector3.one;
             //   drage.Border.color = Color.white;
             //  droping_place[0].color = Color.white;
-            outline.color = new Color(1, 1, 1, .75f);
+            outline.color = new Color(1, 1, 1, 1f);
             gamePlay = true;
         }
         public override void WrongAnswer()
         {
             base.WrongAnswer();
             Debug.Log(selectedoption.Border.color);
-            outline.color = wrong_answer_color;
+            outline.sprite = wronganswer;
             // droping_place[0].color = wrong_answer_color;
 
             StartCoroutine(WaitForReseting());

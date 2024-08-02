@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Cactus
   m_EditorClassIdentifier: 
-  name: Cactus
+  Name: Cactus
   Icon: {fileID: 21300000, guid: bd7085cbe668374408c6d9cd9d5ea20a, type: 3}
   letter: 
   relatedsdprite: {fileID: 0}

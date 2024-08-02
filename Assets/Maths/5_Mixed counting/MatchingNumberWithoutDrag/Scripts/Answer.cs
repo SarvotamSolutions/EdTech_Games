@@ -6,12 +6,12 @@ namespace Maths.Number1to10.WithoutDrag
     public class Answer : MonoBehaviour
     {
         public int answerno;
-
+        public AudioSource clicksound;
 
 
         public void SlectedAnswer()
         {
-            
+            clicksound.Play();
             GameManager.Instance.gamePlay = false;
             if(GameManager.Instance.Answer == answerno)
             {
@@ -27,7 +27,7 @@ namespace Maths.Number1to10.WithoutDrag
 
         private void OnMouseDown()
         {
-            if (!GameManager.Instance.gamePlay)
+            if (!GameManager.Instance.gamePlay || GameManager.Instance.totorialcheck.totorialplaying)
                 return;
             SlectedAnswer();
         }

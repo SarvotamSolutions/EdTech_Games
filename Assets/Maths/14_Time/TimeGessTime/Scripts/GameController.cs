@@ -8,6 +8,7 @@ namespace Maths.Times.Selecttime
 {
     public class GameController : Singleton<GameController>
     {
+        public Totorial totorial;
         public GameObject[] Option;
         public int HourCout;
         public int MinitCount;
@@ -27,7 +28,7 @@ namespace Maths.Times.Selecttime
         IEnumerator LevelCompleted()
         {
             gameCompleted_animation.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             SceneManager.LoadScene(0);
         }
        
@@ -68,8 +69,16 @@ namespace Maths.Times.Selecttime
                 }
                 else
                 {
+
+                  
                     int randHour = Random.Range(1, 13);
                     int randMinit = Random.Range(0, 4);
+
+                    while(randHour == HourCout && randMinit == MinitCount)// ITS SAME AS ANSWER
+                    {
+                        randHour = Random.Range(1, 13);
+                        randMinit = Random.Range(0, 4);
+                    }
                     Option[i].GetComponent<TimeSelect>().hour = randHour;
                     Option[i].GetComponent<TimeSelect>().Minits = randMinit;
                     Option[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = randHour.ToString("00") + ":" + (randMinit * 15 % 60).ToString("00");
@@ -83,9 +92,10 @@ namespace Maths.Times.Selecttime
         public IEnumerator WaitforRelod()
         {
             Party_pop.SetActive(true);
+
             //Smallneedle.transform.Rotate(Vector3.forward, 0f);
             //MinitNeedle.transform.Rotate(Vector3.forward, 0f);
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(5f);
             Party_pop.SetActive(false);
             Smallneedle.transform.localRotation = Quaternion.Euler(0, 0, 0);
             MinitNeedle.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -93,6 +103,7 @@ namespace Maths.Times.Selecttime
             foreach (var item in Option)
             {
                 item.GetComponent<SpriteRenderer>().sprite = NormalAnswer;
+                item.GetComponentInChildren<TextMeshPro>().color = new Color(0.2745098f, 0.4745098f, 0.6117647f, 1);
             }
             Relod();
         }

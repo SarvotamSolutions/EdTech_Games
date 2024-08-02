@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 namespace Maths.Number1to10{
     public class GameManager : Singleton<GameManager>
     {
-    
+        public Totorial totorialcheck;
         public bool random;
         public bool withController;
         public Sprite[] ShowingIcon;
@@ -26,6 +26,10 @@ namespace Maths.Number1to10{
         public GameObject arrow;
         public GameObject CurrectanswerOBj;
         public GameObject WrongAnswer_animation,GameCompleted_animation;
+
+        public float wronganswerInterval, currectanswerInterverl;
+        public float gamecomplete_sound_inteval = 2f;
+
         private void Awake()
         {
             
@@ -35,7 +39,7 @@ namespace Maths.Number1to10{
         IEnumerator GameCompleted()
         {
             GameCompleted_animation.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(gamecomplete_sound_inteval);
             SceneManager.LoadScene(0);
         }
         void GameStart()
@@ -112,17 +116,14 @@ namespace Maths.Number1to10{
             Question++;
             CurrectanswerOBj.SetActive(false);
             arrow.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IcompletArrow;
-            QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IncompleteAnswer;
+           // QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IncompleteAnswer;
             for (int i = 0; i < DropingParent.childCount; i++)
             {
                 //Destroy(DropingParent.GetChild(i).gameObject);
                 DropingParent.GetChild(i).parent = OptionParent;
 
             }
-            for (int i = 0; i < OptionParent.childCount; i++)
-            {
-              //  Destroy(OptionParent.GetChild(i).gameObject);
-            }
+           
             GameStart();
 
         }

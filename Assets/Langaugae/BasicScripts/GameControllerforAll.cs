@@ -8,10 +8,23 @@ using UnityEngine.SceneManagement;
 
 public class GameControllerforAll : Singleton<GameControllerforAll>
 {
+    public Totorial totorial;
+
     [Header("Color selection")]
     public Color currect_answer_color;
     public Color wrong_answer_color;
     public Color sellect_answer_color;
+
+    [Header("Sprite selection")]
+    public Sprite[] currect_answer;
+    public Sprite[] wrong_answer;
+    public Sprite[] Normal_answer;
+
+
+    [Header("Delay Time")]
+    [SerializeField] protected float CorrectAnswer_delayTime=2;
+    [SerializeField] protected float WrongAnswer_delayTime=2;
+    public float levelcompletedelayTime;
 
     [Space(15)]
     [Header("Question")]
@@ -37,6 +50,8 @@ public class GameControllerforAll : Singleton<GameControllerforAll>
     public List<int> AllAnswerNo = new List<int>();
     public int reloding;
     public float distangedrage=2.5f;
+    public AudioClip lettersound;
+
     [Space(15)]
     [Header("Animation")]
     public LineRenderer selected_Line;
@@ -48,6 +63,7 @@ public class GameControllerforAll : Singleton<GameControllerforAll>
     public int maxloding;
     protected virtual void Start()
     {
+        totorial = GameObject.Find("totorial").GetComponent<Totorial>();
         if(maxloding==0)
         {
             maxloding = allCharacter.Length;
@@ -55,12 +71,13 @@ public class GameControllerforAll : Singleton<GameControllerforAll>
         GameStart();
     }
 
+
     public virtual void GameStart()
     {
         int no = 0;
 
         reloding++;
-        if (reloding > allCharacter.Length)
+        if (reloding > maxloding)
         {
             gamePlay = false;
             StartCoroutine(LevelCompleted());
@@ -77,15 +94,17 @@ public class GameControllerforAll : Singleton<GameControllerforAll>
         }
         int answeroption = Random.Range(0, alloption.Length);
         Debug.Log(answerno);
+        OptionNO.Add(answerno);
+      
         int i = 0;
         foreach (var option in alloption)
         {
 
             no = Random.Range(0, allCharacter.Length);
-            if (no == answerno)
-            {
-                no = Random.Range(0, allCharacter.Length);
-            }
+            //if (no == answerno)
+            //{
+            //    no = Random.Range(0, allCharacter.Length);
+            //}
             for (int j = 0; j < OptionNO.Count; j++)
             {
                 if (no == OptionNO[j])
@@ -107,11 +126,13 @@ public class GameControllerforAll : Singleton<GameControllerforAll>
                 Icon.sprite = Icon ? allCharacter[answerno].sameLetter[letterno].Icon:null;
                 option.no = allCharacter[answerno].Letter;
                 AllAnswerNo.Add(answerno);
-                OptionNO.Add(answerno);
+                lettersound = allCharacter[answerno].sameLetter[letterno].Sound;
+                option.pickup = allCharacter[answerno].lettersound;
             }
             else
             {
                 option.no = allCharacter[no].Letter;
+                option.pickup = allCharacter[no].lettersound;
                 OptionNO.Add(no);
             }
 
@@ -179,7 +200,6 @@ public class GameControllerforAll : Singleton<GameControllerforAll>
         selectedoption = null;
         return false;
     }
-
     public virtual bool Neartodestination(int id)
     {
 
@@ -196,24 +216,27 @@ public class GameControllerforAll : Singleton<GameControllerforAll>
       //  
         return false;
     }
-  
-    
-    
     protected IEnumerator LevelCompleted()
     {
         gameCompleted_animation.SetActive(true);
-        yield return new WaitForSeconds(2);
+        gameCompleted_animation.GetComponent<AudioSource>().PlayDelayed(1);
+        yield return new WaitForSeconds(levelcompletedelayTime+1);
         SceneManager.LoadScene(0);
 
     }
     protected IEnumerator WaitForCurrectanimtion()
     {
         Party_pop.SetActive(true);
+        Party_pop.GetComponent<AudioSource>().PlayDelayed(1f);
         Debug.Log("partypos");
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(CorrectAnswer_delayTime+1);
         Party_pop.SetActive(false);
         gamePlay = true;
         CurrectAnimtionCompleted();
+        if(reloding > maxloding)
+        {
+            StartCoroutine(LevelCompleted());
+        }
         //ResetingDrage();
     }
     protected virtual void CurrectAnimtionCompleted()
@@ -222,8 +245,10 @@ public class GameControllerforAll : Singleton<GameControllerforAll>
     }
     protected IEnumerator WaitWrongAnimtion()
     {
+        
         wrongAnswer_animtion.SetActive(true);
-        yield return new WaitForSeconds(2);
+        wrongAnswer_animtion.GetComponent<AudioSource>().PlayDelayed(1f);
+        yield return new WaitForSeconds(WrongAnswer_delayTime+1);
         wrongAnswer_animtion.SetActive(false);
         gamePlay = true;
         ResetingDrage();
@@ -231,7 +256,11 @@ public class GameControllerforAll : Singleton<GameControllerforAll>
 
     public virtual void ResetingDrage()
     {
-        if(Boarder)
+        for (int k = 0; k < droping_place.Length; k++)
+        {
+            droping_place[k].gameObject.SetActive(true);
+        }
+        if (Boarder)
         {
             Boarder.color = Color.white;
             
@@ -244,4 +273,13 @@ public class GameControllerforAll : Singleton<GameControllerforAll>
     public virtual void CurrectAnswer() { }
 
     public virtual void WrongAnswer() { }
+
+    public void letterSoundPlay()
+    {
+        if(gamePlay)
+        {
+
+        GetComponent<AudioSource>().PlayOneShot(lettersound);
+        }
+    }
 }

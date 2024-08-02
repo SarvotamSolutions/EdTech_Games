@@ -19,6 +19,9 @@ namespace Maths.Addision.AddisitonwithColors
 
         public void SelectedColor()
         {
+
+            if (GameCondtroller.Instance.totorial.totorialplaying)
+                return;
             GameCondtroller.Instance.ResetColler();
             GameCondtroller.Instance.selectedcollor = thiscolor;
             Selectedobj.SetActive(true);

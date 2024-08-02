@@ -15,6 +15,7 @@ namespace Maths.Number1to10.MisingNO
         public SpriteRenderer MiddleNoobject;
      
         public List<int> allanswer = new List<int>();
+        public Color textcolor;
         [Space(10)]
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
@@ -35,13 +36,14 @@ namespace Maths.Number1to10.MisingNO
         }
         public void Conform()
         {
-
+            currectNo.color = Color.white;
             if (Nodfyn0.no == no)
             {
                 Nodfyn0.textResult = null;
                 Nodfyn0.transform.parent.gameObject.SetActive(false);
                 Party_pop.SetActive(true);
                 MiddleNoobject.sprite = CurrectAnswer;
+               
                // Drawobject.SetActive(false);
                 StartCoroutine(WairforReset());
 
@@ -105,6 +107,8 @@ namespace Maths.Number1to10.MisingNO
         IEnumerator WairforReset()
         {
             yield return new WaitForSeconds(3);
+            currectNo.text = "?";
+            currectNo.color = textcolor;
             Nodfyn0.textResult = currectNo;
             Nodfyn0.transform.parent.gameObject.SetActive(true);
             Party_pop.SetActive(false);

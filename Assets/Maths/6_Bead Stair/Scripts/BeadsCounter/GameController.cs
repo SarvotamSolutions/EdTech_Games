@@ -10,6 +10,7 @@ namespace Maths.BeadStair.NumberSelction
 {
     public class GameController : Singleton<GameController>
     {
+        public Totorial totorialcheck;
         public ExampleGestureHandler autoWriting;
         public GestureRecognizer.Recognizer AiRecognizer;
 
@@ -17,6 +18,7 @@ namespace Maths.BeadStair.NumberSelction
 
         [Space(10)]
         public SpriteRenderer[] Allanswer;
+        public Sprite[] allcurrectanswer,allwronganswer;
         public GameObject[] dropPlace;
         public Sprite wrongAnswer;
         public Sprite CurrectAnswer;
@@ -24,9 +26,11 @@ namespace Maths.BeadStair.NumberSelction
         public GameObject gamecompleted;
         public int level;
         public GameObject cover;
+        public Sprite selectedbox;
         // public GameObject DrawCanvas;
         public SpriteRenderer[] allbeads;
         public List<int> allno = new List<int>();
+        public float curretanswerInterval, wronganswerinterval;
         [Space(10)]
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
@@ -38,13 +42,9 @@ namespace Maths.BeadStair.NumberSelction
             AiRecognizer.Changerecogniger();
             autoWriting.textResult = Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>();
             allbeads[level].sortingOrder = 2;
-            //cover.transform.SetAsLastSibling();
-          //  Allanswer[level].transform.SetAsLastSibling();
+           
         }
-        private void Update()
-        {
-
-        }
+   
 
         public void COnform()
         {
@@ -59,6 +59,7 @@ namespace Maths.BeadStair.NumberSelction
             Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>().text = autoWriting.no.ToString();
             if (autoWriting.no == (level + 1))
             {
+                Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.white;
                 Allanswer[level].sprite = CurrectAnswer;
                 level++;
                 AiRecognizer.Recognigingnumber = (level + 1).ToString();
@@ -102,9 +103,10 @@ namespace Maths.BeadStair.NumberSelction
                     {
                         Selected.GetComponent<BoxCollider2D>().enabled = false;
                         Selected.transform.position = dropPlace[level].transform.position;
-                        dropPlace[level].GetComponent<SpriteRenderer>().color = Color.green;
-                        if(level<9)
-                            dropPlace[level+1].GetComponent<SpriteRenderer>().color = Color.blue;
+
+                        dropPlace[level].GetComponent<SpriteRenderer>().sprite = allcurrectanswer[level];
+                        //if(level<9)
+                        //    dropPlace[level+1].GetComponent<SpriteRenderer>().color = Color.blue;
                         text.text = "Drag Beads No " + (level + 2).ToString();
 
                     }
@@ -113,18 +115,21 @@ namespace Maths.BeadStair.NumberSelction
                         //Game Completed
 
                         StartCoroutine(WaitforLevelComplete());
-                        //return;
+
 
                     }
                     else
+                    {
                         level++;
+                        StartCoroutine(WaitForNextBead());
+                    }
 
                     Selected = null;
-                    StartCoroutine(WaitForNextBead());
+                   
 
                 }
                 else
-                {
+                {//wrong anser
                     if (!spritechnagr)
                     {
                         Allanswer[level].sprite = wrongAnswer;
@@ -133,7 +138,8 @@ namespace Maths.BeadStair.NumberSelction
                     else
                     {
                         Selected.transform.position = dropPlace[level].transform.position;
-                        dropPlace[level].GetComponent<SpriteRenderer>().color = Color.red;
+                        dropPlace[level].GetComponent<SpriteRenderer>().sprite = allwronganswer[Selected.no];
+                      
                     }
                     StartCoroutine(WrongAnswerAnimation());
                 }
@@ -148,14 +154,15 @@ namespace Maths.BeadStair.NumberSelction
             gamePlay = false;
             DrawCanvas.SetActive(false);
             Party_pop.SetActive(true);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(curretanswerInterval);
             DrawCanvas.SetActive(true);
             Party_pop.SetActive(false);
 
-           // autoWriting.textResult = Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>();
-            allbeads[level].sortingOrder = 2;
-            Allanswer[level].sortingOrder = 2;
-            Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>().sortingOrder = 2;
+          
+            allbeads[level].color = new Color(1, 1, 1, 1);
+            Allanswer[level].color = new Color(1, 1, 1, 1);
+            Allanswer[level].sprite = selectedbox;
+         
             gamePlay = true;
             //cover.transform.SetAsLastSibling();
             // Allanswer[level].transform.SetAsLastSibling();
@@ -173,9 +180,14 @@ namespace Maths.BeadStair.NumberSelction
         IEnumerator WrongAnswerAnimation()
         {
             //   DrawCanvas.SetActive(false);
+          //  Sprite tempsprite = dropPlace[level].GetComponent<SpriteRenderer>().sprite;
+          //  dropPlace[level].GetComponent<SpriteRenderer>().sprite = allwronganswer[level];
             gamePlay = false;
             wrongAnswer_animtion.SetActive(true);
-            yield return new WaitForSeconds(2);
+         //   Color tempcolor = Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>().color;
+         //  Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.white;
+            yield return new WaitForSeconds(wronganswerinterval);
+          //  Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>().color = tempcolor;
             dropPlace[level].GetComponent<SpriteRenderer>().color = Color.white;
             Selected.transform.position = Selected.lastpos;
             Selected = null;

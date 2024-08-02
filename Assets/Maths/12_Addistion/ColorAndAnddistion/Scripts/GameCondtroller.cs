@@ -8,6 +8,7 @@ namespace Maths.Addision.AddisitonwithColors
 {
     public class GameCondtroller : Singleton<GameCondtroller>
     {
+        public Totorial totorial;
         public ParticleSystem Particalblast;
 
         public ColorSkeckPen[] all_CollerSelection;
@@ -28,6 +29,8 @@ namespace Maths.Addision.AddisitonwithColors
         [Space(15)]
         public SpriteRenderer firstBridestage2;
         public SpriteRenderer Secondbridestage2;
+        public SpriteRenderer currectanswerimage;
+        public TextMeshPro currentanswertext;
         public GameObject inputfild1;
         public GameObject inputfile2;
         public Sprite currectAnswer,NormalInput;
@@ -50,6 +53,10 @@ namespace Maths.Addision.AddisitonwithColors
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
         public GameObject Party_pop;
+
+        public float currectanswerinteval;
+        public float wronganswerinterval;
+
         IEnumerator LevelCompleted()
         {
             gameCompleted_animation.SetActive(true);
@@ -96,12 +103,12 @@ namespace Maths.Addision.AddisitonwithColors
            
           // Particalblast.shape.position = new Vector3(0, number1 / 2f, 0);
             Total = (number1 + 1) + (number2 + 1);
-            int option1answer = Random.Range(0, 10);
-            int option2answer = Random.Range(0, 10);
+            int option1answer = Random.Range(0, DragOption.Length);
+            int option2answer = Random.Range(0, DragOption.Length);
 
             while (option1answer == option2answer)
             {
-                option2answer = Random.Range(0, 10);
+                option2answer = Random.Range(0, DragOption.Length);
             }
             alloptionno[option1answer] = number1;
             alloptionno[option2answer] = number2;
@@ -164,10 +171,43 @@ namespace Maths.Addision.AddisitonwithColors
             if (Vector3.Distance(obj.transform.position, dropplace.transform.position) < 1)
             {
                 gamePlay = false;
-                obj.transform.position = dropplace.transform.position;
+                //obj.transform.position = dropplace.transform.position;
+             //   obj.SetActive(false);
                 return true;
             }
                 return false;
+        }
+        public IEnumerator Wairrelod(GameObject obj)
+        {
+            obj.SetActive(false);
+            Party_pop.SetActive(true);
+            yield return new WaitForSeconds(currectanswerinteval);
+            currentanswertext.text = "";
+            //GetComponent<SpriteRenderer>().enabled = true;
+            currectanswerimage.sprite = NormalInput;
+            obj.transform.position = obj.GetComponent<SelectAnswer>().lastpos;
+            obj.SetActive(true);
+            Party_pop.SetActive(false);
+            ResetingGame();
+        }
+
+        public IEnumerator WrongAnimtaion(GameObject obj)
+        {
+            obj.SetActive(false);
+            wrongAnswer_animtion.SetActive(true);
+            yield return new WaitForSeconds(wronganswerinterval);
+            currentanswertext.text = "";
+            //GetComponent<SpriteRenderer>().enabled = true;
+            currectanswerimage.sprite = NormalInput;
+            obj.transform.GetComponent<SpriteRenderer>().sprite = normalAnswer;
+            wrongAnswer_animtion.SetActive(false);
+            obj.SetActive(true);
+            obj.transform.position = obj.GetComponent<SelectAnswer>().lastpos;
+            gamePlay = true;
+
+
+
+            
         }
 
         public bool Neartodestination(GameObject obj)

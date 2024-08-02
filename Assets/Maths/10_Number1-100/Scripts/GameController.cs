@@ -8,8 +8,8 @@ namespace Maths.Number1to100.dragandrop
 {
     public class GameController : Singleton<GameController>
     {
-
-
+        public Totorial totorialcheck;
+        public Color selectcolor;
         public GameObject[] option;
         public GameObject[] question;
         public Sprite answeroption,currectanswer,wronganswer,NormalQuestion;
@@ -23,7 +23,7 @@ namespace Maths.Number1to100.dragandrop
         public int addno;
         public List<int> alloption = new List<int>(12);
         public bool randomno;
-
+        public int maxholding;
 
         public bool Neartodestination(GameObject obj)
         {
@@ -31,13 +31,18 @@ namespace Maths.Number1to100.dragandrop
             {
                 if (Vector3.Distance(obj.transform.position, question[alloption[deactive]].transform.position) < 1)
                 {
+                    
+
                     if (obj.GetComponent<Drag>().no == alloption[deactive]+1)
                     {
+                        Debug.Log("comming inside me");
+
+                        question[alloption[deactive]].transform.GetChild(0).GetComponent<TextMeshPro>().color = selectcolor;// issue is here
                         question[alloption[deactive]].transform.GetChild(0).GetComponent<TextMeshPro>().text = (alloption[deactive]+1).ToString();
                         question[alloption[deactive]].GetComponent<SpriteRenderer>().sprite = currectanswer;
                         deactive++;
-
-
+                        Debug.Log(deactive);
+                       
                         obj.gameObject.SetActive(false);
                         
                      
@@ -50,25 +55,38 @@ namespace Maths.Number1to100.dragandrop
                                     item.SetActive(true);
 
                                 }
-                                for (int i = addno; i < 10+addno; i++)
-                                {
-                                    question[i].SetActive(false);
-                                }
+                                //for (int i = addno; i < 10+addno; i++)
+                                //{
+                                //    question[i].SetActive(false);
+                                //}
                                 deactive = 0;
                                 addno += 10;
-                                if(addno<100)
+                                if (addno<100)
                                 RelodOption();
                                 else
                                     StartCoroutine(LevelCompleted());
+
+                                for (int i = addno; i < 10 + addno; i++)
+                                {
+                                    question[i].GetComponent<SpriteRenderer>().color = Color.white;
+                                }
+
                             }
                             else
                             StartCoroutine(LevelCompleted());
                         }
-                        
+                        if (deactive < maxholding)
+                            question[alloption[deactive]].GetComponent<SpriteRenderer>().sprite = NormalQuestion;
+                        else
+                        {
+                            question[alloption[0]].GetComponent<SpriteRenderer>().sprite = NormalQuestion;
+                        }
+
                     }
                     else
                     {
                         Debug.Log("Eror");
+                        question[alloption[deactive]].transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.white;
                         question[alloption[deactive]].transform.GetChild(0).GetComponent<TextMeshPro>().text = (obj.GetComponent<Drag>().no).ToString();
                         question[alloption[deactive]].GetComponent<SpriteRenderer>().sprite = wronganswer;
                         StartCoroutine(wrongAnimationforMultipleChoic());
@@ -82,15 +100,16 @@ namespace Maths.Number1to100.dragandrop
                 Debug.Log(Vector3.Distance(obj.transform.position, question[deactive].transform.position));
                 if (Vector3.Distance(obj.transform.position, question[deactive].transform.position) < 1)
                 {
+                   
 
                     if (obj.GetComponent<Drag>().no == deactive + addno + 1)
                     {
                         question[deactive].transform.GetChild(0).GetComponent<TextMeshPro>().text = (deactive + addno + 1).ToString();
                         question[deactive].GetComponent<SpriteRenderer>().sprite = currectanswer;
-                        if (reloding > 9)
+                        if (reloding > 8)
                         {
                             StartCoroutine(LevelCompleted());
-
+                            return true;
                         }
 
                         addno = addno + 1 * 10;
@@ -112,6 +131,7 @@ namespace Maths.Number1to100.dragandrop
             return false;
         }
 
+        public float levelCompleteduration = 2f;
         [Space(10)]
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
@@ -119,7 +139,7 @@ namespace Maths.Number1to100.dragandrop
         IEnumerator LevelCompleted()
         {
             gameCompleted_animation.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(levelCompleteduration);
             SceneManager.LoadScene(0);
 
         }
@@ -181,6 +201,7 @@ namespace Maths.Number1to100.dragandrop
         IEnumerator WrongAnswerAnimation()
         {
             gamePlay = false;
+            question[deactive].transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.white;
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
             question[deactive].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
@@ -195,10 +216,12 @@ namespace Maths.Number1to100.dragandrop
         IEnumerator Reseting()
         {
             gamePlay = false;
+            Color tempcolor = question[deactive].transform.GetChild(0).GetComponent<TextMeshPro>().color;
+            question[deactive].transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.white;
             Party_pop.SetActive(true);
             yield return new WaitForSeconds(3);
             Party_pop.SetActive(false);
-            
+            question[deactive].transform.GetChild(0).GetComponent<TextMeshPro>().color = tempcolor;
             foreach (var item in question)
             {
                 item.GetComponent<SpriteRenderer>().sprite = NormalQuestion;
@@ -232,7 +255,7 @@ namespace Maths.Number1to100.dragandrop
                     question[deactive].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
                     question[deactive].GetComponent<SpriteRenderer>().sprite = answeroption;
                     answerchoice = Random.Range(0, option.Length);
-                    alloption[answerchoice] = deactive + 1;
+                    alloption[answerchoice] = deactive + addno + 1;
 
                     for (int i = 0; i < option.Length; i++)
                     {
@@ -278,6 +301,8 @@ namespace Maths.Number1to100.dragandrop
                         question[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = (addno + i + 1).ToString();
                     }
                 }
+               
+                
                 if (randomno)
                 {
                     for (int i = 0; i < option.Length; i++)
@@ -303,6 +328,7 @@ namespace Maths.Number1to100.dragandrop
                         question[item].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
                         question[item].GetComponent<SpriteRenderer>().sprite = answeroption;
                     }
+                    question[alloption[0]].GetComponent<SpriteRenderer>().sprite = NormalQuestion;
                 }
                 else
                 {
@@ -341,6 +367,7 @@ namespace Maths.Number1to100.dragandrop
                         question[item].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
                         question[item].GetComponent<SpriteRenderer>().sprite = answeroption;
                     }
+                    question[0].GetComponent<SpriteRenderer>().sprite =NormalQuestion;
                 }
                 //for (int i = 0; i < alloption.Count; i++)
                 //{

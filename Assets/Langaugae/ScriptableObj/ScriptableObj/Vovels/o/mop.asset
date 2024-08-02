@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: mop
   m_EditorClassIdentifier: 
-  name: mop
-  Icon: {fileID: 21300000, guid: bb8d5083ea037aa409dc7eb1ebac7b88, type: 3}
+  Name: mop
+  Icon: {fileID: 21300000, guid: fe7d1ba9cf1c4fa4db5477448f37f53b, type: 3}
   letter: mop
   relatedsdprite: {fileID: 21300000, guid: 06102e7ab1aec7843a075854362d485a, type: 3}
+  Sound: {fileID: 8300000, guid: 4359cd204cf300045b2f421f02623d3d, type: 3}

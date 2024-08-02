@@ -11,7 +11,6 @@ namespace culture.Magnetinc
         {
             GameSet();
         }
-        int lagreset;
         public void GameSet()
         {
 
@@ -36,10 +35,9 @@ namespace culture.Magnetinc
                         j = -1;
                     }
                 }
-                lagreset = 0;
                 AllAnswerNo.Add(int.Parse(allCharacter[randomchar].sameLetter[randomno].letter));
                 alloption[i].no = allCharacter[randomchar].Letter;
-                alloption[i].text.text = allCharacter[randomchar].sameLetter[randomno].name;
+                alloption[i].text.text = allCharacter[randomchar].sameLetter[randomno].Name;
                 // AllAnswerNo.Add()
                 alloption[i].Icon.sprite = allCharacter[randomchar].sameLetter[randomno].Icon;
             }

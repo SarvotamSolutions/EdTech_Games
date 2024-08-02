@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: fox
   m_EditorClassIdentifier: 
-  name: fox
-  Icon: {fileID: 21300000, guid: 6b20abeeb9e87bf4ead986f9e4bc8a48, type: 3}
+  Name: fox
+  Icon: {fileID: 21300000, guid: 417c2a1731326634baf0b11f8888b309, type: 3}
   letter: fox
   relatedsdprite: {fileID: 21300000, guid: 06102e7ab1aec7843a075854362d485a, type: 3}
+  Sound: {fileID: 8300000, guid: 81a870e476df9c544b7a4f590e5d3200, type: 3}

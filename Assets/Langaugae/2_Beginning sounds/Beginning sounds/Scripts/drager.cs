@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace Laguage.beginning_sounds.matchtheSound
 {
@@ -14,35 +15,33 @@ namespace Laguage.beginning_sounds.matchtheSound
         public SpriteRenderer fromArrow;
         private SpriteRenderer statiing_box;
         public Sprite Slecting;
-
+        public AudioClip lettersound;
+        public AudioClip wordsSound;
+        public AudioClip dropsound;
+        public AudioSource sound;
         private void OnMouseDown()
         {
-            if (answered || !GameController.Instance.gamePlay)
+            if (answered || !GameController.Instance.gamePlay || GameController.Instance.totorialcheck.totorialplaying)
                 return;
+            sound.PlayOneShot(lettersound);
             GameController.Instance.selectedline = line;
             transform.GetComponent<SpriteRenderer>().sprite = Slecting;
             SpriteRenderer arowrender = arrow.transform.GetChild(0).GetComponent<SpriteRenderer>();
-            arowrender.color = GameController.Instance.blue;
-            fromArrow.color = GameController.Instance.blue;
-            Color tmp = arowrender.color;
-            tmp.a = 1f;
-            arowrender.color = tmp;
+       
         }
 
         // Start is called before the first frame update
         void Start()
         {
             statiing_box=GetComponent<SpriteRenderer>();
-           // transform.SetSiblingIndex(Random.Range(0, transform.parent.childCount));
-
-            //  line.SetPosition(0, transform.position);
+         
         }
         SpriteRenderer border;
         // Update is called once per frame
         void Update()
         {
 
-            if (!GameController.Instance.gamePlay)
+            if (!GameController.Instance.gamePlay || GameController.Instance.totorialcheck.totorialplaying)
                 return;
             arrow.transform.position = new Vector3(line.GetPosition(1).x + .1f, line.GetPosition(1).y);
          
@@ -86,7 +85,8 @@ namespace Laguage.beginning_sounds.matchtheSound
                 transform.GetComponent<SpriteRenderer>().sprite = GameController.Instance.Selectanswer;
                 if (Vector3.Distance(line.GetPosition(1), Answeroption.transform.position) <= 2)
                 {
-                 
+                    sound.PlayOneShot(wordsSound);
+                    transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.white;
                     answered = true;
                     border = Answeroption.transform.GetChild(1).GetComponent<SpriteRenderer>();
                     border.color = GameController.Instance.red;
@@ -96,9 +96,9 @@ namespace Laguage.beginning_sounds.matchtheSound
                     Answeroption.transform.GetChild(1).GetComponent<SpriteRenderer>().color 
                         = GameController.Instance.green;
                     line.material = GameController.Instance.currectanswer;
-                    arrow.transform.GetChild(0).GetComponent<SpriteRenderer>().color = GameController.Instance.green;
+                  //  arrow.transform.GetChild(0).GetComponent<SpriteRenderer>().color = GameController.Instance.green;
                     arrow.GetComponent<SpriteRenderer>().sprite = GameController.Instance.currectanswerarrow;
-                    fromArrow.color = GameController.Instance.green;
+                   // fromArrow.color = GameController.Instance.green;
                     arrow.transform.position = line.GetPosition(1);
                     Answeroption.transform.GetChild(0).gameObject.SetActive(false);
                     //   Answeroption.transform.GetChild(0).gameObject.SetActive(false);
@@ -115,9 +115,11 @@ namespace Laguage.beginning_sounds.matchtheSound
                 for (int i = 0; i < GameController.Instance.iconOption.Length; i++)
                 {
 
+
                     if (Vector3.Distance(line.GetPosition(1), GameController.Instance.iconOption[i].transform.position) <= 2 &&
                         GameController.Instance.iconOption[i].transform.GetChild(1).GetComponent<SpriteRenderer>().color != GameController.Instance.green)
                     {
+                        sound.PlayOneShot(wordsSound);
                         answered = true;
                         GameController.Instance.gamePlay = false;
                         GameController.Instance.selectedline = null;
@@ -127,14 +129,16 @@ namespace Laguage.beginning_sounds.matchtheSound
                         border =GameController.Instance.iconOption[i].transform.GetChild(1).GetComponent<SpriteRenderer>();
                         border.color = GameController.Instance.red;
                         line.material = GameController.Instance.WrongAnswer;
-                        fromArrow.color = GameController.Instance.red;
-                        arrow.transform.GetChild(0).GetComponent<SpriteRenderer>().color = GameController.Instance.red;
+                      //  fromArrow.color = GameController.Instance.red;
+                      //  arrow.transform.GetChild(0).GetComponent<SpriteRenderer>().color = GameController.Instance.red;
                         arrow.GetComponent<SpriteRenderer>().sprite = GameController.Instance.wronganswerarrow;
                         StartCoroutine(ResetingWrongAnswer());
                         break;
                     }
 
                 }
+
+                sound.PlayOneShot(dropsound);
 
                 if(!answered)
                 {
@@ -153,16 +157,20 @@ namespace Laguage.beginning_sounds.matchtheSound
             answered = false;
             line.SetPosition(1, line.GetPosition(0));
             SpriteRenderer arowrender = arrow.transform.GetChild(0).GetComponent<SpriteRenderer>();
-            Color tmp = arowrender.color;
-            tmp.a = 0f;
-            arowrender.color = tmp;
+            //Color tmp = arowrender.color;
+            //tmp.a = 0f;
+            //arowrender.color = tmp;
             GameController.Instance.selectedline = null;
         }
    
         IEnumerator ResetingWrongAnswer()
         {
+            Color tempcolor = transform.GetChild(0).GetComponent<TextMeshPro>().color;
+            transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.white;
             GameController.Instance.wrongAnswer_animtion.SetActive(true);
-            yield return new WaitForSeconds(2);
+            GameController.Instance.wrongAnswer_animtion.GetComponent<AudioSource>().PlayDelayed(1);
+            yield return new WaitForSeconds(3);
+            transform.GetChild(0).GetComponent<TextMeshPro>().color = tempcolor;
             GameController.Instance.wrongAnswer_animtion.SetActive(false);
             Reseting();
         }
@@ -171,12 +179,10 @@ namespace Laguage.beginning_sounds.matchtheSound
             line.material = GameController.Instance.SelectMaterail;
             statiing_box.sprite = GameController.Instance.Selectanswer;
             // GameController.Instance.selectedline = null;
-            SpriteRenderer arowrender = arrow.transform.GetChild(0).GetComponent<SpriteRenderer>();
-            Color tmp = arowrender.color;
-            tmp.a = 0f;
-            arowrender.color = tmp;
+           
+           
             border.color = Color.white;
-            fromArrow.color = GameController.Instance.vilot;
+           // fromArrow.color = GameController.Instance.vilot;
             Answeroption.transform.GetChild(0).gameObject.SetActive(true);
             line.SetPosition(1, line.GetPosition(0));
             answered = false;

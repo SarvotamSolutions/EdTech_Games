@@ -24,7 +24,7 @@ namespace Laguage.beginning_sounds.Idintfyletter
             base.OnMouseUp();
             if (GameControllerforAll.Instance.Neartodestination())
             {
-                
+                letterSoundClip.PlayOneShot(GameController.Instance.lettersound);
             }
             else
             {

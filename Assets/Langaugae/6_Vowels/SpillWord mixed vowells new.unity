@@ -10054,7 +10054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePlay: 1
-  currect_answer_color: {r: 0.18039216, g: 0.7254902, b: 0.16078432, a: 1}
+  currect_answer_color: {r: 0.24885845, g: 1, b: 0, a: 1}
   wrong_answer_color: {r: 1, g: 0, b: 0, a: 1}
   sellect_answer_color: {r: 0, g: 0.28241897, b: 1, a: 1}
   TextQuestion: 0
@@ -10092,8 +10092,6 @@ MonoBehaviour:
   ending: 0
   allleter: 1
   middle: 0
-  starting: 0
-  keybordpaneel: {fileID: 59944377}
 --- !u!1 &1391713801
 GameObject:
   m_ObjectHideFlags: 0

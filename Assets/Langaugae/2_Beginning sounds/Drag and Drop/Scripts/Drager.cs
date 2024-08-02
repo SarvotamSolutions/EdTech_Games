@@ -26,10 +26,12 @@ namespace Laguage.beginning_sounds.DragandDrop
            // transform.position = lastpos;
             if(GameController.Instance.Neartodestination())
             {
+                sound.PlayOneShot(drop);
 
             }
             else
             {
+                //sound.PlayOneShot(drop);
                 Border.color = Color.white;
                 transform.position = lastpos;
             }

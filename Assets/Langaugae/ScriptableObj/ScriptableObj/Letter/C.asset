@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: C
   m_EditorClassIdentifier: 
   sameLetter:
-  - {fileID: 11400000, guid: ae1749c01d1d3ff418678f6ff3ae320e, type: 2}
-  - {fileID: 11400000, guid: 1d1a18efd221c36469f591635048f23d, type: 2}
+  - {fileID: 11400000, guid: 3216128eac75ce64bacf791707e0c0e6, type: 2}
+  - {fileID: 11400000, guid: 641c7afc8785d724e9512368090378f8, type: 2}
+  - {fileID: 11400000, guid: 206e3c1dcf1609b4e97dee0968fdd4b2, type: 2}
+  - {fileID: 11400000, guid: 652bfa955ee25914ea7096ae7c630e89, type: 2}
   Letter: C
-  letterSprite: {fileID: 21300000, guid: 916b2a8b685baf149bf07645805c3d3e, type: 3}
+  letterSprite: {fileID: 21300000, guid: e5f1583f8a784eb4999502fe10d7c93a, type: 3}
   RelatedCharacter: []
-  hintcolor: {r: 0, g: 0, b: 0, a: 0}
+  hintcolor: {r: 0.38431373, g: 0.28627452, b: 0.14117648, a: 1}
+  lettersound: {fileID: 8300000, guid: 6526616aca1a5f74096b0023b6bb3536, type: 3}

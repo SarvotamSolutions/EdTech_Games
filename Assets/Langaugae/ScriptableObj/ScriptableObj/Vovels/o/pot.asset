@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: pot
   m_EditorClassIdentifier: 
-  name: pot
-  Icon: {fileID: 21300000, guid: f028b43d4c4f2534ca93aa1050301b5d, type: 3}
+  Name: pot
+  Icon: {fileID: 21300000, guid: 4127d4609667d1e4bbf8f226dd06ec45, type: 3}
   letter: pot
   relatedsdprite: {fileID: 21300000, guid: cf88b876853851c44a08a077bb14bbbd, type: 3}
+  Sound: {fileID: 8300000, guid: 134ad52e205f82e4da264a48f7cc2b1c, type: 3}

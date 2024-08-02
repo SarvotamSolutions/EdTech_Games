@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Cat
   m_EditorClassIdentifier: 
-  name: cat
-  Icon: {fileID: 21300000, guid: 4594c3a41b67dfa4fb0506432ab3a878, type: 3}
+  Name: cat
+  Icon: {fileID: 21300000, guid: 4c0c1677e0d8b754aac72225f7d0ced8, type: 3}
   letter: cat
   relatedsdprite: {fileID: 21300000, guid: 1f34e9dc06a37614ab61bb4d6b15864d, type: 3}
+  Sound: {fileID: 8300000, guid: 694d9978725732c42ae0158006c4b62e, type: 3}

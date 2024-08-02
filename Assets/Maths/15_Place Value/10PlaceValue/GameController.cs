@@ -9,6 +9,7 @@ namespace Maths.placeHolder.value
 {
     public class GameController : Singleton<GameController>
     {
+        public Totorial totorial;
         public GameObject dropLoction;
         public GameObject parent;
         public GameObject insasiteobj;
@@ -23,11 +24,13 @@ namespace Maths.placeHolder.value
         public bool randomno;
         public int thousandcount,hundredcount,tencount,onecount;
         public int totalpoint;
+        public Button DoneButton;
 
 
         public int no;
         public TextMeshPro droptext;
         private List<int> addno = new List<int>();
+        public float currectanswerinteval;
 
         [Space(10)]
         public GameObject gameCompleted_animation;
@@ -47,9 +50,17 @@ namespace Maths.placeHolder.value
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
             Reseting();
-            ansercheck.color = Color.white;
+            for (int k = 0; k < ansercheck.Length; k++)
+            {
+                ansercheck[k].color = Color.white;
+                ansercheck[k].transform.GetChild(10).gameObject.SetActive(true);
+                ansercheck[k].gameObject.transform.GetChild(10).GetComponent<TextMeshPro>().color = new Color(0.3176471f, 0.1803922f, 0.4901961f,1f);
+            }
             wrongAnswer_animtion.SetActive(false);
+            
             gamePlay = true;
+            DoneButton.interactable = true;
+
         }
 
         public void loadPoint()
@@ -80,25 +91,34 @@ namespace Maths.placeHolder.value
 
             return false;
         }
+        public int minimumno;
         public int maxno;
         // Start is called before the first frame update
         void Start()
         {
-            no = Random.Range(1,maxno);
+            no = Random.Range(minimumno,maxno);
             addno.Add(no);
 
             if (randomno)
             {
-                droptext.text = no.ToString();
+                droptext.text = "Make " + no.ToString();
             }
         }
-        public SpriteRenderer ansercheck;
+        public SpriteRenderer[] ansercheck;
         public void totalcheck()
         {
+            if (totorial.totorialplaying)
+                return;
             gamePlay = false;
+            DoneButton.interactable = false;
             if(no == totalpoint)
             {
-                ansercheck.color =Color.green;
+                for(int k = 0; k < ansercheck.Length;k++)
+                {
+                    ansercheck[k].color = new Color(0.4078431f, 0.682353f, 0.1960784f, 1);
+                    ansercheck[k].transform.GetChild(10).gameObject.SetActive(true);
+                    ansercheck[k].gameObject.transform.GetChild(10).GetComponent<TextMeshPro>().color = Color.white;
+                }
                 if (addno.Count >= 10)
                 {
                     StartCoroutine(LevelCompleted(true));
@@ -108,7 +128,12 @@ namespace Maths.placeHolder.value
             }
             else
             {
-                ansercheck.color = Color.red;
+                for (int k = 0; k < ansercheck.Length; k++)
+                {
+                    ansercheck[k].color = new Color(0.8823529f, 0.2745098f, 0.3137255f, 1);
+                    ansercheck[k].transform.GetChild(10).gameObject.SetActive(true);
+                    ansercheck[k].gameObject.transform.GetChild(10).GetComponent<TextMeshPro>().color = Color.white;
+                }
                 StartCoroutine(WrongAnswerAnimation());
             }
         }
@@ -149,7 +174,7 @@ namespace Maths.placeHolder.value
                 for (int i = 0; i < item.transform.childCount; i++)
                 {
                     item.transform.GetChild(i).gameObject.SetActive(false);
-
+                    item.transform.GetChild(10).gameObject.SetActive(true);
                 }
             }
             text.text = "0";
@@ -157,9 +182,14 @@ namespace Maths.placeHolder.value
         public IEnumerator Relod()
         {
             Party_pop.SetActive(true);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(currectanswerinteval);
             Party_pop.SetActive(false);
-            ansercheck.color = Color.white;
+            for (int k = 0; k < ansercheck.Length; k++)
+            {
+                ansercheck[k].color = Color.white;
+                ansercheck[k].transform.GetChild(10).gameObject.SetActive(true);
+                ansercheck[k].gameObject.transform.GetChild(10).GetComponent<TextMeshPro>().color = new Color(0.3176471f, 0.1803922f, 0.4901961f, 1f);
+            }
             tencount = 0;
             hundredcount = 0;
             onecount = 0;
@@ -172,8 +202,9 @@ namespace Maths.placeHolder.value
                     item.transform.GetChild(i).gameObject.SetActive(false);
 
                 }
+                item.transform.GetChild(10).gameObject.SetActive(true);
             }
-            no = Random.Range(1, maxno);
+            no = Random.Range(minimumno, maxno);
             //for (int i = 0; i < addno.Count; i++)
             //{
             //    if(addno[i] == no)
@@ -184,7 +215,7 @@ namespace Maths.placeHolder.value
 
             //}
             text.text = "0";
-            droptext.text = no.ToString();
+            droptext.text = "Make " + no.ToString();
             addno.Add(no);
             //for (int i = parent.transform.childCount-1; i >0; i--)
             //{
@@ -193,6 +224,8 @@ namespace Maths.placeHolder.value
             //}
             //checkobj.sprite = normlsprite;
             gamePlay = true;
+            DoneButton.interactable = true;
+
         }
 
         public void NextButton(bool final)

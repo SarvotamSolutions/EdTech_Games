@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: zip
   m_EditorClassIdentifier: 
-  name: zip
-  Icon: {fileID: 21300000, guid: e207478147648f345b0242e9821bf962, type: 3}
+  Name: zip
+  Icon: {fileID: 21300000, guid: 89b33f9d0fe261845b88e832a15087e5, type: 3}
   letter: zip
   relatedsdprite: {fileID: 21300000, guid: 06102e7ab1aec7843a075854362d485a, type: 3}
+  Sound: {fileID: 8300000, guid: 748b87fa329a27e498467f7bc9b86fdb, type: 3}

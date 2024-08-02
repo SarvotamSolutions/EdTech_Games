@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
+  m_Name: happy
+  m_EditorClassIdentifier: 
+  Name: happy
+  Icon: {fileID: 21300000, guid: 0ce89c502780876489561d74d2c000b5, type: 3}
+  letter: 10
+  relatedsdprite: {fileID: 21300000, guid: 146b1d3843589de419453c4b40bf36cc, type: 3}
+  Sound: {fileID: 8300000, guid: 5e3b998ad17059d4e9420eb331a0c37d, type: 3}

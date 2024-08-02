@@ -9,7 +9,7 @@ namespace Maths.Number1to100.Putting_numbers_Board
     {
         public int no;
         public bool competed;
-
+     
         private void Start()
         {
           
@@ -20,11 +20,15 @@ namespace Maths.Number1to100.Putting_numbers_Board
             no =int.Parse(gameObject.name);
             if (competed)
             {
-                GetComponent<SpriteRenderer>().sprite = GameController.instace.currectanswer;
+                GetComponent<SpriteRenderer>().sprite = GameController.instace.notselcted;
                 transform.GetChild(0).GetComponent<TextMeshPro>().text = no.ToString();
+                transform.GetChild(0).GetComponent<TextMeshPro>().color = GameController.instace.textColor;
             }
             else
+            {
+                transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.white;
                 transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
+            }
         }
         private void OnMouseUpAsButton()
         {
@@ -34,14 +38,15 @@ namespace Maths.Number1to100.Putting_numbers_Board
         }
         public void SelectedthisNumber()
         {
-            foreach (var item in GameController.instace.allnumber)
-            {
-                if (!item.competed)
-                    item.GetComponent<SpriteRenderer>().sprite = GameController.instace.notselcted;
-            }
+            //foreach (var item in GameController.instace.allnumber)
+            //{
+            //    if (!item.competed)
+            //        item.GetComponent<SpriteRenderer>().sprite = GameController.instace.notselcted;
+            //}
             GetComponent<SpriteRenderer>().sprite = GameController.instace.selectedsprire;
             GameController.instace.selectedno = this;
             GameController.instace.Ai.textResult = transform.GetChild(0).GetComponent<TextMeshPro>();
+         
             GameController.instace.Ai_recognizer.Recognigingnumber = no.ToString();
             GameController.instace.Ai_recognizer.Changerecogniger();
         }

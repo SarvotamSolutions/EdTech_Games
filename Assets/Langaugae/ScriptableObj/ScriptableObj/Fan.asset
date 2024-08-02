@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Fan
   m_EditorClassIdentifier: 
-  name: Fan
+  Name: Fan
   Icon: {fileID: 21300000, guid: c59fff49b69548647a5548fb9c7927f3, type: 3}
   letter: F
   relatedsdprite: {fileID: 0}

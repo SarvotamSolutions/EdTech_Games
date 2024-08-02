@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: ten
   m_EditorClassIdentifier: 
-  name: ten
-  Icon: {fileID: 21300000, guid: 5da0717ddcf925949b564421bbdd2243, type: 3}
+  Name: ten
+  Icon: {fileID: 21300000, guid: e6936b5fbb32d5949895f2a771651f1f, type: 3}
   letter: ten
   relatedsdprite: {fileID: 21300000, guid: 06102e7ab1aec7843a075854362d485a, type: 3}
+  Sound: {fileID: 8300000, guid: 5fe8d74d979a1a9428ebb945e3e4d680, type: 3}

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
+  m_Name: south
+  m_EditorClassIdentifier: 
+  Name: south
+  Icon: {fileID: 21300000, guid: aa4d2183e8961684aaf2e99d760bb5fb, type: 3}
+  letter: 18
+  relatedsdprite: {fileID: 21300000, guid: 9c6fec2c4cde67144b6a1507ae86d2df, type: 3}
+  Sound: {fileID: 8300000, guid: b62fe610ddbbb6c40a4bf304ad92edfe, type: 3}

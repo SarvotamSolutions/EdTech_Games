@@ -11,11 +11,13 @@ namespace Maths.placeValue.slectOption
     {
     
         public TextMeshPro questiontext;
+        public Totorial totorial;
         public int number;
         public SpriteRenderer dropbox;
         public TextMeshPro[] options;
         public int answerno;
         public int[] allanswer;
+        public Color TextColor;
 
         public Sprite normalsprite;
         public Sprite currectanswer;
@@ -66,6 +68,7 @@ namespace Maths.placeValue.slectOption
             yield return new WaitForSeconds(2);
             wrongAnswer_animtion.SetActive(false);
             obj.GetComponent<SpriteRenderer>().sprite = normalsprite;
+            obj.GetComponentInChildren<TextMeshPro>().color = TextColor;
             obj.transform.position = obj.lastpos;
             gamePlay = true;
         }
@@ -89,6 +92,7 @@ namespace Maths.placeValue.slectOption
             Party_pop.SetActive(true);
             yield return new WaitForSeconds(3);
             obj.GetComponent<SpriteRenderer>().sprite = normalsprite;
+            obj.GetComponentInChildren<TextMeshPro>().color = TextColor;
             obj.transform.position = obj.lastpos;
             Party_pop.SetActive(false);
             reloding++;
@@ -128,7 +132,7 @@ namespace Maths.placeValue.slectOption
         public bool Neartodestination(GameObject obj)
         {
 
-            if (Vector3.Distance(obj.transform.position, dropbox.transform.position) < 1)
+            if (Vector3.Distance(obj.transform.position, dropbox.transform.position) < 2.5f)
             {
 
 

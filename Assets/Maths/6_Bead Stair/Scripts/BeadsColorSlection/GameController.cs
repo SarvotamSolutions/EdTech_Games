@@ -6,6 +6,7 @@ namespace Maths.BeadStair.ColorSlection
 {
     public class GameController : Singleton<GameController>
     {
+        public Totorial totorialcheck;
         public ColorSelection[] all_CollerSelection;
         public int level;
         public AllCollors selectedcollor;
@@ -28,7 +29,8 @@ namespace Maths.BeadStair.ColorSlection
         {
           
             Hinttext.color = allmarble[level].color;
-            Hinttext.text = "<color=white>Color the " + (level + 1) + " bead "+ "</color>" + allmarble[level].thiscolor;
+            //Colour 1 bead red
+            Hinttext.text = "<color=white>Colour " + (level + 1) + " bead "+ "</color>" + allmarble[level].thiscolor;
         }
         public void ResetColler()
         {
@@ -49,7 +51,7 @@ public enum AllCollors
 {
     green=1,
     red=0,
-    pinck=2,
+    pink=2,
     White=6,
     lightblue=4,
     yellow=3,

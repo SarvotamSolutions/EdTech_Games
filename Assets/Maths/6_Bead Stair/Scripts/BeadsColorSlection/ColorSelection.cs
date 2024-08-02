@@ -18,6 +18,8 @@ namespace Maths.BeadStair.ColorSlection
 
         public void SelectedColor()
         {
+            if (GameController.Instance.totorialcheck.totorialplaying)
+                return; 
             GameController.Instance.ResetColler();
             GameController.Instance.selectedcollor = thiscolor;
             Selectedobj.SetActive(true);

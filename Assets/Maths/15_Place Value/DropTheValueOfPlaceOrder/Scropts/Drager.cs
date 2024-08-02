@@ -5,28 +5,35 @@ namespace Maths.placeValue.inofDroper
 {
     public class Drager : MonoBehaviour
     {
+        public AudioSource sound;
+        public AudioClip pickup, drop;
         private bool clicked;
         public int no;
         private bool canChnagepos;
         public Vector3 lastpos;
 
         private void Start()
-        { 
+        {
+           // sound = GetComponent<AudioSource>();
             lastpos = transform.position;
             
         }
         private void OnMouseDown()
         {
-            if (!GameController.instance.gamePlay)
+            if (!GameController.instance.gamePlay || GameController.instance.totorial.totorialplaying)
                 return;
+            sound.clip = pickup;
+            sound.Play();
             clicked = true;
-            //lastpos = transform.position;
+            lastpos = transform.position;
         }
 
         private void OnMouseUp()
         {
-            if (!GameController.instance.gamePlay)
+            if (!GameController.instance.gamePlay || GameController.instance.totorial.totorialplaying)
                 return;
+            sound.clip = drop;
+            sound.Play();
             clicked = false;
             if (GameController.instance.Neartodestination(this.gameObject))
             {

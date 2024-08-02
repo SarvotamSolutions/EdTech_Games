@@ -11,7 +11,7 @@ namespace Maths.NumberRoads
         public float fillThreshold = 0.95f; // Adjust this threshold according to your requirement
         public bool isFilled = false;
         public bool red;
- 
+
         private void Update()
         {
         
@@ -43,18 +43,21 @@ namespace Maths.NumberRoads
         public Sprite filld;
         private void OnMouseDown()
         {
+
          //  if (EventSystem.current.IsPointerOverGameObject()) return;
             Debug.Log("Down");
         }
         bool dragonetimecall;
         private void OnMouseDrag()
         {
-          //  if (EventSystem.current.IsPointerOverGameObject()) return;
+            if (GameController.instace.totorialcheck.totorialplaying || !GameController.instace.gameplay)
+                return;
+            //  if (EventSystem.current.IsPointerOverGameObject()) return;
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
            
             float trailLength = GetTrailLength();
-            if (GameController.instace.red)
+            if (GameController.instace.red)//checking the colling road is red
             {
                 trailRenderer.colorGradient = GameController.instace.currectcolor;
                 trailRenderer.transform.position = pos;
@@ -68,7 +71,7 @@ namespace Maths.NumberRoads
                     // You can trigger any other action here when the box is filled
                 }
             }
-            else
+            else// the coloring road is bluue
             {
                 trailRenderer.colorGradient = GameController.instace.Wrongcolor;
                 trailRenderer.transform.position = pos;
@@ -86,7 +89,7 @@ namespace Maths.NumberRoads
             {
                 StartCoroutine(GameController.instace.WrongAnswerAnimation(this));
             }
-            else if (GameController.instace.red == red && isFilled && !dragonetimecall)
+            else if (GameController.instace.red == red && isFilled && !dragonetimecall)// cuurrect ANSWER
             {
                 Debug.Log("CCC");
                 dragonetimecall = true;
@@ -101,14 +104,21 @@ namespace Maths.NumberRoads
                         if (GameController.instace.Draw_canvas)
                         {
                             GameController.instace.Draw_canvas.gameObject.SetActive(true);
+                            if(GameController.instace.totorialcheck.directionno < GameController.instace.totorialcheck.directionpanel.Length)
+                            {
+                                GameController.instace.totorialcheck.directionWindow();
+                            }
                           //  GameController.instace.ai.textResult = GameController.instace.allnumber[GameController.instace.no - 1];
                             //GameController.instace.Draw_canvas.interactable = true;
                             GameController.instace.filledno = 0;
-                            foreach (var item in GameController.instace.allnumber)
+                            for (int i = GameController.instace.no; i < GameController.instace.allnumber.Length; i++)
                             {
-                                item.transform.parent.GetComponent<SpriteRenderer>().sprite = GameController.instace.inputNot_selected;
+                                GameController.instace.allnumber[i].transform.parent.GetComponent<SpriteRenderer>().color = GameController.instace.notselect;
                             }
-                            GameController.instace.allnumber[GameController.instace.no-1].transform.parent.GetComponent<SpriteRenderer>().sprite = GameController.instace.inpuselected;
+                        
+
+                            GameController.instace.allnumber[GameController.instace.no - 1].transform.parent.GetComponent<SpriteRenderer>().color = GameController.instace.Selct;
+                          //  GameController.instace.allnumber[GameController.instace.no - 2].transform.parent.GetComponent<SpriteRenderer>().color = GameController.instace.Selct;
 
                         }
                         else
@@ -122,18 +132,18 @@ namespace Maths.NumberRoads
                     else
                     {
                         if(GameController.instace.onlycolor)
-                        StartCoroutine(GameController.instace.LevelCompleted());
+                         StartCoroutine(GameController.instace.LevelCompleted());
                         else
                         {
                             GameController.instace.Draw_canvas.gameObject.SetActive(true);
                             //  GameController.instace.ai.textResult = GameController.instace.allnumber[GameController.instace.no - 1];
                             //GameController.instace.Draw_canvas.interactable = true;
                             GameController.instace.filledno = 0;
-                            foreach (var item in GameController.instace.allnumber)
-                            {
-                                item.transform.parent.GetComponent<SpriteRenderer>().sprite = GameController.instace.inputNot_selected;
-                            }
-                            GameController.instace.allnumber[GameController.instace.no - 1].transform.parent.GetComponent<SpriteRenderer>().sprite = GameController.instace.inpuselected;
+                            //foreach (var item in GameController.instace.allnumber)
+                            //{
+                            //    item.transform.parent.GetComponent<SpriteRenderer>().sprite = GameController.instace.inputNot_selected;
+                            //}
+                            GameController.instace.allnumber[GameController.instace.no - 1].transform.parent.GetComponent<SpriteRenderer>().color = GameController.instace.Selct;
                         }
                     }
                 }

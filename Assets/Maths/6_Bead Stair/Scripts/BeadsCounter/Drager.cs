@@ -6,6 +6,8 @@ namespace Maths.BeadStair.NumberSelction
 {
     public class Drager : MonoBehaviour
     {
+        private AudioSource sound;
+        public AudioClip pickup, drop;
         private bool clicked;
         public int no;
         private bool canChnagepos;
@@ -13,6 +15,7 @@ namespace Maths.BeadStair.NumberSelction
 
         private void Start()
         {
+            sound = GetComponent<AudioSource>();
             lastpos = transform.position;
             if(!GameController.Instance.spritechnagr)
             Noset();
@@ -33,8 +36,10 @@ namespace Maths.BeadStair.NumberSelction
         }
         private void OnMouseDown()
         {
-            if (!GameController.Instance.gamePlay)
+            if (!GameController.Instance.gamePlay|| GameController.Instance.totorialcheck.totorialplaying)
                 return;
+            sound.clip = pickup;
+            sound.Play();
             GameController.Instance.Selected = this;
             clicked = true;
             
@@ -43,6 +48,11 @@ namespace Maths.BeadStair.NumberSelction
         private void OnMouseUp()
         {
             clicked = false;
+            if (!GameController.Instance.gamePlay || GameController.Instance.totorialcheck.totorialplaying)
+                return;
+            sound.clip = drop;
+            sound.Play();
+
             if (GameController.Instance.NeartoDestination())
             {
 

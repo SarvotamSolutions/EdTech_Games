@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  name: Apple
+  Name: Apple
   Icon: {fileID: 21300000, guid: 4a0b121e05b255846bc6f084e18f0129, type: 3}
   letter: A
   relatedsdprite: {fileID: 21300000, guid: a360cb7873fb02e47825ba0029245214, type: 3}

@@ -29,7 +29,8 @@ namespace Laguage.Oposite.draganddrop
             if (GameController.Instance.Neartodestination())
             {
                 GameController.Instance.gamePlay = false;
-
+                GameController.Instance.GetComponent<AudioSource>().clip = GameController.Instance.lettersound;
+                GameController.Instance.GetComponent<AudioSource>().PlayDelayed(.3f);
             //    transform.position = GameController.Instance.droping_place[0].transform.GetChild(rotionno + 1).transform.position;
                 transform.parent = GameController.Instance.droping_place[0].transform;
                // transform.localScale = new Vector3(.9f, .9f, .9f);

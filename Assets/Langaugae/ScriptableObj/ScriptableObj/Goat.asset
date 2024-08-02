@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Goat
   m_EditorClassIdentifier: 
-  name: Goat
+  Name: Goat
   Icon: {fileID: 21300000, guid: 0cfebd746e2b6c645a80e2dce63019c6, type: 3}
   letter: G
   relatedsdprite: {fileID: 0}

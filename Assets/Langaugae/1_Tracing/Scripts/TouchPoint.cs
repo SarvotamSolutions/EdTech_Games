@@ -13,7 +13,8 @@ namespace Laguage.Trachingexasise
     public class TouchPoint : MonoBehaviour
     {
 
-
+        public AudioSource traceaudio;
+        private Totorial totorial;
         public int index;
         public bool Entered;
         public bool Finished;
@@ -26,11 +27,13 @@ namespace Laguage.Trachingexasise
         public bool singleline;
         public float distancecheck = 1f;
         public List<Transform> CheckPoints = new List<Transform>();
+        
+     
         private void OnMouseDown()
         {
-            if (EventSystem.current.IsPointerOverGameObject()) return;
+            if ( GameManager.instace.totrialcheck.totorialplaying) return;
 
-
+          
             GameManager.instace.clicked = true;//Mouse is presed
 
 
@@ -40,6 +43,17 @@ namespace Laguage.Trachingexasise
 
         private void Start()
         {
+            if(TryGetComponent<AudioSource>(out AudioSource audio))
+            {
+                traceaudio =audio;
+            }
+            else
+            {
+                Debug.LogError("Please add the audio source componet on " + gameObject.name + " object");
+                traceaudio =  this.gameObject.AddComponent<AudioSource>();
+            }
+          
+            totorial = GameObject.Find("totorial").GetComponent<Totorial>();
             distancecheck = .75f;
         }
         private void OnMouseDrag()
@@ -91,7 +105,7 @@ namespace Laguage.Trachingexasise
                         else
                         {
                             Debug.Log("multipoint");
-
+                            GameManager.instace.totrialcheck.directionWindow();
                             Multiplecolor();
                         }
                         //Finished World
@@ -106,6 +120,7 @@ namespace Laguage.Trachingexasise
 
         void DragingStarted()
         {
+            traceaudio.Play();
             GameManager.instace.lastcoloid.Add(GameManager.instace.selectedcolor);
             Vector3 Position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Position.z = 0;
@@ -151,8 +166,10 @@ namespace Laguage.Trachingexasise
         }
         private void OnMouseUp()
         {
+            traceaudio.Stop();
             if (line.positionCount == 0)
                 return;
+
 
             CheckFinishline();
 
@@ -160,6 +177,7 @@ namespace Laguage.Trachingexasise
 
         private void OnMouseExit()
         {
+            traceaudio.Stop();
             //check its near to finsihline;
             if (line.positionCount == 0)
                 return;
@@ -313,26 +331,29 @@ namespace Laguage.Trachingexasise
         IEnumerator Leteris_Completed()
         {
 
-            GameManager.instace.resetbutton.SetActive(false);
+          //  GameManager.instace.resetbutton.SetActive(false);
             WordsHandling word = null;
             MultipleLevelComplted(out word);
             GameManager.instace.wordholder.SetActive(false);
             foreach (var item in GameManager.instace.NumberAndLetters)
             {
 
-                if (item.Finsihed)
+                if (item.Finsihed) //selecting image to sprite change
                 {
-                    item.buttonImage.color = GameManager.instace.CompletedCollor;
+                    item.buttonImage.sprite = GameManager.instace.currectanswered;
+                  //  item.buttonImage.color = GameManager.instace.CompletedCollor;
                    
                 }
                 else
                 {
-                    item.buttonImage.color = GameManager.instace.incomplletedCollor;
+                    item.buttonImage.sprite = GameManager.instace.notanswered;
+                   // item.buttonImage.color = GameManager.instace.incomplletedCollor;
                 }
 
            
 
-            }// reseting the all Ui button Colors
+            }
+            // reseting the all Ui button Colors
 
             word.FinsihNO.GetComponent<SpriteRenderer>().sortingOrder = 3;
             GameManager.instace.lastcoloid.Clear();
@@ -343,6 +364,7 @@ namespace Laguage.Trachingexasise
                 word.FinsihNO.GetComponent<SpriteRenderer>().color = Color.white;
                 word.FinsihNO.GetComponent<SpriteRenderer>().sortingOrder = 2;
                 word.FinsihNO.GetComponent<SpriteRenderer>().sprite = GameManager.instace.ranbowColorSprite[GameManager.instace.activeobj];
+                
                 GameManager.instace.colorwindow.SetActive(true);
 
             }
@@ -351,7 +373,7 @@ namespace Laguage.Trachingexasise
 
             GameManager.instace.partypop.SetActive(true);
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(GameManager.instace.crurectanswerinteval);
             GameManager.instace.wordholder.SetActive(true);
             GameManager.instace.partypop.SetActive(false);
             //   word.obj.transform.DOScale(new Vector3(1f, 1f, 1f), .1F);
@@ -364,8 +386,9 @@ namespace Laguage.Trachingexasise
             GameManager.instace.activeobj = GameManager.instace.activeobj % GameManager.instace.NumberAndLetters.Length;
             word = GameManager.instace.NumberAndLetters[GameManager.instace.activeobj];
             word.obj.SetActive(true);
-            GameManager.instace.resetbutton.SetActive(true);
+            //GameManager.instace.resetbutton.SetActive(true);
             Debug.Log(GameManager.instace.activeobj +"index" +index);
+            GameManager.instace.NumberAndLetters[GameManager.instace.activeobj].buttonImage.sprite = GameManager.instace.selectedimage;
             if(GameManager.instace.activeobj>0 && index>0)
                GameManager.instace.NumberAndLetters[GameManager.instace.activeobj-1].line[index - 1].gameObject.SetActive(false);
            
@@ -405,7 +428,7 @@ namespace Laguage.Trachingexasise
 
             GameManager.instace.partypop.SetActive(true);
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(GameManager.instace.crurectanswerinteval);
             GameManager.instace.partypop.SetActive(false);
             //   word.obj.transform.DOScale(new Vector3(1f, 1f, 1f), .1F);
             Debug.Log(("Waiting"));

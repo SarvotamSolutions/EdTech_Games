@@ -10,21 +10,22 @@ namespace Maths.Number1to10.numberWithObject
     public class GameManager : Singleton<GameManager>
     {
 
-        public bool WithControll;
-        public bool randomno;
-        public ObjectSlection Question;
+
         [SerializeField] private GameObject upperVertical, midleVertical, LowerVertical;
-        public GameObject[] AllFlower;
         [SerializeField] private Sprite NormalQuestuion, CurrectQuestion, WrongQuestion;
         [SerializeField] private Sprite NormalArrow, currectarrow, wrongarrow;
         [SerializeField] private SpriteRenderer Arrow;
-
+        private bool randomno;
+        public bool WithControll;
+        public ObjectSlection Question;
+        public Totorial totorialcheck;
+        public GameObject[] AllFlower;
         public Sprite[] unclickedsprite;
         public Sprite[] normal_sprite;
         public Sprite[] ClickedSprite;
         public Sprite[] allbackground;
         public Image background;
-
+        public GameObject resetbutton;
         int DropedID = 0;
 
         public int IconspriteID;
@@ -33,54 +34,69 @@ namespace Maths.Number1to10.numberWithObject
 
         public int Questionno;
         public TextMeshPro text;
+        public float currectanswerInterval, wronganswerInterval;
+        [Header("Animation Delay")]
+        [SerializeField] private float delay_correctAnswer=3;
+        [SerializeField] private float delay_wrongtAnswer=4;
+        [SerializeField] private float delay_completedAnswer =2;
 
         [Space(10)]
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
         public GameObject Party_pop;
+
+        
      
 
         private void Start()
         {
 
-            QuestoinCreation();
+            QuestoinCreation();// creating the Question
+
+
         }
-        IEnumerator LevelCompleted()
+
+
+        IEnumerator LevelCompleted()// called when the whole level is compleated
         {
-            yield return new WaitForSeconds(.4f);
+           
             gameCompleted_animation.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(delay_completedAnswer);
             SceneManager.LoadScene(0);
 
         }
-        
-        // Update is called once per frame
-        public void QuestoinCreation()
+
+
+        public void QuestoinCreation()//creating the Questions
         {
             
-            if (AnsweredQuestion.Count >= 10)
+            if (AnsweredQuestion.Count >= 10)// completed the all question
             {
                 StartCoroutine(LevelCompleted());
                 return;
             }
+
+            //Seleting the Random Question
+
             IconspriteID = Random.Range(0, normal_sprite.Length);
             Question.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = normal_sprite[IconspriteID];
             background.sprite = allbackground[IconspriteID];
-            Question.GetComponent<SpriteRenderer>().sprite = unclickedsprite[IconspriteID];
-        
+            Question.GetComponent<SpriteRenderer>().sprite = unclickedsprite[IconspriteID];      
             Questionno++;
-            if(WithControll)
+
+
+            if(WithControll) //check this game have hint
             {
 
-            //    DropedID = Questionno-1;
                 for (int i = 0; i < Questionno; i++)
                 {
+
                     ObjectDroped();
-                   // DropedID++;
+           
                 }
                 
             }
-            else
+            else// if the game dosnt have any hint
             {
                 foreach (var item in AllFlower)
                 {
@@ -123,8 +139,9 @@ namespace Maths.Number1to10.numberWithObject
           
             yield return new WaitForSeconds(.5f);
             wrongAnswer_animtion.SetActive(true);
-            yield return new WaitForSeconds(2);
-
+            yield return new WaitForSeconds(wronganswerInterval);
+            donebutton.interactable = true;
+            resetbutton.SetActive(true);
             Reseting();
             wrongAnswer_animtion.SetActive(false);
         }
@@ -132,16 +149,24 @@ namespace Maths.Number1to10.numberWithObject
         {
 
             Party_pop.SetActive(true);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(currectanswerInterval);
             Party_pop.SetActive(false);
-
+            donebutton.interactable = true;
+            resetbutton.SetActive(true);
             Reseting();
             QuestoinCreation();
         }
         public Sprite emty;
+        public Button donebutton;
         public void Conform()
         {
+
+            if (totorialcheck.totorialplaying || gamePlay == false)
+                return;
+
+            resetbutton.SetActive(false);
             gamePlay = false;
+            donebutton.interactable = false;
             int id = 0;
             if (WithControll)
             {
@@ -171,6 +196,8 @@ namespace Maths.Number1to10.numberWithObject
         }//conform Button
         public void Reseting()
         {
+            if(totorialcheck.totorialplaying)
+                return;
             selectediconid = 0;
         
           

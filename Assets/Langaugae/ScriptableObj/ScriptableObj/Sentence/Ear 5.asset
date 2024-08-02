@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Ear 5
   m_EditorClassIdentifier: 
   sameLetter:
-  - {fileID: 11400000, guid: c99420e18bfc24148a0df323573b1ba2, type: 2}
+  - {fileID: 11400000, guid: c6befa5a16548624ba1fbb15d9475f06, type: 2}
   Letter: Cold
-  letterSprite: {fileID: 21300000, guid: b4dcc1f187c245f449b28d049926413c, type: 3}
+  letterSprite: {fileID: 21300000, guid: fe238af21c72b0a4bb2823950ea2480f, type: 3}
   RelatedCharacter:
   - {fileID: 11400000, guid: 29f16ed21494e6b4691dd666a2f569b0, type: 2}
   hintcolor: {r: 0, g: 0, b: 0, a: 0}
+  lettersound: {fileID: 8300000, guid: b894ce0cd99b0bc448ef2ec0c56f3500, type: 3}

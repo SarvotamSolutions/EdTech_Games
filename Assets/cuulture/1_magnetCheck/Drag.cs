@@ -25,7 +25,6 @@ namespace culture.Magnetinc
             if (GameController.Instance.Neartodestination())
             {
                 Border.color = GameController.Instance.currect_answer_color;
-                entered = false;
                 StopAllCoroutines();
                 transform.GetComponent<BoxCollider2D>().enabled = false;
                 if (no == "float")
@@ -49,7 +48,6 @@ namespace culture.Magnetinc
                 transform.position = lastpos;
             }
         }
-        bool entered;
 
     
 

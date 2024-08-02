@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 namespace Maths.Times.ClockTimeSet
 {
     public class GameController : MonoBehaviour
     {
+        public Totorial totorial;
+        public bool GAMEPLAY;
         public static GameController instace;
         public TextMeshPro[] alltext;
         public SpriteRenderer[] allminits;
@@ -23,6 +26,7 @@ namespace Maths.Times.ClockTimeSet
         public Sprite NormalClock;
         public SpriteRenderer Clock;
         public int rolod;
+        public Button NextButton;
 
         [Space(10)]
         public GameObject gameCompleted_animation;
@@ -31,7 +35,6 @@ namespace Maths.Times.ClockTimeSet
         private void Awake()
         {
             instace = this;
-
         }
 
         private void Start()
@@ -49,7 +52,11 @@ namespace Maths.Times.ClockTimeSet
 
         public void check()
         {
-            if(questionHour == Hour && QuestionMinit == minit)
+            if (totorial.totorialplaying)
+                return;
+            NextButton.interactable = false;
+            GAMEPLAY = false;
+            if (questionHour == Hour && QuestionMinit == minit)
             {
                 Clock.sprite = CurrectClock;
                 StartCoroutine(Relod());
@@ -67,14 +74,18 @@ namespace Maths.Times.ClockTimeSet
             yield return new WaitForSeconds(.2f);
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
+            GAMEPLAY = true;
             Clock.sprite = NormalClock;
             wrongAnswer_animtion.SetActive(false);
+            NextButton.interactable = true;
+
         }
         IEnumerator Relod()
         {
             Party_pop.SetActive(true);
             yield return new WaitForSeconds(3);
             Party_pop.SetActive(false);
+            GAMEPLAY = true;
             rolod++;
             if (rolod > 10)
             {
@@ -93,6 +104,8 @@ namespace Maths.Times.ClockTimeSet
             if (hour == 0) hour = 12;
 
             text.text = hour.ToString("00") + ":" + QuestionMinit.ToString("00");
+            NextButton.interactable = true;
+
         }
         private void Update()
         {

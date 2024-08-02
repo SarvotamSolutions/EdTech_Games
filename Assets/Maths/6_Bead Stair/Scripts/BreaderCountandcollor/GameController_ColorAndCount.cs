@@ -9,9 +9,11 @@ namespace Maths.BeadStair.ColorandCount
 {
     public class GameController_ColorAndCount : MonoBehaviour
     {
+        
         public ColorSelection_ColorAndCount[] all_CollerSelection;
         public int level;
         public static GameController_ColorAndCount instace;
+        public Color normaltextcolor;
         public AllCollors selectedcollor;
         public AllCollors selectedcollorDone;
         public Marble_ColorAndCount[] allmarble;
@@ -25,7 +27,7 @@ namespace Maths.BeadStair.ColorandCount
         public Sprite NormalInput, CurrectAnswerInput, WrongInput;
         public SpriteRenderer InputBox;
         public Button CollorButton, NumberButton;
-
+        public float currectanswerInterval, wronganswerInterval;
         [Space(10)]
         public GameObject gameCompleted_animation;
         public GameObject wrongAnswer_animtion;
@@ -49,11 +51,12 @@ namespace Maths.BeadStair.ColorandCount
             }
 
         }
-        public void NextButton()
+        public void NextButton()//changed to Ai conformtion button
         {
 
             if ((level + 1) == Draw.no)
             {
+                Draw.textResult.color = Color.white;
                 allmarble[level].GetComponent<Collider2D>().enabled = true;
                 InputBox.sprite = CurrectAnswerInput;
                 Draw.textResult = null;
@@ -64,6 +67,7 @@ namespace Maths.BeadStair.ColorandCount
                 CollorButton.gameObject.SetActive(true);
                 NumberButton.gameObject.SetActive(false);
                 DrawnNO.SetActive(false);
+             
                 Hinttext.color = allmarble[level].colors;
                 Hinttext.text =
                   "<color=white>Color the " + (level + 1) +
@@ -82,7 +86,7 @@ namespace Maths.BeadStair.ColorandCount
         IEnumerator resetInput()
         {
             wrongAnswer_animtion.SetActive(true);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(wronganswerInterval);
             wrongAnswer_animtion.SetActive(false);
             Draw.textResult = InputBox.GetComponentInChildren<TextMeshPro>();
             Draw.textResult.text = "";
@@ -101,10 +105,10 @@ namespace Maths.BeadStair.ColorandCount
             CollorButton.gameObject.SetActive(false);
             Party_pop.SetActive(true);
        
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(currectanswerInterval);
             Party_pop.SetActive(false);
             Hinttext.color = Color.white;
-            Hinttext.text = "Count the Beads";
+            Hinttext.text = "Count the number of beads";
             allmarble[level].gameObject.SetActive(false);
             level++;
             Ai_reconginzer.Recognigingnumber = (level + 1).ToString();
@@ -117,7 +121,8 @@ namespace Maths.BeadStair.ColorandCount
             allmarble[level].GetComponent<Collider2D>().enabled = false;
             allmarble[level].gameObject.SetActive(true);
             Draw.textResult = InputBox.GetComponentInChildren<TextMeshPro>();
-            Draw.textResult.text = "";
+            Draw.textResult.color = normaltextcolor;
+            Draw.textResult.text = "?";
             InputBox.sprite = NormalInput;
             //   nodify.enabled = true;
             Sketchpen.SetActive(false);

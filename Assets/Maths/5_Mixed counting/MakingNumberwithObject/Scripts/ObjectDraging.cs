@@ -6,11 +6,13 @@ namespace Maths.Number1to10.numberWithObject
 {
     public class ObjectDraging : MonoBehaviour
     {
+        public AudioSource dropaudio;
         public GameObject dropingobj;
         public int no;
         public SpriteRenderer Normalsprite;
         private void Update()
         {
+          
             if (Input.GetMouseButton(0))
             {
                 Debug.Log("CCC");
@@ -22,6 +24,7 @@ namespace Maths.Number1to10.numberWithObject
 
             if (Input.GetMouseButtonUp(0) && !GameManager.Instance.WithControll)
             {
+             
                 GameManager.Instance.Question.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.unclickedsprite[GameManager.Instance.IconspriteID];
                 float distancex = Mathf.Abs(transform.position.x - dropingobj.transform.position.x);
                 float distancey = Mathf.Abs(transform.position.y - dropingobj.transform.position.y);
@@ -34,7 +37,7 @@ namespace Maths.Number1to10.numberWithObject
                 Destroy(this.gameObject);
             }
             else if(Input.GetMouseButtonUp(0) && GameManager.Instance.WithControll)
-            {
+            {  
                 GameManager.Instance.Question.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.unclickedsprite[GameManager.Instance.IconspriteID];
                 float distancex = Mathf.Abs(transform.position.x - dropingobj.transform.position.x);
                 float distancey = Mathf.Abs(transform.position.y - dropingobj.transform.position.y);

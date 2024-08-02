@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
     public GameObject backhold;
     int no;
     bool clicked;
-    public float[] fillamount;
+
     public GameObject gameCompleted_animation;
     public GameObject wrongAnswer_animtion;
     public GameObject Party_pop;
@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
         allcountries[no].transform.parent.DOMove(basepos[no].position, .1f);
         //  allcountries[id].transform.parent.SetAsLastSibling();
         allcountries[no].transform.parent.DOScale(1, .1f);
-        if (allcountries[no].GetRevealProgress() >= fillamount[no])
+        if (allcountries[no].GetRevealProgress() >= .025f)
         {
             allcountries[no].enabled = false;
         }
@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
         if (!clicked)
             return;
         Debug.Log(allcountries[no].GetRevealProgress());
-        if (Input.GetMouseButtonUp(0) && allcountries[no].GetRevealProgress() >fillamount[no] && clicked)      
+        if (Input.GetMouseButtonUp(0) && allcountries[no].GetRevealProgress() >= .01f && clicked)      
         {
             clicked = false;
             StartCoroutine(WaitForCurrectanimtion());

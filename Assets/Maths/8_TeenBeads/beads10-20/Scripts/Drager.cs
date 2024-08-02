@@ -5,6 +5,8 @@ namespace Maths.TeenBeads.drop10to20
 {
     public class Drager : MonoBehaviour
     {
+        private AudioSource sound;
+        public AudioClip pickup, drop;
         private bool clicked;
         public int no;
         private bool canChnagepos;
@@ -13,6 +15,7 @@ namespace Maths.TeenBeads.drop10to20
 
         private void Start()
         {
+            sound = GetComponent<AudioSource>();
             firsttime = true;
             //   lastpos = transform.position;
             transform.parent.SetSiblingIndex(Random.Range(0, transform.parent.parent.childCount));
@@ -20,9 +23,11 @@ namespace Maths.TeenBeads.drop10to20
         }
         private void OnMouseDown()
         {
-            if (!GameController.Instance.gamePlay)
+            if (!GameController.Instance.gamePlay || GameController.Instance.totorialcheck.totorialplaying)
                 return;
-            if(firsttime)
+            sound.clip = pickup;
+            sound.Play();
+            if (firsttime)
             lastpos = transform.position;
             clicked = true;
             firsttime = false;
@@ -31,8 +36,10 @@ namespace Maths.TeenBeads.drop10to20
 
         private void OnMouseUp()
         {
-            if (!GameController.Instance.gamePlay)
+            if (!GameController.Instance.gamePlay || GameController.Instance.totorialcheck.totorialplaying || clicked == false)
                 return;
+            sound.clip = drop;
+            sound.Play();
             clicked = false;
             GameObject obj = GameController.Instance.Neartodestination(this.gameObject);
 

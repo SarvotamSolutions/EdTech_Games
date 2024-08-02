@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: O
   m_EditorClassIdentifier: 
   sameLetter:
-  - {fileID: 11400000, guid: c2a51e99986c46b4096d30651beaf17b, type: 2}
-  - {fileID: 11400000, guid: 5370aebdb7355534686212ed871f99a5, type: 2}
+  - {fileID: 11400000, guid: ad26921389fd2c044a96169274b68f24, type: 2}
+  - {fileID: 11400000, guid: 0fc9785f36389cd4aa8e70172ca983e0, type: 2}
+  - {fileID: 11400000, guid: 61e70ff3c37d1924887670babac727a0, type: 2}
+  - {fileID: 11400000, guid: 744d8899eb47d814baedb2ab9b6bf9a6, type: 2}
   Letter: O
-  letterSprite: {fileID: 21300000, guid: b1d39a5efe2b48645a1ea5440d9a9235, type: 3}
+  letterSprite: {fileID: 21300000, guid: 54914f90d99f21b4c9dc5500c331e3bc, type: 3}
   RelatedCharacter: []
-  hintcolor: {r: 0, g: 0, b: 0, a: 0}
+  hintcolor: {r: 0.38431373, g: 0.28627452, b: 0.14117648, a: 1}
+  lettersound: {fileID: 8300000, guid: 3ca000c71b38687459eab5d840edda4f, type: 3}

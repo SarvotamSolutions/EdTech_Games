@@ -7,41 +7,52 @@ using UnityEngine.EventSystems;
 
 namespace Laguage.Trachingexasise
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoBehaviour// all tracing game
     {
+        public static GameManager instace;
+        
         [System.Serializable]
         public class ColorsSelection
         {
+
             public Gradient color;
             public GameObject selectedcolor;
             public GameObject notselected;
-       //     public SpriteRenderer changesprite;
+   
         }
+        public Totorial totrialcheck;
 
-
-        public bool COMPLETED;
-        public bool clicked;
-        public static GameManager instace;
-        public int activeobj;
-        public WordsHandling[] NumberAndLetters;
+        [Space(10)]
         public GameObject LevelComplted;
         public GameObject StartPannel;
-        public Color incomplletedCollor, CompletedCollor;
-        public bool alrdyCalled;
-        public bool ColorSelection;
         public GameObject colorwindow;
-        public ColorsSelection[] colors;
         public GameObject partypop;
         public GameObject wordholder;
-        public GameObject resetbutton;
-        public Sprite[] ranbowColorSprite, NormalSprite;
-        
-      //  public Gradient[] allcolors;
-        public int selectedcolor;
 
-        [Space(14)]
+        
+        public Sprite selectedimage,notanswered,currectanswered;
+        public Sprite[] ranbowColorSprite, NormalSprite;
+
+        public WordsHandling[] NumberAndLetters;
+       
+        public ColorsSelection[] colors;
+        [Space(10)]
+        public bool COMPLETED;
+        public bool clicked;
+        public bool alrdyCalled;
+        public bool ColorSelection;
         public bool multipleColor;
+        [Space(10)]
+        public float crurectanswerinteval = 3;
+        [Space(10)]
+        public int activeobj;
+        public int selectedcolor;
         public int numberofcolors;
+
+        public Color incomplletedCollor, CompletedCollor;
+
+        public List<int> lastcoloid = new List<int>();
+
 
         private void Awake()
         {
@@ -49,7 +60,6 @@ namespace Laguage.Trachingexasise
                 instace = this;
         }
 
-        public List<int> lastcoloid = new List<int>();
         public void SelectingColor(int color)
         {
             foreach (var item in lastcoloid)
@@ -74,12 +84,18 @@ namespace Laguage.Trachingexasise
         private void Start()
         {
 
-     
+            StartCoroutine(waitfortotoralcomplete());
 
+        }
+        IEnumerator waitfortotoralcomplete()
+        {
+            yield return new WaitUntil(() => !totrialcheck.totorialplaying);
+            StartGame();
         }
         public int lineno;
         private void Update()
         {
+
             if (EventSystem.current.IsPointerOverGameObject()) return;
 
             //if (clicked && Input.GetMouseButtonUp(0) && !alrdyCalled)
@@ -104,6 +120,7 @@ namespace Laguage.Trachingexasise
             }
             if (ColorSelection)
                 colorwindow.SetActive(true);
+
             if (multipleColor)
             {
                 numberofcolors = 0;
@@ -111,7 +128,7 @@ namespace Laguage.Trachingexasise
                 NumberAndLetters[activeobj].FinsihNO.GetComponent<SpriteRenderer>().sprite = NormalSprite[activeobj];
             }
             NumberAndLetters[activeobj].Finsihed = false;
-            NumberAndLetters[activeobj].buttonImage.color = incomplletedCollor;
+            NumberAndLetters[activeobj].buttonImage.sprite = notanswered;
             NumberAndLetters[activeobj].FinsihNO.SetActive(false);
             foreach (var item in NumberAndLetters[activeobj].line)
             {
@@ -132,9 +149,17 @@ namespace Laguage.Trachingexasise
         }
         public void ChatracterSlect(int index)
         {
+            if (totrialcheck.totorialplaying)
+                return;
+
+
             if(!NumberAndLetters[activeobj].Finsihed)
                 ResetBUtton();
+
+
             activeobj = index;
+            if (!NumberAndLetters[activeobj].Finsihed)
+                NumberAndLetters[activeobj].buttonImage.sprite = selectedimage;
             for (int i = 0; i < NumberAndLetters.Length; i++)
             {
                 NumberAndLetters[i].obj.SetActive(false);

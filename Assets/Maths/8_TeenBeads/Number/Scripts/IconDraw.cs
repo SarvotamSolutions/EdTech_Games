@@ -6,58 +6,83 @@ namespace Maths.TeenBeads.Number
 {
     public class IconDraw : MonoBehaviour
     {
-
+        public AudioSource sound;
+        public AudioClip pickup, drop;
         private bool clicked;
-        private bool canChnagepos;
-        public GameObject droppos;
-        private Vector3 lastpos;
+        public GameObject[] droppos;
+        public Vector3 lastpos;
         public bool increser;
-
+        [SerializeField] private Sprite currectanswer;
+        [SerializeField] private Sprite wronganswer;
         private void Start()
         {
             if (!increser)
             {
                 transform.SetSiblingIndex(Random.Range(0, 5));
             }
+            lastpos = transform.position;
         }
         private void OnMouseDown()
         {
-
+            if (GameController.instance.totorialcheck.totorialplaying)
+                return;
+            sound.clip = pickup;
+            sound.Play();
             clicked = true;
             lastpos = transform.position;
         }
 
         private void OnMouseUp()
         {
-            if (!droppos)
-                droppos = GameController.instance.ObjectDroping;
+            if (!clicked)
+                return;
+            //if (!droppos)
+            //    droppos = GameController.instance.ObjectDroping;
+            sound.clip = drop;
+            sound.Play();
             clicked = false;
-            if (Vector3.Distance(transform.position,droppos.transform.position) < 2)
+            for (int i = 0; i < droppos.Length; i++)
             {
-                if (increser)
+                if (Vector3.Distance(transform.position, droppos[i].transform.position) < 5)
                 {
-                    canChnagepos = true;
-                    GameController.instance.Number2++;
-                    GameController.instance.Number2text.text = GameController.instance.Number2.ToString();
+                    if (i == 0)
+                    {
+                        if (increser)
+                        {
+                            transform.parent = GameController.instance.ObjectDroping.transform.GetChild(0);
+
+                            GameController.instance.Number2++;
+                            GameController.instance.Number2text.text = GameController.instance.Number2.ToString();
+                        }
+                        else
+                        {
+                            GameController.instance.stagetwoDrop++;
+                            droppos[i].GetComponentInChildren<TextMeshPro>().text = transform.GetComponentInChildren<TextMeshPro>().text;
+
+                            if (GameController.instance.stagetwoDrop == 3)
+                            {
+                                //droppos[i].GetComponent<SpriteRenderer>().sprite = GameController.instance.finalanswer;
+                                GameController.instance.Relod();
+                            }
+                            else
+                            {
+                            }
+                            droppos[i].GetComponent<SpriteRenderer>().sprite = currectanswer;
+
+                            transform.position = lastpos;
+                            gameObject.SetActive(false);
+                        }
+                    }
+
+
                 }
                 else
                 {
-                    GameController.instance.stagetwoDrop++;
-                    droppos.GetComponentInChildren<TextMeshPro>().text = transform.GetComponentInChildren<TextMeshPro>().text;
-                    droppos.GetComponent<SpriteRenderer>().sprite = transform.GetComponent<SpriteRenderer>().sprite;
-                    if (GameController.instance.stagetwoDrop == 3)
-                    {
-                        GameController.instance.Relod();
-                    }
+
                 }
-                gameObject.SetActive(false);
-                transform.position = lastpos;
             }
-            else
-            {
-                transform.position = lastpos;
-            }
-          
+       
+            transform.position = lastpos;
         }
         private void Update()
         {

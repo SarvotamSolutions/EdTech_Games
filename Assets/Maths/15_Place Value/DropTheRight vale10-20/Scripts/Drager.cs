@@ -5,6 +5,8 @@ namespace Maths.placeValue.Dropbeads
 {
     public class Drager : MonoBehaviour
     {
+        private AudioSource sound;
+        public AudioClip pickup, drop;
         private bool clicked;
         public int no;
         private bool canChnagepos;
@@ -12,12 +14,15 @@ namespace Maths.placeValue.Dropbeads
 
         private void Start()
         {
+            sound = GetComponent<AudioSource>();
             lastpos = transform.position;
         }
         private void OnMouseDown()
         {
             if (!GameController.Instance.gamePlay)
                 return;
+            sound.clip = pickup;
+            sound.Play();
             clicked = true;
             
         }
@@ -26,6 +31,8 @@ namespace Maths.placeValue.Dropbeads
         {
             if (!GameController.Instance.gamePlay)
                 return;
+            sound.clip = drop;
+            sound.Play();
             clicked = false;
             if (GameController.Instance.Neartodestination(this.gameObject))
             {

@@ -7,7 +7,7 @@ namespace culture.countries.draganddrop
     {
         public Sprite currectanswer, wronganswer, defaltanswer;
 
-        public bool multipleloader;
+
         protected override void Start()
         {
            
