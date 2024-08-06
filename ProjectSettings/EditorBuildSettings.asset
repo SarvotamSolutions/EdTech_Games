@@ -675,4 +675,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/cuulture/2_Countries/Info/HumanBodySelction.unity
     guid: aaf255f8d7c79d54b8ed30c02394c246
+  - enabled: 1
+    path: Assets/cuulture/2_Countries/DragAndDrop/HumanBodyDraganddrop.unity
+    guid: 8ee17b394f3e5ad45b2dd39c80f8cb47
   m_configObjects: {}

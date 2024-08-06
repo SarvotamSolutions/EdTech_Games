@@ -17,9 +17,11 @@ public class ButtonClick : MonoBehaviour
     public Sprite[] allicon;
     public string[] allinfo;
     public string[] allname;
+    public GameObject[] allColider;
     public Transform inforWindow;
     public bool selection;
     public GameObject addmoneyimage;
+    public GameObject nextButton;
     private void Start()
     {
         if (selection)
@@ -46,6 +48,7 @@ public class ButtonClick : MonoBehaviour
     }
     public void NextButton()
     {
+
         if (iconset)
         {
             no++;
@@ -54,6 +57,13 @@ public class ButtonClick : MonoBehaviour
                 StartCoroutine(LevelComplete());
             else
             {
+                this.gameObject.transform.DOScaleY(0, 0.5f);
+                inforWindow.DOScaleY(0, .5f);
+                if(allColider.Length >= no)
+                {
+                    allColider[no-1].gameObject.SetActive(false);
+                    allColider[no].gameObject.SetActive(true);
+                }
                 icon.sprite = allicon[no];
                 infotext.text = allinfo[no];
                 nametext.text = allname[no];
@@ -76,7 +86,10 @@ public class ButtonClick : MonoBehaviour
 
     public void ShowInfo()
     {
+        
+        nextButton.transform.DOScaleY(1, .5f);
         inforWindow.DOScaleY(1, .5f);
+        infotext.text = allinfo[no];
     }
     IEnumerator LevelComplete()
     {
