@@ -21,7 +21,6 @@ public class Singleton<T> : MonoBehaviour where T : Component
                 {
                     string typeName = typeof(T).Name;
 
-                        _instance.gameObject.name);
                 }
             }
 
