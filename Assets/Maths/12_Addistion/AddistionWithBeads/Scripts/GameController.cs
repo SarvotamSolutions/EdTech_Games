@@ -8,13 +8,12 @@ using GestureRecognizer;
 
 namespace Maths.Addision.BeadsCount
 {
-    public class GameController :Singleton<GameController>
+    public class GameController : Singleton<GameController>
     {
 
         [Header("Ai")]
         public ExampleGestureHandler AiDrawtext;
         public GestureRecognizer.Recognizer Ai_recognizer;
-       // public GameObject DrawCanvas;
 
         [Space(10)]
         public GameObject particalbalst;
@@ -36,7 +35,7 @@ namespace Maths.Addision.BeadsCount
         public GameObject SecondButton;
         public GameObject ThirdButton;
 
-        public Sprite wrongAnswer,currectanswer,NormalInput;
+        public Sprite wrongAnswer, currectanswer, NormalInput;
         public GameObject[] allOptionAnswer;
 
         public List<int> alloption = new List<int>(3);
@@ -75,15 +74,8 @@ namespace Maths.Addision.BeadsCount
             Relod();
 
         }
-        //public void ParticalEffect()
-        //{
-        //    if(AiDrawtext.checkNo())
-        //    {
-        //        particalbalst.transform.position =
-        //    }
 
-        //}
-        public Color nonselctedcolor,selectedColor;
+        public Color nonselctedcolor, selectedColor;
         int no;
         public void SetFirsttext()
         {
@@ -92,32 +84,21 @@ namespace Maths.Addision.BeadsCount
 
                 if (no < 2)
                 {
-                    //    particalbalst.transform.position = firstinput.transform.position;
-                    //   particalbalst.GetComponent<ParticleSystem>().startColor = Color.green;
-                    // particalbalst.GetComponent<ParticleSystem>().Play();
-
-                   
                     spriteinputs[no].sprite = allsprite[Numbers[no]].box;
                     AiDrawtext.textResult = inputText[no + 1];
-                   // firstbutton.gameObject.SetActive(false);
-                   // SecondButton.gameObject.SetActive(true);
                     Ai_recognizer.Recognigingnumber = (Numbers[no + 1] + 1).ToString();
                     Ai_recognizer.Changerecogniger();
                     no++;
-                  
+
                     if (no == 2)
                     {
 
                         AiDrawtext.transform.parent.gameObject.SetActive(false);
-                        //AiDrawtext.GetComponent<DrawDetector>().enabled = false;
                         ThirdButton.gameObject.SetActive(true);
-                        
-                        spriteinputs[no-1].color = nonselctedcolor;
+
+                        spriteinputs[no - 1].color = nonselctedcolor;
                         spriteinputs[no].color = selectedColor;
                         no = 0;
-                        //spriteinputs[2].sprite = allsprite[Numbers[1]].box;
-                        //AiDrawtext.textResult = null;
-                        //SecondButton.gameObject.SetActive(false);
                     }
                     else
                     {
@@ -125,26 +106,15 @@ namespace Maths.Addision.BeadsCount
                         spriteinputs[no - 1].color = nonselctedcolor;
                     }
                 }
-                else
-                {
-                   // particalbalst.transform.position = spriteinputs[no].transform.position;
-                  //  particalbalst.GetComponent<ParticleSystem>().startColor = Color.green;
-                    //particalbalst.GetComponent<ParticleSystem>().Play();
-                    
-                }
-                
+
             }
             else
             {
                 AiDrawtext.textResult = null;
                 particalbalst.transform.position = spriteinputs[no].transform.position;
-               // particalbalst.GetComponent<ParticleSystem>().startColor = Color.red;
-              //  particalbalst.GetComponent<ParticleSystem>().Play();
                 spriteinputs[no].sprite = wrongAnswer;
                 StartCoroutine(WrongAnswerAnimation(spriteinputs[no]));
             }
-
-
         }
 
         public GameObject canvaspanel;
@@ -173,15 +143,13 @@ namespace Maths.Addision.BeadsCount
             spriteinputs[2].color = nonselctedcolor;
             ThirdButton.gameObject.SetActive(false);
             firstbutton.SetActive(true);
-           
-           // DrawCanvas.SetActive(true);
+
             Relod();
 
         }
         public void Relod()
         {
-
-            if(reloding >= 10)
+            if (reloding >= 10)
             {
                 StartCoroutine(LevelCompleted());
                 return;
@@ -190,13 +158,12 @@ namespace Maths.Addision.BeadsCount
             foreach (var item in inputText)
             {
                 item.text = "";
-
             }
-          
+
             reloding++;
             Numbers[0] = Random.Range(0, 9);
             Numbers[1] = Random.Range(0, 9);
-            while(Numbers[0] == Numbers[1])
+            while (Numbers[0] == Numbers[1])
             {
                 Numbers[1] = Random.Range(0, 9);
             }
@@ -244,10 +211,9 @@ namespace Maths.Addision.BeadsCount
             {
                 gamePlay = false;
 
-                if(obj.GetComponent<Draging>().no == Numbers[2])
+                if (obj.GetComponent<Draging>().no == Numbers[2])
                 {
                     AiDrawtext.transform.parent.gameObject.SetActive(true);
-                  //  AiDrawtext.GetComponent<DrawDetector>().enabled = true;
                     particalbalst.transform.position = spriteinputs[2].transform.position;
                     particalbalst.GetComponent<ParticleSystem>().startColor = Color.green;
                     particalbalst.GetComponent<ParticleSystem>().Play();
@@ -262,7 +228,7 @@ namespace Maths.Addision.BeadsCount
                     particalbalst.GetComponent<ParticleSystem>().startColor = Color.red;
                     particalbalst.GetComponent<ParticleSystem>().Play();
                     spriteinputs[2].sprite = wrongAnswer;
-                    spriteinputs[2].transform.GetChild(0).GetComponent<TextMeshPro>().text =obj.GetComponent<Draging>().no.ToString();
+                    spriteinputs[2].transform.GetChild(0).GetComponent<TextMeshPro>().text = obj.GetComponent<Draging>().no.ToString();
                     StartCoroutine(WrongAnswerAnimation(spriteinputs[2]));
                     return false;
                 }

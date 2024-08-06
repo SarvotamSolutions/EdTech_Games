@@ -10,9 +10,9 @@ namespace Laguage.vowels
 
         protected override void OnMouseDown()
         {
-            if (!GameCOntroller.Instance.gamePlay )
+            if (!GameCOntroller.Instance.gamePlay)
                 return;
-            sound.clip =pickup;
+            sound.clip = pickup;
             sound.Play();
             base.OnMouseDown();
         }
@@ -31,7 +31,7 @@ namespace Laguage.vowels
                 return;
 
             base.OnMouseUp();
-            
+
 
             if (GameCOntroller.Instance.Neartodestination())
             {
@@ -41,17 +41,15 @@ namespace Laguage.vowels
                 letterSoundClip.clip = controler.lettersound;
                 if (controler.allleter)
                 {
-                    if(controler.blankno ==2)
+                    if (controler.blankno == 2)
                         letterSoundClip.PlayDelayed(.2f);
 
                 }
                 else
-                letterSoundClip.PlayDelayed(.2f);
-             //   sound.clip = drop;
+                    letterSoundClip.PlayDelayed(.2f);
                 background.enabled = false;
                 text.enabled = false;
-                ///text.text = "";
-                ///
+
                 char[] letes = GameCOntroller.Instance.selectedCharacter.sameLetter[controler.letterno].Name.ToCharArray();
 
                 Debug.Log(letes[controler.blankno]);
@@ -70,11 +68,9 @@ namespace Laguage.vowels
             }
             else
             {
-                //sound.clip = drop;
-                //sound.Play();
                 transform.position = lastpos;
                 Border.color = controler.darkwhite;
             }
-    }
+        }
     }
 }

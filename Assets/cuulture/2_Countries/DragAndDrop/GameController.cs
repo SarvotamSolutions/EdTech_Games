@@ -7,7 +7,6 @@ namespace culture.countries.draganddrop
     {
         public Sprite currectanswer, wronganswer, defaltanswer;
 
-
         protected override void Start()
         {
            
@@ -39,7 +38,6 @@ namespace culture.countries.draganddrop
             base.WrongAnswer();
 
             StartCoroutine(WaitWrongAnimtion());
-
         }
         public override void ResetingDrage()
         {
@@ -49,9 +47,6 @@ namespace culture.countries.draganddrop
                 selectedoption.Border.color = Color.white;
             selectedoption.transform.position = selectedoption.lastpos;
             gamePlay = true;
-            //base.ResetingDrage();
-
-
         }
     }
 }

@@ -7,15 +7,5 @@ public class UiDrager : MonoBehaviour//, IPointerDownHandler,IDragHandler
 {
     public RectTransform drager;
 
-    //public void OnDrag(PointerEventData eventData)
-    //{
-    //    drager.anchoredPosition += eventData.delta;
-      
-    //   // transform.position = Input.mousePosition;
-    //}
-
-    //public void OnPointerDown(PointerEventData eventData)
-    //{
-        
-    //}
+    
 }

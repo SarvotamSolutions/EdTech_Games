@@ -7,24 +7,24 @@ namespace Laguage.beginning_sounds.match_images
 {
     public class GameController : GameControllerforAll
     {
-      
+
 
         public Transform optionparent;
         public bool rotate;
-      
+
         public Sprite dropingselected, dropingnotselected;
         public SpriteRenderer dropingoutline;
-    
+
         public SpriteRenderer question_sprite;
-   
+
         List<int> alllettersaved = new List<int>();
-        public Sprite[] alldirectionanswer,border;
+        public Sprite[] alldirectionanswer, border;
 
         private void Start()
         {
             StartGame();
         }
-        void StartGame()// when the game started
+        void StartGame()
         {
             reloding++;
             if (reloding > allCharacter.Length)
@@ -39,10 +39,10 @@ namespace Laguage.beginning_sounds.match_images
             int answeroption = Random.Range(0, alloption.Length); // chosing the no of the answer option in the multiple option
 
             int AnswerNumber = Random.Range(0, allCharacter.Length);// chosing the number of the all character  so caracter can not be repeated
-            
+
             for (int i = 0; i < alllettersaved.Count; i++)
             {
-                if(AnswerNumber == alllettersaved[i])
+                if (AnswerNumber == alllettersaved[i])
                 {
                     AnswerNumber = Random.Range(0, allCharacter.Length);// check the answer nuber is already spawned in prviouus if its spawned it will reset
                     i = -1;
@@ -50,10 +50,10 @@ namespace Laguage.beginning_sounds.match_images
 
             }
             alllettersaved.Add(AnswerNumber);// adding the answered number so in fuutre can not be spawned again
-            
+
             for (int i = 0; i < alloption.Length; i++)
             {
-                if(i == answeroption)// checing this id is answeroption 
+                if (i == answeroption)// checing this id is answeroption 
                 {
                     // setting this option as an asnwer
 
@@ -70,23 +70,21 @@ namespace Laguage.beginning_sounds.match_images
                     {
                         alloption[i].pickup = allCharacter[AnswerNumber].lettersound;
                     }
-                    
+
                     int randomno = Random.Range(0, allCharacter[AnswerNumber].sameLetter.Length);
                     question_sprite.sprite = allCharacter[AnswerNumber].sameLetter[randomno].Icon;
                     lettersound = allCharacter[AnswerNumber].sameLetter[randomno].Sound;
                     letter = allCharacter[AnswerNumber].Letter;
 
-                    //  alloption[i].GetComponent<SpriteRenderer>().sprite = alldirectionanswer[0];
-                    // alloption[i].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = border[0];
                     drag.no = allCharacter[AnswerNumber].Letter;
                     if (alloption[i].Icon)
                     {
                         drag.Icon.transform.position = drag.transform.GetChild(1).transform.position;
                         alloption[i].Icon.sprite = allCharacter[AnswerNumber].letterSprite;
-                       
+
                     }
 
-                   
+
 
                     if (alloption[i].text)
                     {
@@ -95,7 +93,7 @@ namespace Laguage.beginning_sounds.match_images
                         drag.no = allCharacter[AnswerNumber].sameLetter[randomno].Name;
                         letter = allCharacter[AnswerNumber].sameLetter[randomno].Name;
                     }
-                        OptionNO.Add(AnswerNumber);
+                    OptionNO.Add(AnswerNumber);
                 }
                 else// if its not an answeroption means all is wrong answer
                 {
@@ -132,18 +130,11 @@ namespace Laguage.beginning_sounds.match_images
                     {
                         alloption[i].pickup = allCharacter[no].lettersound;
                     }
-                 
-                 
-                   
-
-
-                   
-
                     // setting the icon image
                     if (drag.Icon)
                     {
-                        if(!rotate)
-                        drag.Icon.transform.position = drag.transform.GetChild(1).transform.position;
+                        if (!rotate)
+                            drag.Icon.transform.position = drag.transform.GetChild(1).transform.position;
                         else
                         {
                             drag.Icon.transform.position = drag.Border.transform.GetChild(0).transform.position;
@@ -161,24 +152,16 @@ namespace Laguage.beginning_sounds.match_images
                     }
                     OptionNO.Add(no);
                 }
-              
-
-
             }
-          
-
-
             gamePlay = true;
         }
 
-
         public bool Neartodestination(GameObject obj)
         {
-          
+
             if (Vector3.Distance(obj.transform.position, droping_place[0].transform.position) < 2.5f)
             {
                 droping_place[0].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = dropingselected;
-               // droping_place.color = Color.black;
                 return true;
             }
             dropingoutline.color = Color.white;
@@ -191,18 +174,10 @@ namespace Laguage.beginning_sounds.match_images
         {
             if (icon_Colors_Change)
                 selectedoption.background.color = currect_answer_color;
-           // dropingoutline.color = currect_answer_color;
             droping_place[1].sprite = currect_answer[1];
-         //   droping_place[1].color = currect_answer_color;
             StartCoroutine(RelodingThe_Level());
             base.CurrectAnswer();
         }
-        //protected override void CurrectAnswer()
-        //{
-        //    dropingoutline.color = currect_answer_color;
-        //    droping_place.color = currect_answer_color;
-        //    StartCoroutine(RelodingThe_Level());
-        //}
         IEnumerator RelodingThe_Level()
         {
             Party_pop.SetActive(true);
@@ -213,16 +188,15 @@ namespace Laguage.beginning_sounds.match_images
                 tempcolr = selectedoption.text.color;
                 selectedoption.text.color = Color.white;
             }
-           
+
             yield return new WaitForSeconds(CorrectAnswer_delayTime + 1);
 
             if (selectedoption.text)
             {
-               // tempcolr = selectedoption.text.color;
                 selectedoption.text.color = tempcolr;
             }
-            if(!rotate)
-                selectedoption.Border.sprite= Normal_answer[0];
+            if (!rotate)
+                selectedoption.Border.sprite = Normal_answer[0];
             droping_place[1].sprite = Normal_answer[1];
             droping_place[0].enabled = true;
             if (icon_Colors_Change)
@@ -232,7 +206,7 @@ namespace Laguage.beginning_sounds.match_images
             }
             Party_pop.SetActive(false);
             Drager drage = droping_place[0].transform.GetComponentInChildren<Drager>();
-          
+
             selectedoption.Border.color = Color.white;
             drage.transform.parent = optionparent;
             drage.transform.localScale = Vector3.one;
@@ -248,7 +222,7 @@ namespace Laguage.beginning_sounds.match_images
             gamePlay = false;
             gameCompleted_animation.SetActive(true);
             gameCompleted_animation.GetComponent<AudioSource>().PlayDelayed(1);
-            yield return new WaitForSeconds(levelcompletedelayTime+1);
+            yield return new WaitForSeconds(levelcompletedelayTime + 1);
             SceneManager.LoadScene(0);
 
         }
@@ -261,17 +235,14 @@ namespace Laguage.beginning_sounds.match_images
                 tempcolr = selectedoption.text.color;
                 selectedoption.text.color = Color.white;
             }
-            // selectedoption.background.sprite = wrong_answer[0];
             droping_place[1].sprite = wrong_answer[1];
-            //drage.Border.color = wrong_answer_color;
             Debug.Log("WRONG ANSWER");
             wrongAnswer_animtion.SetActive(true);
             wrongAnswer_animtion.GetComponent<AudioSource>().PlayDelayed(1f);
-            yield return new WaitForSeconds(WrongAnswer_delayTime+1);
+            yield return new WaitForSeconds(WrongAnswer_delayTime + 1);
 
             if (selectedoption.text)
             {
-                // tempcolr = selectedoption.text.color;
                 selectedoption.text.color = tempcolr;
             }
             if (!rotate)
@@ -283,21 +254,14 @@ namespace Laguage.beginning_sounds.match_images
                 selectedoption.background.color = sellect_answer_color;
 
                 selectedoption.Icon.color = selectedoption.GetComponent<Drager>().imagecolor;
-            } 
+            }
             selectedoption.Border.color = Color.white;
             gamePlay = true;
             wrongAnswer_animtion.SetActive(false);
 
-
-
-          //  drage.GetComponent<SpriteRenderer>().sprite = alldirectionanswer[drage.rotionno];
-          //  drage.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = border[drage.rotionno];
-
             drage.transform.parent = optionparent;
             drage.transform.position = drage.lastpos;
             drage.transform.localScale = Vector3.one;
-         //   drage.Border.color = Color.white;
-            //  droping_place[0].color = Color.white;
             dropingoutline.color = Color.white;
             gamePlay = true;
         }
@@ -308,11 +272,8 @@ namespace Laguage.beginning_sounds.match_images
             dropingoutline.color = wrong_answer_color;
             if (icon_Colors_Change)
                 selectedoption.background.color = wrong_answer_color;
-            // droping_place[0].color = wrong_answer_color;
 
             StartCoroutine(WaitForReseting());
         }
-
-
     }
 }

@@ -48,7 +48,6 @@ namespace Maths.CountAndCards.count
             if(no == droper.childCount - 1)
             {
                 BOx.sprite = currectanswerBox;
-                //currect answer
                 for (int i = 0; i < droper.childCount-1; i++)
                 {
                     droper.GetChild(i).GetComponent<Image>().sprite = currectanswer;
@@ -66,7 +65,6 @@ namespace Maths.CountAndCards.count
 
                 }
                 StartCoroutine(Reseting(false));
-                //wrong answer
             }
           
         }
@@ -83,7 +81,6 @@ namespace Maths.CountAndCards.count
             if (currectanswer)
             {
                 OddevenOptionOppen();
-                //RelodingLevel();
             }
             else
             {
@@ -155,10 +152,6 @@ namespace Maths.CountAndCards.count
         IEnumerator ODdevenReset(bool currectAnswer,Image image)
         {
             gamePlay = false;
-            if (!currectAnswer)
-            {
-
-            }
             Color temcolor = image.gameObject.GetComponentInChildren<TextMeshProUGUI>().color;
             image.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
             if (currectAnswer)          
@@ -193,14 +186,12 @@ namespace Maths.CountAndCards.count
                 wrongAnswer_animtion.SetActive(false);
             }
             gamePlay = true;
-
         }
         IEnumerator LevelCompleted()
         {
             gameCompleted_animation.SetActive(true);
             yield return new WaitForSeconds(5.1f);
             SceneManager.LoadScene(0);
-
         }
         public void RelodingLevel()
         {
@@ -218,14 +209,11 @@ namespace Maths.CountAndCards.count
                 {
                     RelodingLevel();
                     return;
-
                 }
-
             }
             QuestionText.text = no.ToString();
             allno.Add(no);
             gamePlay = true;
-
         }
     }
 }

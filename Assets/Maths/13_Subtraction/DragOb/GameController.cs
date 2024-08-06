@@ -25,9 +25,6 @@ namespace Maths.Substraction.DragingObject
 
     public class GameController : Singleton<GameController>
     {
-        // #69B6EA (144,61,179) color code for question text if allobj = 0
-        // #723DB3 (105,182,234) color code for question text if allobj = 1
-        // #94682E (148,104,46) color code for question text if allobj = 2
         public Totorial totorial;
         public obj[] allobj;
         public GameObject papercontins;
@@ -125,28 +122,6 @@ namespace Maths.Substraction.DragingObject
                 numberText[1].color = allobj[getno].questionTextColor;
                 numberText[2].color = allobj[getno].questionTextColor;
             }
-            /*//if (getno == 2)
-            //{
-            //    ObjectPlacedBG.sortingOrder = 2;
-            //    numberText[0].color = new Color(0.5803922f, 0.4078431f, 0.1803922f, 1f);
-            //    numberText[1].color = new Color(0.5803922f, 0.4078431f, 0.1803922f, 1f);
-            //    numberText[2].color = new Color(0.5803922f, 0.4078431f, 0.1803922f, 1f);
-            //}
-            //else if (getno == 1)
-            //{
-            //    ObjectPlacedBG.sortingOrder = 0;
-            //    numberText[0].color = new Color(0.4470588f, 0.2392157f, 0.7019608f, 1f);
-            //    numberText[1].color = new Color(0.4470588f, 0.2392157f, 0.7019608f, 1f);
-            //    numberText[2].color = new Color(0.4470588f, 0.2392157f, 0.7019608f, 1f);
-            //}
-            //else if (getno == 0)
-            //{
-            //    ObjectPlacedBG.sortingOrder = 0;
-            //    numberText[0].color = new Color(0.4117647f, 0.7137255f, 0.9176471f, 1f);
-            //    numberText[1].color = new Color(0.4117647f, 0.7137255f, 0.9176471f, 1f);
-            //    numberText[2].color = new Color(0.4117647f, 0.7137255f, 0.9176471f, 1f);
-            //}*/
-
             numberText[2].transform.parent.GetComponent<SpriteRenderer>().enabled = true;
 
             numbers[2] = numbers[0] - numbers[1];
@@ -169,7 +144,6 @@ namespace Maths.Substraction.DragingObject
                 if (allobj[getno].bird)
                 {
                     obj.GetComponent<SpriteRenderer>().sprite = allobj[getno].birdsprite;
-
                 }
 
                 return true;
@@ -178,7 +152,6 @@ namespace Maths.Substraction.DragingObject
             if (allobj[getno].bird)
             {
                 obj.GetComponent<SpriteRenderer>().sprite = allobj[getno].objecticon[0];
-
             }
             return false;
         }
@@ -192,13 +165,8 @@ namespace Maths.Substraction.DragingObject
             if (papercontins.transform.childCount == numbers[2])
             {
                 numberText[2].text = papercontins.transform.childCount.ToString();
-                //for (int i = 0; i < numberText.Length; i++)
-                //{
-
                 numberText[2].transform.parent.GetComponent<SpriteRenderer>().color = currectanswer;
                 numberText[2].transform.GetComponent<TextMeshPro>().color = Color.white;
-
-                //}
                 numberText[2].transform.parent.GetComponent<SpriteRenderer>().enabled = true;
                 StartCoroutine(waitForLoad());
                 Debug.Log("currect Answer");
@@ -206,18 +174,13 @@ namespace Maths.Substraction.DragingObject
             else
             {
                 numberText[2].text = papercontins.transform.childCount.ToString();
-                //for (int i = 0; i < numberText.Length; i++)
-                //{
-
                 numberText[2].transform.parent.GetComponent<SpriteRenderer>().color = wronganswer;
                 numberText[2].transform.GetComponent<TextMeshPro>().color = Color.white;
-                //}
                 numberText[2].transform.parent.GetComponent<SpriteRenderer>().enabled = true;
                 for (int i = dustbin.transform.childCount - 1; i >= 0; i--)
                 {
                     dustbin.transform.GetChild(i).gameObject.SetActive(true);
                     dustbin.transform.GetChild(i).transform.parent = papercontins.transform;
-
                 }
                 int no = 0;
                 for (int i = papercontins.transform.childCount - 1; i >= 0; i--)
@@ -225,7 +188,6 @@ namespace Maths.Substraction.DragingObject
                     if (no < numbers[0])
                     {
                         papercontins.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allobj[getno].objecticon[Random.Range(0, allobj[getno].objecticon.Length)];
-
                     }
                     else
                     {
@@ -233,8 +195,6 @@ namespace Maths.Substraction.DragingObject
                         papercontins.transform.GetChild(i).transform.SetParent(dustbin.transform);
                     }
                     no++;
-
-
                 }
                 StartCoroutine(WrongAnswerAnimation());
             }
@@ -248,16 +208,12 @@ namespace Maths.Substraction.DragingObject
             {
                 numberText[2].transform.parent.GetComponent<SpriteRenderer>().enabled = false;
                 numberText[2].text = "?";
-                //for (int i = 0; i < numberText.Length; i++)
-                //{
 
                 numberText[2].transform.parent.GetComponent<SpriteRenderer>().color = normalanswer;
-                //}
                 for (int i = dustbin.transform.childCount - 1; i >= 0; i--)
                 {
                     dustbin.transform.GetChild(i).gameObject.SetActive(true);
                     dustbin.transform.GetChild(i).transform.parent = papercontins.transform;
-
                 }
 
                 Relod();

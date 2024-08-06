@@ -9,7 +9,7 @@ namespace Maths.placeValue.slectOption
 {
     public class Gamecontroller : Singleton<Gamecontroller>
     {
-    
+
         public TextMeshPro questiontext;
         public Totorial totorial;
         public int number;
@@ -29,8 +29,6 @@ namespace Maths.placeValue.slectOption
         public GameObject Party_pop;
         private void Start()
         {
-          
-
             number = Random.Range(10, 99);
             answerno = Random.Range(0, 4);
             options[answerno].transform.GetComponentInParent<DragDroper>().no = number;
@@ -39,31 +37,22 @@ namespace Maths.placeValue.slectOption
             options[answerno].text = (number / 10) + " tens and " + (number % 10) + " ones";
             for (int i = 0; i < allanswer.Length; i++)
             {
-                if(answerno == i)
+                if (answerno != i)
                 {
-
-                }
-                else
-                {
-                    
                     allanswer[i] = Random.Range(10, 99);
                     options[i].transform.GetComponentInParent<DragDroper>().no = allanswer[i];
                     options[i].text = (allanswer[i] / 10) + " tens and " + (allanswer[i] % 10) + " ones";
                 }
-
-
             }
         }
 
         public void Restart(DragDroper obj)
         {
             StartCoroutine(WairforRelode(obj));
-
         }
 
-        public  IEnumerator WairforRelode(DragDroper obj)
+        public IEnumerator WairforRelode(DragDroper obj)
         {
-           
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
             wrongAnswer_animtion.SetActive(false);
@@ -74,10 +63,7 @@ namespace Maths.placeValue.slectOption
         }
         public void resetgame(DragDroper obj)
         {
-
-            
             StartCoroutine(waitforreset(obj));
-
         }
         IEnumerator LevelCompleted()
         {
@@ -85,7 +71,6 @@ namespace Maths.placeValue.slectOption
             gameCompleted_animation.SetActive(true);
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene(0);
-
         }
         IEnumerator waitforreset(DragDroper obj)
         {
@@ -111,41 +96,26 @@ namespace Maths.placeValue.slectOption
             options[answerno].text = (number / 10) + " tens and " + (number % 10) + " ones";
             for (int i = 0; i < allanswer.Length; i++)
             {
-                if (answerno == i)
+                if (answerno != i)
                 {
-
-                }
-                else
-                {
-
                     allanswer[i] = Random.Range(10, 99);
                     options[i].transform.GetComponentInParent<DragDroper>().no = allanswer[i];
                     options[i].text = (allanswer[i] / 10) + " tens and " + (allanswer[i] % 10) + " ones";
                 }
-
-
             }
             gamePlay = true;
-
         }
 
         public bool Neartodestination(GameObject obj)
         {
-
             if (Vector3.Distance(obj.transform.position, dropbox.transform.position) < 2.5f)
             {
-
-
                 if (obj)
                 {
-                   
                     return true;
                 }
             }
-
             return false;
         }
-
-        }
-
     }
+}

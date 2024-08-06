@@ -14,9 +14,7 @@ namespace Maths.placeValue.inofDroper
 
         private void Start()
         {
-           // sound = GetComponent<AudioSource>();
             lastpos = transform.position;
-            
         }
         private void OnMouseDown()
         {
@@ -35,15 +33,10 @@ namespace Maths.placeValue.inofDroper
             sound.clip = drop;
             sound.Play();
             clicked = false;
-            if (GameController.instance.Neartodestination(this.gameObject))
+            if (!GameController.instance.Neartodestination(this.gameObject))
             {
-
-                // transform.position = lastpos;
-                // gameObject.SetActive(false);
-            }
-            else
                 transform.position = lastpos;
-
+            }
         }
         private void Update()
         {
@@ -53,8 +46,6 @@ namespace Maths.placeValue.inofDroper
                 pos.z = 0;
                 transform.position = pos;
             }
-
-
         }
     }
 }

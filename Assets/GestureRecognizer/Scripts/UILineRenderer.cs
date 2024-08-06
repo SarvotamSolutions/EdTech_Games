@@ -214,7 +214,6 @@ namespace GestureRecognizer {
 				return CreateLineSegment(end, capEnd, SegmentType.End);
 			}
 
-			Debug.LogError("Bad SegmentType passed in to CreateLineCap. Must be SegmentType.Start or SegmentType.End");
 			return null;
 		}
 

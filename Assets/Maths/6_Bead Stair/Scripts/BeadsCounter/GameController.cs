@@ -18,7 +18,7 @@ namespace Maths.BeadStair.NumberSelction
 
         [Space(10)]
         public SpriteRenderer[] Allanswer;
-        public Sprite[] allcurrectanswer,allwronganswer;
+        public Sprite[] allcurrectanswer, allwronganswer;
         public GameObject[] dropPlace;
         public Sprite wrongAnswer;
         public Sprite CurrectAnswer;
@@ -27,7 +27,6 @@ namespace Maths.BeadStair.NumberSelction
         public int level;
         public GameObject cover;
         public Sprite selectedbox;
-        // public GameObject DrawCanvas;
         public SpriteRenderer[] allbeads;
         public List<int> allno = new List<int>();
         public float curretanswerInterval, wronganswerinterval;
@@ -42,19 +41,15 @@ namespace Maths.BeadStair.NumberSelction
             AiRecognizer.Changerecogniger();
             autoWriting.textResult = Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>();
             allbeads[level].sortingOrder = 2;
-           
         }
-   
+
 
         public void COnform()
         {
             if (level == 9)
             {
-                //Game Completed
-
                 StartCoroutine(WaitforLevelComplete());
                 return;
-
             }
             Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>().text = autoWriting.no.ToString();
             if (autoWriting.no == (level + 1))
@@ -66,11 +61,11 @@ namespace Maths.BeadStair.NumberSelction
                 AiRecognizer.Changerecogniger();
                 autoWriting.textResult = Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>();
                 StartCoroutine(WaitForNextBead());
-               
+
             }
             else
             {
-               
+
                 autoWriting.textResultUI = null;
                 Allanswer[level].GetComponent<Image>().sprite = wrongAnswer;
 
@@ -85,18 +80,15 @@ namespace Maths.BeadStair.NumberSelction
         {
             if (!Selected)
                 return false;
-            if (Mathf.Abs(Selected.transform.position.x-dropPlace[level].transform.position.x) < distace.x &&
+            if (Mathf.Abs(Selected.transform.position.x - dropPlace[level].transform.position.x) < distace.x &&
                 Mathf.Abs(Selected.transform.position.y - dropPlace[level].transform.position.y) < distace.y)
             {
-                if(Selected.no == level+1)
+                if (Selected.no == level + 1)
                 {
                     if (!spritechnagr)
-                    {//answer sprite will replace with another sprite
-
+                    {
                         Allanswer[level].sprite = CurrectAnswer;
                         Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>().text = (level + 1).ToString();
-                        //  AiRecognizer.Recognigingnumber = (level + 1).ToString();
-                        //AiRecognizer.Changerecogniger();
                         Selected.gameObject.SetActive(false);
                     }
                     else//answer sprite will replace with this sprite
@@ -105,18 +97,12 @@ namespace Maths.BeadStair.NumberSelction
                         Selected.transform.position = dropPlace[level].transform.position;
 
                         dropPlace[level].GetComponent<SpriteRenderer>().sprite = allcurrectanswer[level];
-                        //if(level<9)
-                        //    dropPlace[level+1].GetComponent<SpriteRenderer>().color = Color.blue;
                         text.text = "Drag Beads No " + (level + 2).ToString();
 
                     }
                     if (level == 9)
                     {
-                        //Game Completed
-
                         StartCoroutine(WaitforLevelComplete());
-
-
                     }
                     else
                     {
@@ -125,11 +111,11 @@ namespace Maths.BeadStair.NumberSelction
                     }
 
                     Selected = null;
-                   
+
 
                 }
                 else
-                {//wrong anser
+                {
                     if (!spritechnagr)
                     {
                         Allanswer[level].sprite = wrongAnswer;
@@ -139,7 +125,7 @@ namespace Maths.BeadStair.NumberSelction
                     {
                         Selected.transform.position = dropPlace[level].transform.position;
                         dropPlace[level].GetComponent<SpriteRenderer>().sprite = allwronganswer[Selected.no];
-                      
+
                     }
                     StartCoroutine(WrongAnswerAnimation());
                 }
@@ -158,19 +144,16 @@ namespace Maths.BeadStair.NumberSelction
             DrawCanvas.SetActive(true);
             Party_pop.SetActive(false);
 
-          
+
             allbeads[level].color = new Color(1, 1, 1, 1);
             Allanswer[level].color = new Color(1, 1, 1, 1);
             Allanswer[level].sprite = selectedbox;
-         
+
             gamePlay = true;
-            //cover.transform.SetAsLastSibling();
-            // Allanswer[level].transform.SetAsLastSibling();
         }
 
         IEnumerator WaitforLevelComplete()
         {
-            // DrawCanvas.SetActive(false);
             gamePlay = false;
             gameCompleted_animation.SetActive(true);
             yield return new WaitForSeconds(2);
@@ -179,20 +162,13 @@ namespace Maths.BeadStair.NumberSelction
 
         IEnumerator WrongAnswerAnimation()
         {
-            //   DrawCanvas.SetActive(false);
-          //  Sprite tempsprite = dropPlace[level].GetComponent<SpriteRenderer>().sprite;
-          //  dropPlace[level].GetComponent<SpriteRenderer>().sprite = allwronganswer[level];
             gamePlay = false;
             wrongAnswer_animtion.SetActive(true);
-         //   Color tempcolor = Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>().color;
-         //  Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.white;
             yield return new WaitForSeconds(wronganswerinterval);
-          //  Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>().color = tempcolor;
             dropPlace[level].GetComponent<SpriteRenderer>().color = Color.white;
             Selected.transform.position = Selected.lastpos;
             Selected = null;
             autoWriting.textResult = Allanswer[level].transform.GetChild(0).GetComponent<TextMeshPro>();
-//DrawCanvas.SetActive(true);
             Allanswer[level].sprite = NormalAnswer;
             autoWriting.textResult.text = "";
             wrongAnswer_animtion.SetActive(false);

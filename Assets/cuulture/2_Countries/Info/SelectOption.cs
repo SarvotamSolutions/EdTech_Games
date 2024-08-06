@@ -7,20 +7,12 @@ namespace culture.Solorsystem.slectsolorsystem
     {
         public ButtonClick[] allbuttonclicks;
         int answerno = 0;
-        // public List<int> alloption = new List<int>();
-        //  public List<int> allcurectanswer = new List<int>();
-
         public Sprite curectnaswersprite, wronganswer, defaltanswer;
-
-
         int curectnaswer;
 
         private void Start()
         {
-
             Gameset();
-
-
         }
         int n;
         public void Selecticon(int no)
@@ -56,7 +48,7 @@ namespace culture.Solorsystem.slectsolorsystem
         }
         public void Gameset()
         {
-            if(AllAnswerNo.Count >= allbuttonclicks[0].allicon.Length)
+            if (AllAnswerNo.Count >= allbuttonclicks[0].allicon.Length)
             {
                 StartCoroutine(LevelCompleted());
                 return;
@@ -106,11 +98,7 @@ namespace culture.Solorsystem.slectsolorsystem
                     OptionNO.Add(no);
                     allbuttonclicks[i].nametext.text = allbuttonclicks[0].allname[no];
                 }
-
-
             }
         }
-
-
     }
 }

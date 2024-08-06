@@ -31,30 +31,24 @@ namespace Maths.Money.MoneyQuiz
             gameCompleted_animation.SetActive(true);
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene(0);
-
         }
         IEnumerator WrongAnswerAnimation(GameObject obj)
         {
-            
             yield return new WaitForSeconds(.5f);
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
-
             if (dropplace.transform.childCount != 0)
             {
                 dropplace.transform.GetChild(0).transform.position = dropplace.transform.GetChild(0).GetComponent<DragObj>().permantlastpos;
                 dropplace.transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>().color = whitecolor;
-
                 obj.GetComponent<SpriteRenderer>().sprite = Normal;
                 dropplace.transform.GetChild(0).transform.parent = Option_parent.transform;
-
             }
             wrongAnswer_animtion.SetActive(false);
             gamePlay = true;
             dropplace.GetComponent<SpriteRenderer>().enabled = true;
         }
 
-        // Start is called before the first frame update
         void Start()
         {
             no = Random.Range(0, allcoinname.Length);
@@ -62,17 +56,10 @@ namespace Maths.Money.MoneyQuiz
             text.text = allcoinname[no];
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public bool Neartodestination(GameObject obj)
         {
             if (Vector3.Distance(obj.transform.position, dropplace.transform.position) < 4)
             {
-
                 gamePlay = false;
                 dropplace.GetComponent<SpriteRenderer>().enabled = false;
                 Transform test = obj.transform.parent;
@@ -81,20 +68,13 @@ namespace Maths.Money.MoneyQuiz
                 if (obj.GetComponent<DragObj>().moneyValue == no)
                 {
                     obj.transform.GetComponent<SpriteRenderer>().sprite = Correctans;
-
-                    // Win.transform.DOScale(new Vector3(3, 3, 3), 1);
-
                     if (test.childCount != 0)
                     {
-
-
-
                         StartCoroutine(WaitForNext(obj));
                     }
                     else
                     {
                         StartCoroutine(LevelCompleted());
-
                     }
                 }
                 else
@@ -102,13 +82,8 @@ namespace Maths.Money.MoneyQuiz
                     obj.transform.GetComponent<SpriteRenderer>().sprite = WrongAns;
                     StartCoroutine(WrongAnswerAnimation(obj));
                 }
-
-
-
-
                 return true;
             }
-
             return false;
         }
 

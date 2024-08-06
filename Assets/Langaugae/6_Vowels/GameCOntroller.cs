@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 namespace Laguage.vowels
-{ 
+{
     public class GameCOntroller : GameControllerforAll
     {
-        public Color darkwhite,selecteddrop,neartodrop;
+        public Color darkwhite, selecteddrop, neartodrop;
         public int blankno;
         public bool ending;
         public bool allleter;
@@ -16,17 +16,17 @@ namespace Laguage.vowels
         public override void GameStart()
         {
             base.GameStart();
-            char[] letername = allCharacter[AllAnswerNo[reloding-1]].sameLetter[letterno].Name.ToCharArray();
+            char[] letername = allCharacter[AllAnswerNo[reloding - 1]].sameLetter[letterno].Name.ToCharArray();
             Debug.Log(letername.Length);
             lettersound = allCharacter[AllAnswerNo[reloding - 1]].sameLetter[letterno].Sound;
-            if (!allleter) { 
+            if (!allleter)
+            {
                 blankno = Random.Range(0, letername.Length);
                 if (!ending && !middle)
                 {
                     while (blankno == 1)
                     {
                         blankno = Random.Range(0, letername.Length);
-
                     }
                 }
                 else if (ending)
@@ -42,9 +42,9 @@ namespace Laguage.vowels
             }
             else
             {
-                blankno=0;
+                blankno = 0;
             }
-          
+
             Boarder.color = Color.white;
             for (int i = 0; i < droping_place.Length; i++)
             {
@@ -53,16 +53,12 @@ namespace Laguage.vowels
                 {
                     if (i != blankno)
                     {
-                        //filled qestion
                         droping_place[i].color = new Color(1, 1, 1, 1);
                         droping_place[i].GetComponentInChildren<TextMeshPro>().text = letername[i].ToString();
                         droping_place[i].sprite = Normal_answer[0];
                     }
                     else
                     {
-                        //need to change the spritre
-
-                        //    droping_place[i]. = selecteddrop;
                         droping_place[i].sprite = Normal_answer[1];
                         question_text = droping_place[i].GetComponentInChildren<TextMeshPro>();
                         question_text.text = "?";
@@ -70,79 +66,57 @@ namespace Laguage.vowels
                 }
                 else
                 {
-                        droping_place[i].color = selecteddrop;
-                        droping_place[i].sprite = Normal_answer[1];
-                        question_text = droping_place[i].GetComponentInChildren<TextMeshPro>();
-                        question_text.text = "?";
-                    
+                    droping_place[i].color = selecteddrop;
+                    droping_place[i].sprite = Normal_answer[1];
+                    question_text = droping_place[i].GetComponentInChildren<TextMeshPro>();
+                    question_text.text = "?";
                 }
             }
             question_text = droping_place[blankno].GetComponentInChildren<TextMeshPro>();
             droping_place[blankno].color = sellect_answer_color;
-           
+
         }
         public override void WrongAnswer()
         {
-         
+
             gamePlay = false;
             base.WrongAnswer();
-            //Boarder.color = wrong_answer_color;
             selectedoption.background.color = wrong_answer_color;
             droping_place[blankno].GetComponentInChildren<TextMeshPro>().color = Color.white;
             droping_place[blankno].color = wrong_answer_color;
             droping_place[blankno].sprite = wrong_answer[0];
-            //for (int i = 0; i < droping_place.Length; i++)
-            //{
-                
-            //    droping_place[i].sprite = wrong_answer[0];
-
-            //}
-
-
             StartCoroutine(WaitWrongAnimtion());
         }
         public override void CurrectAnswer()
         {
             gamePlay = false;
-         //   Boarder.color = currect_answer_color; 
             selectedoption.background.color = currect_answer_color;
             if (!allleter)
             {
                 for (int i = 0; i < droping_place.Length; i++)
                 {
                     droping_place[i].GetComponentInChildren<TextMeshPro>().color = Color.white;
-                    //   droping_place[i].color = currect_answer_color;
                     droping_place[i].sprite = currect_answer[0];
-                   // droping_place[i].transform.GetChild(0).GetComponent<SpriteRenderer>().color = currect_answer_color;
-
                 }
                 StartCoroutine(WaitForCurrectanimtion());
             }
             if (allleter)
             {
                 droping_place[blankno].GetComponentInChildren<TextMeshPro>().color = Color.white;
-                //   droping_place[i].color = currect_answer_color;
                 droping_place[blankno].sprite = currect_answer[0];
 
-                if(blankno == 2)
+                if (blankno == 2)
                 {
                     StartCoroutine(WaitForCurrectanimtion());
                 }
                 else
                 {
-
                     CurrectAnimtionCompleted();
                 }
             }
-            Debug.Log("Currect answer");
-           
-
-           
         }
         protected override void CurrectAnimtionCompleted()
         {
-            //set c
-          
             base.CurrectAnimtionCompleted();
             if (reloding > maxloding)
                 return;
@@ -154,40 +128,36 @@ namespace Laguage.vowels
             if (allleter)
             {
                 droping_place[blankno].GetComponentInChildren<TextMeshPro>().text = selectedoption.no;
-             //   droping_place[blankno].color = currect_answer_color;
                 droping_place[blankno].sprite = currect_answer[0];
-              
+
                 blankno++;
                 for (int i = blankno; i < 3; i++)
                 {
                     droping_place[i].transform.GetComponentInChildren<TextMeshPro>().text = "?";
                 }
 
-                if(blankno == 3)
+                if (blankno == 3)
                 {
                     GameStart();
                 }
                 else
                 {
-                   // droping_place[blankno].transform.GetChild(0).GetComponent<SpriteRenderer>().color = sellect_answer_color;
                     question_text = droping_place[blankno].transform.GetComponentInChildren<TextMeshPro>();
                 }
             }
             else
             {
-               
                 question_text.text = "?";
                 GameStart();
             }
-           
+
             gamePlay = true;
         }
         public override bool Neartodestination()
         {
-            if (Vector3.Distance(droping_place[blankno].transform.position, selectedoption.transform.position)<distangedrage)
+            if (Vector3.Distance(droping_place[blankno].transform.position, selectedoption.transform.position) < distangedrage)
             {
                 droping_place[blankno].color = neartodrop;
-               // selectedoption.transform.position = droping_place[blankno].transform.position;
                 return true;
             }
             droping_place[blankno].color = selecteddrop;
@@ -197,26 +167,12 @@ namespace Laguage.vowels
         {
             selectedoption.background.color = Color.white;
 
-            if(allleter)
+            if (allleter)
             {
                 droping_place[blankno].sprite = Normal_answer[1];
                 question_text = droping_place[blankno].GetComponentInChildren<TextMeshPro>();
                 question_text.color = darkwhite;
                 question_text.text = "?";
-                for (int i = blankno; i < 3; i++)
-                {
-                   // droping_place[i].color = selecteddrop;
-                    //droping_place[i].sprite = Normal_answer[1];
-                    //question_text = droping_place[i].GetComponentInChildren<TextMeshPro>();
-                    //question_text.color = darkwhite;
-                    
-                }
-                for (int i =0; i <blankno; i++)
-                {
-               //    droping_place[i].sprite = currect_answer[0];
-                  //  droping_place[i].transform.GetChild(0).GetComponent<SpriteRenderer>().color = currect_answer_color;
-                }
-               
             }
             else
             {
@@ -230,7 +186,6 @@ namespace Laguage.vowels
             selectedoption.background.enabled = true;
             selectedoption.text.enabled = true;
             droping_place[blankno].sprite = Normal_answer[1];
-          //  selectedoption.Border.color = darkwhite;
             question_text.text = "?";
             droping_place[blankno].color = selecteddrop;
             base.ResetingDrage();
@@ -242,7 +197,5 @@ namespace Laguage.vowels
         {
             GetComponent<AudioSource>().PlayOneShot(lettersound);
         }
-
-
     }
 }

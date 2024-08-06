@@ -5,11 +5,9 @@ namespace culture.countries.draganddrop
 {
     public class Draging : DragerForall
     {
-
         public override void Start()
         {
             base.Start();
-
             transform.SetSiblingIndex(Random.Range(0, transform.parent.childCount));
         }
 
@@ -41,7 +39,6 @@ namespace culture.countries.draganddrop
                     if (GameController.Instance.Neartodestination(i))
                     {
                         transform.position = GameController.Instance.droping_place[i].transform.position;
-                        //wrong asnwer;
                         GameController.Instance.WrongAnswer();
                         return;
                     }
@@ -49,8 +46,6 @@ namespace culture.countries.draganddrop
                 GameController.Instance.gamePlay = true;
                 transform.position = lastpos;
             }
-
-
         }
     }
 }

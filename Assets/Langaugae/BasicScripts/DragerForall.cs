@@ -22,7 +22,6 @@ public class DragerForall : MonoBehaviour
 
     public virtual void Start()
     {
-        //sound = GetComponent<AudioSource>();
         lastpos = transform.position;
         if (text &&  TextUpdate)
             text.text = no;
@@ -37,7 +36,6 @@ public class DragerForall : MonoBehaviour
         GameControllerforAll.Instance.selectedoption = this;
         sound.clip = pickup;
         sound.Play();
-        // AddSetOrderLayer(transform.GetComponent<SpriteRenderer>());
         if (Border)
         {
             Border.color = GameControllerforAll.Instance.sellect_answer_color;
@@ -54,19 +52,14 @@ public class DragerForall : MonoBehaviour
   
     protected virtual void OnMouseUp()
     {
-    
-
         if (!clicked || GameControllerforAll.Instance.totorial.totorialplaying)
             return;
-       
       
         Debug.Log("selection");
         clicked = false;
-       // RemoveSetOrderLayer(transform.GetComponent<SpriteRenderer>());
 
         if (Border)
         {
-         //   Border.color = Color.white;
             RemoveSetOrderLayer(Border);
         }
         if(Icon)
@@ -77,43 +70,30 @@ public class DragerForall : MonoBehaviour
             RemoveSetOrderLayer(text);
 
     }
-    protected virtual void OnMouseDrag()
-    {
-       
-    }
     protected virtual void Update()
     {
-
         if (Input.GetMouseButton(0) && clicked)
         {
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
             transform.position = pos;
         }
-
-
     }
 
     public void AddSetOrderLayer(SpriteRenderer sprite)
     {
-
         sprite.sortingOrder += maxmimumorderlayer;
     }
     public void RemoveSetOrderLayer(SpriteRenderer removeingsprite)
     {
-
         removeingsprite.sortingOrder -= maxmimumorderlayer;
     }
     public void AddSetOrderLayer(TextMeshPro sprite)
     {
-
         sprite.sortingOrder += maxmimumorderlayer;
     }
     public void RemoveSetOrderLayer(TextMeshPro removeingsprite)
     {
-
         removeingsprite.sortingOrder -= maxmimumorderlayer;
     }
-
-
 }

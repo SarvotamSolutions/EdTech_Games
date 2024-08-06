@@ -21,7 +21,6 @@ public class Singleton<T> : MonoBehaviour where T : Component
                 {
                     string typeName = typeof(T).Name;
 
-                    Debug.Log("[Singleton] " + typeName + " instance already created: " +
                         _instance.gameObject.name);
                 }
             }
@@ -30,15 +29,8 @@ public class Singleton<T> : MonoBehaviour where T : Component
         }
     }
 
-    //public virtual void Awake()
-    //{
-    //    RemoveDuplicates();
-
-    //}
-
     private static void SetupInstance()
     {
-        // lazy instantiation
         _instance = (T)FindObjectOfType(typeof(T));
 
         if (_instance == null)
@@ -47,20 +39,6 @@ public class Singleton<T> : MonoBehaviour where T : Component
             gameObj.name = typeof(T).Name;
 
             _instance = gameObj.AddComponent<T>();
-            //  DontDestroyOnLoad(gameObj);
         }
     }
-
-    //private void RemoveDuplicates()
-    //{
-    //    if (_instance == null)
-    //    {
-    //        _instance = this as T;
-    //       // DontDestroyOnLoad(gameObject);
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
 }

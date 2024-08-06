@@ -29,17 +29,12 @@ namespace culture.Magnetinc
                 transform.GetComponent<BoxCollider2D>().enabled = false;
                 if (no == "float")
                 {
-
                     StartCoroutine(AnimtionPlayer(2));
-                   
                 }
                 else
                 {
                     StartCoroutine(AnimtionPlayer(1));
-                    //transform.parent = GameController.Instance.droping_place[1].transform;
                 }
-
-               
             }
             else
             {
@@ -48,8 +43,6 @@ namespace culture.Magnetinc
                 transform.position = lastpos;
             }
         }
-
-    
 
         IEnumerator flipanimtion()
         {
@@ -62,20 +55,24 @@ namespace culture.Magnetinc
         IEnumerator AnimtionPlayer(int no)
         {
             GameController.Instance.gamePlay = false;
-          //  spritre.DOFade(0, .5f);
+
             transform.DOMove(points[no].transform.position, .5f);
+
             yield return new WaitForSeconds(.5f);
-          //  spritre.DOFade(1, .5f);
+
             transform.parent = GameController.Instance.droping_place[no].transform;
+
             transform.SetSiblingIndex(GameController.Instance.droping_place[no].transform.childCount - 2);
+
             GameController.Instance.reloding++;
 
-            if(GameController.Instance.reloding== GameController.Instance.alloption.Length)
+            if (GameController.Instance.reloding == GameController.Instance.alloption.Length)
             {
                 GameController.Instance.CurrectAnswer();
-                
-            }else
-            GameController.Instance.alloption[GameController.Instance.reloding].gameObject.SetActive(true);
+
+            }
+            else
+                GameController.Instance.alloption[GameController.Instance.reloding].gameObject.SetActive(true);
             GameController.Instance.gamePlay = true;
         }
         protected override void OnMouseDown()
@@ -86,9 +83,6 @@ namespace culture.Magnetinc
             Border.color = GameController.Instance.sellect_answer_color;
             lastpos = transform.position;
             transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
-
-
         }
-
     }
 }

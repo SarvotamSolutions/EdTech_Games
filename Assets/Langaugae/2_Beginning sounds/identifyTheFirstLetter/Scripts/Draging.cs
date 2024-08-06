@@ -18,7 +18,6 @@ namespace Laguage.beginning_sounds.Idintfyletter
 
         protected override void OnMouseUp()
         {
-
             if (!GameController.Instance.gamePlay || !clicked)
                 return;
             base.OnMouseUp();
@@ -34,8 +33,6 @@ namespace Laguage.beginning_sounds.Idintfyletter
                 }
                 transform.position = lastpos;
             }
-
-
         }
     }
 }

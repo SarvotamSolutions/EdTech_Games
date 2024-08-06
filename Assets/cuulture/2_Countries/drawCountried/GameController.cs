@@ -23,14 +23,12 @@ public class GameController : MonoBehaviour
     public GameObject Party_pop;
     public void SelectingPencil(int id)
     {
-
         if (!gameplay)
             return;
 
         allpencinl[no].sprite = nonselectinspritregcolor[no];
         allcountries[no].brushScale = Vector2.zero;
         allcountries[no].transform.parent.DOMove(basepos[no].position, .1f);
-        //  allcountries[id].transform.parent.SetAsLastSibling();
         allcountries[no].transform.parent.DOScale(1, .1f);
         if (allcountries[no].GetRevealProgress() >= .025f)
         {
@@ -38,16 +36,12 @@ public class GameController : MonoBehaviour
         }
         no = id;
         gameplay = false;
-        for (int i = 0; i < allpencinl.Length; i++)
-        {
-            
-        }
         backhold.SetActive(true);
         backhold.transform.SetSiblingIndex(backhold.transform.parent.childCount - 1);
-        allcountries[id].brushScale =brushsize;
-        allcountries[id].transform.parent.DOMove(Vector3.zero,.5f);
+        allcountries[id].brushScale = brushsize;
+        allcountries[id].transform.parent.DOMove(Vector3.zero, .5f);
         allcountries[id].transform.parent.SetAsLastSibling();
-        allcountries[id].transform.parent.DOScale(2,.5f);
+        allcountries[id].transform.parent.DOScale(2, .5f);
         allpencinl[id].sprite = selectspritrecolor[id];
         clicked = true;
     }
@@ -55,12 +49,10 @@ public class GameController : MonoBehaviour
     {
         if (!clicked)
             return;
-        Debug.Log(allcountries[no].GetRevealProgress());
-        if (Input.GetMouseButtonUp(0) && allcountries[no].GetRevealProgress() >= .01f && clicked)      
+        if (Input.GetMouseButtonUp(0) && allcountries[no].GetRevealProgress() >= .01f && clicked)
         {
             clicked = false;
             StartCoroutine(WaitForCurrectanimtion());
-            
         }
     }
 
@@ -69,7 +61,6 @@ public class GameController : MonoBehaviour
         gameCompleted_animation.SetActive(true);
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(0);
-
     }
     protected IEnumerator WaitForCurrectanimtion()
     {
@@ -77,9 +68,7 @@ public class GameController : MonoBehaviour
         Debug.Log("partypos");
         yield return new WaitForSeconds(3);
         Party_pop.SetActive(false);
-      //  gamePlay = true;
         CurrectAnimtionCompleted();
-        //ResetingDrage();
     }
     protected virtual void CurrectAnimtionCompleted()
     {
@@ -87,7 +76,6 @@ public class GameController : MonoBehaviour
         reloding++;
         allcountries[no].transform.parent.DOMove(basepos[no].position, .1f);
         allpencinl[no].gameObject.SetActive(false);
-        //  allcountries[id].transform.parent.SetAsLastSibling();
         allcountries[no].transform.parent.DOScale(1, .1f);
         allcountries[no].gameObject.SetActive(false);
         if (reloding >= allpencinl.Length)
@@ -97,8 +85,4 @@ public class GameController : MonoBehaviour
         gameplay = true;
         clicked = false;
     }
-    
-
-
-
 }

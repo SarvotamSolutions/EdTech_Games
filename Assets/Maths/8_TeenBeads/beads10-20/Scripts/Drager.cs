@@ -17,9 +17,7 @@ namespace Maths.TeenBeads.drop10to20
         {
             sound = GetComponent<AudioSource>();
             firsttime = true;
-            //   lastpos = transform.position;
             transform.parent.SetSiblingIndex(Random.Range(0, transform.parent.parent.childCount));
-            
         }
         private void OnMouseDown()
         {
@@ -28,10 +26,9 @@ namespace Maths.TeenBeads.drop10to20
             sound.clip = pickup;
             sound.Play();
             if (firsttime)
-            lastpos = transform.position;
+                lastpos = transform.position;
             clicked = true;
             firsttime = false;
-            
         }
 
         private void OnMouseUp()
@@ -42,18 +39,12 @@ namespace Maths.TeenBeads.drop10to20
             sound.Play();
             clicked = false;
             GameObject obj = GameController.Instance.Neartodestination(this.gameObject);
-
             if (obj != null)
             {
-
                 transform.position = obj.transform.position;
-              
-                // transform.position = lastpos;
-                // gameObject.SetActive(false);
             }
             else
                 transform.position = lastpos;
-
         }
         private void Update()
         {
@@ -63,9 +54,6 @@ namespace Maths.TeenBeads.drop10to20
                 pos.z = 0;
                 transform.position = pos;
             }
-
-
         }
-
     }
 }

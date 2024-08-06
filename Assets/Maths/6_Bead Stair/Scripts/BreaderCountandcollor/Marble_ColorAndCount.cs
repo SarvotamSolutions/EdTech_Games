@@ -28,8 +28,6 @@ namespace Maths.BeadStair.ColorandCount
                 selcted = true;
                 rendring.sprite = Selecting;
             }
-
-
         }
         private void OnMouseUpAsButton()
         {
@@ -37,7 +35,6 @@ namespace Maths.BeadStair.ColorandCount
                 return;
             if (thiscolor == GameController_ColorAndCount.instace.selectedcollor && thiscolor == GameController_ColorAndCount.instace.allmarble[GameController_ColorAndCount.instace.level].thiscolor)
             {
-                Debug.Log("XXx");
                 completed = true;
                 rendring.sprite = ColorMarble;
                 GameController_ColorAndCount.instace.selectedcollorDone = GameController_ColorAndCount.instace.selectedcollor;

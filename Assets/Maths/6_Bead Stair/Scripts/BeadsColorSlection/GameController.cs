@@ -16,7 +16,6 @@ namespace Maths.BeadStair.ColorSlection
         [Space(10)]
         public GameObject Sketchpen;
         public GameObject DrawnNO;
-       // public Noedify_DrawTest_Network nodify;
         public ExampleGestureHandler Draw;
         public Sprite NormalInput, CurrectAnswerInput, WrongInput;
         public SpriteRenderer InputBox;
@@ -27,9 +26,7 @@ namespace Maths.BeadStair.ColorSlection
         public GameObject Party_pop;
         private void Awake()
         {
-          
             Hinttext.color = allmarble[level].color;
-            //Colour 1 bead red
             Hinttext.text = "<color=white>Colour " + (level + 1) + " bead "+ "</color>" + allmarble[level].thiscolor;
         }
         public void ResetColler()
@@ -37,14 +34,9 @@ namespace Maths.BeadStair.ColorSlection
 
             for (int i = 0; i < all_CollerSelection.Length; i++)
             {
-
                 all_CollerSelection[i].Selectedobj.SetActive(false);
-
             }
-
         }
-     
-      
     }
 }
 public enum AllCollors

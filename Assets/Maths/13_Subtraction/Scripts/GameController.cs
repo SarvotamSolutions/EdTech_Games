@@ -34,7 +34,6 @@ namespace Maths.Substraction.Caluculation
         public Sprite[] randomWrongAnswer;
         public Sprite[] randomcurrectAnswer;
         public Color[] randomTextColor;
-        //public GameObject Drawcanvas;
         public Sprite[] Inputsprite;
         [Space(10)]
         public GameObject gameCompleted_animation;
@@ -52,11 +51,9 @@ namespace Maths.Substraction.Caluculation
         public Color selctedcolr;
         IEnumerator WrongAnswerAnimation()
         {
-            // Drawcanvas.SetActive(false);
             wrongAnswer_animtion.SetActive(true);
             Inputtext[no].text = AiHandler.no.ToString();
             yield return new WaitForSeconds(2);
-            // Drawcanvas.SetActive(true);
             AiHandler.textResult = Inputtext[no];
             Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().color = selctedcolr;
             Inputtext[no].text = "?";
@@ -68,9 +65,6 @@ namespace Maths.Substraction.Caluculation
         {
             relod++;
             no = 0;
-
-
-
             AiHandler.textResult = Inputtext[0];
             number[0] = Random.Range(5, allanswer.Length - 2);
             number[1] = Random.Range(0, allanswer.Length);
@@ -100,7 +94,6 @@ namespace Maths.Substraction.Caluculation
                                 i = -1;
                             }
                         }
-
                     }
                     else
                     {
@@ -115,7 +108,6 @@ namespace Maths.Substraction.Caluculation
                         k++;
                     }
                     option[d].Textchange();
-
                 }
             }
             int no2 = Random.Range(0, randomsprite.Length);
@@ -125,7 +117,6 @@ namespace Maths.Substraction.Caluculation
                 BreadIcon1.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = randomsprite[no2];
             }
 
-            //no2 = Random.Range(0, randomsprite.Length);
 
             for (int i = 0; i <= number[1]; i++)
             {
@@ -142,20 +133,17 @@ namespace Maths.Substraction.Caluculation
             {
                 option[k].transform.GetComponentInChildren<TextMeshPro>().color = randomTextColor[no2];
             }
-            
+
             Inputtext[0].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite[no2];
             Inputtext[1].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite[no2];
             Inputtext[2].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite[no2];
-            // BreadIcon1.sprite = allanswer[number[0]].beads;
-
-            //   BreadIcon2.sprite = allanswer[number[1]].beads;
 
         }
 
 
         public bool Neartodestination(GameObject obj)
         {
-            if (Vector3.Distance(Inputtext[no].transform.position, obj.transform.position) < 3 )
+            if (Vector3.Distance(Inputtext[no].transform.position, obj.transform.position) < 3)
             {
                 AiHandler.no = obj.GetComponent<Draging>().no;
                 gamePlay = false;
@@ -172,9 +160,6 @@ namespace Maths.Substraction.Caluculation
                 if (AiHandler.no == (number[no] + 1))
                 {
                     gamePlay = true;
-                    // DrawCanvas[no].SetActive(false);
-                    //.ClearButton();
-                    //Debug.Log("Currect answer");
                     allanswer[number[no]].box = randomcurrectAnswer[RandomNo];
                     Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().sprite = allanswer[number[no]].box;
 
@@ -183,7 +168,6 @@ namespace Maths.Substraction.Caluculation
                     Inputtext[no - 1].transform.parent.GetComponent<SpriteRenderer>().color = Color.white;
                     Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().color = selctedcolr;
                     Ai_recognizer.Changerecogniger();
-                    //DrawCanvas[no].SetActive(true);
                     AiHandler.textResult = Inputtext[no];
 
                     if (Drag)
@@ -203,8 +187,6 @@ namespace Maths.Substraction.Caluculation
             {
                 if (AiHandler.no == (number[no]))
                 {
-                    //Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().color = Color.white;
-                    Debug.Log("Come On");
                     Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().sprite = randomcurrectAnswer[RandomNo];
                     AiHandler.textResult = null;
                     if (relod > 10)
@@ -215,14 +197,8 @@ namespace Maths.Substraction.Caluculation
                     if (Drag)
                     {
                         Inputtext[no].text = (number[no]).ToString();
-
                     }
-
-                    // DrawCanvas[no].SetActive(false);
-                    //   DrawCanvas[no].GetComponent<MouseSketch>().ClearButton();
-
                     StartCoroutine(Relod());
-
                 }
                 else
                 {
@@ -231,10 +207,8 @@ namespace Maths.Substraction.Caluculation
                     StartCoroutine(WrongAnswerAnimation());
                 }
             }
-
-
-
         }
+
         public GameObject canvsobj;
         IEnumerator Relod()
         {
@@ -245,34 +219,25 @@ namespace Maths.Substraction.Caluculation
             for (int i = 0; i <= number[0]; i++)
             {
                 BreadIcon1.transform.GetChild(i).gameObject.SetActive(false);
-
             }
 
             for (int i = 0; i <= number[1]; i++)
             {
                 BreadIcon2.transform.GetChild(i).gameObject.SetActive(false);
-
             }
             allanswer[number[no]].box = randomcurrectAnswer[RandomNo];
             Inputtext[no].transform.parent.GetComponent<SpriteRenderer>().sprite = allanswer[number[no]].box;
             for (int i = 0; i < Inputtext.Length; i++)
             {
-
                 Inputtext[i].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite[RandomNo];
-                Inputtext[i].transform.parent.GetComponent<SpriteRenderer>().color = new Color(1,1,1,0.5f);
+                Inputtext[i].transform.parent.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
                 Inputtext[i].text = "";
 
             }
-                Inputtext[0].transform.parent.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1f);
-
-
-
+            Inputtext[0].transform.parent.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
             Party_pop.SetActive(false);
             relod++;
             no = 0;
-            //  DrawCanvas[no].GetComponent<ExampleGestureHandler>().textResult = Inputtext[0];
-            //   DrawCanvas[0].SetActive(true);
-            // DrawCanvas[2].SetActive(false);
             AiHandler.textResult = Inputtext[0];
             Inputtext[0].transform.parent.GetComponent<SpriteRenderer>().color = selctedcolr;
             number[0] = Random.Range(5, allanswer.Length - 2);
@@ -283,18 +248,13 @@ namespace Maths.Substraction.Caluculation
             {
                 number[1] = Random.Range(0, allanswer.Length);
             }
-
             number[2] = (number[0] + 1) - (number[1] + 1);
-
             int no2 = Random.Range(0, randomsprite.Length);
             for (int i = 0; i <= number[0]; i++)
             {
                 BreadIcon1.transform.GetChild(i).gameObject.SetActive(true);
                 BreadIcon1.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = randomsprite[no2];
             }
-
-
-
             if (Drag)
             {
                 int k = 0;
@@ -306,8 +266,6 @@ namespace Maths.Substraction.Caluculation
                     if (d == n || d == n2)
                     {
                         option[d].no = Random.Range(0, 10);
-
-
                     }
                     else
                     {
@@ -325,8 +283,6 @@ namespace Maths.Substraction.Caluculation
 
                 }
             }
-
-            // no2 = Random.Range(0, randomsprite.Length);
             for (int i = 0; i <= number[1]; i++)
             {
                 BreadIcon2.transform.GetChild(i).gameObject.SetActive(true);
@@ -334,7 +290,6 @@ namespace Maths.Substraction.Caluculation
             }
             RandomNo = no2;
             background.sprite = randombackground[no2];
-
             Minus.sprite = randomMinus[no2];
             Equal.sprite = randomEqual[no2];
             OptBG.sprite = randomOptBG[no2];
@@ -345,10 +300,7 @@ namespace Maths.Substraction.Caluculation
             Inputtext[0].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite[no2];
             Inputtext[1].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite[no2];
             Inputtext[2].transform.parent.GetComponent<SpriteRenderer>().sprite = Inputsprite[no2];
-
             gamePlay = true;
-
-
         }
     }
 }

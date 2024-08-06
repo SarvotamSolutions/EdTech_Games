@@ -10,7 +10,7 @@ namespace Maths.placeValue.Dropbeads
         private bool clicked;
         public int no;
         private bool canChnagepos;
-        public  Vector3 lastpos;
+        public Vector3 lastpos;
 
         private void Start()
         {
@@ -24,7 +24,6 @@ namespace Maths.placeValue.Dropbeads
             sound.clip = pickup;
             sound.Play();
             clicked = true;
-            
         }
 
         private void OnMouseUp()
@@ -34,15 +33,10 @@ namespace Maths.placeValue.Dropbeads
             sound.clip = drop;
             sound.Play();
             clicked = false;
-            if (GameController.Instance.Neartodestination(this.gameObject))
+            if (!GameController.Instance.Neartodestination(this.gameObject))
             {
-
-               // transform.position = lastpos;
-               // gameObject.SetActive(false);
-            }
-            else
                 transform.position = lastpos;
-
+            }
         }
         private void Update()
         {
@@ -52,10 +46,6 @@ namespace Maths.placeValue.Dropbeads
                 pos.z = 0;
                 transform.position = pos;
             }
-
-
         }
-
-
     }
 }

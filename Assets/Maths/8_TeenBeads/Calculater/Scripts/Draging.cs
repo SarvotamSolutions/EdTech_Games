@@ -20,7 +20,7 @@ namespace Maths.TeenBeads.Caluclation
             sound.clip = pickup;
             sound.Play();
             clicked = true;
-           
+
         }
         private void Start()
         {
@@ -35,13 +35,9 @@ namespace Maths.TeenBeads.Caluclation
             clicked = false;
             if (GameController.Instance.Neartodestination(this.gameObject))
             {
-
-                
                 transform.position = lastpos;
-            //    gameObject.SetActive(false);
             }
             transform.position = lastpos;
-
         }
         private void Update()
         {
@@ -53,8 +49,6 @@ namespace Maths.TeenBeads.Caluclation
                 pos.z = 0;
                 transform.position = pos;
             }
-
-
         }
     }
 }

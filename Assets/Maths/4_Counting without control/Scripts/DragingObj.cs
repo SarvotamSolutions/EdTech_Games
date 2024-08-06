@@ -21,10 +21,7 @@ namespace Maths.Number1to10
         void CurrectAnswer()
         {
             GameManager.Instance.gamePlay = false;
-            //Background.color = GameManager.Instance.currect;
             Background.sprite = GameManager.Instance.CurrectAnswer;
-           // GameManager.Instance.arrow.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.currectArrow;
-           // GameManager.Instance.QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.CurrectAnswer;
             GameManager.Instance.CurrectanswerOBj.SetActive(true);
             StartCoroutine(LevelCompleted());
         }
@@ -36,25 +33,20 @@ namespace Maths.Number1to10
             transform.position = lastpos;
             Background.color = GameManager.Instance.noseclting;
             GameManager.Instance.arrow.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IcompletArrow;
-        //    GameManager.Instance.QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IncompleteAnswer;
             GameManager.Instance.DropingParent.GetChild(0).GetComponent<DragingObj>().Background.color = GameManager.Instance.noseclting;
             GameManager.Instance.DropingParent.GetChild(0).transform.parent = GameManager.Instance.OptionParent;
             GameManager.Instance.GameReset();
         }
         void WrongAnswer()
         {
-
             StartCoroutine(WrongAnserAnimation());
- 
         }
       
         IEnumerator WrongAnserAnimation()
         {
             GameManager.Instance.gamePlay = false;
             Background.sprite = GameManager.Instance.WrongAnswer;
-            //Background.color = GameManager.Instance.wrong;
             GameManager.Instance.arrow.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.wrongArrow;
-          //  GameManager.Instance.QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.WrongAnswer;
             yield return new WaitForSeconds(.5f);
             GameManager.Instance.WrongAnswer_animation.SetActive(true);
             yield return new WaitForSeconds(GameManager.Instance.wronganswerInterval);
@@ -64,7 +56,6 @@ namespace Maths.Number1to10
             Background.color = GameManager.Instance.noseclting;
             GameManager.Instance.arrow.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IcompletArrow;
             Background.sprite = GameManager.Instance.IncompleteAnswer;
-            //  GameManager.Instance.QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IncompleteAnswer;
             GameManager.Instance.DropingParent.GetChild(0).GetComponent<DragingObj>().Background.color = GameManager.Instance.noseclting;
             GameManager.Instance.DropingParent.GetChild(0).transform.parent = GameManager.Instance.OptionParent;
         }
@@ -93,10 +84,8 @@ namespace Maths.Number1to10
             sound.clip = pickup;
             sound.Play();
             OrderSetting();
-                    //if (EventSystem.current.IsPointerOverGameObject()) return;
             clicked = true;
             Background.color = GameManager.Instance.incomlete;
-          //  lastpos = transform.position;
         }
 
         private void OnMouseUp()
@@ -129,17 +118,8 @@ namespace Maths.Number1to10
             {
                 transform.position = lastpos;
                 Background.color = GameManager.Instance.noseclting;
-              //  GameManager.Instance.QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IncompleteAnswer;
                 parent = GameManager.Instance.OptionParent;
             }
-            //GameManager.Instance.DropingParent.GetComponent<SpriteRenderer>().color = Color.white;
-            //if (GameController.instance.Neartodestination(this.gameObject))
-            //{
-            //    transform.position = lastpos;
-            //    gameObject.SetActive(false);
-            //}
-
-
         }
         private void Update()
         {
@@ -147,20 +127,10 @@ namespace Maths.Number1to10
                 return;
             if (Input.GetMouseButton(0) && clicked)
             {
-                //if (GameManager.Instance.Neartodestination(this.gameObject))
-                //{
-                //    GameManager.Instance.DropingParent.GetComponent<SpriteRenderer>().color = Color.black;
-                //}
-                //else
-                //{
-                //    GameManager.Instance.DropingParent.GetComponent<SpriteRenderer>().color = Color.white;
-                //}
                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 pos.z = 0;
                 transform.position = pos;
             }
-
-
         }
     }
 }

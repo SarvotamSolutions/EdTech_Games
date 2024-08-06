@@ -14,24 +14,19 @@ namespace Maths.Number1to10.numberWithObject
         [SerializeField] private GameObject SpawnObj;
         [SerializeField] private GameObject dropingobject;
 
-        // Start is called before the first frame update
         private void Awake()
         {
             this_Sprite = GetComponent<SpriteRenderer>();
-
         }
         void Start()
         {
             sound = GetComponent<AudioSource>();
         }
 
-
         private void OnMouseDown()
         {
             if (!GameManager.Instance.gamePlay || GameManager.Instance.totorialcheck.totorialplaying)
                 return;
-
- 
             sound.Play();
             this_Sprite.sprite = GameManager.Instance.ClickedSprite[GameManager.Instance.IconspriteID];
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -40,7 +35,5 @@ namespace Maths.Number1to10.numberWithObject
             obj.Normalsprite.sprite = GameManager.Instance.normal_sprite[GameManager.Instance.IconspriteID];
             obj.dropingobj = dropingobject;
         }
-
-
     }
 }

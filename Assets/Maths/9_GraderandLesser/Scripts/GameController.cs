@@ -4,20 +4,16 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public enum mode 
+public enum mode
 {
-    AI,Drag
+    AI, Drag
 }
 
 
 namespace Maths.graterAndLesser
 {
-    
-
     public class GameController : Singleton<GameController>
     {
-
-
         public Color curect, wrong, selected, nonselected;
         public Totorial totorialcheck;
         [Header("Ai")]
@@ -42,7 +38,7 @@ namespace Maths.graterAndLesser
         public SpriteRenderer secondbeads;
 
         public GameObject graterlessparent, optioncontins;
-        public List<int> allno= new List<int>();
+        public List<int> allno = new List<int>();
         public int numbertimes;
         public float currectanswerinteval;
         [Space(10)]
@@ -54,7 +50,7 @@ namespace Maths.graterAndLesser
 
             Numbers[0] = Random.Range(0, 9);
             Numbers[1] = Random.Range(0, 9);
-           
+
             while (Numbers[0] == Numbers[1])
             {
                 Numbers[1] = Random.Range(0, 9);
@@ -94,7 +90,7 @@ namespace Maths.graterAndLesser
                     }
                 }
             }
-           
+
 
 
             if (objects)
@@ -121,11 +117,6 @@ namespace Maths.graterAndLesser
             Ai_recognizer.Recognigingnumber = (Numbers[0] + 1).ToString();
             Ai_recognizer.Changerecogniger();
         }
-        private void Start()
-        {
-           
-            
-        }
         public int no;
 
         public void Answering()
@@ -139,16 +130,14 @@ namespace Maths.graterAndLesser
             {
                 for (int i = 0; i < Numbers[1] + 1; i++)
                 {
-
                     secondbeads.transform.GetChild(i).GetComponent<SpriteRenderer>().sortingOrder = 2;
-
                 }
             }
             else
             {
                 secondbeads.sortingOrder = 2;
             }
-            input_text[no-1].text = (Numbers[no - 1]+1).ToString();
+            input_text[no - 1].text = (Numbers[no - 1] + 1).ToString();
             inputs[no - 1].sprite = currectAnswer;
             inputs[no - 1].color = Color.white;
             inputs[no].color = selected;
@@ -158,28 +147,22 @@ namespace Maths.graterAndLesser
         public void Settext()
         {
             gamePlay = false;
-           
+
             if (no >= 2)
             {
-                Debug.Log("ttttt");
-                if(AiDrawtext.textResult.text =="<"&& Numbers[0] < Numbers[1])
+                if (AiDrawtext.textResult.text == "<" && Numbers[0] < Numbers[1])
                 {
-                    Debug.Log("Currect answer");
                     FinalCheck(inputs[2]);
                     inputs[2].sprite = currectAnswer;
                     inputs[2].color = Color.white;
-                    //inputs[0].color = Color.blue;
-                     AiDrawtext.textResult = null;
+                    AiDrawtext.textResult = null;
                     gamePlay = true;
                 }
                 else if (AiDrawtext.textResult.text == ">" && Numbers[0] > Numbers[1])
                 {
-                    Debug.Log("Currect answer");
                     FinalCheck(inputs[no]);
                     inputs[2].sprite = currectAnswer;
-
                     inputs[2].color = Color.white;
-                    // inputs[0].color = Color.blue;
                     AiDrawtext.textResult = null;
                     gamePlay = true;
                 }
@@ -189,23 +172,12 @@ namespace Maths.graterAndLesser
                     inputs[no].sprite = WrongAnswer;
                     StartCoroutine(WrongAnswerAnimation());
                 }
-                //inputs[no-1].sprite = currectAnswer;
-                //inputs[no - 1].color = Color.white;
-                ////     DrawCanvas.gameObject.SetActive(false);
-                //AiDrawtext.textResult = null;
-
-                    //GraterorLessselct = true;
-                    //no = 0;
-                    //    SecondButton.gameObject.SetActive(false);
             }
             else
             {
-
                 if (AiDrawtext.no == (Numbers[no] + 1))
                 {
                     Answering();
-
-                   
                     if (no < 2)
                     {
                         Ai_recognizer.Recognigingnumber = (Numbers[no] + 1).ToString();
@@ -225,9 +197,6 @@ namespace Maths.graterAndLesser
                         }
                     }
                     gamePlay = true;
-
-                    //firstbutton.gameObject.SetActive(false);
-                    //SecondButton.gameObject.SetActive(true);
                 }
                 else
                 {
@@ -236,24 +205,8 @@ namespace Maths.graterAndLesser
                     StartCoroutine(WrongAnswerAnimation());
                 }
             }
-           
-        
-
         }
-        public void FinalButton()
-        {
-            //if (AiDrawtext.no == (Number2 + 1))
-            //{
-                
-            //}
-            //else
-            //{
-            //    secondInput.sprite = WrongAnswer;
-            //    AiDrawtext.textResult = null;
-            //    StartCoroutine(WrongAnswerAnimation());
 
-            //}
-        }
 
         public void WrongAnimation()
         {
@@ -264,23 +217,16 @@ namespace Maths.graterAndLesser
         {
             inputs[no].color = Color.white;
             inputs[no].sprite = WrongAnswer;
-           
             wrongAnswer_animtion.SetActive(true);
-            Debug.Log("Coming");
 
             yield return new WaitForSeconds(2);
-            Debug.Log("not coming");
+
             inputs[no].sprite = normalAnswer;
             inputs[no].color = selected;
-            //inputs[0].sprite = inputs[0].sprite == currectAnswer ? currectAnswer : normalAnswer;
             input_text[no].text = "";
-            //Firsttext.text = inputs[0].sprite == currectAnswer ? Firsttext.text : "";
-            //SecondText.text = "";
             AiDrawtext.textResult = input_text[no];
             if (drager)
                 drager.SetActive(true);
-            //AiDrawtext.textResult = Firsttext.text == "" ? Firsttext : SecondText;
-          //  inputs[1].sprite =normalAnswer;
             wrongAnswer_animtion.SetActive(false);
             gamePlay = true;
         }
@@ -288,8 +234,7 @@ namespace Maths.graterAndLesser
 
         public void FinalCheck(SpriteRenderer sprite)
         {
-          
-            //sprite.sprite = currectAnswer;
+
             if (!objects)
             {
                 inputs[0].sprite = allsprite[Numbers[0]].box;
@@ -326,11 +271,9 @@ namespace Maths.graterAndLesser
             AiDrawtext.transform.parent.transform.gameObject.SetActive(false);
             yield return new WaitForSeconds(currectanswerinteval);
             Party_pop.SetActive(false);
-         
-          
+
             foreach (var item in input_text)
             {
-             
                 item.sortingOrder = 0;
                 item.text = "";
             }
@@ -346,8 +289,6 @@ namespace Maths.graterAndLesser
             inputs[0].sortingOrder = 2;
             input_text[0].sortingOrder = 2;
 
-            
-          //  inputs[no].color = Color.white;
             AiDrawtext.transform.parent.transform.gameObject.SetActive(true);
             Numbers[0] = Random.Range(0, 9);
             Numbers[1] = Random.Range(0, 9);
@@ -358,7 +299,7 @@ namespace Maths.graterAndLesser
 
             if (gamemode == mode.Drag)
             {
-                allno.Clear(); 
+                allno.Clear();
                 optioncontins.SetActive(true);
                 graterlessparent.SetActive(false);
 
@@ -379,7 +320,6 @@ namespace Maths.graterAndLesser
                     else if (answeroption1 == i)
                     {
                         allno.Add(Numbers[0] + 1);
-
                     }
                     else
                     {
@@ -399,10 +339,8 @@ namespace Maths.graterAndLesser
                 for (int i = 0; i < optioncontins.transform.childCount; i++)
                 {
                     optioncontins.transform.GetChild(i).gameObject.SetActive(true);
-
-                    if(optioncontins.transform.GetChild(i).TryGetComponent<Dragin>(out Dragin drag))
+                    if (optioncontins.transform.GetChild(i).TryGetComponent<Dragin>(out Dragin drag))
                         drag.TextUpdate();
-
                 }
                 for (int i = 0; i < graterlessparent.transform.childCount; i++)
                 {
@@ -410,18 +348,14 @@ namespace Maths.graterAndLesser
                 }
             }
             AiDrawtext.textResult = input_text[no];
-          //  AiDrawtext.textResult = Firsttext;
             Ai_recognizer.Recognigingnumber = (Numbers[0] + 1).ToString();
             Ai_recognizer.Changerecogniger();
-
 
             if (objects)
             {
                 for (int i = 0; i < Numbers[1] + 1; i++)
                 {
-
                     secondbeads.transform.GetChild(i).GetComponent<SpriteRenderer>().sortingOrder = 0;
-
                 }
 
                 for (int i = 0; i < firstbeads.transform.childCount; i++)
@@ -435,13 +369,11 @@ namespace Maths.graterAndLesser
                 {
                     firstbeads.transform.GetChild(i).gameObject.SetActive(true);
                     firstbeads.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allsprite[objectid].beads;
-
                 }
                 for (int i = 0; i < Numbers[1] + 1; i++)
                 {
                     secondbeads.transform.GetChild(i).gameObject.SetActive(true);
                     secondbeads.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allsprite[objectid].beads;
-
                 }
             }
             else
@@ -452,25 +384,11 @@ namespace Maths.graterAndLesser
                 secondbeads.sortingOrder = 0;
             }
             gamePlay = true;
-            
-        //    inputs[0].sprite = normalAnswer;
-        //    inputs[1].sprite = normalAnswer;
-        //    inputs[2].sprite = normalAnswer;
-        //  //  SecondText.GetComponent<TextMeshPro>().text = "";
-        //  //  Firsttext.GetComponent<TextMeshPro>().text = "";
-        //    firstbutton.SetActive(true);
-          
-        //   // DrawCanvas.SetActive(true);
-        ////    obj.sprite = inp;
-        ////    obj.transform.position = obj.GetComponent<Dragin>().lastpos;
 
         }
-
-
-
-
     }
 }
+
 [System.Serializable]
 public class Answer
 {

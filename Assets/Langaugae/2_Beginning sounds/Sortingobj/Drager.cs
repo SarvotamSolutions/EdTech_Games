@@ -10,7 +10,6 @@ namespace Laguage.SortingImage
         public override void Start()
         {
             base.Start();
-
             transform.SetSiblingIndex(Random.Range(0, transform.parent.childCount));
         }
 

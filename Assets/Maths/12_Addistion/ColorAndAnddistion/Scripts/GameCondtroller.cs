@@ -15,7 +15,7 @@ namespace Maths.Addision.AddisitonwithColors
         public GameObject[] DragOption;
         public AllCollors selectedcollor;
 
-        public Sprite[] allBeadsWithColors,allbeadswithoutColors;
+        public Sprite[] allBeadsWithColors, allbeadswithoutColors;
 
         public int number1, number2;
 
@@ -33,7 +33,7 @@ namespace Maths.Addision.AddisitonwithColors
         public TextMeshPro currentanswertext;
         public GameObject inputfild1;
         public GameObject inputfile2;
-        public Sprite currectAnswer,NormalInput;
+        public Sprite currectAnswer, NormalInput;
         public GameObject dropplace;
 
         [Space(15)]
@@ -63,10 +63,10 @@ namespace Maths.Addision.AddisitonwithColors
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene(0);
         }
-       
+
         private void Start()
         {
-           
+
             StartingGame();
         }
         void GameStart()
@@ -100,8 +100,7 @@ namespace Maths.Addision.AddisitonwithColors
             {
                 number2 = Random.Range(0, allBeadsWithColors.Length);
             }
-           
-          // Particalblast.shape.position = new Vector3(0, number1 / 2f, 0);
+
             Total = (number1 + 1) + (number2 + 1);
             int option1answer = Random.Range(0, DragOption.Length);
             int option2answer = Random.Range(0, DragOption.Length);
@@ -171,11 +170,9 @@ namespace Maths.Addision.AddisitonwithColors
             if (Vector3.Distance(obj.transform.position, dropplace.transform.position) < 1)
             {
                 gamePlay = false;
-                //obj.transform.position = dropplace.transform.position;
-             //   obj.SetActive(false);
                 return true;
             }
-                return false;
+            return false;
         }
         public IEnumerator Wairrelod(GameObject obj)
         {
@@ -183,7 +180,6 @@ namespace Maths.Addision.AddisitonwithColors
             Party_pop.SetActive(true);
             yield return new WaitForSeconds(currectanswerinteval);
             currentanswertext.text = "";
-            //GetComponent<SpriteRenderer>().enabled = true;
             currectanswerimage.sprite = NormalInput;
             obj.transform.position = obj.GetComponent<SelectAnswer>().lastpos;
             obj.SetActive(true);
@@ -197,25 +193,20 @@ namespace Maths.Addision.AddisitonwithColors
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(wronganswerinterval);
             currentanswertext.text = "";
-            //GetComponent<SpriteRenderer>().enabled = true;
             currectanswerimage.sprite = NormalInput;
             obj.transform.GetComponent<SpriteRenderer>().sprite = normalAnswer;
             wrongAnswer_animtion.SetActive(false);
             obj.SetActive(true);
             obj.transform.position = obj.GetComponent<SelectAnswer>().lastpos;
             gamePlay = true;
-
-
-
-            
         }
 
         public bool Neartodestination(GameObject obj)
         {
-            
-            if(Vector3.Distance(obj.transform.position,inputfild1.transform.position)<1 && obj.GetComponent<Drag>().no == number1)
+
+            if (Vector3.Distance(obj.transform.position, inputfild1.transform.position) < 1 && obj.GetComponent<Drag>().no == number1)
             {
-               
+
                 float ypos = (float)number1 / 2f;
                 Particalblast.gameObject.transform.position = withoutcolors1.transform.position;
                 Vector3 pos = new Vector3(0, ypos, 0);
@@ -246,7 +237,6 @@ namespace Maths.Addision.AddisitonwithColors
 
             if (Vector3.Distance(obj.transform.position, inputfile2.transform.position) < 1 && obj.GetComponent<Drag>().no == number2)
             {
-
                 float ypos = (float)number2 / 2f;
                 Particalblast.gameObject.transform.position = withoutcolor2.transform.position;
                 Vector3 pos = new Vector3(0, ypos, 0);
@@ -288,7 +278,7 @@ namespace Maths.Addision.AddisitonwithColors
         {
             bool setstargeone = false;
             bool SetStagetwo = false;
-            if(inputfild1.transform.GetChild(0).GetComponent<TextMeshPro>().text == (number1+1).ToString())
+            if (inputfild1.transform.GetChild(0).GetComponent<TextMeshPro>().text == (number1 + 1).ToString())
             {
                 setstargeone = true;
             }
@@ -313,7 +303,7 @@ namespace Maths.Addision.AddisitonwithColors
                 allanswer[ansoption] = Total;
                 for (int i = 0; i < Calculationtotall.Length; i++)
                 {
-                    if(i== ansoption)
+                    if (i == ansoption)
                     {
                         Calculationtotall[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = Total.ToString();
                         Calculationtotall[i].GetComponent<SelectAnswer>().no = Total;
@@ -323,7 +313,7 @@ namespace Maths.Addision.AddisitonwithColors
                         int no = Random.Range(4, 20);
                         for (int j = 0; j < allanswer.Length; j++)
                         {
-                            if(allanswer[j] == no)
+                            if (allanswer[j] == no)
                             {
                                 no = Random.Range(4, 20);
                                 j = -1;
@@ -345,11 +335,8 @@ namespace Maths.Addision.AddisitonwithColors
 
             for (int i = 0; i < all_CollerSelection.Length; i++)
             {
-
                 all_CollerSelection[i].Selectedobj.SetActive(false);
-
             }
-
         }
     }
 }

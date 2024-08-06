@@ -20,23 +20,19 @@ namespace culture.sinkfloat1
             {
                 transform.GetComponent<Collider2D>().enabled = false;
                 controller.reseting++;
-                if(no == "sink")
+                if (no == "sink")
                 {
-
                     transform.DOMoveY(controller.firstdroptext.transform.position.y, 1);
-                    
                 }
                 else
                 {
                     transform.DOMoveY(controller.seconddroptext.transform.position.y, 1);
-
                     StartCoroutine(floatanimation(1, false));
                 }
                 if (controller.reseting >= 4)
                 {
                     controller.reseting = 0;
                     GameController.Instance.reloding++;
-                   // StopAllCoroutines();
                     controller.CurrectAnswer();
                 }
             }
@@ -45,7 +41,7 @@ namespace culture.sinkfloat1
                 transform.position = lastpos;
             }
         }
-        IEnumerator floatanimation(float time,bool down)
+        IEnumerator floatanimation(float time, bool down)
         {
             yield return new WaitForSeconds(time);
             if (down)
@@ -65,7 +61,5 @@ namespace culture.sinkfloat1
         {
             base.OnMouseDown();
         }
-
-
     }
 }

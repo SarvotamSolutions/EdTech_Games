@@ -45,16 +45,9 @@ namespace Laguage.ai
 
             if(allchar[no].ToString() == AItextcheck.notext)
             {
-                //Boarder.color = currect_answer_color;
-                //droping_place[no].color = currect_answer_color;
                 droping_place[no].sprite = Right;
                 droping_place[no].gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.white;
                 no++;
-                if (no < alltext.Length)
-                {
-                  //  droping_place[no].color = sellect_answer_color;
-                   
-                }
                     
                 if (no >= allchar.Length)
                 {
@@ -62,23 +55,16 @@ namespace Laguage.ai
                     AItextcheck.transform.parent.gameObject.SetActive(false);
                     letterSoundPlay();
                     StartCoroutine(WaitForCurrectanimtion());
-                 
                 }
                 else
                 {
                     GameSet();
                 }
-
-
-
-
             }
             else
             {
-                //droping_place[no].color = wrong_answer_color;
                 droping_place[no].sprite = Wrong;
                 droping_place[no].gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.white;
-
             }
         }
 
@@ -87,20 +73,12 @@ namespace Laguage.ai
             base.CurrectAnimtionCompleted();
             reloding++;
             no = 0;
-            //Boarder.color = Color.white;
             AItextcheck.textResult = alltext[no];
             foreach (var item in alltext)
             {
                 item.text = "?";
 
             }
-            //foreach (var item in droping_place)
-            //{
-            //    //item.color = Color.white;
-            //    item.sprite = Normal;
-            //    item.gameObject.transform.GetChild(0).GetComponent<TextMeshPro>().color = ResetColor;
-
-            //}
             for(int k = 0;k < droping_place.Length;k++)
             {
                 if(k == 0)
@@ -119,5 +97,4 @@ namespace Laguage.ai
             GameSet();
         }
     }
-
 }

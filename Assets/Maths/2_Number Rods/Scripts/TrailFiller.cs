@@ -12,11 +12,6 @@ namespace Maths.NumberRoads
         public bool isFilled = false;
         public bool red;
 
-        private void Update()
-        {
-        
-        }
-
         private float GetTrailLength()
         {
             if (trailRenderer == null)
@@ -35,27 +30,21 @@ namespace Maths.NumberRoads
 
         private float CalculateBoxPerimeter()
         {
-            // Assuming your square box has equal sides, perimeter = 4 * sideLength
-            // You might need to adjust this according to how you create your square box
-            // You can also consider using collider bounds if available.
             return 4 * transform.localScale.x;
         }
         public Sprite filld;
         private void OnMouseDown()
         {
 
-         //  if (EventSystem.current.IsPointerOverGameObject()) return;
-            Debug.Log("Down");
         }
         bool dragonetimecall;
         private void OnMouseDrag()
         {
             if (GameController.instace.totorialcheck.totorialplaying || !GameController.instace.gameplay)
                 return;
-            //  if (EventSystem.current.IsPointerOverGameObject()) return;
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
-           
+
             float trailLength = GetTrailLength();
             if (GameController.instace.red)//checking the colling road is red
             {
@@ -63,7 +52,7 @@ namespace Maths.NumberRoads
                 trailRenderer.transform.position = pos;
                 if (!isFilled && trailLength >= CalculateBoxPerimeter() * fillThreshold)
                 {
-                   
+
                     isFilled = true;
                     trailRenderer.gameObject.SetActive(false);
                     GetComponent<SpriteRenderer>().sprite = GameController.instace.redwin;
@@ -85,18 +74,16 @@ namespace Maths.NumberRoads
                 }
             }
 
-            if(GameController.instace.red != red && isFilled)
+            if (GameController.instace.red != red && isFilled)
             {
                 StartCoroutine(GameController.instace.WrongAnswerAnimation(this));
             }
             else if (GameController.instace.red == red && isFilled && !dragonetimecall)// cuurrect ANSWER
             {
-                Debug.Log("CCC");
                 dragonetimecall = true;
                 GameController.instace.filledno++;
 
-                Debug.Log(GameController.instace.no);
-                if(GameController.instace.all_color_holder[GameController.instace.no-1].transform.childCount == GameController.instace.filledno)
+                if (GameController.instace.all_color_holder[GameController.instace.no - 1].transform.childCount == GameController.instace.filledno)
                 {
 
                     if (GameController.instace.no <= 9)
@@ -104,26 +91,22 @@ namespace Maths.NumberRoads
                         if (GameController.instace.Draw_canvas)
                         {
                             GameController.instace.Draw_canvas.gameObject.SetActive(true);
-                            if(GameController.instace.totorialcheck.directionno < GameController.instace.totorialcheck.directionpanel.Length)
+                            if (GameController.instace.totorialcheck.directionno < GameController.instace.totorialcheck.directionpanel.Length)
                             {
                                 GameController.instace.totorialcheck.directionWindow();
                             }
-                          //  GameController.instace.ai.textResult = GameController.instace.allnumber[GameController.instace.no - 1];
-                            //GameController.instace.Draw_canvas.interactable = true;
                             GameController.instace.filledno = 0;
                             for (int i = GameController.instace.no; i < GameController.instace.allnumber.Length; i++)
                             {
                                 GameController.instace.allnumber[i].transform.parent.GetComponent<SpriteRenderer>().color = GameController.instace.notselect;
                             }
-                        
+
 
                             GameController.instace.allnumber[GameController.instace.no - 1].transform.parent.GetComponent<SpriteRenderer>().color = GameController.instace.Selct;
-                          //  GameController.instace.allnumber[GameController.instace.no - 2].transform.parent.GetComponent<SpriteRenderer>().color = GameController.instace.Selct;
 
                         }
                         else
                         {
-                            Debug.Log("filling");
                             GameController.instace.filledno = 0;
                             GameController.instace.ChangetoColorfiller();
 
@@ -131,25 +114,17 @@ namespace Maths.NumberRoads
                     }
                     else
                     {
-                        if(GameController.instace.onlycolor)
-                         StartCoroutine(GameController.instace.LevelCompleted());
+                        if (GameController.instace.onlycolor)
+                            StartCoroutine(GameController.instace.LevelCompleted());
                         else
                         {
                             GameController.instace.Draw_canvas.gameObject.SetActive(true);
-                            //  GameController.instace.ai.textResult = GameController.instace.allnumber[GameController.instace.no - 1];
-                            //GameController.instace.Draw_canvas.interactable = true;
                             GameController.instace.filledno = 0;
-                            //foreach (var item in GameController.instace.allnumber)
-                            //{
-                            //    item.transform.parent.GetComponent<SpriteRenderer>().sprite = GameController.instace.inputNot_selected;
-                            //}
                             GameController.instace.allnumber[GameController.instace.no - 1].transform.parent.GetComponent<SpriteRenderer>().color = GameController.instace.Selct;
                         }
                     }
                 }
             }
-   
-         
         }
     }
 }

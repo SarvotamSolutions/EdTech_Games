@@ -92,17 +92,10 @@ namespace Maths.TeenBeads.Caluclation
          
             inputfieldtext.sprite = norml;
             questiion2Text.text = "";
-            //for (int i = 0; i < Option.Length; i++)
-            //{
-            //    Option[i].transform.parent.GetComponent<Button>().onClick.RemoveAllListeners();
-
-            //}
             question1 = Random.Range(1, 10);
             Answer = question1 + quesiton2;
             int answerno_opetion = Random.Range(0, 4);
             SettingGame(answerno_opetion);
-          
-
             Question1Text.text = question1.ToString();
             AnswerText.text = Answer.ToString();
             gamePlay = true;
@@ -111,25 +104,17 @@ namespace Maths.TeenBeads.Caluclation
         public List<int> selctedno = new List<int> { 0, 0, 0, 0 };
         void SettingGame(int answer)
         {
-           
-           
-
             selctedno[answer] = quesiton2;
             for (int i = 0; i < selctedno.Count; i++)
             {
-
                 int no = Random.Range(1, 11);
                 for (int j = 0; j < selctedno.Count; j++)
                 {
-
-                    
                     if(selctedno[j] == no)
                     {
                         j = -1;
-                       
                         no = Random.Range(1, 11);
                     }
-
                 }
                 if (i != answer)
                 {
@@ -139,27 +124,16 @@ namespace Maths.TeenBeads.Caluclation
             Answer ans = new Answer();
             for (int i = 0; i < selctedno.Count; i++)
             {
-             
                 float width = 82 * (selctedno[i] - 1);
-
                 ans = new Answer();
                 ans.addingno(selctedno[i], alloptionsptite[selctedno[i] - 1]);
-
                 answerOption.Add(ans);
-
             }
 
             answerQuestionno.Add(quesiton2);
-           
-
-
             for (int i = 0; i < Option.Length; i++)
             {
-
                 Option[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = answerOption[i].GetImage();
-             //   Option[i].GetComponent<RectTransform>().sizeDelta = new Vector2(answerOption[i].GetWidth(), 74);
-     
-
             }
         }
         public void SelctButton(int no, SpriteRenderer parentimage)
@@ -174,14 +148,11 @@ namespace Maths.TeenBeads.Caluclation
             {
                 PartyBlast.SetActive(true);
                 Completed = true;
-                //parentimage.color = Color.green;
                 inputfieldtext.sprite = currctanswer;
                 StartCoroutine(waitForLevelLoad());
-
             }
             else
             {
-                //parentimage.color = Color.red;
                 inputfieldtext.sprite = wronganswer;
                 StartCoroutine(WrongAnswerAnimation());
             }
@@ -201,15 +172,9 @@ namespace Maths.TeenBeads.Caluclation
             }
             for (int i = 0; i < Option.Length; i++)
             {
-
                 Option[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = answerOption[i].GetImage();
-                //   Option[i].GetComponent<RectTransform>().sizeDelta = new Vector2(answerOption[i].GetWidth(), 74);
-
-
             }
             gamePlay = true;
-
-
         }
 
         public void swapOption()
@@ -221,10 +186,6 @@ namespace Maths.TeenBeads.Caluclation
                 Debug.Log("Sweitching" +ans.Getno()+" ccc " + answerOption[switchto].Getno());
                 answerOption[i] = answerOption[switchto];
                 answerOption[switchto] = ans;
-           //     answerOption.Insert(i,answerOption[switchto]);
-           //   answerOption.Insert(switchto,ans);
-
-
             }
         }
         IEnumerator waitForLevelLoad()
@@ -246,7 +207,6 @@ namespace Maths.TeenBeads.Caluclation
         {
             no = nubler;
             image = sprite;
-          //  width = optionwidth;
         }
         public Sprite GetImage()
         {

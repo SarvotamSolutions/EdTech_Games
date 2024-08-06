@@ -28,7 +28,6 @@ namespace Maths.Addision.AddisitonwithColors
             sound.clip = pickup;
             sound.Play();
             clicked = true;
-
         }
         private void OnMouseUp()
         {
@@ -43,33 +42,22 @@ namespace Maths.Addision.AddisitonwithColors
                 GameCondtroller.Instance.gamePlay = false;
                 if (no == GameCondtroller.Instance.Total)
                 {
-
                     GameCondtroller.Instance.currectanswerimage.sprite = GameCondtroller.Instance.currectAnswer;
-
                     GameCondtroller.Instance.StartCoroutine(GameCondtroller.Instance.Wairrelod(this.gameObject));
                 }
                 else
                 {
-
                     GameCondtroller.Instance.currectanswerimage.sprite = GameCondtroller.Instance.WrongAnswer;
-
                     GameCondtroller.Instance.StartCoroutine(GameCondtroller.Instance.WrongAnimtaion(this.gameObject));
-
                 }
-
                 droped = true;
-
             }
-
 
             else
             {
-
                 transform.position = lastpos;
             }
-
         }
-
 
         private void Update()
         {
@@ -79,8 +67,6 @@ namespace Maths.Addision.AddisitonwithColors
                 pos.z = 0;
                 transform.position = pos;
             }
-
-
         }
     }
 }

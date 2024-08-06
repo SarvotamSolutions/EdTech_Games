@@ -4,7 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-namespace Maths.Number1to10{
+namespace Maths.Number1to10
+{
     public class GameManager : Singleton<GameManager>
     {
         public Totorial totorialcheck;
@@ -25,14 +26,13 @@ namespace Maths.Number1to10{
         public Transform DropingParent;
         public GameObject arrow;
         public GameObject CurrectanswerOBj;
-        public GameObject WrongAnswer_animation,GameCompleted_animation;
+        public GameObject WrongAnswer_animation, GameCompleted_animation;
 
         public float wronganswerInterval, currectanswerInterverl;
         public float gamecomplete_sound_inteval = 2f;
 
         private void Awake()
         {
-            
             GameStart();
         }
 
@@ -45,11 +45,10 @@ namespace Maths.Number1to10{
         void GameStart()
         {
             gamePlay = true;
-           if(random)
-               Question = Random.Range(0, Allanswer.Length);
+            if (random)
+                Question = Random.Range(0, Allanswer.Length);
             if (Answered.Count >= Allanswer.Length)
             {
-                Debug.Log("Go to Next level");
                 StartCoroutine(GameCompleted());
                 return;
             }
@@ -60,14 +59,12 @@ namespace Maths.Number1to10{
             }
             for (int i = 0; i < Answered.Count; i++)
             {
-
-                if(Question == Answered[i])
+                if (Question == Answered[i])
                 {
                     i = -1;
                     Question = Random.Range(0, Allanswer.Length);
 
                 }
-
             }
             Answered.Add(Question);
             QuestionGameObject.transform.GetChild(0).GetComponent<TextMeshPro>().text = "" + (Question + 1);
@@ -78,67 +75,49 @@ namespace Maths.Number1to10{
             {
                 GameObject obj = answerObject[i];
                 DragingObj draginobj = obj.GetComponent<DragingObj>();
-
                 if (i == currectansweroption)
                 {
-
                     obj.GetComponent<SpriteRenderer>().sprite = Allanswer[Question];
                     draginobj.answer = Question;
                     draginobj.currectAnswer = true;
                 }
                 else
                 {
-
                     int no = Random.Range(0, Allanswer.Length);
                     for (int j = 0; j < tempsavedAnswer.Length; j++)
                     {
-
                         if (no == tempsavedAnswer[j])
                         {
                             no = Random.Range(0, Allanswer.Length);
                             j = -1;
                         }
-
                     }
                     tempsavedAnswer[i] = no;
                     draginobj.answer = no;
                     obj.GetComponent<SpriteRenderer>().sprite = Allanswer[no];
                     draginobj.currectAnswer = false;
                 }
-
-              //  obj.GetComponent<DragingObj>().PostionSet();
-
             }
         }
         public void GameReset()
         {
-
             Question++;
             CurrectanswerOBj.SetActive(false);
             arrow.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IcompletArrow;
-           // QuestionGameObject.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.IncompleteAnswer;
             for (int i = 0; i < DropingParent.childCount; i++)
             {
-                //Destroy(DropingParent.GetChild(i).gameObject);
                 DropingParent.GetChild(i).parent = OptionParent;
-
             }
-           
             GameStart();
-
         }
 
         public bool Neartodestination(GameObject obj)
         {
             if (Vector3.Distance(obj.transform.position, DropingParent.transform.position) < 5)
             {
-              
                 return true;
             }
-
             return false;
         }
-
-    } 
-
+    }
 }

@@ -10,9 +10,9 @@ namespace Laguage.Reading_sentences
     {
         int no;
         string[] allcharacterarry;
-        public Color selectcolor,nonselectcolor;
+        public Color selectcolor, nonselectcolor;
         public Sprite wrong, currect, defalt;
-        public SpriteRenderer droping_place_spriteRender,Draging_holder_spriteRender;
+        public SpriteRenderer droping_place_spriteRender, Draging_holder_spriteRender;
         public SpriteRenderer question;
         public Image background;
         public Sprite[] DropingPlaceSprites;
@@ -24,7 +24,6 @@ namespace Laguage.Reading_sentences
         protected override void Start()
         {
             audio = GetComponent<AudioSource>();
-            //base.Start();
             GameSet();
         }
         public void audioplay(AudioClip clip)
@@ -33,7 +32,7 @@ namespace Laguage.Reading_sentences
         }
         void GameSet()
         {
-            if (reloding > allCharacter.Length-1)
+            if (reloding > allCharacter.Length - 1)
             {
                 gamePlay = false;
                 StartCoroutine(LevelCompleted());
@@ -60,8 +59,6 @@ namespace Laguage.Reading_sentences
             background.sprite = allbackground[reloding];
             for (int i = 0; i < allcharacterarry.Length; i++)
             {
-
-                Debug.Log(i + " "+ allcharacterarry[i] + " getting insdie the for loop");
                 alloption[i].text.text = allcharacterarry[i];
                 alloption[i].gameObject.SetActive(true);
                 alloption[i].no = allcharacterarry[i];
@@ -70,7 +67,7 @@ namespace Laguage.Reading_sentences
             }
             Icon.sprite = allCharacter[reloding].letterSprite;
             gamePlay = true;
-         
+
         }
         public override bool Neartodestination()
         {
@@ -79,15 +76,15 @@ namespace Laguage.Reading_sentences
             {
 
                 selectedoption.transform.position = droping_place[no].transform.position;
-                if(selectedoption.no == allcharacterarry[no])//currect answer
+                if (selectedoption.no == allcharacterarry[no])//currect answer
                 {
                     selectedoption.text.color = Color.white;
                     selectedoption.background.sprite = currect;
                     no++;
                     droping_place[no].color = selectcolor;
-                    droping_place[no-1].color = nonselectcolor;
+                    droping_place[no - 1].color = nonselectcolor;
                     selectedoption.GetComponent<Collider2D>().enabled = false;
-                    if(no == allcharacterarry.Length)
+                    if (no == allcharacterarry.Length)
                     {
                         Boarder.color = currect_answer_color;
                         gamePlay = false;
@@ -95,13 +92,11 @@ namespace Laguage.Reading_sentences
                         reloding++;
                         GetComponent<AudioSource>().PlayOneShot(lettersound);
                         StartCoroutine(WaitForCurrectanimtion());
-                        
+
                     }
-                  //  ;
                 }
                 else
                 {
-
                     Boarder.color = wrong_answer_color;
                     gamePlay = false;
                     selectedoption.background.sprite = wrong;
@@ -110,17 +105,16 @@ namespace Laguage.Reading_sentences
                 }
                 return true;
             }
-            
+
             return false;
         }
 
-        
+
         public override void ResetingDrage()
         {
             Debug.Log("reseting");
             selectedoption.text.color = alltextcolor[reloding];
             selectedoption.background.sprite = defalt;
-            //base.ResetingDrage();
             selectedoption.transform.position = selectedoption.lastpos;
             selectedoption = null;
             OptionNO.Clear();
@@ -129,8 +123,6 @@ namespace Laguage.Reading_sentences
         }
         protected override void CurrectAnimtionCompleted()
         {
-          //  base.CurrectAnimtionCompleted();
-
             GameSet();
             Boarder.color = Color.white;
         }

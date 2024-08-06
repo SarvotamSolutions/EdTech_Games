@@ -25,7 +25,6 @@ namespace Maths.Substraction.DragingObject
 
         private void Start()
         {
-            //sound = GetComponent<AudioSource>();
             lastpos = transform.position;
         }
         private void OnMouseUp()
@@ -40,7 +39,6 @@ namespace Maths.Substraction.DragingObject
                 if (GameController.Instance.allobj[GameController.Instance.getno].bird)
                 {
                     GameController.Instance.dustbin.GetComponent<SpriteRenderer>().sprite = GameController.Instance.closeDustBinSprite;
-                   
                     transform.parent = GameController.Instance.dustbin.transform;
                     transform.DOMoveX(transform.position.x + 10,.25f);
                     transform.DOMoveY(transform.position.y + 10, .25f);
@@ -50,19 +48,15 @@ namespace Maths.Substraction.DragingObject
                 {
                     GameController.Instance.dustbin.GetComponent<SpriteRenderer>().sprite = GameController.Instance.closeDustBinSprite;
                     transform.parent = GameController.Instance.dustbin.transform;
-
                     gameObject.SetActive(false);
                     transform.position = lastpos;
                 }
             }
             transform.position = lastpos;
-
         }
         IEnumerator BirdMove()
         {
             yield return new WaitForSeconds(.25f);
-           
-
             transform.position = lastpos;
             gameObject.SetActive(false);
 
@@ -83,8 +77,6 @@ namespace Maths.Substraction.DragingObject
                 pos.z = 0;
                 transform.position = pos;
             }
-
-
         }
     }
 }

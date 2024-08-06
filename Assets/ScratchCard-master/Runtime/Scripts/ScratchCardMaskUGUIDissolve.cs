@@ -7,9 +7,9 @@ namespace ScratchCard
     [RequireComponent(typeof(ScratchCardMask))]
     public class ScratchCardMaskUGUIDissolve : MonoBehaviour
     {
-        private ScratchCardMask Mask 
+        private ScratchCardMask Mask
         {
-            get 
+            get
             {
                 if (mask == null)
                 {
@@ -19,8 +19,8 @@ namespace ScratchCard
                 return mask;
             }
         }
-        
-        private RawImage Image 
+
+        private RawImage Image
         {
             get
             {
@@ -35,7 +35,7 @@ namespace ScratchCard
 
         [SerializeField]
         private float duration = 0.5f;
-        
+
         private RawImage image;
         private ScratchCardMask mask;
         private Coroutine dissolveRoutine;
@@ -64,14 +64,12 @@ namespace ScratchCard
                 else
                 {
                     Image.canvasRenderer.SetAlpha(1.0f);
-
                     if (dissolveRoutine != null)
                     {
                         StopCoroutine(dissolveRoutine);
                         dissolveRoutine = null;
                     }
                 }
-
                 wasRevealed = isRevealed;
             }
         }

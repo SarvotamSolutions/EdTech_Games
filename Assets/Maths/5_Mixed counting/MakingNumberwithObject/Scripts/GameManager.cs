@@ -45,38 +45,26 @@ namespace Maths.Number1to10.numberWithObject
         public GameObject wrongAnswer_animtion;
         public GameObject Party_pop;
 
-        
-     
-
         private void Start()
         {
-
-            QuestoinCreation();// creating the Question
-
-
+            QuestoinCreation();
         }
 
 
-        IEnumerator LevelCompleted()// called when the whole level is compleated
+        IEnumerator LevelCompleted()
         {
-           
             gameCompleted_animation.SetActive(true);
             yield return new WaitForSeconds(delay_completedAnswer);
             SceneManager.LoadScene(0);
-
         }
 
-
-        public void QuestoinCreation()//creating the Questions
+        public void QuestoinCreation()
         {
-            
-            if (AnsweredQuestion.Count >= 10)// completed the all question
+            if (AnsweredQuestion.Count >= 10)
             {
                 StartCoroutine(LevelCompleted());
                 return;
             }
-
-            //Seleting the Random Question
 
             IconspriteID = Random.Range(0, normal_sprite.Length);
             Question.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = normal_sprite[IconspriteID];
@@ -84,19 +72,15 @@ namespace Maths.Number1to10.numberWithObject
             Question.GetComponent<SpriteRenderer>().sprite = unclickedsprite[IconspriteID];      
             Questionno++;
 
-
-            if(WithControll) //check this game have hint
+            if(WithControll)
             {
-
                 for (int i = 0; i < Questionno; i++)
                 {
-
                     ObjectDroped();
-           
                 }
                 
             }
-            else// if the game dosnt have any hint
+            else
             {
                 foreach (var item in AllFlower)
                 {
@@ -136,7 +120,6 @@ namespace Maths.Number1to10.numberWithObject
         }
         IEnumerator ResetingGame()
         {
-          
             yield return new WaitForSeconds(.5f);
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(wronganswerInterval);
@@ -147,7 +130,6 @@ namespace Maths.Number1to10.numberWithObject
         }
         IEnumerator GoingNextlevel()
         {
-
             Party_pop.SetActive(true);
             yield return new WaitForSeconds(currectanswerInterval);
             Party_pop.SetActive(false);
@@ -160,7 +142,6 @@ namespace Maths.Number1to10.numberWithObject
         public Button donebutton;
         public void Conform()
         {
-
             if (totorialcheck.totorialplaying || gamePlay == false)
                 return;
 
@@ -178,34 +159,27 @@ namespace Maths.Number1to10.numberWithObject
             }
             if (id == Questionno)
             {
-               
-             
-                //currect Answer
                 text.transform.parent.GetComponent<SpriteRenderer>().sprite = CurrectQuestion;
                 Arrow.sprite = currectarrow;
                 StartCoroutine(GoingNextlevel());
-
             }
             else
             {
                 text.transform.parent.GetComponent<SpriteRenderer>().sprite = WrongQuestion;
                 Arrow.sprite = wrongarrow;
                 StartCoroutine(ResetingGame());
-
             }
-        }//conform Button
+        }
+
         public void Reseting()
         {
             if(totorialcheck.totorialplaying)
                 return;
             selectediconid = 0;
-        
-          
             text.transform.parent.GetComponent<SpriteRenderer>().sprite = NormalQuestuion;
             Arrow.sprite = NormalArrow;
             upperVertical.SetActive(false);
             LowerVertical.SetActive(false);
-            //midleVertical.SetActive(false);
             DropedID = 0;
             if (WithControll)
             {
@@ -214,14 +188,9 @@ namespace Maths.Number1to10.numberWithObject
                     item.GetComponent<SpriteRenderer>().sprite = emty;
 
                 }
-                Debug.Log(Questionno);
-
-                 //  DropedID = Questionno-1;
-                 //
                 for (int i = 0; i < Questionno; i++)
                 {
                     ObjectDroped();
-                    // DropedID++;
                 }
                 DropedID = 0;
             }
@@ -233,9 +202,6 @@ namespace Maths.Number1to10.numberWithObject
                 }
             }
             gamePlay = true;
-          //  DropedID = 0;
-        }//reseting Button
-
+        }
     }
-
 }

@@ -12,17 +12,10 @@ namespace Laguage.Ryming_words.Matching
         public int set;
         public void Start()
         {
-            
             GameSet();
-           
         }
         public void GameSet()
         {
-            
-
-
-
-
             for (int i = 0; i < alloption.Length; i++)
             {
                 int no = Random.Range(0, allCharacter.Length);
@@ -45,16 +38,10 @@ namespace Laguage.Ryming_words.Matching
                 alloption[i].drop = allCharacter[OptionNO[OptionNO.Count-1]].RelatedCharacter[0].Sound;
                 alloption[i].lettersound = allCharacter[OptionNO[OptionNO.Count-1]].sameLetter[0].Sound;
             }
-
-
             for (int i = 0; i < droping_place.Length; i++)
             {
-
                 droping_place[i].transform.SetSiblingIndex(Random.Range(0, droping_place[i].transform.parent.childCount));
-
             }
-           
-
         }
         public IEnumerator reseting()
         {
@@ -68,20 +55,14 @@ namespace Laguage.Ryming_words.Matching
                 drager.answered = false;
                 drager.text.color = normalcolor;
                 droping_place[i].transform.GetChild(1).GetComponent<TextMeshPro>().color = normalcolor;
-
-                //seting arrwo to invicisble
                 SpriteRenderer arowrender = drager.arrow.transform.GetChild(0).GetComponent<SpriteRenderer>();
                 Color tmp = arowrender.color;
                 tmp.a = 0f;
                 arowrender.color = tmp;
-
-
-                //seting border
                 drager.Border.color = drager.tempcolr;
                 drager.GetComponent<SpriteRenderer>().color = Color.white;
                 droping_place[i].color = Color.white;
                 droping_place[i].transform.GetChild(3).GetComponent<SpriteRenderer>().color = drager.tempColor2;
-                // Answeroption.transform.GetChild(0).gameObject.SetActive(true);
                 drager.line.SetPosition(1, drager.line.GetPosition(0));
                 gamePlay = true;
 
@@ -91,33 +72,26 @@ namespace Laguage.Ryming_words.Matching
         }
         protected  void Update()
         {
-            // base.Update();
-           
             if (gamePlay == false)
                 return;
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
             if (selected_Line)
             {
-
                 selected_Line.SetPosition(1, pos);
             }
-
-            
         }
+
         public override void CurrectAnswer()
         {
             set += 4;
             if (set >= maxloding)
             {
-
                 StartCoroutine(LevelCompleted());
             }
             else
             {
                 StartCoroutine(reseting());
-              //  reseting();
-             //   GameSet();
             }
         }
     
@@ -127,7 +101,6 @@ namespace Laguage.Ryming_words.Matching
             gameCompleted_animation.GetComponent<AudioSource>().PlayDelayed(1);
             yield return new WaitForSeconds(levelcompletedelayTime+1);
             SceneManager.LoadScene(0);
-
         }
     }
 }

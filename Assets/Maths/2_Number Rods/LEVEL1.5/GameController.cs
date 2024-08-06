@@ -29,18 +29,12 @@ namespace Maths.NumberRoads.Building_Number_rods
         public GameObject wrongAnswer_animtion;
         public GameObject Party_pop;
 
-
-        /// <summary>
-        /// Returning te scenence to main scenc
-        /// </summary>
-        /// <returns></returns>
         public  IEnumerator LevelCompleted()
         {
             gameCompleted_animation.SetActive(true);
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene(0);
         }
-
 
         public bool Neartodestination(GameObject obj)
         {
@@ -61,14 +55,10 @@ namespace Maths.NumberRoads.Building_Number_rods
                 TextHolder.SetActive(false);
                 drawCanvas.SetActive(false);
 
-                //currect answer
                 alltext[no].transform.parent.GetComponent<SpriteRenderer>().sprite = normalinput;
                 ai.textResult = null;
                 Hodler.SetActive(true);
                 no++;
-
-
-
 
                 if (no >= 10)
                 {
@@ -84,13 +74,6 @@ namespace Maths.NumberRoads.Building_Number_rods
                     question[no].transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = selectedrod;
                 }
             }
-            else
-            {
-                Debug.Log("Wrong asnwer");
-                // Wrong Answer
-            }
         }
-
     }
-
 }

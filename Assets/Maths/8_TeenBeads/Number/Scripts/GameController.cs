@@ -59,24 +59,6 @@ namespace Maths.TeenBeads.Number
             Ai_recognizer.Recognigingnumber = Number1.ToString();
             Ai_recognizer.Changerecogniger();
             
-            //if(Contins1.transform.GetChild(1).gameObject.activeInHierarchy)
-            //{
-            //    for (int i = 0; i < Contins1.transform.GetChild(0).childCount; i++)
-            //    {
-
-            //        Contins1.transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
-            //    }
-            //    //privous Contins all active
-            //    int no = Number1-5;
-            //    for (int i = 0; i < no; i++)
-            //    {
-            //        Contins1.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
-            //    }
-
-            //}
-            //else
-            //}
-            //{
             for (int i = 0; i <Number1; i++)
             {
                 Contins1.transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
@@ -92,14 +74,12 @@ namespace Maths.TeenBeads.Number
         {
             stagetwoDrop = 0;
             
-          //  ObjectDroping.SetActive(false);
             DrawCanvas.SetActive(false);
             ObjectDroping.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
             TotalTen.SetActive(true);
             FinalButton.SetActive(false);
             Party_pop.SetActive(true);
 
-            Debug.Log("Coming here");
             yield return new WaitForSeconds(2);
             for (int i = 0; i < Contins1.transform.GetChild(0).childCount; i++)
             {
@@ -115,8 +95,6 @@ namespace Maths.TeenBeads.Number
             Contins2.transform.parent = Stage_one_parent.transform;
             Contins1.GetComponent<SpriteRenderer>().sprite = NormalAnswer;
             Contins2.GetComponent<SpriteRenderer>().sprite = NormalAnswer;
-            //Contins1.transform.position = secondstage1.transform.position;
-            //Contins2.transform.position = secondstage2.transform.position;
 
             Stage_one_parent.SetActive(true);
             stage_two_parent.SetActive(false);
@@ -139,7 +117,6 @@ namespace Maths.TeenBeads.Number
             stage_two_dropersecondtext.GetComponentInChildren<TextMeshPro>().text = "";
 
 
-            Debug.Log("witing");
             ObjectDroping.SetActive(true);
             DrawCanvas.SetActive(true);
             ObjectDroping.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
@@ -158,7 +135,6 @@ namespace Maths.TeenBeads.Number
                 Contins1.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
             }
             
-            //Contins1.gameObject.SetActive(true);
             DrawCanvas.gameObject.SetActive(true);
             ObjectDroping.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
 
@@ -176,17 +152,14 @@ namespace Maths.TeenBeads.Number
                 Contins2.transform.GetChild(i).gameObject.SetActive(true);
             }
             RelodingFuntion();
-           
-
-
         }
         IEnumerator LevelCompleted()
         {
             gameCompleted_animation.SetActive(true);
             yield return new WaitForSeconds(5);
             SceneManager.LoadScene(0);
-
         }
+      
         void RelodingFuntion()
         {
             if (allno.Count >= 9)
@@ -210,24 +183,6 @@ namespace Maths.TeenBeads.Number
             allno.Add(Number1);
 
             Contins1.transform.GetChild(1).gameObject.SetActive(Number1 > 5);
-            //if (Contins1.transform.GetChild(1).gameObject.activeInHierarchy)
-            //{
-            //    //for (int i = 0; i < Contins1.transform.GetChild(0).childCount; i++)
-            //    //{
-
-            //    //    Contins1.transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
-            //    //}
-            //    //privous Contins all active
-            //  //  int no = Number1 - 5;
-            //    for (int i = 0; i < no; i++)
-            //    {
-            //        Contins1.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
-            //    }
-
-            //}
-            //else
-            //{
-            //}
                 for (int i = 0; i < Number1; i++)
                 {
                     Contins1.transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
@@ -241,7 +196,6 @@ namespace Maths.TeenBeads.Number
         public GameObject secondstage1, secondstage2;
         public void SecondStageActivate()
         {
-            Debug.Log("second Stage Activated");
             totorialcheck.directionWindow();
             Stage_one_parent.gameObject.SetActive(false);
             stage_two_parent.gameObject.SetActive(true);
@@ -263,8 +217,6 @@ namespace Maths.TeenBeads.Number
             if(drawnno.no == Number1)
             {
                 drawnno.textResult = null;
-                Debug.Log("first stage");
-              //  Contins1.gameObject.SetActive(false);
                 DrawCanvas.gameObject.SetActive(false);
                 ObjectDroping.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
 
@@ -290,16 +242,12 @@ namespace Maths.TeenBeads.Number
         IEnumerator WrongAnimtion()
         {
             yield return new WaitForSeconds(2);
-            Debug.Log(ObjectDroping.transform.GetChild(0).childCount);
             
             drawnno.textResult = Number1text;
             Inputfild.sprite = NormalAnswer;
             Number1text.text = "";
             Number1text.color = newcolor;
-
-
             wrongAnswer_animtion.SetActive(false);
-           
         }
 
     
@@ -307,7 +255,6 @@ namespace Maths.TeenBeads.Number
         {
             if(Number1 + Number2 == 10)
             {
-              //  ObjectDroping.SetActive(false);
                 DrawCanvas.SetActive(false);
 
                 TotalTen.SetActive(true);
@@ -320,7 +267,6 @@ namespace Maths.TeenBeads.Number
                 stage_two_secondText.text = (Number2 ).ToString();
                 FinalButton.SetActive(false);
                 equationNextbutton.SetActive(true);
-               // StartCoroutine(Reloding());
             }
             else
             {

@@ -31,8 +31,6 @@ namespace Maths.Times.DragDrop
         }
         IEnumerator WrongAnswerAnimation()
         {
-
-        //    yield return new WaitForSeconds(.5f);
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
             ClockTimer[selctedno].transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
@@ -41,7 +39,6 @@ namespace Maths.Times.DragDrop
             ClockSprite.sprite = NormalClock;
             wrongAnswer_animtion.SetActive(false);
             gamePlay = true;
-          //  AiCanvas.SetActive(true);
         }
    
         private void Start()
@@ -63,32 +60,19 @@ namespace Maths.Times.DragDrop
                 OPtionTime[i].transform.GetChild(0).GetComponent<TextMeshPro>().text = no.ToString();
                 OPtionTime[i].GetComponent<Draging>().no = no;
                 allno.Add(no);
-
-
-
             }
-
-
         }
         private int selctedno;
         public bool Neartodestination(GameObject obj)
         {
-     
-     
- 
-          
-            
             if (Vector3.Distance(obj.transform.position, ClockTimer[selctedno].transform.position) < 1)
             {
                 gamePlay = false;
                 if (ClockTimer[selctedno].name == obj.GetComponent<Draging>().no.ToString())
                 {
-                //    
                     ClockTimer[selctedno].GetComponent<SpriteRenderer>().sprite = currectAnswer;
                     ClockTimer[selctedno].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = CurrectAnswerArrow;
                     Draging draging = obj.GetComponent<Draging>();
-                    //draging.sound.clip = draging.drop;
-                    //draging.sound.Play();
                     ClockTimer[selctedno].transform.GetChild(0).GetComponent<TextMeshPro>().text = draging.no.ToString();
 
                     selctedno++;
@@ -113,17 +97,9 @@ namespace Maths.Times.DragDrop
                     ClockTimer[selctedno].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = wronganswerArrow;
                     ClockTimer[selctedno].transform.GetChild(0).GetComponent<TextMeshPro>().text = obj.GetComponent<Draging>().no.ToString();
                     StartCoroutine(WrongAnswerAnimation());
-
                 }
-
-
-
             }
-            
-
-           
             return false;
         }
-
     }
 }

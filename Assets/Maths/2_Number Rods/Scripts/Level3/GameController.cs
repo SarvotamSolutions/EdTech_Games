@@ -33,16 +33,12 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
             if(Mathf.Abs(dropplace[no].transform.position.x - selecteddraging.transform.position.x) < Distance.x
                 && Mathf.Abs(dropplace[no].transform.position.y - selecteddraging.transform.position.y) < Distance.y)
             {
-           
                 if(no ==9 && firstanswer)
                 {
                     Holdingparent1.SetActive(false);
                     Holdingparent2.SetActive(false);
                     StartCoroutine(LevelCompleted());
-                    //level Complete
                 }
-
-                
                 return true;
             }
             return false;
@@ -52,7 +48,6 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
             gameCompleted_animation.SetActive(true);
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene(0);
-        }   //    public bool 
-
+        }
     }
 }

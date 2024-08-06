@@ -24,7 +24,6 @@ namespace Maths.Money.AddMoney
             sound.clip = pickup;
             sound.Play();
             clicked = true;
-            //  lastpos = transform.position;
         }
         public bool droped;
         public float speed;
@@ -41,14 +40,7 @@ namespace Maths.Money.AddMoney
                 Gamecontroll.Instance.totalmoneyadded += Moneyvlaue;
                 Gamecontroll.Instance.totalMoneyaddedtext.text = "$ " + Gamecontroll.Instance.totalmoneyadded.ToString("0.00");
                 droped = true;
-                //  transform.position += Vector3.down *19;
             }
-            //this.gameObject.SetActive(false);
-
-            //if (GameCondtroller.instace.checkForThirdStage())
-            //{
-
-            //}
 
             else
             {
@@ -81,7 +73,6 @@ namespace Maths.Money.AddMoney
                 pos.z = 0;
                 transform.position = pos;
             }
-
             if (droped)
             {
                 transform.position += Vector3.down * speed * Time.deltaTime;

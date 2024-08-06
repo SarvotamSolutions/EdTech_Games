@@ -31,9 +31,6 @@ namespace Maths.Times.Selecttime
             yield return new WaitForSeconds(1);
             SceneManager.LoadScene(0);
         }
-       
-
-        // Start is called before the first frame update
         void Start()
         {
             Relod();
@@ -52,9 +49,6 @@ namespace Maths.Times.Selecttime
             MinitCount = Random.Range(0, 4);
             float rotateangle = HourCout * 30;
             float rotateAngleofminit = MinitCount * 90;
-            Debug.Log(HourCout * 30);
-            Debug.Log(rotateangle);
-            Debug.Log(-rotateangle);
 
             Smallneedle.transform.Rotate(Vector3.forward, -rotateangle);
             MinitNeedle.transform.Rotate(Vector3.forward, -rotateAngleofminit);
@@ -93,8 +87,6 @@ namespace Maths.Times.Selecttime
         {
             Party_pop.SetActive(true);
 
-            //Smallneedle.transform.Rotate(Vector3.forward, 0f);
-            //MinitNeedle.transform.Rotate(Vector3.forward, 0f);
             yield return new WaitForSeconds(5f);
             Party_pop.SetActive(false);
             Smallneedle.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -108,17 +100,10 @@ namespace Maths.Times.Selecttime
             Relod();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public class Time
         {
             public int Hour;
             public int Minit;
-
         }
     }
 }

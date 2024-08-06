@@ -48,7 +48,6 @@ namespace culture.sinkfloat1
                 alloption[i].no = allCharacter[randomchar].Letter;
                 alloption[i].text.text = allCharacter[randomchar].sameLetter[randomno].Name;
                 alloption[i].transform.position = alloption[i].lastpos;
-                // AllAnswerNo.Add()
                  alloption[i].Icon.sprite = allCharacter[randomchar].sameLetter[randomno].Icon;
             }
 
@@ -93,7 +92,6 @@ namespace culture.sinkfloat1
         }
         public override void WrongAnswer()
         {
-            // base.WrongAnswer();
             selectedoption.Border.color = wrong_answer_color;
             StartCoroutine(WaitWrongAnimtion());
         }
@@ -106,9 +104,7 @@ namespace culture.sinkfloat1
             {
                 selectedoption.Border.color = drag.defaltcolr;
             }
-          //   = selectedoption.TryGetComponent<Drag>().defaltcolr;
             selectedoption = null;
-            // base.ResetingDrage();
         }
     }
 }

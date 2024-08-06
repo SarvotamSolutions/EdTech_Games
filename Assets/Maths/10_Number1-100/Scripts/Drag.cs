@@ -39,7 +39,6 @@ namespace Maths.Number1to100.dragandrop
             sound.Play();
 
             clicked = false;
-            Debug.Log("XXXx");
             if (GameController.Instance.Neartodestination(this.gameObject))
             {
                 transform.position = lastpos;

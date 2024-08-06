@@ -16,7 +16,6 @@ public class Drag : MonoBehaviour
         {
             pointer.Add(allpointer[i]);
         }
-        // clicked = true;
         DragingStarted();
     }
     Coroutine draw_line;
@@ -25,17 +24,10 @@ public class Drag : MonoBehaviour
     void DragingStarted()
     {
         Entered = true;
-        //GameManager.instace.lastcoloid.Add(GameManager.instace.selectedcolor);
+       
         Vector3 Position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Position.z = 0;
-        //if (GameManager.instace.ColorSelection)
-        //{
-        //    GameManager.instace.colorwindow.SetActive(false);
-        //    line.colorGradient = GameManager.instace.colors[GameManager.instace.selectedcolor].color;
-        //}
-        //if (Vector3.Distance(Position, startingPoint.transform.position) <= distancecheck)
-        //    Entered = true;
-
+    
         if (Entered)
             StartLine();
     }
@@ -46,15 +38,8 @@ public class Drag : MonoBehaviour
             if (Vector3.Distance(item.position, line.GetPosition(line.positionCount - 1)) < 1f)
             {
                 pointer.Remove(item);
-
-
             }
-
-
         }
-        
-
-
     }
     private void OnMouseUp()
     {
@@ -69,10 +54,7 @@ public class Drag : MonoBehaviour
     {
         if (draw_line != null)
             StopCoroutine(draw_line);
-
-
         draw_line = StartCoroutine(DrawLine());
-
     }
     void FinishLine()
     {
@@ -87,11 +69,9 @@ public class Drag : MonoBehaviour
         while (true)
         {
             Vector3 Position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
             Position.z = 0;
             line.positionCount++;
             line.SetPosition(line.positionCount - 1, Position);
-
             yield return null;
         }
     }

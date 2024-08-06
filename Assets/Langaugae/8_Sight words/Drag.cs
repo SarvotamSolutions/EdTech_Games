@@ -24,16 +24,10 @@ namespace Laguage.sightWords
                 return;
             base.OnMouseUp();
 
-            if (GameController.Instance.Neartodestination())
-            {
-
-
-            }
-            else
+            if (!GameController.Instance.Neartodestination())
             {
                 transform.position = lastpos;
             }
         }
-
     }
 }

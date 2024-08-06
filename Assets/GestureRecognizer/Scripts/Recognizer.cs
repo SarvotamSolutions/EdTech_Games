@@ -8,8 +8,6 @@ using System.Threading;
 
 namespace GestureRecognizer
 {
-
-
     /// <summary>
     /// Classe to hold the result score of a comparison between two gestures.
     /// The score gives preference to the position of each line.
@@ -104,13 +102,11 @@ namespace GestureRecognizer
             {
                 foreach (var charecter in allno)
                 {
-                    if(item.id == charecter.ToString())
+                    if (item.id == charecter.ToString())
                     {
                         patterns.Add(item);
                     }
-
                 }
-                
             }
         }
 
@@ -126,7 +122,7 @@ namespace GestureRecognizer
 
             timer.Stop();
 
-			found.recognitionTime = (float)(timer.ElapsedMilliseconds / 1000.0);
+            found.recognitionTime = (float)(timer.ElapsedMilliseconds / 1000.0);
 
             return found;
         }
@@ -138,10 +134,10 @@ namespace GestureRecognizer
 
         IEnumerator RecognizeCoroutine(GestureData data, System.Action<RecognitionResult> callback, bool normalizeScale)
         {
-			var timer = new System.Diagnostics.Stopwatch();
+            var timer = new System.Diagnostics.Stopwatch();
             timer.Start();
 
-			RecognitionResult result = null;
+            RecognitionResult result = null;
 
             //runs recognition in another thread to avoid framerate drop
 
@@ -159,8 +155,8 @@ namespace GestureRecognizer
                 yield return null;
             }
 
-			timer.Stop();
-			result.recognitionTime = (float)(timer.ElapsedMilliseconds / 1000);
+            timer.Stop();
+            result.recognitionTime = (float)(timer.ElapsedMilliseconds / 1000);
 
             callback.Invoke(result);
         }
@@ -205,7 +201,7 @@ namespace GestureRecognizer
                     {
 
                         result.Add(new List<int>(p));
-                      //
+                        //
 
                     }
                     swap(low, i);
@@ -263,40 +259,6 @@ namespace GestureRecognizer
             for (int i = 0; i < threads.Count; i++)
                 threads[i].Join();
 
-
-            // for (int i = 0; i < patterns.Count; i++)
-            // {
-
-            //     var gestureAsset = patterns[i];
-            //     var assetData = NormalizeData(gestureAsset.gesture, normalizeScale);
-
-            //     if (assetData.lines.Count != queryData.lines.Count)
-            //     {
-            //         //ignore wrong sizes
-            //         continue;
-            //     }
-
-            //     //if useLinesOrder, dont calc permutations
-            //     var permutationsToLook = gestureAsset.useLinesOrder ? singlePermutation : permutations;
-
-            //     foreach (var data in permutationsToLook)
-            //     {
-
-            //         var permutScore = CalcScore(data, assetData, gestureAsset.useLinesDirections);
-
-            //         float pd = permutScore.positionDistance;
-            //         float cd = permutScore.curvatureDistance;
-            //         float ad = permutScore.angleDistance;
-
-            //         if (permutScore > bestScore)
-            //         {
-            //             bestScore = permutScore;
-            //             bestGesture = gestureAsset;
-            //         }
-            //     }
-
-            // }
-
             return new RecognitionResult() { gesture = bestGesture, score = bestScore };
         }
 
@@ -321,7 +283,6 @@ namespace GestureRecognizer
 
                 foreach (var data in permutationsToLook)
                 {
-
                     var permutScore = CalcScore(data, assetData, gestureAsset.useLinesDirections);
 
                     float pd = permutScore.positionDistance;
@@ -342,15 +303,11 @@ namespace GestureRecognizer
 
         private Score CalcScore(GestureData data1, GestureData data2, bool useLinesDirections)
         {
-
             if (data1.lines.Count == data2.lines.Count)
             {
-
                 var lineScores = new List<Score>();
-
                 for (int i = 0; i < data1.lines.Count; i++)
                 {
-
                     var line1 = data1.lines[i].points;
 
                     var line2Fwd = data2.lines[i].points;//forward
@@ -358,24 +315,18 @@ namespace GestureRecognizer
 
                     if (useLinesDirections)
                     {
-
                         lineScores.Add(scoreFwd);
-
                     }
                     else
                     {
-
                         var line2Bwd = line2Fwd.AsEnumerable().Reverse().ToList();//backwards
                         var scoreBwd = CalcListScore(line1, line2Bwd, data2.lines[i].closedLine);
 
-                        //gets best score between forward and backwards
                         var score = scoreFwd > scoreBwd ? scoreFwd : scoreBwd;
                         lineScores.Add(score);
                     }
-
                 }
 
-                //mean score from lines
                 return new Score()
                 {
                     positionDistance = lineScores.Select(e => e.positionDistance).Sum() / lineScores.Count,
@@ -389,7 +340,6 @@ namespace GestureRecognizer
                 return Score.MaxDistance;
             }
         }
-
 
         private List<float> CalcAngles(List<Vector2> points)
         {
@@ -656,6 +606,4 @@ namespace GestureRecognizer
         }
 
     }
-
-
 }

@@ -6,10 +6,6 @@ using UnityEngine.UI;
 
 public class GestureOptions : MonoBehaviour
 {
-
-
-  //  public Text textTime;
-
     public DrawDetector[] detectors;
 
     public Recognizer recognizer;
@@ -34,7 +30,6 @@ public class GestureOptions : MonoBehaviour
 
     void RecognitionResult(RecognitionResult result)
     {
-	//	textTime.text = string.Format("{0:0.000}s",result.recognitionTime);
     }
 
     public void OnChangeMinMax()
@@ -53,5 +48,4 @@ public class GestureOptions : MonoBehaviour
         int n_threads = 1;
         recognizer.numberOfThreads = n_threads;
     }
-
 }

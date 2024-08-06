@@ -30,7 +30,6 @@ namespace Maths.placeHolder.selectNO
             gameCompleted_animation.SetActive(true);
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene(0);
-
         }
         IEnumerator WrongAnswerAnimation()
         {
@@ -51,7 +50,6 @@ namespace Maths.placeHolder.selectNO
             icon.sprite = iconsprite[no];
 
             allno.Add(no);
-
         }
 
         public void Answer(int answerNO)
@@ -61,7 +59,6 @@ namespace Maths.placeHolder.selectNO
             gamePlay = false;
             if (answerNO == no)
             {
-                
                 AnswerButton[no].GetComponent<Image>().sprite = currectanswerButton;
                 AnswerButton[no].GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
                 if (allno.Count >= 4)
@@ -92,9 +89,6 @@ namespace Maths.placeHolder.selectNO
 
             }
             no = Random.Range(0, 4);
-
-
-         
             for (int i = 0; i < allno.Count; i++)
             {
                 if(allno[i] == no)

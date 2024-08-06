@@ -17,7 +17,7 @@ namespace Maths.TeenBeads.drop10to20
         public TextMeshPro hintText;
         public GameObject[] droppos;
         public SpriteRenderer[] allsprite;
-        public float offset=2;
+        public float offset = 2;
 
         public float curectanswerInteval, wronganswerInteval;
         public int no;
@@ -28,24 +28,10 @@ namespace Maths.TeenBeads.drop10to20
 
         private void Awake()
         {
-        
             TextUpdate();
         }
-        
+
         void TextUpdate()
-        {
-            // int no = Random.Range(11, 20);
-            
-
-        }
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
         {
 
         }
@@ -54,12 +40,10 @@ namespace Maths.TeenBeads.drop10to20
         {
             allsprite[no].transform.GetChild(0).GetComponent<TextMeshPro>().color = Color.white;
             no++;
-           
-            allsprite[no-1].sprite = currectanswer;
+
+            allsprite[no - 1].sprite = currectanswer;
             Party_pop.SetActive(true);
             yield return new WaitForSeconds(curectanswerInteval);
-            //hintText.text = "Drag and join the right bead to make " + (no + 11).ToString();
-        //    hintText.transform.position = new Vector2(hintText.transform.position.x, hintText.transform.position.y - offset);
             Party_pop.SetActive(false);
             if (no >= 9)
             {
@@ -68,12 +52,9 @@ namespace Maths.TeenBeads.drop10to20
             }
             else
             {
-               // allsprite[no].sortingOrder = 4;
                 allsprite[no].transform.GetChild(0).GetComponent<TextMeshPro>().sortingOrder = 4;
-                allsprite[no].transform.parent.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
+                allsprite[no].transform.parent.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                 allsprite[no].transform.parent.GetChild(1).GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-
-                //allsprite[no].transform.GetChild(0).GetComponent<TextMeshPro>().text = (10 + (no + 1)).ToString();
             }
             gamePlay = true;
         }
@@ -92,22 +73,20 @@ namespace Maths.TeenBeads.drop10to20
             allsprite[no].sprite = normalAnswer;
             obj.transform.position = obj.GetComponent<Drager>().lastpos;
             gamePlay = true;
-
         }
         IEnumerator LevelCompleted()
         {
             gameCompleted_animation.SetActive(true);
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene(0);
-
         }
 
         public GameObject Neartodestination(GameObject obj)
         {
-            if (Vector3.Distance(obj.transform.position, droppos[no].transform.position) <4f)
+            if (Vector3.Distance(obj.transform.position, droppos[no].transform.position) < 4f)
             {
                 gamePlay = false;
-                allsprite[no].transform.GetChild(0).GetComponent<TextMeshPro>().text = (10+obj.GetComponent<Drager>().no).ToString();
+                allsprite[no].transform.GetChild(0).GetComponent<TextMeshPro>().text = (10 + obj.GetComponent<Drager>().no).ToString();
                 if (obj.GetComponent<Drager>().no == no + 1)
                 {
                     obj.GetComponent<BoxCollider2D>().enabled = false;
@@ -120,7 +99,6 @@ namespace Maths.TeenBeads.drop10to20
                 }
                 return droppos[no];
             }
-          
             return null;
         }
     }

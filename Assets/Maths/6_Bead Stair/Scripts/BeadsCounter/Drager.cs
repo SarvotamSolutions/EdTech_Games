@@ -17,15 +17,15 @@ namespace Maths.BeadStair.NumberSelction
         {
             sound = GetComponent<AudioSource>();
             lastpos = transform.position;
-            if(!GameController.Instance.spritechnagr)
-            Noset();
+            if (!GameController.Instance.spritechnagr)
+                Noset();
         }
         void Noset()
         {
             no = Random.Range(1, 11);
             foreach (var item in GameController.Instance.allno)
             {
-                if(item == no)
+                if (item == no)
                 {
                     Noset();
                     return;
@@ -36,13 +36,12 @@ namespace Maths.BeadStair.NumberSelction
         }
         private void OnMouseDown()
         {
-            if (!GameController.Instance.gamePlay|| GameController.Instance.totorialcheck.totorialplaying)
+            if (!GameController.Instance.gamePlay || GameController.Instance.totorialcheck.totorialplaying)
                 return;
             sound.clip = pickup;
             sound.Play();
             GameController.Instance.Selected = this;
             clicked = true;
-            
         }
 
         private void OnMouseUp()
@@ -55,29 +54,20 @@ namespace Maths.BeadStair.NumberSelction
 
             if (GameController.Instance.NeartoDestination())
             {
-
                 if (!GameController.Instance.spritechnagr)
                     transform.position = lastpos;
-              
-                  
-             //   gameObject.SetActive(false);
             }
             else
-            transform.position = lastpos;
-           // GameController.Instance.Selected = null;
+                transform.position = lastpos;
         }
         private void Update()
         {
-            //if (GameController.Instance.Completed)
-            //    return;
             if (Input.GetMouseButton(0) && clicked)
             {
                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 pos.z = 0;
                 transform.position = pos;
             }
-
-
         }
     }
 }

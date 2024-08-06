@@ -10,15 +10,14 @@ namespace Laguage.Trachingexasise
     public class GameManager : MonoBehaviour// all tracing game
     {
         public static GameManager instace;
-        
+
         [System.Serializable]
         public class ColorsSelection
         {
-
             public Gradient color;
             public GameObject selectedcolor;
             public GameObject notselected;
-   
+
         }
         public Totorial totrialcheck;
 
@@ -29,12 +28,12 @@ namespace Laguage.Trachingexasise
         public GameObject partypop;
         public GameObject wordholder;
 
-        
-        public Sprite selectedimage,notanswered,currectanswered;
+
+        public Sprite selectedimage, notanswered, currectanswered;
         public Sprite[] ranbowColorSprite, NormalSprite;
 
         public WordsHandling[] NumberAndLetters;
-       
+
         public ColorsSelection[] colors;
         [Space(10)]
         public bool COMPLETED;
@@ -69,12 +68,10 @@ namespace Laguage.Trachingexasise
             }
             NumberAndLetters[activeobj].line[0].gameObject.SetActive(true);
 
-            
             foreach (var item in colors)
             {
                 item.notselected.SetActive(true);
                 item.selectedcolor.SetActive(false);
-                
             }
             colors[color].selectedcolor.SetActive(true);
             colors[color].notselected.SetActive(false);
@@ -83,9 +80,7 @@ namespace Laguage.Trachingexasise
 
         private void Start()
         {
-
             StartCoroutine(waitfortotoralcomplete());
-
         }
         IEnumerator waitfortotoralcomplete()
         {
@@ -95,21 +90,7 @@ namespace Laguage.Trachingexasise
         public int lineno;
         private void Update()
         {
-
             if (EventSystem.current.IsPointerOverGameObject()) return;
-
-            //if (clicked && Input.GetMouseButtonUp(0) && !alrdyCalled)
-            //{
-            //    clicked = false;
-            //    alrdyCalled = true;
-            //    Debug.Log("onmouseUP");
-            //    NumberAndLetters[activeobj].line[lineno].FinishedTheLineDraging();
-            //  //  FinishedTheLineDraging();
-            //}
-            //if(Input.touchCount > 1)
-            //{
-            //    NumberAndLetters[activeobj].line[lineno].FinishedTheLineDraging();
-            //}
         }
         public void ResetBUtton()
         {
@@ -118,6 +99,7 @@ namespace Laguage.Trachingexasise
             {
                 item.completed = false;
             }
+
             if (ColorSelection)
                 colorwindow.SetActive(true);
 
@@ -127,6 +109,7 @@ namespace Laguage.Trachingexasise
                 NumberAndLetters[activeobj].FinsihNO.GetComponent<SpriteRenderer>().sortingOrder = 0;
                 NumberAndLetters[activeobj].FinsihNO.GetComponent<SpriteRenderer>().sprite = NormalSprite[activeobj];
             }
+
             NumberAndLetters[activeobj].Finsihed = false;
             NumberAndLetters[activeobj].buttonImage.sprite = notanswered;
             NumberAndLetters[activeobj].FinsihNO.SetActive(false);
@@ -152,10 +135,8 @@ namespace Laguage.Trachingexasise
             if (totrialcheck.totorialplaying)
                 return;
 
-
-            if(!NumberAndLetters[activeobj].Finsihed)
+            if (!NumberAndLetters[activeobj].Finsihed)
                 ResetBUtton();
-
 
             activeobj = index;
             if (!NumberAndLetters[activeobj].Finsihed)
@@ -163,10 +144,8 @@ namespace Laguage.Trachingexasise
             for (int i = 0; i < NumberAndLetters.Length; i++)
             {
                 NumberAndLetters[i].obj.SetActive(false);
-
             }
             NumberAndLetters[activeobj].obj.SetActive(true);
-           // numberofcolors = 0;
         }
 
         public void StartGame()
@@ -174,29 +153,26 @@ namespace Laguage.Trachingexasise
             for (int i = 0; i < NumberAndLetters.Length; i++)
             {
                 NumberAndLetters[i].obj.SetActive(false);
-
             }
             NumberAndLetters[activeobj].obj.SetActive(true);
             StartPannel.SetActive(false);
-
         }
         public bool AllLevelCompleted()
         {
-
             foreach (var item in NumberAndLetters)
             {
                 if (!item.Finsihed)
                     return false;
             }
-
             return true; ;
-
         }
+
         public void LoadMenu()
         {
             SceneManager.LoadScene(0);
         }
     }
+
     [System.Serializable]
     public class WordsHandling
     {
@@ -207,7 +183,5 @@ namespace Laguage.Trachingexasise
 
         public GameObject FinsihNO;
         public Image buttonImage;
-
-
     }
 }

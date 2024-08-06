@@ -26,7 +26,6 @@ public class SoundManager : MonoBehaviour
         
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(this);
@@ -44,7 +43,5 @@ public class SoundManager : MonoBehaviour
             
             backgroundsound.Stop();
         }
-      
     }
-
 }

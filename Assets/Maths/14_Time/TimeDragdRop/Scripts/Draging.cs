@@ -15,7 +15,6 @@ namespace Maths.Times.DragDrop
 
         private void Start()
         {
-            //sound = GetComponent<AudioSource>();
             lastpos = transform.position;
         }
         private void OnMouseDown()
@@ -23,9 +22,9 @@ namespace Maths.Times.DragDrop
             if (!GameController.Instance.gamePlay || GameController.Instance.totorial.totorialplaying)
                 return;
             sound.clip = pickup;
-            sound.Play();   
+            sound.Play();
             clicked = true;
-    
+
         }
 
         private void OnMouseUp()
@@ -41,7 +40,6 @@ namespace Maths.Times.DragDrop
                 gameObject.SetActive(false);
             }
             transform.position = lastpos;
-
         }
         private void Update()
         {
@@ -51,8 +49,6 @@ namespace Maths.Times.DragDrop
                 pos.z = 0;
                 transform.position = pos;
             }
-
-
         }
     }
 }

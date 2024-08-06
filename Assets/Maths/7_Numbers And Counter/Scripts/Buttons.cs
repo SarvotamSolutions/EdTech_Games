@@ -51,11 +51,9 @@ namespace Maths.CountAndCards.count
                         DropingParent.GetChild(DropingParent.childCount - 1).gameObject.SetActive(false);
                         Debug.Log("level completed");
                     }
-                    //     Debug.Log(GameController.instance.numbers);
                 }
                 else
                 {
-
                     transform.parent = DraginParent;
                 }
             }
@@ -67,34 +65,17 @@ namespace Maths.CountAndCards.count
                     GameController.Instance.distance.y +=.5f;
                     transform.parent = DropingParent;
                     transform.SetAsFirstSibling();
-                    //if (GameController.instace.no == DropingParent.childCount - 1)
-                    //{
-                    //    DropingParent.GetChild(DropingParent.childCount - 1).gameObject.SetActive(false);
-                    //    Debug.Log("level completed");
-                    //}
-                    //     Debug.Log(GameController.instance.numbers);
                 }
                 else
                 {
-
                     transform.parent = DraginParent;
                 }
             }
         }
 
-        // Start is called before the first frame update
         void Start()
         {
             sound = GetComponent<AudioSource>();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            if (Input.GetMouseButtonUp(0))
-            {
-                
-            }
         }
     }
 

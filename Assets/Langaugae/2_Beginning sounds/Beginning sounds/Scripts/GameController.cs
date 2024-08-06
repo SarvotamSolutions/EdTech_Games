@@ -5,12 +5,12 @@ using TMPro;
 
 using UnityEngine.SceneManagement;
 
- namespace Laguage.beginning_sounds.matchtheSound
+namespace Laguage.beginning_sounds.matchtheSound
 {
     public class GameController : Singleton<GameController>
     {
         public Totorial totorialcheck;
-        public Color red, blue, green,vilot;
+        public Color red, blue, green, vilot;
         public LineRenderer selectedline;
         public AllCharacter[] alltypeofCharacter;
         public SpriteRenderer[] iconOption;
@@ -21,12 +21,12 @@ using UnityEngine.SceneManagement;
         public Material currectanswer;
         public Material WrongAnswer;
         public Material SelectMaterail;
-        public Sprite currectanswerarrow,wronganswerarrow;
+        public Sprite currectanswerarrow, wronganswerarrow;
         public Sprite Currectanswer, wronganswer, Selectanswer;
         public int totalanswered;
         public int relodtime;
 
-        private int[] allrandomno; 
+        private int[] allrandomno;
 
 
         [Space(10)]
@@ -34,7 +34,6 @@ using UnityEngine.SceneManagement;
         public GameObject wrongAnswer_animtion;
         public GameObject Party_pop;
 
-        // Start is called before the first frame update
         void Start()
         {
             gamePlay = true;
@@ -43,7 +42,7 @@ using UnityEngine.SceneManagement;
         void GameStart()
         {
             int j = 0;
-          
+
             totalanswered = 0;
             currentno.Clear();
             relodtime++;
@@ -53,12 +52,11 @@ using UnityEngine.SceneManagement;
 
                 for (int i = 0; i < allselectedno.Count; i++)
                 {
-                    if (randomno == allselectedno[i] && allselectedno.Count <26)
+                    if (randomno == allselectedno[i] && allselectedno.Count < 26)
                     {
                         randomno = Random.Range(0, alltypeofCharacter.Length);
                         i = -1;
                     }
-                   
                 }
                 for (int i = 0; i < currentno.Count; i++)
                 {
@@ -67,7 +65,6 @@ using UnityEngine.SceneManagement;
                         randomno = Random.Range(0, alltypeofCharacter.Length);
                         i = -1;
                     }
-
                 }
                 allselectedno.Add(randomno);
                 currentno.Add(randomno);
@@ -80,12 +77,12 @@ using UnityEngine.SceneManagement;
             }
             for (int i = 0; i < alltext.Length; i++)
             {
-                
+
                 alldrager[i].Answeroption = iconOption[i].gameObject;
                 alltext[i].text = alltypeofCharacter[currentno[i]].Letter;
                 alltext[i].color = vilot;
                 alldrager[i].lettersound = alltypeofCharacter[currentno[i]].lettersound;
-                alldrager[i].Answeroption.transform.parent.SetSiblingIndex(Random.Range(0,4));
+                alldrager[i].Answeroption.transform.parent.SetSiblingIndex(Random.Range(0, 4));
             }
             gamePlay = true;
         }
@@ -97,7 +94,6 @@ using UnityEngine.SceneManagement;
             pos.z = 0;
             if (selectedline)
             {
-                
                 selectedline.SetPosition(1, pos);
             }
 
@@ -109,7 +105,6 @@ using UnityEngine.SceneManagement;
             gameCompleted_animation.GetComponent<AudioSource>().PlayDelayed(1);
             yield return new WaitForSeconds(4);
             SceneManager.LoadScene(0);
-
         }
         IEnumerator ComplteAnimation()
         {
@@ -121,7 +116,6 @@ using UnityEngine.SceneManagement;
             {
                 item.NotAnswerd();
                 item.Reseting();
-                
             }
             GameStart();
         }
@@ -132,11 +126,8 @@ using UnityEngine.SceneManagement;
             {
                 StartCoroutine(ComplteAnimation());
             }
-           else
-            StartCoroutine(LevelCompleted());
+            else
+                StartCoroutine(LevelCompleted());
         }
-       
-    
     }
 }
-

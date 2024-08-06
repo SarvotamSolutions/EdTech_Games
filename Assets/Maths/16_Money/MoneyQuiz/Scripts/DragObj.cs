@@ -14,13 +14,11 @@ namespace Maths.Money.MoneyQuiz
         public Vector3 permantlastpos;
         private void OnMouseDown()
         {
-            if (!GameController.Instance.gamePlay  || GameController.Instance.totorial.totorialplaying)
+            if (!GameController.Instance.gamePlay || GameController.Instance.totorial.totorialplaying)
                 return;
             sound.clip = pickup;
             sound.Play();
             clicked = true;
-            // lastpos = transform.position;
-
         }
         private void Start()
         {
@@ -35,14 +33,8 @@ namespace Maths.Money.MoneyQuiz
             sound.clip = drop;
             sound.Play();
             clicked = false;
-            if (GameController.Instance.Neartodestination(this.gameObject))
+            if (!GameController.Instance.Neartodestination(this.gameObject))
             {
-                // transform.position = lastpos;
-                // gameObject.SetActive(false);
-            }
-            else
-            {
-                //transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
                 transform.position = lastpos;
             }
         }
@@ -50,13 +42,10 @@ namespace Maths.Money.MoneyQuiz
         {
             if (Input.GetMouseButton(0) && clicked)
             {
-                //transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.blue;
                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 pos.z = 0;
                 transform.position = pos;
             }
-
-
         }
     }
 }

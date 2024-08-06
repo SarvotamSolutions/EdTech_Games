@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Maths.Addision.BeadsCount 
-{ 
+namespace Maths.Addision.BeadsCount
+{
     public class Draging : MonoBehaviour
     {
         public AudioSource sound;
@@ -19,7 +19,6 @@ namespace Maths.Addision.BeadsCount
             sound.clip = pickup;
             sound.Play();
             clicked = true;
-          
         }
         private void Start()
         {
@@ -34,7 +33,6 @@ namespace Maths.Addision.BeadsCount
             clicked = false;
             if (GameController.instance.Neartodestination(this.gameObject))
             {
-
                 transform.position = lastpos;
                 gameObject.SetActive(false);
             }
@@ -49,8 +47,6 @@ namespace Maths.Addision.BeadsCount
                 pos.z = 0;
                 transform.position = pos;
             }
-
-
         }
     }
 }

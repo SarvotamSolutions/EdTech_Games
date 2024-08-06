@@ -14,6 +14,8 @@ namespace Laguage.Reading_sentences
         {
           
             base.Start();
+
+
             transform.SetSiblingIndex(Random.Range(0, transform.parent.childCount));
             m_render = GetComponent<SpriteRenderer>();
             m_transform = GetComponent<RectTransform>();
@@ -24,18 +26,19 @@ namespace Laguage.Reading_sentences
         {
             
         }
-       public void sizeseting()
+
+        public void sizeseting()
         {
             m_render = GetComponent<SpriteRenderer>();
             m_transform = GetComponent<RectTransform>();
             m_render.size = m_transform.sizeDelta;
-            Debug.Log("Size setting");
         }
 
         protected override void Update()
         {
             if (m_render.size != m_transform.sizeDelta)
                 m_render.size = m_transform.sizeDelta;
+
             base.Update();
         }
         protected override void OnMouseDown()
@@ -43,6 +46,8 @@ namespace Laguage.Reading_sentences
             m_render.size = m_transform.sizeDelta;
             if (!GameController.Instance.gamePlay)
                 return;
+
+
             base.OnMouseDown();
             sound.clip = pickup;
             sound.Play();
@@ -57,17 +62,14 @@ namespace Laguage.Reading_sentences
         {
             if (!GameController.Instance.gamePlay || !clicked)
                 return;
+
+
             base.OnMouseUp();
             sound.clip = drop;
             sound.Play();
             GameController.Instance.Boarder.color = Color.white;
-            if (GameController.Instance.Neartodestination())
+            if (!GameController.Instance.Neartodestination())
             {
-
-            }
-            else
-            {
-                
                 transform.position = lastpos;
             }
         }

@@ -15,8 +15,6 @@ namespace Maths.NumberRoads
         public static GameController instace;
         public Totorial totorialcheck;
         public TextMeshPro TitleText;
-      //  public ExampleGestureHandler ai;
-       // public GestureRecognizer.Recognizer aireconniger;
         public bool red;
         public int no;
 
@@ -34,7 +32,6 @@ namespace Maths.NumberRoads
 
         public GameObject[] all_color_holder;
         public int filledno;
-   //     public GameObject option;
         public GameObject[] dropplace;
         [Space(10)]
         public GameObject gameCompleted_animation;
@@ -44,8 +41,6 @@ namespace Maths.NumberRoads
         private void Awake()
         {
             instace = this;
-          //  aireconniger.Recognigingnumber = no.ToString();
-           // aireconniger.Changerecogniger();
             if (!Draw_canvas)
                 return;
 
@@ -97,21 +92,17 @@ namespace Maths.NumberRoads
             if (all_color_holder[0].transform.GetChild(0).TryGetComponent<Collider2D>(out Collider2D colider))
             {
                 totorialcheck.directionWindow();
-                Debug.Log("draged the object now need to collor te the road");
                 int redno = (no+1) / 2;
-                Debug.Log(redno);
                 
       
                 redno = no % 2 == 0 ? redno + 1 : redno;
              
                 TitleText.text = "Color the "+ redno + " rod red and " + (no + 1) / 2 +" rod blue";
-                // no++;
                 for (int i = 0; i < all_color_holder[no].transform.childCount; i++)
                 {
                     all_color_holder[no ].transform.GetChild(i).GetComponent<SpriteRenderer>().sortingOrder = 2;
                     all_color_holder[no ].transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = inpuselected;
                     all_color_holder[no ].transform.GetChild(i).GetComponent<Collider2D>().enabled = true;
-                   // all_color_holder[no - 2].transform.GetChild(i).GetComponent<Collider2D>().enabled = false;
                 }
                 if (allnumber.Length > 0)
                 {
@@ -121,7 +112,6 @@ namespace Maths.NumberRoads
             }
             else
             {
-                //TitleText.text = "Color the ""road red ";
                 for (int i = 0; i < all_color_holder[no - 1].transform.childCount; i++)
                 {
                     all_color_holder[no - 1].transform.GetChild(i).GetComponent<SpriteRenderer>().sortingOrder = 2;
@@ -134,13 +124,7 @@ namespace Maths.NumberRoads
                     all_color_holder[no-2].transform.GetChild(i).GetComponent<Collider2D>().enabled =false;
                 }
             }
-        //    Draw_canvas.interactable = false;
-            //  ai.textResult = allnumber[no];
-            //  Draw_canvas.SetActive(false);
-           // ai.textResult = null;
             no++;
-          //  aireconniger.Recognigingnumber = no.ToString();
-           // aireconniger.Changerecogniger();
         }
        
 
@@ -148,39 +132,13 @@ namespace Maths.NumberRoads
         {
             Debug.Log(Vector3.Distance(obj.transform.position, dropplace[no - 1].transform.position));
             if (Vector3.Distance(obj.transform.position, dropplace[no - 1].transform.position)<1)
-            {
-              //  Draging drag = obj.GetComponent<Draging>();
-           
-
-
+            {           
                 return true;
             }
             return false;
         }
         public void ConformButton()
         {
-            Debug.Log("Conform");
-//            if(ai.no == no)
-//            {
-
-
-
-//                ChangetoColorfiller();
-//              //  Draw_canvas.interactable = false;
-//              //  ai.textResult = allnumber[no];
-//                //  Draw_canvas.SetActive(false);
-//             //    ai.textResult = null;
-//               // no++;
-//             //   aireconniger.Recognigingnumber = no.ToString();
-//              //  aireconniger.Changerecogniger();
-////
-//                if (onlycolor)
-//                    AitextselectionwithoutColoring();
-//            }
-//            else
-//            {
-//                StartCoroutine(WrongAnswerAnimation());
-//            }
 
         }
         public void AitextselectionwithoutColoring()
@@ -188,8 +146,6 @@ namespace Maths.NumberRoads
 
             if (no <= 10)
             {
-              //  ai.textResult = allnumber[no - 1];
-         //       Draw_canvas.interactable = true;
                 filledno = 0;
                 foreach (var item in allnumber)
                 {
@@ -211,30 +167,22 @@ namespace Maths.NumberRoads
         }
         public IEnumerator WrongAnswerAnimation(TrailFiller filler)
         {
-            //   ai.gameObject.SetActive(false);
             gameplay = false;
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
             gameplay = true;
-            //      inputfield.transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
             filler.GetComponent<SpriteRenderer>().sprite = inpuselected;
             filler.GetComponent<Collider2D>().enabled = true;
             filler.isFilled = false;
             filler.trailRenderer.Clear();
             filler.trailRenderer.gameObject.SetActive(true);
             wrongAnswer_animtion.SetActive(false);
-           // inputfield.sprite = Normalanswer;
-        //    ai.gameObject.SetActive(true);
         } 
         public IEnumerator WrongAnswerAnimation()
         {
-         //   ai.gameObject.SetActive(false);
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
-            //      inputfield.transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
             wrongAnswer_animtion.SetActive(false);
-           // inputfield.sprite = Normalanswer;
-        //    ai.gameObject.SetActive(true);
         }
 
     }

@@ -11,14 +11,12 @@ namespace Laguage.SortingImage
         public int[] Question;
 
         public TextMeshPro[] allquestion;
-        //public Sprite Droped;
         public Transform option_Parent;
         public Sprite currectbutton, wrongbutton;
         public Sprite[] Normalbutton;
         protected override void Start()
         {
             GameDataSet();
-            //   base.Start();
         }
         public void GameDataSet()
         {
@@ -49,31 +47,10 @@ namespace Laguage.SortingImage
                 allquestion[i].text = allCharacter[Question[i]].Letter;
 
             }
-            //for (int i = 0; i < droping_place.Length; i++)
-            //{
-            //    droping_place[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = Normalbutton[int.Parse(selectedoption.no)];
-            //}
             foreach (var item in alloption)
             {
                 item.GetComponent<BoxCollider2D>().enabled = true;
             }
-            //for (int i = 0; i < Question.Length; i++)
-            //{
-
-
-            //    for (int j = 0; j < Question.Length; j++)
-            //    {
-            //        if(Question[i] == Question[j] && i!= j)
-            //        {
-            //            Question[j] = Random.Range(0, allCharacter.Length);
-            //            allquestion[j].text = allCharacter[Question[i]].Letter;
-            //            j = -1;
-            //        }
-
-            //    }
-            //    AllAnswerNo.Add(Question[i]);
-            //}
-
             int k = 0;
 
             for (int i = 0; i < Question.Length; i++)
@@ -85,7 +62,6 @@ namespace Laguage.SortingImage
                     alloption[k].no = i.ToString();
                     alloption[k].transform.SetSiblingIndex(Random.Range(0, option_Parent.childCount));
                     k++;
-                    Debug.Log(k);
                 }
 
             }
@@ -104,7 +80,7 @@ namespace Laguage.SortingImage
                     GameObject temp = droping_place[i].transform.GetChild(j).transform.GetChild(0).gameObject;
                     droping_place[i].transform.GetChild(j).transform.GetChild(0).SetParent(option_Parent);
                     temp.transform.position = Vector3.zero;
-                    droping_place[i].transform.GetChild(j).GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
+                    droping_place[i].transform.GetChild(j).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                 }
                 droping_place[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = Normalbutton[i];
             }
@@ -116,15 +92,12 @@ namespace Laguage.SortingImage
 
             if (Vector3.Distance(selectedoption.transform.position, droping_place[int.Parse(selectedoption.no)].transform.position) < distangedrage)
             {
-                Debug.Log("Here 1");
 
                 //selectedoption.transform.parent = droping_place[int.Parse(selectedoption.no)].transform;
                 for (int c = 1; c < droping_place[int.Parse(selectedoption.no)].transform.childCount; c++)
                 {
-                    Debug.Log(droping_place[int.Parse(selectedoption.no)].transform.childCount + " Child Count");
                     if (droping_place[int.Parse(selectedoption.no)].transform.GetChild(c).transform.childCount == 0)
                     {
-                        Debug.Log("Here 2");
 
                         selectedoption.transform.parent = droping_place[int.Parse(selectedoption.no)].transform.GetChild(c).transform;
                         droping_place[int.Parse(selectedoption.no)].transform.GetChild(c).transform.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
@@ -144,7 +117,6 @@ namespace Laguage.SortingImage
                 if (option_Parent.childCount == 0)
                 {
                     gamePlay = false;
-                    Debug.Log("levelComplted");
                     if (AllAnswerNo.Count >= allCharacter.Length)
                     {
                         StartCoroutine(LevelCompleted());
@@ -173,7 +145,6 @@ namespace Laguage.SortingImage
                 selectedoption.transform.position = selectedoption.lastpos;
             }
 
-            Debug.Log("selection");
             return false;
         }
         public override void WrongAnswer()

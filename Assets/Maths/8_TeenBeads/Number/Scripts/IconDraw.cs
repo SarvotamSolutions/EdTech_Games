@@ -36,8 +36,6 @@ namespace Maths.TeenBeads.Number
         {
             if (!clicked)
                 return;
-            //if (!droppos)
-            //    droppos = GameController.instance.ObjectDroping;
             sound.clip = drop;
             sound.Play();
             clicked = false;
@@ -61,11 +59,7 @@ namespace Maths.TeenBeads.Number
 
                             if (GameController.instance.stagetwoDrop == 3)
                             {
-                                //droppos[i].GetComponent<SpriteRenderer>().sprite = GameController.instance.finalanswer;
                                 GameController.instance.Relod();
-                            }
-                            else
-                            {
                             }
                             droppos[i].GetComponent<SpriteRenderer>().sprite = currectanswer;
 
@@ -73,15 +67,8 @@ namespace Maths.TeenBeads.Number
                             gameObject.SetActive(false);
                         }
                     }
-
-
-                }
-                else
-                {
-
                 }
             }
-       
             transform.position = lastpos;
         }
         private void Update()
@@ -92,8 +79,6 @@ namespace Maths.TeenBeads.Number
                 pos.z = 0;
                 transform.position = pos;
             }
-
-
         }
     }
 }

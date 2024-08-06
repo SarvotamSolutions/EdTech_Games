@@ -9,18 +9,10 @@ using DG.Tweening;
 
 namespace GestureRecognizer {
 
-	/// <summary>
-	/// Captures player drawing and call the Recognizer to discover which gesture player id.
-	/// Calls 'OnRecognize' event when something is recognized.
-	/// </summary>
 	public class DrawDetector : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler {
 
 		public AudioSource dragsound;
 		public UnityEvent called;
-	//	public delegate void ClickEventHandler();
-	//	public event ClickEventHandler OnClick;
-		//public UnityAction acti;
-		//public Event events;
 		public Recognizer recognizer;
 		public Text infotext;
 		public UILineRenderer line;
@@ -99,9 +91,6 @@ namespace GestureRecognizer {
 
 		Vector2 FixedPosition(Vector2 position){
 			return position;
-			//var local = rectTransform.InverseTransformPoint (position);
-			//var normalized = Rect.PointToNormalized (rectTransform.rect, local);
-			//return normalized;
 		}
 		public int vibtation;
 		public int power;
@@ -118,8 +107,6 @@ namespace GestureRecognizer {
                 GetComponent<ExampleGestureHandler>().textResult.text = "?";
             else if (GetComponent<ExampleGestureHandler>().textResultUI)
                 GetComponent<ExampleGestureHandler>().textResultUI.text = "?";
-
-
 
         }
 
@@ -180,7 +167,6 @@ namespace GestureRecognizer {
 			UpdateLines ();
 
 			for (int size = data.lines.Count; size >= 1 && size >= minLines; size--) {
-				//last [size] lines
 				var sizedData = new GestureData () {
 					lines = data.lines.GetRange (data.lines.Count - size, size)
 				};
@@ -198,8 +184,6 @@ namespace GestureRecognizer {
 				}
 
 				RecognitionResult result = null;
-
-				//run in another thread
 
 				var thread = new System.Threading.Thread (()=>{
 					result = recognizer.Recognize (sizedNormalizedData, normalizeScale: !fixedArea);
@@ -234,13 +218,9 @@ namespace GestureRecognizer {
 			else
 			{
 					transform.GetComponent<ExampleGestureHandler>().notext = "?";
-				//if (transform.GetComponent<ExampleGestureHandler>().textResult)
-				//else
-				//	transform.GetComponent<ExampleGestureHandler>().textResultUI.text = "?";
 				transform.DOShakePosition(1, power, vibtation);
 			}
 			ClearLines();
         }
 	}
-
 }

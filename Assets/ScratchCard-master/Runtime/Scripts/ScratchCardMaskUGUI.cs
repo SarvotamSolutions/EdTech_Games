@@ -9,8 +9,8 @@ namespace ScratchCard
     public class ScratchCardMaskUGUI : ScratchCardMask, IBeginDragHandler, IDragHandler
     {
         private static readonly int OffsetScalePropertyId = Shader.PropertyToID("_OffsetScale");
-        
-        internal RawImage Image 
+
+        internal RawImage Image
         {
             get
             {
@@ -23,17 +23,17 @@ namespace ScratchCard
             }
         }
 
-        internal ScratchCardGrid Grid 
+        internal ScratchCardGrid Grid
         {
             get
             {
                 return grid;
             }
         }
-        
-        private RectTransform RectTransform 
+
+        private RectTransform RectTransform
         {
-            get 
+            get
             {
                 if (rectTransform == null)
                 {
@@ -44,8 +44,8 @@ namespace ScratchCard
             }
         }
 
-        [Header("Brush")] 
-        [SerializeField] 
+        [Header("Brush")]
+        [SerializeField]
         private Material brushMaterial;
         [SerializeField]
         public Vector2 brushScale = new Vector2(0.25f, 0.25f);
@@ -53,11 +53,11 @@ namespace ScratchCard
         private int interpolationMaxCount = 4;
         [SerializeField]
         private int interpolationMinDistance = 8;
-        
+
         [Header("Mask Texture")]
-        [SerializeField] 
+        [SerializeField]
         private float maskTextureScale = 1.0f;
-        [SerializeField] 
+        [SerializeField]
         private float maxMaskTextureSize = 512;
 
         [Header("Grid")]
@@ -94,13 +94,13 @@ namespace ScratchCard
                 grid.ClearVisited();
             }
         }
-        
+
         private void OnRectTransformDimensionsChange()
         {
             SaveBaseTexture();
             Reload();
         }
-        
+
         private void Reload()
         {
             var rect = RectTransform.rect;
@@ -108,9 +108,9 @@ namespace ScratchCard
             {
                 return;
             }
-            
+
             grid = ScratchCardGrid.Generate(rect, brushScale, Mathf.Max(1, gridScale), grid);
-            
+
             AcquireTargetTexture(rect);
             CreateBrush();
         }
@@ -136,7 +136,7 @@ namespace ScratchCard
             }
 
             DisposeBrush();
-            
+
             brush = new Material(brushMaterial);
         }
 
@@ -164,7 +164,7 @@ namespace ScratchCard
             {
                 targetTexture = RenderTexture.GetTemporary(width, height, -1, RenderTextureFormat.ARGB32);
                 Image.texture = targetTexture;
-                
+
                 ClearTexture();
             }
         }
@@ -226,7 +226,7 @@ namespace ScratchCard
 
             var drawPosition = eventData.position;
             var progressChanged = false;
-            
+
             var delta = drawPosition - prevDrawPosition;
             if (delta != drawPosition)
             {
@@ -238,7 +238,6 @@ namespace ScratchCard
                     progressChanged |= DrawAt(prevDrawPosition + delta * ((float)i / count));
                 }
             }
-            Debug.Log(GetRevealProgress());
             progressChanged |= DrawAt(drawPosition);
             prevDrawPosition = drawPosition;
 
@@ -247,20 +246,20 @@ namespace ScratchCard
                 OnRevealProgressChanged();
             }
         }
-        
+
         private bool DrawAt(Vector2 screenPoint)
         {
             var point = ScreenToGraphicLocalPoint(Image, screenPoint);
             var rect = RectTransform.rect;
             var cell = grid.LocalPointToCell(rect, point);
             var changed = grid.SetVisited(cell.x, cell.y, true);
-            
+
             brush.SetVector(OffsetScalePropertyId, CalculateOffsetScale(RectTransform, point, brushScale));
             Graphics.Blit(brush.mainTexture, targetTexture, brush);
 
             return changed;
         }
-        
+
         internal static Vector2 ScreenToGraphicLocalPoint(Graphic graphic, Vector2 screenPoint)
         {
             var canvas = graphic.canvas.rootCanvas;
@@ -274,7 +273,7 @@ namespace ScratchCard
         {
             var rect = rt.rect;
             localPoint += rt.pivot * rect.size;
-        
+
             var aspect = rect.height / rect.width;
             var sx = scale.x * aspect;
             var sy = scale.y;

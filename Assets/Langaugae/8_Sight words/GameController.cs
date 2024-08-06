@@ -17,10 +17,10 @@ namespace Laguage.sightWords
         }
         public override bool Neartodestination()
         {
-            if (Vector3.Distance(selectedoption.transform.position, droping_place[reloding-1].transform.position) < distangedrage)
+            if (Vector3.Distance(selectedoption.transform.position, droping_place[reloding - 1].transform.position) < distangedrage)
             {
                 gamePlay = false;
-                if (selectedoption.no == allCharacter[reloding-1].Letter)
+                if (selectedoption.no == allCharacter[reloding - 1].Letter)
                 {
                     selectedoption.background.sprite = currectanswerbutton;
                     selectedoption.text.color = Color.white;
@@ -28,24 +28,17 @@ namespace Laguage.sightWords
                     GetComponent<AudioSource>().PlayOneShot(lettersound);
                     StartCoroutine(WaitForCurrectanimtion());
                     CurrectAnswer();
-                    //currect answer
                 }
                 else
                 {
                     selectedoption.background.sprite = wronganswerbutton;
                     selectedoption.text.color = Color.white;
-
                     selectedoption.transform.position = droping_place[reloding - 1].transform.position;
                     StartCoroutine(WaitWrongAnimtion());
                     WrongAnswer();
-                   //wrong answer
                 }
-
                 return true;
-
             }
-
-
             return false;
         }
 
@@ -53,9 +46,7 @@ namespace Laguage.sightWords
         {
             selectedoption.background.sprite = defaltanswerbutton;
             selectedoption.text.color = Normal;
-
             base.ResetingDrage();
-
             gamePlay = true;
         }
         protected override void CurrectAnimtionCompleted()
@@ -69,20 +60,11 @@ namespace Laguage.sightWords
             allworlds[reloding - 1].SetActive(true);
             allworlds[reloding - 2].SetActive(false);
             base.CurrectAnimtionCompleted();
-
         }
 
         public override void CurrectAnswer()
         {
-            
             base.CurrectAnswer();
-
-           
         }
     }
-
-    
-
-
-
 }

@@ -15,9 +15,8 @@ namespace Maths.Money.AddMoney
         public GameObject secondScreen;
         public GameObject Secondscrreenbackground;
         public Totorial totorial;
-        
-        public Color yellow, darkyellow,green,red,PriceColor;
-       // public Color flickinganimtion;
+
+        public Color yellow, darkyellow, green, red, PriceColor;
         public GameObject dropcoin;
         public GameObject dropcoinfliker;
 
@@ -25,7 +24,7 @@ namespace Maths.Money.AddMoney
         public TextMeshPro totalMoneyaddedtext;
         public float MoneyneedtoBuy;
         public TextMeshPro moneyneedto_buy_text;
-        public SpriteRenderer CashInput,Priceplace;
+        public SpriteRenderer CashInput, Priceplace;
         public SpriteRenderer Sellingtoy;
         public Sprite cureectanswer, wronganswer, normalanswer;
 
@@ -37,7 +36,7 @@ namespace Maths.Money.AddMoney
 
         public SpriteRenderer[] alltoys;
         public float[] allprice;
-        public Sprite selctedtosimage,notselected;
+        public Sprite selctedtosimage, notselected;
         IEnumerator Checkingplayerslectedtoys;
 
         [Space(10)]
@@ -65,7 +64,7 @@ namespace Maths.Money.AddMoney
 
         }
 
- 
+
 
         public void SelectToys(int id)
         {
@@ -77,12 +76,10 @@ namespace Maths.Money.AddMoney
             foreach (var item in alltoys)
             {
                 item.sprite = notselected;
-           //     item.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
             }
             Sellingtoy.sprite = alltoys[id].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
             selectedtoy = id;
             alltoys[id].sprite = selctedtosimage;
-           // alltoys[id].transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
             MoneyneedtoBuy = allprice[id];
             StartCoroutine(Checkingplayerslectedtoys);
 
@@ -100,14 +97,12 @@ namespace Maths.Money.AddMoney
             foreach (var item in alltoys)
             {
                 item.sprite = notselected;
-                //item.transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .5f);
             }
             alltoys[selectedtoy].transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .5f);
             alltoys[selectedtoy].transform.GetChild(1).gameObject.SetActive(true);
-            //   MoneyneedtoBuy += add;
             moneyneedto_buy_text.text = "$ " + MoneyneedtoBuy.ToString("0.00");
             totorial.directionWindow();
-            
+
         }
 
         private void Start()
@@ -117,7 +112,7 @@ namespace Maths.Money.AddMoney
             int no = Random.Range(0, 50);
             float add = .05f * no;
             MoneyneedtoBuy += add;
-            moneyneedto_buy_text.text = "$ "+ MoneyneedtoBuy.ToString("0.00") ;
+            moneyneedto_buy_text.text = "$ " + MoneyneedtoBuy.ToString("0.00");
         }
         IEnumerator addmoneyanimation()
         {
@@ -133,9 +128,7 @@ namespace Maths.Money.AddMoney
         {
             if (Vector3.Distance(objects.transform.position, dropcoin.transform.position) < 2)
             {
-               
                 return true;
-
             }
 
 
@@ -148,7 +141,7 @@ namespace Maths.Money.AddMoney
                 return;
             gamePlay = false;
             Done.interactable = false;
-            if(totalMoneyaddedtext.text == moneyneedto_buy_text.text)
+            if (totalMoneyaddedtext.text == moneyneedto_buy_text.text)
             {
                 Priceplace.color = green;
                 totalMoneyaddedtext.color = Color.white;
@@ -159,7 +152,7 @@ namespace Maths.Money.AddMoney
                     return;
                 }
                 Done.gameObject.SetActive(false);
-               
+
                 StartCoroutine(waitForRelod());
             }
             else
@@ -168,7 +161,6 @@ namespace Maths.Money.AddMoney
                 totalMoneyaddedtext.color = Color.white;
 
                 StartCoroutine(WrongAnswerAnimation());
-               // resetbutton.SetActive(true);
             }
         }
 
@@ -183,17 +175,11 @@ namespace Maths.Money.AddMoney
             totalMoneyaddedtext.color = PriceColor;
             CashInput.sprite = normalanswer;
             totalmoneyadded = 0;
-            totalMoneyaddedtext.text = "$ " +totalmoneyadded.ToString("0.00");
+            totalMoneyaddedtext.text = "$ " + totalmoneyadded.ToString("0.00");
             FirstScreen.SetActive(true);
             secondScreen.SetActive(false);
-            //MoneyneedtoBuy = Random.Range(1, 10);
-            //int no = Random.Range(0, 50);
-            //float add = .05f * no;
-            //MoneyneedtoBuy += add;
-            //moneyneedto_buy_text.text = "$ "+ MoneyneedtoBuy.ToString("0.00");
             gamePlay = true;
             Done.interactable = true;
-
         }
 
         public void ResetButton()
@@ -202,8 +188,7 @@ namespace Maths.Money.AddMoney
             addmoneyimage.SetActive(true);
             Priceplace.color = yellow;
             totalmoneyadded = 0;
-            totalMoneyaddedtext.text = "$ "+ totalmoneyadded.ToString("0.00");
-           // resetbutton.SetActive(false);
+            totalMoneyaddedtext.text = "$ " + totalmoneyadded.ToString("0.00");
         }
     }
 }

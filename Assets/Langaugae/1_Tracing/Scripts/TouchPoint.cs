@@ -49,7 +49,6 @@ namespace Laguage.Trachingexasise
             }
             else
             {
-                Debug.LogError("Please add the audio source componet on " + gameObject.name + " object");
                 traceaudio =  this.gameObject.AddComponent<AudioSource>();
             }
           
@@ -87,7 +86,6 @@ namespace Laguage.Trachingexasise
                         {
                             Finished = true;
                             GameManager.instace.NumberAndLetters[GameManager.instace.activeobj].Finsihed = true;
-                            Debug.Log("All Line is Completed");
                             if (!GameManager.instace.AllLevelCompleted())
                             {
                                 completed = true;
@@ -104,7 +102,6 @@ namespace Laguage.Trachingexasise
                         }
                         else
                         {
-                            Debug.Log("multipoint");
                             GameManager.instace.totrialcheck.directionWindow();
                             Multiplecolor();
                         }
@@ -202,14 +199,6 @@ namespace Laguage.Trachingexasise
                     //Open Nextline;
                     GameManager.instace.NumberAndLetters[GameManager.instace.activeobj].line[index].gameObject.SetActive(true);
                     GameManager.instace.NumberAndLetters[GameManager.instace.activeobj].line[index - 1].gameObject.SetActive(false);
-                    if (maintouchpoint.Length > 1)
-                    {
-                        Debug.Log("next activateonspot");
-
-                    }
-                    else
-                    {
-                    }
 
                 }
                 else
@@ -221,7 +210,6 @@ namespace Laguage.Trachingexasise
 
                         Finished = true;
                         GameManager.instace.NumberAndLetters[GameManager.instace.activeobj].Finsihed = true;
-                        Debug.Log("All Line is Completed");
                         if (!GameManager.instace.AllLevelCompleted())
                         {
                             completed = true;
@@ -238,25 +226,14 @@ namespace Laguage.Trachingexasise
                     }
                     else
                     {
-                        Debug.Log("multipoint");
 
                         Multiplecolor();
                     }
-                    //else
-                    //{
-                    //    if(GameManager.instace.multipleColor)
-                    //    GameManager.instace.numberofcolors++;
-                    //    GameManager.instace.NumberAndLetters[GameManager.instace.activeobj].line[0].gameObject.SetActive(true);
-                    //    if(index>1)
-                    //        GameManager.instace.NumberAndLetters[GameManager.instace.activeobj].line[index - 1].gameObject.SetActive(false);
-                    //}
-                    //Finished World
                 }
 
             }
             else
             {
-                Debug.Log("point reset");
                 pointno = 0;
                 foreach (var item in CheckPoints)
                 {
@@ -283,7 +260,6 @@ namespace Laguage.Trachingexasise
            
             if (GameManager.instace.ColorSelection)
                 word.FinsihNO.GetComponent<SpriteRenderer>().color = GameManager.instace.colors[GameManager.instace.selectedcolor].color.Evaluate(0);
-            Debug.Log("LINE DEACTIAVED");
             word.FinsihNO.SetActive(true);
             yield return new WaitForSeconds(2);
             GameManager.instace.LoadMenu();
@@ -315,10 +291,8 @@ namespace Laguage.Trachingexasise
 
         public void Multiplecolor()
         {
-            //GameManager.instace.resetbutton.SetActive(false);
             WordsHandling word = null;
             MultipleLevelComplted(out word);
-          //  GameManager.instace.NumberAndLetters[GameManager.instace.activeobj].line[0].gameObject.SetActive(true);
             
             GameManager.instace.numberofcolors++;
             foreach (var item in GameManager.instace.NumberAndLetters[GameManager.instace.activeobj].line)
@@ -331,7 +305,6 @@ namespace Laguage.Trachingexasise
         IEnumerator Leteris_Completed()
         {
 
-          //  GameManager.instace.resetbutton.SetActive(false);
             WordsHandling word = null;
             MultipleLevelComplted(out word);
             GameManager.instace.wordholder.SetActive(false);
@@ -341,19 +314,16 @@ namespace Laguage.Trachingexasise
                 if (item.Finsihed) //selecting image to sprite change
                 {
                     item.buttonImage.sprite = GameManager.instace.currectanswered;
-                  //  item.buttonImage.color = GameManager.instace.CompletedCollor;
                    
                 }
                 else
                 {
                     item.buttonImage.sprite = GameManager.instace.notanswered;
-                   // item.buttonImage.color = GameManager.instace.incomplletedCollor;
                 }
 
            
 
             }
-            // reseting the all Ui button Colors
 
             word.FinsihNO.GetComponent<SpriteRenderer>().sortingOrder = 3;
             GameManager.instace.lastcoloid.Clear();
@@ -376,8 +346,6 @@ namespace Laguage.Trachingexasise
             yield return new WaitForSeconds(GameManager.instace.crurectanswerinteval);
             GameManager.instace.wordholder.SetActive(true);
             GameManager.instace.partypop.SetActive(false);
-            //   word.obj.transform.DOScale(new Vector3(1f, 1f, 1f), .1F);
-            Debug.Log(("Waiting"));
             word.obj.SetActive(false);
 
             GameManager.instace.activeobj++;
@@ -386,8 +354,6 @@ namespace Laguage.Trachingexasise
             GameManager.instace.activeobj = GameManager.instace.activeobj % GameManager.instace.NumberAndLetters.Length;
             word = GameManager.instace.NumberAndLetters[GameManager.instace.activeobj];
             word.obj.SetActive(true);
-            //GameManager.instace.resetbutton.SetActive(true);
-            Debug.Log(GameManager.instace.activeobj +"index" +index);
             GameManager.instace.NumberAndLetters[GameManager.instace.activeobj].buttonImage.sprite = GameManager.instace.selectedimage;
             if(GameManager.instace.activeobj>0 && index>0)
                GameManager.instace.NumberAndLetters[GameManager.instace.activeobj-1].line[index - 1].gameObject.SetActive(false);
@@ -402,22 +368,18 @@ namespace Laguage.Trachingexasise
                 if (item.Finsihed)
                 {
                     item.buttonImage.color = GameManager.instace.CompletedCollor;
-                    //button color will be blue;
                 }
                 else
                 {
                     item.buttonImage.color = GameManager.instace.incomplletedCollor;
                 }
-
             }
-            //   word.obj.transform.DOScale(new Vector3(1.25f, 1.25f, 1.25f), .5F);
-
             foreach (var item in word.line)
             {
 
                 item.line.gameObject.SetActive(false);
             }
-            Debug.Log("LINE DEACTIAVED");
+
             if (GameManager.instace.ColorSelection)
             {
                 word.FinsihNO.GetComponent<SpriteRenderer>().color = GameManager.instace.colors[GameManager.instace.selectedcolor].color.Evaluate(0);
@@ -430,17 +392,12 @@ namespace Laguage.Trachingexasise
 
             yield return new WaitForSeconds(GameManager.instace.crurectanswerinteval);
             GameManager.instace.partypop.SetActive(false);
-            //   word.obj.transform.DOScale(new Vector3(1f, 1f, 1f), .1F);
-            Debug.Log(("Waiting"));
             word.obj.SetActive(false);
 
             GameManager.instace.activeobj++;
             GameManager.instace.activeobj = GameManager.instace.activeobj % GameManager.instace.NumberAndLetters.Length;
             word = GameManager.instace.NumberAndLetters[GameManager.instace.activeobj];
             word.obj.SetActive(true);
-
-
         }
-
     }
 }

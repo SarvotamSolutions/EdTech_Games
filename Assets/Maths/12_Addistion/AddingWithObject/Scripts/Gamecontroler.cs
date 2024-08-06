@@ -9,7 +9,7 @@ namespace Maths.Addision.addiwthObjects
 {
     public class Gamecontroler : MonoBehaviour
     {
-        public int number1, number2,number3;
+        public int number1, number2, number3;
         public ExampleGestureHandler ai;
         public GestureRecognizer.Recognizer Ai_recognizer;
         public Sprite[] allsprire;
@@ -43,14 +43,12 @@ namespace Maths.Addision.addiwthObjects
         }
         IEnumerator WrongAnswerAnimation()
         {
-            //ai.gameObject.SetActive(false);
             wrongAnswer_animtion.SetActive(true);
             yield return new WaitForSeconds(2);
             ai.textResult = DrawText;
             inputfield.transform.GetChild(0).GetComponent<TextMeshPro>().text = "";
             wrongAnswer_animtion.SetActive(false);
             inputfield.sprite = Normalanswer[randomid];
-           // ai.gameObject.SetActive(true);
         }
         private void Start()
         {
@@ -65,17 +63,15 @@ namespace Maths.Addision.addiwthObjects
             question1.transform.parent.GetComponent<SpriteRenderer>().sprite = allholder[randomid];
             quesion2.transform.parent.GetComponent<SpriteRenderer>().sprite = allholder[randomid];
             inputfield.sprite = Normalanswer[randomid];
-            for (int i = 0; i <number1+1; i++)
+            for (int i = 0; i < number1 + 1; i++)
             {
-              //  quesion2.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allIcon[randomid];
                 question1.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allIcon[randomid];
                 question1.transform.GetChild(i).gameObject.SetActive(true);
-            } 
-            for (int i = 0; i <number2+1; i++)
+            }
+            for (int i = 0; i < number2 + 1; i++)
             {
                 quesion2.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allIcon[randomid];
                 quesion2.transform.GetChild(i).gameObject.SetActive(true);
-                // question1.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allIcon[randomid];
             }
             background.sprite = allbackgrounds[randomid];
             Plus.sprite = PlusS[randomid];
@@ -96,14 +92,12 @@ namespace Maths.Addision.addiwthObjects
             {
                 StartCoroutine(LevelCompleted());
             }
-            for (int i = 0; i <question1.transform.childCount; i++)
+            for (int i = 0; i < question1.transform.childCount; i++)
             {
-                //  quesion2.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allIcon[randomid];
-              
                 question1.transform.GetChild(i).gameObject.SetActive(false);
                 quesion2.transform.GetChild(i).gameObject.SetActive(false);
             }
-           
+
 
             number1 = Random.Range(0, 10);
             number2 = Random.Range(0, 10);
@@ -112,12 +106,11 @@ namespace Maths.Addision.addiwthObjects
             Ai_recognizer.Changerecogniger();
             question1.sprite = allsprire[number1];
             quesion2.sprite = allsprire[number2];
-            inputfield.sprite =Normalanswer[randomid];
+            inputfield.sprite = Normalanswer[randomid];
             question1.transform.parent.GetComponent<SpriteRenderer>().sprite = allholder[randomid];
             quesion2.transform.parent.GetComponent<SpriteRenderer>().sprite = allholder[randomid];
             for (int i = 0; i < number1 + 1; i++)
             {
-                //  quesion2.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allIcon[randomid];
                 question1.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allIcon[randomid];
                 question1.transform.GetChild(i).gameObject.SetActive(true);
             }
@@ -125,7 +118,6 @@ namespace Maths.Addision.addiwthObjects
             {
                 quesion2.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allIcon[randomid];
                 quesion2.transform.GetChild(i).gameObject.SetActive(true);
-                // question1.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = allIcon[randomid];
             }
             background.sprite = allbackgrounds[randomid];
             Plus.sprite = PlusS[randomid];
@@ -133,12 +125,11 @@ namespace Maths.Addision.addiwthObjects
         }
         public void Conform()
         {
-            if(ai.no == number3)
+            if (ai.no == number3)
             {
                 ai.textResult = null;
                 inputfield.sprite = currectanswer[randomid];
                 StartCoroutine(WaitForRelod());
-
             }
             else
             {
@@ -147,6 +138,5 @@ namespace Maths.Addision.addiwthObjects
                 StartCoroutine(WrongAnswerAnimation());
             }
         }
-
     }
 }

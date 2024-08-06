@@ -34,20 +34,14 @@ namespace Maths.Times.ClockTimeSet
         {
             if (GameController.instace.totorial.totorialplaying || GameController.instace.GAMEPLAY == false)
                 return;
-            //  pointer.transform.LookAt(obj.transform.up);
             if (Input.GetMouseButton(0) && activate)
             {
                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                ////
-
-                //    pos = new Vector3(Mathf.Clamp(pos.x, -7, 7), Mathf.Clamp(pos.y, -7,7), 0);
                 pos.z = 0;
 
                 obj.transform.position = pos;
-                //  obj.transform.LookAt(pointer.gameObject.transform.forward);
                 float distance = pointer.transform.localPosition.x - obj.transform.localPosition.x;
                 float distancey = pointer.transform.localPosition.y - obj.transform.localPosition.y;
-                //Debug.Log(distancey);
                 if (distancey > -9 && distancey < 9)
                 {
                     if (distance > .3 || distance < -.3)
@@ -93,7 +87,6 @@ namespace Maths.Times.ClockTimeSet
             }
             if (hour)
             {
-
                 GameController.instace.Hour = time / 5;
             }
             else
@@ -105,25 +98,15 @@ namespace Maths.Times.ClockTimeSet
                 item.color = Color.black;
             }
 
-            //foreach (var item in GameController.instace.allminits)
-            //{
-            //    item.color = Color.black;
-            //}
-            //GameController.instace.allminits[GameController.instace.minit].color = Color.white;
-            //GameController.instace.allminits[GameController.instace.minit].sprite = GameController.instace.blueicon;
             if (GameController.instace.minit % 5 == 0)
             {
                 GameController.instace.alltext[GameController.instace.minit / 5].color = Color.blue;
             }
             GameController.instace.alltext[GameController.instace.Hour].color = Color.blue;
             Quaternion temp = Quaternion.Euler(rotate);
-            //      pointer.transform.RotateAroundLocal(Vector3.forward, .1f);
             transform.localEulerAngles = new Vector3(0, 0, temp.eulerAngles.z);
             float angle = temp.eulerAngles.z + .5f;
-            
-            /// Debug.Log(pos.x + "_" + pointer.transform.position.x);
             waitfor_rotate = false;
-            //     StartCoroutine(RotatePointer());
         }
         IEnumerator RotatePointerDecress()
         {
@@ -146,24 +129,15 @@ namespace Maths.Times.ClockTimeSet
             {
                 item.color = Color.black;
             }
-            //foreach (var item in GameController.instace.allminits)
-            //{
-            //    item.color = Color.black;
-            //}
-            //GameController.instace.allminits[GameController.instace.minit].color = Color.white;
-            //GameController.instace.allminits[GameController.instace.minit].sprite = GameController.instace.blueicon;
             if (GameController.instace.minit % 5 == 0)
             {
                 GameController.instace.alltext[GameController.instace.minit / 5].color = Color.blue;
             }
             GameController.instace.alltext[GameController.instace.Hour].color = Color.blue;
             Quaternion temp = Quaternion.Euler(rotate);
-            //  pointer.transform.RotateAroundLocal(Vector3.forward, -.1f);
             transform.localEulerAngles = new Vector3(0, 0, temp.eulerAngles.z);
             float angle = temp.eulerAngles.z + .5f;
-            /// Debug.Log(pos.x + "_" + pointer.transform.position.x);
             waitfor_rotate = false;
-            //     StartCoroutine(RotatePointer());
         }
 
 

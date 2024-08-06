@@ -60,7 +60,6 @@ public class Totorial : MonoBehaviour
             if (direction)
             {
                 hand.gameObject.SetActive(true);
-               // yield return new WaitForSeconds(.25f);
                 sounds.clip = totorialsound[totorialno];
                 sounds.Play();
                 totorialplaying = false;
@@ -77,7 +76,6 @@ public class Totorial : MonoBehaviour
         if (!totorialplaying)
             return;
         StopCoroutine(coritine);
-        Debug.Log("coming here");
         sounds.Stop();
         directionpanel[directionno].SetActive(false);
         directionno++;
@@ -99,14 +97,12 @@ public class Totorial : MonoBehaviour
     {
 
         
-        Debug.Log("Direction" +directionno + " " + directionpanel.Length);
         totorialplaying = true;
        
         directionpanel[directionno].SetActive(true);
         sounds.clip = directionsound[directionno];
         sounds.Play();
         yield return new WaitForSeconds(directiontimeholding[directionno]);
-        Debug.Log("Stoping");
         directionpanel[directionno].SetActive(false);
         directionno++;
 
@@ -156,9 +152,7 @@ public class Totorial : MonoBehaviour
         }
         hand.transform.DOMove(allpoints[pointno].position, 1f);
         yield return new WaitForSeconds(1f);
-        Debug.Log(pointno);
         pointno = pointno >= allpoints.Length-1 ? pointno = 0:pointno+=1;
-        Debug.Log(pointno);
         StartCoroutine(PlayAnimtion());
     }
 

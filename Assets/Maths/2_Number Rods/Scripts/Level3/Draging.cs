@@ -20,32 +20,28 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
         {
             sound = GetComponent<AudioSource>();
             border = transform.GetChild(0).GetComponent<SpriteRenderer>();
-               lastpos = transform.position;
-         //   transform.parent.SetSiblingIndex(Random.Range(0, transform.parent.parent.childCount));
+            lastpos = transform.position;
         }
         private void OnMouseDown()
         {
-            if (!GameController.Instance.gamePlay ||GameController.Instance.totrial.totorialplaying)   
+            if (!GameController.Instance.gamePlay || GameController.Instance.totrial.totorialplaying)
                 return;
-            
+
             sound.clip = pickup;
             sound.Play();
-            // if (EventSystem.current.IsPointerOverGameObject()) return;
             clicked = true;
             GameController.Instance.selecteddraging = this;
-        //    lastpos = transform.position;
         }
 
         private void OnMouseUp()
         {
             if (!GameController.Instance.gamePlay || GameController.Instance.totrial.totorialplaying)
                 return;
-            
+
 
             sound.clip = drop;
             sound.Play();
             clicked = false;
-            //   GameObject obj = GameController.instance.Neartodestination(this.gameObject);
             if (GameController.Instance.Neartodestination())
             {
 
@@ -92,7 +88,6 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
                         GetComponent<Collider2D>().enabled = false;
                         GameController.Instance.blocker1.SetActive(true);
                         GameController.Instance.blocker2.SetActive(false);
-                    //    GameController.Instance.hinttext.text = "drage and drop the number rod " + GameController.Instance.draginno;
                         GameController.Instance.gamePlay = true;
 
                     }
@@ -106,11 +101,9 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
                             SpriteRenderer nextholdsprite = GameController.Instance.dropplace[GameController.Instance.no].transform.GetChild(0).GetComponent<SpriteRenderer>();
                             nextholdsprite.sprite = GameController.Instance.completeholder;
 
-                            //   GameController.Instance.firstanswer = false;
                             GameController.Instance.no++;
                             nextholdsprite = GameController.Instance.dropplace[GameController.Instance.no].transform.GetChild(0).GetComponent<SpriteRenderer>();
                             nextholdsprite.sprite = GameController.Instance.selctholder;
-                            //  GameController.Instance.draginno = 10 - (GameController.Instance.no + 1);
                             nextholdsprite.sortingOrder = 2;
                             GameController.Instance.holder1.Remove(GameController.Instance.holder2[0]);
                             foreach (var item in GameController.Instance.holder2)
@@ -126,15 +119,10 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
                             }
 
                             GetComponent<Collider2D>().enabled = false;
-                            //GameController.Instance.blocker1.SetActive(true);
-                            // GameController.Instance.blocker2.SetActive(false);
-                            //GameController.Instance.hinttext.text = "drage and drop the number rod " + GameController.Instance.draginno;
                             GameController.Instance.gamePlay = true;
                         }
                         else
                         {
-                            //GetComponent<Collider2D>().enabled = false;
-                           // GameController.Instance.hinttext.text = "drag the right no to make 10";
                             GameController.Instance.firstanswer = true;
                             GameController.Instance.holder1.Remove(GameController.Instance.holder1[0]);
                             foreach (var item in GameController.Instance.holder2)
@@ -159,10 +147,8 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
                 else
                 {
 
-                    //border.color = Color.red;
                     border.gameObject.SetActive(true);
                     StartCoroutine(WrongAnswerAnimation());
-                    //wrong answer;
                 }
             }
             else
@@ -170,17 +156,6 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
                 transform.position = lastpos;
                 GameController.Instance.selecteddraging = null;
             }
-                //if (obj != null)
-                //{
-
-                //    transform.position = obj.transform.position;
-
-                //    // transform.position = lastpos;
-                //    // gameObject.SetActive(false);
-                //}
-                //else
-                // 
-
         }
 
         IEnumerator WrongAnswerAnimation()
@@ -191,12 +166,7 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
             nextholdsprite.sprite = GameController.Instance.wronganswer;
             yield return new WaitForSeconds(2);
             nextholdsprite.sprite = tempsprite;
-         //   GameController.Instance.question[GameController.Instance.no].SetActive(true);
-          //  border.gameObject.SetActive(false);
-
-            // transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.w\;
             GameController.Instance.wrongAnswer_animtion.SetActive(false);
-          //  transform.GetChild(transform.childCount - 1).gameObject.SetActive(true);
             transform.position = lastpos;
             GameController.Instance.gamePlay = true;
             GameController.Instance.selecteddraging = null;
@@ -210,9 +180,6 @@ namespace Maths.NumberRoads.Making_10_with_Number_roads
                 pos.x = pos.x - no / 2.75f;
                 transform.position = pos;
             }
-
-
         }
-
     }
 }

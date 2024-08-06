@@ -13,15 +13,17 @@ namespace culture.sinkfloat1
         {
             if (!GameController.Instance.gamePlay)
                 return;
-            base.OnMouseDown();
+            base.OnMouseDown();//setting the order layer 
             lastpos = transform.position;
             Border.color = GameController.Instance.sellect_answer_color;
         }
+
+
         protected override void OnMouseUp()
         {
             if (!GameController.Instance.gamePlay || !clicked)
                 return;
-            base.OnMouseUp();
+            base.OnMouseUp();//setting the order layer
             if (GameController.Instance.Neartodestination(0))
             {
                 GameController.Instance.gamePlay = false;
@@ -60,11 +62,6 @@ namespace culture.sinkfloat1
                 Border.color = defaltcolr;
                 GameController.Instance.selectedoption = null;
             }
-
-
-
         }
-
-      
     }
 }

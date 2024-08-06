@@ -43,7 +43,7 @@ namespace Maths.matchingNumbers
         public int addno;
         public int relidingtime;
         public int maxreloding = 5;
-        // Start is called before the first frame update
+ 
         void Start()
         {
             GameStart();
@@ -78,20 +78,15 @@ namespace Maths.matchingNumbers
             bool loaded = false;
             for (int i = 0; i < selctedOption.Length; i++)
             {
-
                 if (!placevalue)
                 {
                     if (!stepLoop)
                     {
                         int no = Random.Range(0, alltext.Length);
-
-
                         for (int j = 0; j < selctedOption.Length; j++)
                         {
-
                             if (answertext.Count < 25)
                             {
-                                Debug.Log(answertext.Count);
                                 for (int k = 0; k < answertext.Count; k++)
                                 {
                                     if (no == answertext[k])
@@ -102,13 +97,8 @@ namespace Maths.matchingNumbers
                                 }
                                 if (no == selctedOption[j] - addno)
                                 {
-
-
-
                                     no = Random.Range(0, alltext.Length);
                                     j = -1;
-
-
                                 }
                             }
                             else
@@ -122,33 +112,21 @@ namespace Maths.matchingNumbers
                                         {
                                             no = Random.Range(0, alltext.Length);
                                             k = -1;
-                                            Debug.Log("checking");
-
                                         }
                                         else
                                         {
                                             loaded = true;
-                                            Debug.Log("breaking");
                                             reminno = no;
-                                            //  break;
                                         }
                                     }
-
                                 }
                                 Debug.Log(reminno);
                                 if (no == selctedOption[j] - addno)
                                 {
-
-
-
                                     no = Random.Range(0, alltext.Length);
                                     j = -1;
-
                                 }
-
                             }
-
-
                         }
 
 
@@ -178,9 +156,6 @@ namespace Maths.matchingNumbers
                     }
                     selctedOption[i] = no + addno;
                     allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text = "" + (selctedOption[i] / 10) + " tens and " + (selctedOption[i] % 10) + " ones ";
-                
-                    
-                    //    allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text = alltext[no].nowithstring;
                 }
             }
             Switch();
@@ -188,7 +163,6 @@ namespace Maths.matchingNumbers
             {
                 if (placevalue)
                 {
-
                     allAnsweroption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text = (selctedOption[i]).ToString();
                 }
                 else
@@ -203,7 +177,6 @@ namespace Maths.matchingNumbers
                     {
                         if (allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text == alltext[j].nowithstring)
                         {
-
                             for (int k = 0; k < allAnsweroption.Length; k++)
                             {
                                 Debug.Log(allAnsweroption[k].transform.GetChild(1).GetComponent<TextMeshPro>().text);
@@ -214,23 +187,18 @@ namespace Maths.matchingNumbers
                             }
                         }
                     }
-
                 }
             }
             else
             {
                 for (int i = 0; i < allstringOption.Length; i++)
                 {
-
-
                     for (int k = 0; k < selctedOption.Length; k++)
                     {
                         Debug.Log(allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text + "   ." + "" + (selctedOption[k] / 10) + " tens and " + (selctedOption[i] % 10) + " ones ");
                         if (allstringOption[i].transform.GetChild(1).GetComponent<TextMeshPro>().text == "" + (selctedOption[k] / 10) + " tens and " + (selctedOption[k] % 10) + " ones ")
                         {
-
                             allstringOption[i].GetComponent<Selectbox>().Answeroption = allAnsweroption[k];
-                            //k = 0;
                         }
                     }
 
@@ -245,7 +213,6 @@ namespace Maths.matchingNumbers
                 StartCoroutine(LevelCompleted());
             else
             {
-                //Reseting();
                 StartCoroutine(partypop());
             }
         }
@@ -262,28 +229,18 @@ namespace Maths.matchingNumbers
             for (int i = 0; i < 5; i++)
             {
                 int tempno = selctedOption[i]-addno;
-
                 int no = Random.Range(0, selctedOption.Length);
-           
                 selctedOption[i] = selctedOption[no];
                 selctedOption[no] = tempno +addno;
-
             }
-
-
-
-          
         }
 
-
-        // Update is called once per frame
         void Update()
         {
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
             if (selected_line) 
                 selected_line.SetPosition(1, pos);
-
         }
 
         public void currectAnswer() { }
@@ -297,6 +254,4 @@ namespace Maths.matchingNumbers
         public string nowithstring;
         public AudioClip Sound;
     }
-
-
 }

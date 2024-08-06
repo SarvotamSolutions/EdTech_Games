@@ -19,23 +19,19 @@ namespace Laguage.beginning_sounds.DragandDrop
         protected override void OnMouseUp()
         {
 
-            if (!GameController.Instance.gamePlay || !clicked )
+            if (!GameController.Instance.gamePlay || !clicked)
                 return;
-           
+
             base.OnMouseUp();
-           // transform.position = lastpos;
-            if(GameController.Instance.Neartodestination())
+            if (GameController.Instance.Neartodestination())
             {
                 sound.PlayOneShot(drop);
-
             }
             else
             {
-                //sound.PlayOneShot(drop);
                 Border.color = Color.white;
                 transform.position = lastpos;
             }
         }
-     
     }
 }

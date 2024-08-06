@@ -5,9 +5,8 @@ using TMPro;
 using UnityEngine;
 namespace Laguage.beginning_sounds.Idintfyletter
 {
-    public class GameController : GameControllerforAll 
+    public class GameController : GameControllerforAll
     {
-
         public Color TextColor;
         public Sprite currectanswer, wronganswer, defaltanswer;
         public override void GameStart()
@@ -17,8 +16,6 @@ namespace Laguage.beginning_sounds.Idintfyletter
             {
                 item.text.text = item.no;
             }
-
-            //gamePlay = true;
         }
         public override bool Neartodestination()
         {
@@ -29,11 +26,10 @@ namespace Laguage.beginning_sounds.Idintfyletter
                 {
                     selection.sprite = currectanswer;
                     selection.gameObject.transform.GetComponentInChildren<TextMeshPro>().color = Color.white;
-                    for(int k = 0; k < droping_place.Length;k++)
+                    for (int k = 0; k < droping_place.Length; k++)
                     {
                         droping_place[k].gameObject.SetActive(false);
                     }
-                    // arrow.color = currect_answer_color;
                     foreach (var item in droping_place)
                     {
                         item.color = currect_answer_color;
@@ -55,17 +51,14 @@ namespace Laguage.beginning_sounds.Idintfyletter
                     {
                         droping_place[k].gameObject.SetActive(false);
                     }
-                    //arrow.color = wrong_answer_color;
                     StartCoroutine(WaitWrongAnimtion());
                 }
                 return true;
             }
             return false;
-            //return base.Neartodestination();
-
         }
 
-        
+
         IEnumerator WaitCurrectAnswer()
         {
             gamePlay = false;
@@ -76,10 +69,9 @@ namespace Laguage.beginning_sounds.Idintfyletter
 
         public override void CurrectAnswer()
         {
-            
             foreach (var item in droping_place)
             {
-                item.color =Color.white;
+                item.color = Color.white;
             }
             ResetingDrage();
             GameStart();
@@ -94,12 +86,7 @@ namespace Laguage.beginning_sounds.Idintfyletter
                 droping_place[k].gameObject.SetActive(true);
             }
             base.ResetingDrage();
-
-            //arrow.color = Color.white;
-            //////////////////////////////////////////////////////////////////////Here
             gamePlay = true;
-
-
         }
     }
 }

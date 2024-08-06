@@ -10,10 +10,10 @@ namespace Maths.Number1to10.MisingNO
         public int no;
         public ExampleGestureHandler Nodfyn0;
         public GestureRecognizer.Recognizer AiRecogniser;
-        public TextMeshPro PreviousNo, NextNO,currectNo;
+        public TextMeshPro PreviousNo, NextNO, currectNo;
         public Sprite CurrectAnswer, WrongAnswer, normalAnswer;
         public SpriteRenderer MiddleNoobject;
-     
+
         public List<int> allanswer = new List<int>();
         public Color textcolor;
         [Space(10)]
@@ -32,7 +32,7 @@ namespace Maths.Number1to10.MisingNO
         }
         private void Update()
         {
-       
+
         }
         public void Conform()
         {
@@ -43,19 +43,13 @@ namespace Maths.Number1to10.MisingNO
                 Nodfyn0.transform.parent.gameObject.SetActive(false);
                 Party_pop.SetActive(true);
                 MiddleNoobject.sprite = CurrectAnswer;
-               
-               // Drawobject.SetActive(false);
                 StartCoroutine(WairforReset());
-
             }
             else
             {
-                
                 Nodfyn0.textResult = null;
-                //Drawobject.SetActive(false);
                 MiddleNoobject.sprite = WrongAnswer;
                 StartCoroutine(WairforRelode());
-
             }
         }
 
@@ -68,11 +62,8 @@ namespace Maths.Number1to10.MisingNO
             Nodfyn0.textResult = currectNo;
 
             MiddleNoobject.GetComponentInChildren<TextMeshPro>().text = "";
-           // Drawobject.SetActive(true);
             MiddleNoobject.sprite = normalAnswer;
             wrongAnswer_animtion.SetActive(false);
-
-
         }
         IEnumerator LevelCompleted()
         {
@@ -80,7 +71,6 @@ namespace Maths.Number1to10.MisingNO
             gameCompleted_animation.SetActive(true);
             yield return new WaitForSeconds(2);
             SceneManager.LoadScene(0);
-
         }
         public void Resetgame()
         {
@@ -112,11 +102,9 @@ namespace Maths.Number1to10.MisingNO
             Nodfyn0.textResult = currectNo;
             Nodfyn0.transform.parent.gameObject.SetActive(true);
             Party_pop.SetActive(false);
-            //Drawobject.SetActive(true);
             MiddleNoobject.GetComponentInChildren<TextMeshPro>().text = "";
             MiddleNoobject.sprite = normalAnswer;
             Resetgame();
-
         }
     }
 }

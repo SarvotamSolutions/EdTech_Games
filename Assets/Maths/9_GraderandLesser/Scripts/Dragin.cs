@@ -10,12 +10,11 @@ namespace Maths.graterAndLesser
         public AudioClip pickup, drop;
         private bool clicked;
         public Vector3 lastpos;
-        public bool grater ,lesser;
+        public bool grater, lesser;
 
         public int id;
         private void Start()
         {
-            //sound = GetComponent<AudioSource>();
             lastpos = transform.position;
             TextUpdate();
         }
@@ -25,8 +24,6 @@ namespace Maths.graterAndLesser
                 return;
             sound.clip = pickup;
             sound.Play();
-            //if (!GameController.instance.GraterorLessselct)
-            //    return;
             GameController.Instance.drager = this.gameObject;
             clicked = true;
             lastpos = transform.position;
@@ -42,21 +39,14 @@ namespace Maths.graterAndLesser
             sound.Play();
             if (Vector3.Distance(transform.position, GameController.Instance.inputs[GameController.Instance.no].transform.position) < 3)
             {
-
-              
                 if (grater || lesser)
                 {
                     GameController.Instance.gamePlay = false;
-
-                    //  transform.position = GameController.instance.dropingobj.transform.position;
-                    //GameController.instance.GraterorLessselct = false;
                     if (grater && GameController.Instance.Numbers[0] > GameController.Instance.Numbers[1])
                     {
                         GameController.Instance.inputs[GameController.Instance.no].color = Color.white;
                         GameController.Instance.inputs[GameController.Instance.no].sprite = GameController.Instance.currectAnswer;
                         GameController.Instance.input_text[GameController.Instance.no].text = ">";
-                        //GameController.instance.Answering();
-                      //  canChnagepos = true;
 
                         GameController.Instance.FinalCheck(this.GetComponent<SpriteRenderer>());
 
@@ -67,8 +57,6 @@ namespace Maths.graterAndLesser
                         GameController.Instance.inputs[GameController.Instance.no].color = Color.white;
                         GameController.Instance.inputs[GameController.Instance.no].sprite = GameController.Instance.currectAnswer;
                         GameController.Instance.input_text[GameController.Instance.no].text = "<";
-                        //  GameController.instance.Answering();
-                        //  transform.position = GameController.instance.dropingobj.transform.position;
                         GameController.Instance.FinalCheck(this.GetComponent<SpriteRenderer>());
                     }
                     else
@@ -81,44 +69,28 @@ namespace Maths.graterAndLesser
                 {
                     Debug.Log(GameController.Instance.Numbers[GameController.Instance.no]);
                     Debug.Log(GameController.Instance.allno[id]);
-                    if (GameController.Instance.allno[id] == GameController.Instance.Numbers[GameController.Instance.no]+1)
+                    if (GameController.Instance.allno[id] == GameController.Instance.Numbers[GameController.Instance.no] + 1)
                     {
                         GameController.Instance.Answering();
-                        if(GameController.Instance.no >= 2)
+                        if (GameController.Instance.no >= 2)
                         {
                             GameController.Instance.graterlessparent.SetActive(true);
                             GameController.Instance.optioncontins.SetActive(false);
                         }
                         transform.gameObject.SetActive(false);
-                     //   transform.position = GameController.instance.inputs[GameController.instance.no].transform.position;
-                       
+
                     }
                     else
                     {
 
-                          GameController.Instance.gamePlay = false;
+                        GameController.Instance.gamePlay = false;
                         GameController.Instance.input_text[GameController.Instance.no].text = GameController.Instance.allno[id].ToString();
                         GameController.Instance.WrongAnimation();
-                        //wrong answer
                     }
-                    //normal answer
-
-                   
-
-
-
                 }
-                //gameObject.SetActive(false);
-                //transform.position = lastpos;
-                //transform.position = lastpos;
                 transform.gameObject.SetActive(false);
-
             }
-            else
-            {
-            }
-                transform.position = lastpos;
-
+            transform.position = lastpos;
         }
         public void TextUpdate()
         {
@@ -126,10 +98,6 @@ namespace Maths.graterAndLesser
             {
                 GetComponentInChildren<TextMeshPro>().text = GameController.Instance.allno[id].ToString();
             }
-        }
-        private void OnEnable()
-        {
-            
         }
         private void Update()
         {
@@ -139,8 +107,6 @@ namespace Maths.graterAndLesser
                 pos.z = 0;
                 transform.position = pos;
             }
-
-
         }
     }
 }

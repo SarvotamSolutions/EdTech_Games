@@ -24,7 +24,6 @@ namespace Maths.placeHolder.value
             sound.clip = pickup;
             sound.Play();
             clicked = true;
-           // lastpos = transform.position;
         }
 
         private void OnMouseUp()
@@ -80,19 +79,6 @@ namespace Maths.placeHolder.value
                
 
             }
-            //    this.gameObject.SetActive(false);
-
-            //    if (GameCondtroller.instace.checkForThirdStage())
-            //    {
-
-            //    }
-            //}
-            //else
-            //{
-
-          
-            //}
-
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -109,13 +95,10 @@ namespace Maths.placeHolder.value
         {
             if (Input.GetMouseButton(0) && clicked )
             {
-               
                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 pos.z = 0;
                 transform.position = pos;
             }
-
-
         }
     }
 }

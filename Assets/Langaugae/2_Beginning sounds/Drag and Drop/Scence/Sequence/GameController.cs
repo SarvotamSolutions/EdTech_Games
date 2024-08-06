@@ -46,7 +46,6 @@ namespace Laguage.Sequence
 
             if (reloding > droping_place.Length - 1)
             {
-                //StartCoroutine(WaitForCurrectanimtion());
                 StartCoroutine(LevelCompleted());
             }
             else
@@ -62,7 +61,6 @@ namespace Laguage.Sequence
             if (defaltspritre)
             {
                 selectedoption.background.sprite = wrongsprite;
-
             }
 
             StartCoroutine(WaitWrongAnimtion());
@@ -72,7 +70,6 @@ namespace Laguage.Sequence
             if (defaltspritre)
             {
                 selectedoption.background.sprite = defaltspritre;
-
             }
             DroppingPlaceBG.sprite = defaultDroppingPlace;
 
@@ -81,8 +78,6 @@ namespace Laguage.Sequence
             selectedoption.Border.color = Color.white;
             gamePlay = true;
             base.ResetingDrage();
-
         }
     }
-
 }

@@ -45,9 +45,7 @@ namespace Maths.BeadStair.ColorandCount
            
             for (int i = 0; i < all_CollerSelection.Length; i++)
             {
-
                 all_CollerSelection[i].Selectedobj.SetActive(false);
-
             }
 
         }
@@ -60,10 +58,8 @@ namespace Maths.BeadStair.ColorandCount
                 allmarble[level].GetComponent<Collider2D>().enabled = true;
                 InputBox.sprite = CurrectAnswerInput;
                 Draw.textResult = null;
-               /// nodify.enabled = false;
                 CollorButton.gameObject.SetActive(true);
                 Sketchpen.SetActive(true);
-                // sketch.ClearButton();
                 CollorButton.gameObject.SetActive(true);
                 NumberButton.gameObject.SetActive(false);
                 DrawnNO.SetActive(false);
@@ -77,7 +73,6 @@ namespace Maths.BeadStair.ColorandCount
             {
                 DrawnNO.SetActive(false);
                 Draw.textResult = null;
-                // sketch.ClearButton();
                 InputBox.sprite = WrongInput;
                 StartCoroutine(resetInput());
             }
@@ -116,7 +111,6 @@ namespace Maths.BeadStair.ColorandCount
             if (level > 9)
             {
                 StartCoroutine(LevelCompleted());
-               //return null;
             }
             allmarble[level].GetComponent<Collider2D>().enabled = false;
             allmarble[level].gameObject.SetActive(true);
@@ -124,11 +118,8 @@ namespace Maths.BeadStair.ColorandCount
             Draw.textResult.color = normaltextcolor;
             Draw.textResult.text = "?";
             InputBox.sprite = NormalInput;
-            //   nodify.enabled = true;
             Sketchpen.SetActive(false);
             DrawnNO.SetActive(true);
-            // NumberButton.gameObject.SetActive(true);
-            
         }
 
         public void ColorSelectionDone()
@@ -136,14 +127,7 @@ namespace Maths.BeadStair.ColorandCount
             if (selectedcollorDone == allmarble[level].thiscolor)
             {
                 StartCoroutine(WaitforReloding());
-
-
             }
-
-
-
         }
-
     }
-
 }

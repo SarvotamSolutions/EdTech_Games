@@ -44,7 +44,6 @@ namespace ScratchCard.Editor
                     Gizmos.DrawCube(cellRect.position, cellRectSize);
                 }
             }
-
             Gizmos.matrix = savedMatrix;
             Gizmos.color = savedColor;
         }
