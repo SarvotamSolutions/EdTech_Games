@@ -582,10 +582,6 @@ EditorBuildSettings:
     path: Assets/Langaugae/8_Sight words/CompletetheSentence.unity
     guid: 41aa1c61f40c7984482b186ffd61df95
   - enabled: 0
-    path: Assets/Langaugae/7_Vowels Mixed/New/Mixed/Fillling Missing Constant AllLetter
-      Mixed one leeter.unity
-    guid: 7205f3162576168488fc1244ab110b66
-  - enabled: 0
     path: Assets/Langaugae/6_Vowels/SpillWord mixed vowells new.unity
     guid: 105949806c864214fa0b3144dad364e2
   - enabled: 0
@@ -673,4 +669,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Langaugae/7_Vowels Mixed/New/Mixed/Fillling Missing Constant Mixed.unity
     guid: a8977fb0a809dfe4a80dc45536a07c75
+  - enabled: 1
+    path: Assets/cuulture/2_Countries/Info/HumanBodyInfo.unity
+    guid: e6aa78be1582bdf4bb2da77fce9c2459
+  - enabled: 1
+    path: Assets/cuulture/2_Countries/Info/HumanBodySelction.unity
+    guid: aaf255f8d7c79d54b8ed30c02394c246
   m_configObjects: {}
