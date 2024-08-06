@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 namespace culture.Solorsystem.slectsolorsystem
 {
@@ -8,6 +9,7 @@ namespace culture.Solorsystem.slectsolorsystem
         public ButtonClick[] allbuttonclicks;
         int answerno = 0;
         public Sprite curectnaswersprite, wronganswer, defaltanswer;
+        public Color previousTextColor;
         int curectnaswer;
 
         private void Start()
@@ -24,12 +26,14 @@ namespace culture.Solorsystem.slectsolorsystem
             if (no == answerno)
             {
                 allbuttonclicks[no].GetComponent<SpriteRenderer>().sprite = curectnaswersprite;
+                allbuttonclicks[no].GetComponentInChildren<TextMeshPro>().color = Color.white;
                 StartCoroutine(WaitForCurrectanimtion());
             }
             else
             {
                 n = no;
                 allbuttonclicks[no].GetComponent<SpriteRenderer>().sprite = wronganswer;
+                allbuttonclicks[no].GetComponentInChildren<TextMeshPro>().color = Color.white;
                 StartCoroutine(WaitWrongAnimtion());
             }
 
@@ -37,6 +41,7 @@ namespace culture.Solorsystem.slectsolorsystem
         protected override void CurrectAnimtionCompleted()
         {
             allbuttonclicks[answerno].GetComponent<SpriteRenderer>().sprite = defaltanswer;
+            allbuttonclicks[answerno].GetComponentInChildren<TextMeshPro>().color = previousTextColor;
             Gameset();
             gamePlay = true;
         }
@@ -44,6 +49,7 @@ namespace culture.Solorsystem.slectsolorsystem
         public override void ResetingDrage()
         {
             allbuttonclicks[n].GetComponent<SpriteRenderer>().sprite = defaltanswer;
+            allbuttonclicks[n].GetComponentInChildren<TextMeshPro>().color = previousTextColor;
             gamePlay = true;
         }
         public void Gameset()

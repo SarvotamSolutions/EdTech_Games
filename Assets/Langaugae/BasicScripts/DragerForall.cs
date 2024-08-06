@@ -32,7 +32,6 @@ public class DragerForall : MonoBehaviour
             return;
      
         clicked = true;
-        Debug.Log("SELECTION");
         GameControllerforAll.Instance.selectedoption = this;
         sound.clip = pickup;
         sound.Play();
@@ -55,7 +54,6 @@ public class DragerForall : MonoBehaviour
         if (!clicked || GameControllerforAll.Instance.totorial.totorialplaying)
             return;
       
-        Debug.Log("selection");
         clicked = false;
 
         if (Border)

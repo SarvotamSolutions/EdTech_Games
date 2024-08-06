@@ -6,6 +6,7 @@ namespace culture.countries.draganddrop
     public class GameController : GameControllerforAll
     {
         public Sprite currectanswer, wronganswer, defaltanswer;
+        public int temp_int;
 
         protected override void Start()
         {
@@ -16,7 +17,10 @@ namespace culture.countries.draganddrop
             if (currectanswer)
                 selectedoption.background.sprite = currectanswer;
             else
+            {
                 selectedoption.Border.color = currect_answer_color;
+                selectedoption.transform.localScale = new Vector3(0.6f,0.6f,0.6f);
+            }
             base.CurrectAnswer();
 
             StartCoroutine(WaitForCurrectanimtion());
@@ -34,7 +38,11 @@ namespace culture.countries.draganddrop
             if (currectanswer)
                 selectedoption.background.sprite = wronganswer;
             else
+            {
                 selectedoption.Border.color = wrong_answer_color;
+                selectedoption.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+            }
+
             base.WrongAnswer();
 
             StartCoroutine(WaitWrongAnimtion());
@@ -45,7 +53,10 @@ namespace culture.countries.draganddrop
                 selectedoption.background.sprite = defaltanswer;
             else
                 selectedoption.Border.color = Color.white;
+            droping_place[temp_int].color = Color.white;
             selectedoption.transform.position = selectedoption.lastpos;
+            selectedoption.transform.localScale = new Vector3(1,1,1);
+
             gamePlay = true;
         }
     }

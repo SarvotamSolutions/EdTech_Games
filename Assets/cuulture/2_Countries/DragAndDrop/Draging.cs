@@ -5,6 +5,9 @@ namespace culture.countries.draganddrop
 {
     public class Draging : DragerForall
     {
+
+        public GameController controller;
+
         public override void Start()
         {
             base.Start();
@@ -30,6 +33,7 @@ namespace culture.countries.draganddrop
             {
                 GetComponent<BoxCollider2D>().enabled = false;
                 transform.position = GameController.Instance.droping_place[int.Parse(no)].transform.position;
+                GameController.Instance.droping_place[int.Parse(no)].GetComponent<SpriteRenderer>().color = Color.black;
                 GameController.Instance.CurrectAnswer();
             }
             else
@@ -39,6 +43,8 @@ namespace culture.countries.draganddrop
                     if (GameController.Instance.Neartodestination(i))
                     {
                         transform.position = GameController.Instance.droping_place[i].transform.position;
+                        GameController.Instance.droping_place[i].GetComponent<SpriteRenderer>().color = Color.black;
+                        controller.temp_int = i;
                         GameController.Instance.WrongAnswer();
                         return;
                     }
