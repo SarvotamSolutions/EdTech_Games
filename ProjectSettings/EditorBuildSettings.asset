@@ -670,12 +670,15 @@ EditorBuildSettings:
     path: Assets/Langaugae/7_Vowels Mixed/New/Mixed/Fillling Missing Constant Mixed.unity
     guid: a8977fb0a809dfe4a80dc45536a07c75
   - enabled: 1
-    path: Assets/cuulture/2_Countries/Info/HumanBodyInfo.unity
+    path: Assets/cuulture/Human Body Parts/Scenes/HumanBodyInfo.unity
     guid: e6aa78be1582bdf4bb2da77fce9c2459
   - enabled: 1
-    path: Assets/cuulture/2_Countries/Info/HumanBodySelction.unity
+    path: Assets/cuulture/Human Body Parts/Scenes/HumanBodySelction.unity
     guid: aaf255f8d7c79d54b8ed30c02394c246
   - enabled: 1
-    path: Assets/cuulture/2_Countries/DragAndDrop/HumanBodyDraganddrop.unity
+    path: Assets/cuulture/Human Body Parts/Scenes/HumanBodyDraganddrop.unity
     guid: 8ee17b394f3e5ad45b2dd39c80f8cb47
+  - enabled: 1
+    path: Assets/cuulture/Human Body Parts/Scenes/HumanBodyPuzzle.unity
+    guid: c4b804c0668cf2144b12ca625d6bba0e
   m_configObjects: {}

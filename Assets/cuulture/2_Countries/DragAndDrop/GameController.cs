@@ -15,11 +15,14 @@ namespace culture.countries.draganddrop
         public override void CurrectAnswer()
         {
             if (currectanswer)
+            {
                 selectedoption.background.sprite = currectanswer;
+                selectedoption.text.color = currect_answer_color;
+            }
             else
             {
                 selectedoption.Border.color = currect_answer_color;
-                selectedoption.transform.localScale = new Vector3(0.6f,0.6f,0.6f);
+                selectedoption.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
             }
             base.CurrectAnswer();
 
@@ -36,7 +39,10 @@ namespace culture.countries.draganddrop
         public override void WrongAnswer()
         {
             if (currectanswer)
+            {
                 selectedoption.background.sprite = wronganswer;
+                selectedoption.text.color = wrong_answer_color;
+            }
             else
             {
                 selectedoption.Border.color = wrong_answer_color;
@@ -50,7 +56,10 @@ namespace culture.countries.draganddrop
         public override void ResetingDrage()
         {
             if (currectanswer)
+            {
                 selectedoption.background.sprite = defaltanswer;
+                selectedoption.text.color = sellect_answer_color;
+            }
             else
                 selectedoption.Border.color = Color.white;
             droping_place[temp_int].color = Color.white;
