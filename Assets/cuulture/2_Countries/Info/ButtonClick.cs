@@ -18,6 +18,7 @@ public class ButtonClick : MonoBehaviour
     public bool iconset;
     public Sprite[] allicon;
     public Sprite[] Background;
+    [TextArea(5,20)]
     public string[] allinfo;
     public string[] allname;
     public GameObject[] allColider;
