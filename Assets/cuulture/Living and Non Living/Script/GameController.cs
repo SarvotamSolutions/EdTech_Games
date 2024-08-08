@@ -23,7 +23,6 @@ namespace culture.LivingandNonLiving.DragandDrop
         }
         public void GameDataSet()
         {
-            reloding++;
             foreach (var item in alloption)
             {
                 item.GetComponent<BoxCollider2D>().enabled = true;
@@ -46,7 +45,6 @@ namespace culture.LivingandNonLiving.DragandDrop
         }
         IEnumerator StepComplete()
         {
-
             Party_pop.SetActive(true);
 
             yield return new WaitForSeconds(3);
@@ -83,7 +81,7 @@ namespace culture.LivingandNonLiving.DragandDrop
                     if (option_Parent.childCount == 0)
                     {
                         gamePlay = false;
-                        if (AllAnswerNo.Count >= allCharacter.Length)
+                        if (reloding >= allCharacter.Length)
                         {
                             StartCoroutine(LevelCompleted());
                         }
@@ -118,7 +116,6 @@ namespace culture.LivingandNonLiving.DragandDrop
                     if (option_Parent.childCount == 0)
                     {
                         gamePlay = false;
-                        Debug.Log("levelComplted");
                         if (AllAnswerNo.Count >= allCharacter.Length)
                         {
                             StartCoroutine(LevelCompleted());
@@ -215,7 +212,15 @@ namespace culture.LivingandNonLiving.DragandDrop
 
         public void Rearrnge()
         {
-            Debug.Log("In");
+            reloding++;
+
+            if(reloding >= allCharacter.Length)
+            {
+                StartCoroutine(LevelCompleted());
+            return;
+            }
+
+
             for (int d = 0; d < droping_place.Length; d++)
             {
                 if (droping_place[d].transform.childCount == childCounter)
@@ -234,7 +239,6 @@ namespace culture.LivingandNonLiving.DragandDrop
             {
                 for (int j = 3; j < 6; j++)
                 {
-                    Debug.Log(allCharacter[Question[i]].sameLetter[j].Icon.name);
                     alloption[k].Icon.sprite = allCharacter[Question[i]].sameLetter[j].Icon;
                     alloption[k].no = i.ToString();
                     alloption[k].transform.SetSiblingIndex(Random.Range(0, option_Parent.childCount));
