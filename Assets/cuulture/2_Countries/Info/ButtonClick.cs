@@ -113,8 +113,8 @@ public class ButtonClick : MonoBehaviour
                 }
                 else
                 {
-
-                    nametext.transform.parent.GetComponent<BoxCollider2D>().enabled = true;
+                    if (SolorSystem)
+                        nametext.transform.parent.GetComponent<BoxCollider2D>().enabled = true;
                     // this.gameObject.transform.DOScaleY(0, 0.5f);
                     //inforWindow.DOScaleY(0, .5f);
                     inforWindow.gameObject.SetActive(false);
@@ -123,14 +123,17 @@ public class ButtonClick : MonoBehaviour
                         allColider[no - 1].gameObject.SetActive(false);
                         allColider[no].gameObject.SetActive(true);
                     }
+                    if(BackgroundImage)
                     BackgroundImage.sprite = Background[no];
                     icon.sprite = allicon[no];
                     infotext.text = allinfo[no];
                     nametext.text = allname[no];
                     nextButton.SetActive(false);
-
-                    sound.Stop();
-                    sound.PlayOneShot(allnames[no]);
+                    if (sound)
+                    {
+                        sound.Stop();
+                        sound.PlayOneShot(allnames[no]);
+                    }
                 }
 
             }
@@ -152,7 +155,8 @@ public class ButtonClick : MonoBehaviour
 
     public void ShowInfo()
     {
-        nametext.transform.parent.GetComponent<BoxCollider2D>().enabled = false;
+        if (SolorSystem)
+            nametext.transform.parent.GetComponent<BoxCollider2D>().enabled = false;
         nextButton.transform.DOScaleY(1, .5f);
         // inforWindow.DOScaleY(1, .5f);
         inforWindow.gameObject.SetActive(true);

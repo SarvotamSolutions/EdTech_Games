@@ -569,6 +569,115 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &731597792
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431833, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: panels.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: timeholding.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: totorialsound.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431835, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: m_Name
+      value: totorial
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
 --- !u!1 &754628522
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,6 +1411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36687f88a238c0643a8ec197c18cd149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totorialcheck: {fileID: 0}
   nextwindow: {fileID: 0}
   currectnWindow: {fileID: 0}
   LevleComplet: {fileID: 0}
@@ -1320,9 +1430,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2002544120}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   icon: {fileID: 0}
   infotext: {fileID: 0}
   nametext: {fileID: 814924425}
+  BackgroundImage: {fileID: 0}
   iconset: 0
   allicon:
   - {fileID: 21300000, guid: 5b8b0b561ba778c41a09779ad7705a99, type: 3}
@@ -1330,6 +1453,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 98959e00e09e0b742b46b5d63f0e6e42, type: 3}
   - {fileID: 21300000, guid: 678aba46b3a24c74490f775bf005bdcc, type: 3}
   - {fileID: 21300000, guid: 57375e0a1010a064bacdd2e99acfc37b, type: 3}
+  Background: []
   allinfo: []
   allname:
   - brain
@@ -1337,9 +1461,17 @@ MonoBehaviour:
   - heart
   - lung
   - stomach
+  allsounds: []
+  allnames: []
+  allColider: []
   inforWindow: {fileID: 2040859501}
   selection: 0
   addmoneyimage: {fileID: 0}
+  nextButton: {fileID: 0}
+  soundplay: 0
+  SolorSystem: 0
+  background_solorSystem: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!61 &904806755
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1484,6 +1616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36687f88a238c0643a8ec197c18cd149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totorialcheck: {fileID: 0}
   nextwindow: {fileID: 0}
   currectnWindow: {fileID: 1719924485}
   LevleComplet: {fileID: 99697777}
@@ -1505,6 +1638,7 @@ MonoBehaviour:
   icon: {fileID: 1913648265}
   infotext: {fileID: 827121949}
   nametext: {fileID: 0}
+  BackgroundImage: {fileID: 0}
   iconset: 1
   allicon:
   - {fileID: 21300000, guid: c192cde9db35a61459d55063bfb5e8ff, type: 3}
@@ -1521,6 +1655,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c418f58ea092f484896a73d91b9eb4eb, type: 3}
   - {fileID: 21300000, guid: cf402e329ee22c1469f9c95a5cbb6946, type: 3}
   - {fileID: 21300000, guid: 3aef1516e44ad5440b1cf0c4b8a08b45, type: 3}
+  Background: []
   allinfo:
   - 'Our solar system is made up of the sun and everything that travels around it:
     8 planets, 5 known dwarf planets, more than 170 known moons, and millions of
@@ -1571,9 +1706,17 @@ MonoBehaviour:
   - Pluto
   - Sun
   - Asteroid
+  allsounds: []
+  allnames: []
+  allColider: []
   inforWindow: {fileID: 0}
   selection: 0
   addmoneyimage: {fileID: 0}
+  nextButton: {fileID: 0}
+  soundplay: 0
+  SolorSystem: 0
+  background_solorSystem: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!61 &930828199
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1718,6 +1861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36687f88a238c0643a8ec197c18cd149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totorialcheck: {fileID: 0}
   nextwindow: {fileID: 0}
   currectnWindow: {fileID: 0}
   LevleComplet: {fileID: 0}
@@ -1736,9 +1880,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2002544120}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   icon: {fileID: 0}
   infotext: {fileID: 0}
   nametext: {fileID: 316755368}
+  BackgroundImage: {fileID: 0}
   iconset: 0
   allicon:
   - {fileID: 21300000, guid: 5b8b0b561ba778c41a09779ad7705a99, type: 3}
@@ -1746,6 +1903,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 98959e00e09e0b742b46b5d63f0e6e42, type: 3}
   - {fileID: 21300000, guid: 678aba46b3a24c74490f775bf005bdcc, type: 3}
   - {fileID: 21300000, guid: 57375e0a1010a064bacdd2e99acfc37b, type: 3}
+  Background: []
   allinfo: []
   allname:
   - brain
@@ -1753,9 +1911,17 @@ MonoBehaviour:
   - heart
   - lung
   - stomach
+  allsounds: []
+  allnames: []
+  allColider: []
   inforWindow: {fileID: 2040859501}
   selection: 0
   addmoneyimage: {fileID: 0}
+  nextButton: {fileID: 0}
+  soundplay: 0
+  SolorSystem: 0
+  background_solorSystem: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!61 &1000925783
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2421,6 +2587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36687f88a238c0643a8ec197c18cd149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totorialcheck: {fileID: 0}
   nextwindow: {fileID: 0}
   currectnWindow: {fileID: 0}
   LevleComplet: {fileID: 0}
@@ -2439,9 +2606,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2002544120}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   icon: {fileID: 0}
   infotext: {fileID: 0}
   nametext: {fileID: 763012616}
+  BackgroundImage: {fileID: 0}
   iconset: 0
   allicon:
   - {fileID: 21300000, guid: 5b8b0b561ba778c41a09779ad7705a99, type: 3}
@@ -2449,6 +2629,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 98959e00e09e0b742b46b5d63f0e6e42, type: 3}
   - {fileID: 21300000, guid: 678aba46b3a24c74490f775bf005bdcc, type: 3}
   - {fileID: 21300000, guid: 57375e0a1010a064bacdd2e99acfc37b, type: 3}
+  Background: []
   allinfo: []
   allname:
   - brain
@@ -2456,9 +2637,17 @@ MonoBehaviour:
   - heart
   - lung
   - stomach
+  allsounds: []
+  allnames: []
+  allColider: []
   inforWindow: {fileID: 2040859501}
   selection: 0
   addmoneyimage: {fileID: 0}
+  nextButton: {fileID: 0}
+  soundplay: 0
+  SolorSystem: 0
+  background_solorSystem: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!61 &1375470522
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2949,6 +3138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36687f88a238c0643a8ec197c18cd149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totorialcheck: {fileID: 0}
   nextwindow: {fileID: 0}
   currectnWindow: {fileID: 0}
   LevleComplet: {fileID: 0}
@@ -2967,9 +3157,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2002544120}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   icon: {fileID: 1913648265}
   infotext: {fileID: 0}
   nametext: {fileID: 1171647560}
+  BackgroundImage: {fileID: 0}
   iconset: 0
   allicon:
   - {fileID: 21300000, guid: 5b8b0b561ba778c41a09779ad7705a99, type: 3}
@@ -2977,6 +3180,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 98959e00e09e0b742b46b5d63f0e6e42, type: 3}
   - {fileID: 21300000, guid: 678aba46b3a24c74490f775bf005bdcc, type: 3}
   - {fileID: 21300000, guid: 57375e0a1010a064bacdd2e99acfc37b, type: 3}
+  Background: []
   allinfo: []
   allname:
   - brain
@@ -2984,9 +3188,17 @@ MonoBehaviour:
   - heart
   - lung
   - stomach
+  allsounds: []
+  allnames: []
+  allColider: []
   inforWindow: {fileID: 2040859501}
   selection: 0
   addmoneyimage: {fileID: 0}
+  nextButton: {fileID: 0}
+  soundplay: 0
+  SolorSystem: 0
+  background_solorSystem: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!61 &1643819196
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3230,6 +3442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2002544118}
   - component: {fileID: 2002544119}
+  - component: {fileID: 2002544120}
   m_Layer: 0
   m_Name: Options
   m_TagString: Untagged
@@ -3308,6 +3521,102 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &2002544120
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002544117}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: bfeea396e7024b94f9727819d7ba626e, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2040859499
 GameObject:
   m_ObjectHideFlags: 0
@@ -3578,3 +3887,4 @@ SceneRoots:
   - {fileID: 1575754783}
   - {fileID: 486331573}
   - {fileID: 487791582}
+  - {fileID: 731597792}
