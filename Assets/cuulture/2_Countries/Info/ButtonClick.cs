@@ -88,7 +88,9 @@ public class ButtonClick : MonoBehaviour
     {
         
         nextButton.transform.DOScaleY(1, .5f);
-        inforWindow.DOScaleY(1, .5f);
+        // inforWindow.DOScaleY(1, .5f);
+        inforWindow.gameObject.SetActive(true);
+        nextButton.SetActive(true);
         infotext.text = allinfo[no];
     }
     IEnumerator LevelComplete()
