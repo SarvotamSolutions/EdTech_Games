@@ -85,7 +85,7 @@ public class ButtonClick : MonoBehaviour
         if (iconset)
         {
             no++;
-
+       
             if (no >= allicon.Length)
             {
                 if (soundplay)
@@ -113,8 +113,12 @@ public class ButtonClick : MonoBehaviour
                 }
                 else
                 {
-                    if (SolorSystem)
+
+                    if (sound)
+                    {
                         nametext.transform.parent.GetComponent<BoxCollider2D>().enabled = true;
+                        addmoneyimage.SetActive(true);
+                    }
                     // this.gameObject.transform.DOScaleY(0, 0.5f);
                     //inforWindow.DOScaleY(0, .5f);
                     inforWindow.gameObject.SetActive(false);
@@ -155,8 +159,11 @@ public class ButtonClick : MonoBehaviour
 
     public void ShowInfo()
     {
-        if (SolorSystem)
+        if (sound)
+        {
             nametext.transform.parent.GetComponent<BoxCollider2D>().enabled = false;
+            addmoneyimage.SetActive(false);
+        }
         nextButton.transform.DOScaleY(1, .5f);
         // inforWindow.DOScaleY(1, .5f);
         inforWindow.gameObject.SetActive(true);
