@@ -7,6 +7,7 @@ namespace culture.countries.draganddrop
     {
         public Sprite currectanswer, wronganswer, defaltanswer;
         public int temp_int;
+        public bool isMoon;
 
         protected override void Start()
         {
@@ -22,7 +23,11 @@ namespace culture.countries.draganddrop
             else
             {
                 selectedoption.Border.color = currect_answer_color;
+                if(!isMoon)
                 selectedoption.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                else
+                selectedoption.transform.localScale = new Vector3(0.65f, 0.65f, 0.65f);
+
             }
             base.CurrectAnswer();
 
@@ -46,7 +51,10 @@ namespace culture.countries.draganddrop
             else
             {
                 selectedoption.Border.color = wrong_answer_color;
-                selectedoption.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                if (!isMoon)
+                    selectedoption.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                else
+                    selectedoption.transform.localScale = new Vector3(0.65f, 0.65f, 0.65f);
             }
 
             base.WrongAnswer();
@@ -64,7 +72,11 @@ namespace culture.countries.draganddrop
                 selectedoption.Border.color = Color.white;
             droping_place[temp_int].color = Color.white;
             selectedoption.transform.position = selectedoption.lastpos;
-            selectedoption.transform.localScale = new Vector3(1,1,1);
+            if (!isMoon)
+                selectedoption.transform.localScale = new Vector3(1, 1, 1);
+            else
+                selectedoption.transform.localScale = new Vector3(0.65f, 0.65f, 0.65f);
+
 
             gamePlay = true;
         }
