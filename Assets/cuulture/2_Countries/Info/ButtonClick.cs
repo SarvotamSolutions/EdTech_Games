@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using UnityEngine.UI;
 using TMPro;
 public class ButtonClick : MonoBehaviour
 {
@@ -12,9 +13,11 @@ public class ButtonClick : MonoBehaviour
     public UnityEvent Events;
     public SpriteRenderer icon;
     public TextMeshPro infotext, nametext;
+    public Image BackgroundImage;
     int no;
     public bool iconset;
     public Sprite[] allicon;
+    public Sprite[] Background;
     public string[] allinfo;
     public string[] allname;
     public GameObject[] allColider;
@@ -22,6 +25,7 @@ public class ButtonClick : MonoBehaviour
     public bool selection;
     public GameObject addmoneyimage;
     public GameObject nextButton;
+
     private void Start()
     {
         if (selection)
@@ -57,16 +61,19 @@ public class ButtonClick : MonoBehaviour
                 StartCoroutine(LevelComplete());
             else
             {
-                this.gameObject.transform.DOScaleY(0, 0.5f);
-                inforWindow.DOScaleY(0, .5f);
+               // this.gameObject.transform.DOScaleY(0, 0.5f);
+                //inforWindow.DOScaleY(0, .5f);
+                inforWindow.gameObject.SetActive(false);
                 if(allColider.Length >= no)
                 {
                     allColider[no-1].gameObject.SetActive(false);
                     allColider[no].gameObject.SetActive(true);
                 }
+                BackgroundImage.sprite = Background[no];
                 icon.sprite = allicon[no];
                 infotext.text = allinfo[no];
                 nametext.text = allname[no];
+                nextButton.SetActive(false);
             }
         }
         else

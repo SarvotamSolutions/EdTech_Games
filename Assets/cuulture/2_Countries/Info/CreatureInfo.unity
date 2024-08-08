@@ -1192,7 +1192,7 @@ MonoBehaviour:
   m_fontSize: 5.76
   m_fontSizeBase: 5.76
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 0
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1344,6 +1344,7 @@ MonoBehaviour:
   icon: {fileID: 1913648265}
   infotext: {fileID: 827121949}
   nametext: {fileID: 1045790245}
+  BackgroundImage: {fileID: 1041714800}
   iconset: 1
   allicon:
   - {fileID: 21300000, guid: 9a26d61acbe95b142b0e5f0205296230, type: 3}
@@ -1351,6 +1352,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fe93b8fd912b272479e18bfae9c29605, type: 3}
   - {fileID: 21300000, guid: 0989b3e4439537c4c92adcd550092dc5, type: 3}
   - {fileID: 21300000, guid: 8918811526193c342960d5d96b634f36, type: 3}
+  Background:
+  - {fileID: 21300000, guid: 8933b582d8244f6429dcdcd178ac1d60, type: 3}
+  - {fileID: 21300000, guid: bd590affc0a72ad4ba0385cb01dac665, type: 3}
+  - {fileID: 21300000, guid: b42751eb5a726de48adfe1952d952e92, type: 3}
+  - {fileID: 21300000, guid: 4222473d05ecc9e4f8aff344c670c4f4, type: 3}
+  - {fileID: 21300000, guid: 2c64e5bc4b5d6b1418f7ad0fb56cf085, type: 3}
   allinfo:
   - ' Are warm blooded  Have feathers and wings  Can mostly fly  Have two legs Lay
     eggs  Use lungs to breathe'
@@ -1372,6 +1379,7 @@ MonoBehaviour:
   - Fish
   - Mammals
   - Reptiles
+  - Amphibians
   allColider: []
   inforWindow: {fileID: 4317735642857310518}
   selection: 1
