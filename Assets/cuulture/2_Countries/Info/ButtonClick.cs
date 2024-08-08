@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using TMPro;
 public class ButtonClick : MonoBehaviour
 {
+    public Totorial totorialcheck;
     public GameObject nextwindow,currectnWindow;
     public GameObject LevleComplet;
     public UnityEvent Events;
@@ -18,6 +19,7 @@ public class ButtonClick : MonoBehaviour
     public bool iconset;
     public Sprite[] allicon;
     public Sprite[] Background;
+    [TextArea(5,20)]
     public string[] allinfo;
     public string[] allname;
     public GameObject[] allColider;
@@ -26,17 +28,42 @@ public class ButtonClick : MonoBehaviour
     public GameObject addmoneyimage;
     public GameObject nextButton;
 
+    public bool SolorSystem;
+    public GameObject background_solorSystem;
+
     private void Start()
     {
-        if (selection)
+        if (selection )
         {
             StartCoroutine(addmoneyanimation());
 
 
         }
+
+        
         
     }
 
+
+    private void Update()
+    {
+        if (SolorSystem )
+        {
+            if (!totorialcheck.totorialplaying)
+            {
+                SolorSystem = false;
+                Debug.Log("checkingtime");
+                nametext.transform.parent.gameObject.SetActive(true);
+                icon.gameObject.SetActive(true);
+                
+                background_solorSystem.SetActive(false);
+                this.GetComponent<SpriteRenderer>().enabled = true;
+                
+                NextButton();
+            }
+
+        }
+    }
     IEnumerator addmoneyanimation()
     {
         addmoneyimage.transform.DOMoveY(addmoneyimage.transform.position.y + .1f, 1);

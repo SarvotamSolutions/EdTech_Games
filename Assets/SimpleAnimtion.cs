@@ -7,6 +7,7 @@ public class SimpleAnimtion : MonoBehaviour
 {
     public bool right, left, up, down;
     public float POWER;
+    public float duration = 1;
     private void Start()
     {
         if (down)
@@ -20,39 +21,39 @@ public class SimpleAnimtion : MonoBehaviour
     }
     IEnumerator downMoveAnimation()//down animtion
     {
-        transform.DOMoveY(transform.position.y + POWER, 1);
-        yield return new WaitForSeconds(1);
-        transform.DOMoveY(transform.position.y - POWER, 1);
-        yield return new WaitForSeconds(1);
+        transform.DOMoveY(transform.position.y + POWER, duration);
+        yield return new WaitForSeconds(duration);
+        transform.DOMoveY(transform.position.y - POWER, duration);
+        yield return new WaitForSeconds(duration);
         StartCoroutine(downMoveAnimation());
     } 
     
     
     IEnumerator UpMoveAnimation()//Up animtion
     {
-        transform.DOMoveY(transform.position.y - POWER, 1);
-        yield return new WaitForSeconds(1);
-        transform.DOMoveY(transform.position.y + POWER, 1);
-        yield return new WaitForSeconds(1);
+        transform.DOMoveY(transform.position.y - POWER, duration);
+        yield return new WaitForSeconds(duration);
+        transform.DOMoveY(transform.position.y + POWER, duration);
+        yield return new WaitForSeconds(duration);
         StartCoroutine(UpMoveAnimation());
     } 
     
     IEnumerator RightMoveAnimation()//righ animtion
     {
-        transform.DOMoveX(transform.position.x + POWER, 1);
-        yield return new WaitForSeconds(1);
-        transform.DOMoveX(transform.position.x - POWER, 1);
-        yield return new WaitForSeconds(1);
+        transform.DOMoveX(transform.position.x + POWER, duration);
+        yield return new WaitForSeconds(duration);
+        transform.DOMoveX(transform.position.x - POWER, duration);
+        yield return new WaitForSeconds(duration);
         StartCoroutine(RightMoveAnimation());
     } 
     
     
     IEnumerator LeftMoveAnimation()//down animtion
     {
-        transform.DOMoveX(transform.position.x - POWER, 1);
-        yield return new WaitForSeconds(1);
-        transform.DOMoveX(transform.position.x + POWER, 1);
-        yield return new WaitForSeconds(1);
+        transform.DOMoveX(transform.position.x - POWER, duration);
+        yield return new WaitForSeconds(duration);
+        transform.DOMoveX(transform.position.x + POWER, duration);
+        yield return new WaitForSeconds(duration);
         StartCoroutine(LeftMoveAnimation());
     }
 
