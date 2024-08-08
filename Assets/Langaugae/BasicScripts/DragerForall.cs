@@ -53,7 +53,8 @@ public class DragerForall : MonoBehaviour
     {
         if (!clicked || GameControllerforAll.Instance.totorial.totorialplaying)
             return;
-      
+        sound.clip = drop;
+        sound.Play();
         clicked = false;
 
         if (Border)

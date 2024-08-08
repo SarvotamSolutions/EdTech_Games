@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
-  m_Name: Frog
+  m_Name: Livign_6
   m_EditorClassIdentifier: 
   Name: 
-  Icon: {fileID: 21300000, guid: 08b7a9bc821b2d8448b25b9b703d169e, type: 3}
-  letter: Animal
+  Icon: {fileID: 21300000, guid: 0a3a2cf718f1b8446a1fa89e9cca58d6, type: 3}
+  letter: Living
   relatedsdprite: {fileID: 21300000, guid: e2cfb614479ae114fbd5febe82993764, type: 3}
   Sound: {fileID: 0}

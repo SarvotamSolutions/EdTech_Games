@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6498c3f2758129646b2cb07a7723a292, type: 3}
   m_Name: Masrom
   m_EditorClassIdentifier: 
-  name: Masrom
-  Icon: {fileID: 21300000, guid: 7523156bfa020544d96ab3c796030cd9, type: 3}
+  Name: 
+  Icon: {fileID: 21300000, guid: b7cc090ffc765594dabdaa1cd0abe508, type: 3}
   letter: Plants
   relatedsdprite: {fileID: 21300000, guid: e2cfb614479ae114fbd5febe82993764, type: 3}
+  Sound: {fileID: 0}

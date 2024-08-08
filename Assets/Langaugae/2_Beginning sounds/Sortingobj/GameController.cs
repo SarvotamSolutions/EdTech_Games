@@ -55,7 +55,7 @@ namespace Laguage.SortingImage
 
             for (int i = 0; i < Question.Length; i++)
             {
-                for (int j = 0; j < allCharacter[Question[i]].sameLetter.Length; j++)   
+                for (int j = 0; j < allCharacter[Question[i]].sameLetter.Length; j++)
                 {
                     alloption[k].Icon.sprite = allCharacter[Question[i]].sameLetter[j].Icon;
                     alloption[k].pickup = allCharacter[Question[i]].sameLetter[j].Sound;
