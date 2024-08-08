@@ -639,7 +639,7 @@ EditorBuildSettings:
     path: Assets/cuulture/Solor_system/ContriesSolorInfo.unity
     guid: da1cd26222bbf9d4991dffaf4c7f2e01
   - enabled: 1
-    path: Assets/cuulture/2_Countries/DragAndDrop/SolorSystemDragAnddrop.unity
+    path: Assets/cuulture/Solor_system/SolorSystemDragAnddrop.unity
     guid: 170f3b1a957857c4581c24a26221c32c
   - enabled: 1
     path: Assets/cuulture/2_Countries/Info/LandWateAirInfo.unity

@@ -22,15 +22,17 @@ public class ButtonClick : MonoBehaviour
     [TextArea(5,20)]
     public string[] allinfo;
     public string[] allname;
+    public AudioClip[] allsounds;
+    public AudioClip[] allnames;
     public GameObject[] allColider;
     public Transform inforWindow;
     public bool selection;
     public GameObject addmoneyimage;
     public GameObject nextButton;
-
+    public bool soundplay;
     public bool SolorSystem;
     public GameObject background_solorSystem;
-
+    public AudioSource sound;
     private void Start()
     {
         if (selection )
@@ -58,7 +60,7 @@ public class ButtonClick : MonoBehaviour
                 
                 background_solorSystem.SetActive(false);
                 this.GetComponent<SpriteRenderer>().enabled = true;
-                
+                this.GetComponent<BoxCollider2D>().enabled = true;
                 NextButton();
             }
 
@@ -83,24 +85,54 @@ public class ButtonClick : MonoBehaviour
         if (iconset)
         {
             no++;
-          
-            if(no>= allicon.Length)
+
+            if (no >= allicon.Length)
+            {
+                if (soundplay)
+                {
+
+                    sound.Stop();
+                  //  sound.PlayOneShot(allsounds[no]);
+                }
                 StartCoroutine(LevelComplete());
+            }
             else
             {
-               // this.gameObject.transform.DOScaleY(0, 0.5f);
-                //inforWindow.DOScaleY(0, .5f);
-                inforWindow.gameObject.SetActive(false);
-                if(allColider.Length >= no)
+
+
+                if (allname[no - 1] == allname[no])
                 {
-                    allColider[no-1].gameObject.SetActive(false);
-                    allColider[no].gameObject.SetActive(true);
+
+                    infotext.text = allinfo[no];
+                    if (soundplay)
+                    {
+
+                        sound.Stop();
+                        sound.PlayOneShot(allsounds[no]);
+                    }
                 }
-                BackgroundImage.sprite = Background[no];
-                icon.sprite = allicon[no];
-                infotext.text = allinfo[no];
-                nametext.text = allname[no];
-                nextButton.SetActive(false);
+                else
+                {
+
+                    nametext.transform.parent.GetComponent<BoxCollider2D>().enabled = true;
+                    // this.gameObject.transform.DOScaleY(0, 0.5f);
+                    //inforWindow.DOScaleY(0, .5f);
+                    inforWindow.gameObject.SetActive(false);
+                    if (allColider.Length >= no)
+                    {
+                        allColider[no - 1].gameObject.SetActive(false);
+                        allColider[no].gameObject.SetActive(true);
+                    }
+                    BackgroundImage.sprite = Background[no];
+                    icon.sprite = allicon[no];
+                    infotext.text = allinfo[no];
+                    nametext.text = allname[no];
+                    nextButton.SetActive(false);
+
+                    sound.Stop();
+                    sound.PlayOneShot(allnames[no]);
+                }
+
             }
         }
         else
@@ -120,12 +152,18 @@ public class ButtonClick : MonoBehaviour
 
     public void ShowInfo()
     {
-        
+        nametext.transform.parent.GetComponent<BoxCollider2D>().enabled = false;
         nextButton.transform.DOScaleY(1, .5f);
         // inforWindow.DOScaleY(1, .5f);
         inforWindow.gameObject.SetActive(true);
         nextButton.SetActive(true);
         infotext.text = allinfo[no];
+        if (soundplay)
+        {
+           
+            sound.Stop();
+            sound.PlayOneShot(allsounds[no]);
+        }
     }
     IEnumerator LevelComplete()
     {
