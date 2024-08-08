@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f479317009ffc648a8ef6d01a1cda5d, type: 3}
+  m_Name: invertebrate
+  m_EditorClassIdentifier: 
+  sameLetter:
+  - {fileID: 11400000, guid: d5707b9b0d2b81347abae4b8974e1b9b, type: 2}
+  - {fileID: 11400000, guid: feee6f6e3c3797440b5778b17f9c3cad, type: 2}
+  - {fileID: 11400000, guid: c875ec1daf1a2314095314b8bf55a0ac, type: 2}
+  - {fileID: 11400000, guid: 917e1b324ebf5614c9a4c00315f8facc, type: 2}
+  Letter: invertebrate
+  letterSprite: {fileID: 21300000, guid: a360cb7873fb02e47825ba0029245214, type: 3}
+  RelatedCharacter: []
+  hintcolor: {r: 0, g: 0, b: 0, a: 0}
