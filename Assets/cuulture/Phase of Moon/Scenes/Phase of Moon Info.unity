@@ -1490,6 +1490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36687f88a238c0643a8ec197c18cd149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totorialcheck: {fileID: 0}
   nextwindow: {fileID: 0}
   currectnWindow: {fileID: 1719924485}
   LevleComplet: {fileID: 99697777}
@@ -1511,6 +1512,7 @@ MonoBehaviour:
   icon: {fileID: 1913648265}
   infotext: {fileID: 1865862530}
   nametext: {fileID: 1045790245}
+  BackgroundImage: {fileID: 0}
   iconset: 1
   allicon:
   - {fileID: 21300000, guid: 0cbe10c5745e36b45b70046817b19e64, type: 3}
@@ -1521,6 +1523,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4c5bf0908c31d6e4eb4d3ad1f6863c2d, type: 3}
   - {fileID: 21300000, guid: 161062683f0a5fe4cb77f66702e30e49, type: 3}
   - {fileID: 21300000, guid: 963551695bac12044b0b1f3e14f69760, type: 3}
+  Background: []
   allinfo:
   - 'A full moon appears as an entire circle in the sky. '
   - 'A gibbous moon is between a full moon and a half moon '
@@ -1536,9 +1539,11 @@ MonoBehaviour:
   - Last Quarter
   - Waxing Crescent
   - New Moon
-  - Waxing Crescent
+  - Wanning Crescent
   - First Quarter
-  - Waning Gibbous
+  - Waxing Gibbous
+  allsounds: []
+  allnames: []
   allColider:
   - {fileID: 212102461}
   - {fileID: 1630361417}
@@ -1552,6 +1557,10 @@ MonoBehaviour:
   selection: 1
   addmoneyimage: {fileID: 212102461}
   nextButton: {fileID: 930828196}
+  soundplay: 0
+  SolorSystem: 0
+  background_solorSystem: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!61 &930828199
 BoxCollider2D:
   m_ObjectHideFlags: 0
