@@ -114,7 +114,7 @@ public class ButtonClick : MonoBehaviour
                 else
                 {
 
-                    if (sound)
+                    if (nametext.transform.parent.GetComponent<BoxCollider2D>())
                     {
                         nametext.transform.parent.GetComponent<BoxCollider2D>().enabled = true;
                         addmoneyimage.SetActive(true);
@@ -159,7 +159,7 @@ public class ButtonClick : MonoBehaviour
 
     public void ShowInfo()
     {
-        if (sound)
+        if (nametext.transform.parent.GetComponent<BoxCollider2D>())
         {
             nametext.transform.parent.GetComponent<BoxCollider2D>().enabled = false;
             addmoneyimage.SetActive(false);

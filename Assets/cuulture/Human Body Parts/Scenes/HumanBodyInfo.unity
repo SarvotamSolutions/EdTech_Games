@@ -261,6 +261,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1741574801006434771, guid: 85a7961caf0da3a48bd3d52e71c502c8, type: 3}
   m_PrefabInstance: {fileID: 1436733453}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &211101034 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8817235467556160287, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+  m_PrefabInstance: {fileID: 1393076003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &212102461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,25 +1164,33 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: allbutton.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
       propertyPath: panels.Array.data[0]
       value: 
-      objectReference: {fileID: 530129014}
+      objectReference: {fileID: 1393076004}
     - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
       propertyPath: timeholding.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: allbutton.Array.data[0]
+      value: 
+      objectReference: {fileID: 211101034}
     - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
       propertyPath: totorialsound.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
       propertyPath: timeholding.Array.data[0]
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
       propertyPath: totorialsound.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 9c62c921f25ff1e419ec3c12f4fe52d0, type: 3}
     - target: {fileID: 4040746409338431835, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
       propertyPath: m_Name
       value: totorial
@@ -1607,7 +1626,9 @@ MonoBehaviour:
   - 'The heart pumps blood throughout the body through arteries. Blood travels back
     to the hart for more oxygen through the veins. Heartbeat is the sound made by
     the heart valves that open and close to control the flow of blood. '
-  - 
+  - The intestines are long, tube-like organs that help digest food and absorb nutrients
+    into the bloodstream. The small intestine absorbs most nutrients, while the large
+    intestine absorbs water and forms waste.
   - 'lungs supply oxygen to the blood. They help you breathe. '
   - "The\_stomach\_is like a mixer, churning and mashing together all the small balls
     of food that came down the esophagus into smaller and smaller pieces. It does
@@ -1619,8 +1640,18 @@ MonoBehaviour:
   - intestine
   - lung
   - stomach
-  allsounds: []
-  allnames: []
+  allsounds:
+  - {fileID: 8300000, guid: dea21655215e0d14fa353536b41d6254, type: 3}
+  - {fileID: 8300000, guid: e19521f1f82536a498a46d7f2b59dd0d, type: 3}
+  - {fileID: 8300000, guid: 8eb2e85dfd1c46e4c8be182660016ead, type: 3}
+  - {fileID: 8300000, guid: 510868353a403f149924504527ad2fc7, type: 3}
+  - {fileID: 8300000, guid: 72c26d9dc5ca3534ca44826a14392be3, type: 3}
+  allnames:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   allColider:
   - {fileID: 212102461}
   - {fileID: 239345746}
@@ -1631,10 +1662,10 @@ MonoBehaviour:
   selection: 1
   addmoneyimage: {fileID: 212102461}
   nextButton: {fileID: 930828196}
-  soundplay: 0
+  soundplay: 1
   SolorSystem: 0
   background_solorSystem: {fileID: 0}
-  sound: {fileID: 0}
+  sound: {fileID: 1719924487}
 --- !u!61 &930828199
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2245,6 +2276,106 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef949f481e07f9b45a26cd59c6d1519d, type: 3}
+--- !u!1001 &1393076003
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 385178760, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 7.4162
+      objectReference: {fileID: 0}
+    - target: {fileID: 385178760, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 3.171
+      objectReference: {fileID: 0}
+    - target: {fileID: 385178760, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.671
+      objectReference: {fileID: 0}
+    - target: {fileID: 385178760, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.0023
+      objectReference: {fileID: 0}
+    - target: {fileID: 385178761, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_text
+      value: "Hello, kids! Today, we are going to learn about the amazing parts of
+        the human body. Each part has a special job that helps keep us healthy and
+        strong. Let\u2019s get started!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269869156, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_Size.x
+      value: 9.471498
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269869157, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.037451
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269869157, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737056, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_Name
+      value: Totrial1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737056, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.390947
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.429598
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+--- !u!1 &1393076004 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6067827526260737056, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+  m_PrefabInstance: {fileID: 1393076003}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1436733453
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2341,6 +2472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CurrectAnswerAnimation
       objectReference: {fileID: 0}
+    - target: {fileID: 1904386020975237305, guid: 85a7961caf0da3a48bd3d52e71c502c8, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6d13793daf6afa14f9c489978a69b150, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2372,7 +2507,7 @@ Transform:
   m_GameObject: {fileID: 1475530534}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0038338117, y: 0.031923, z: -0.0036943364}
+  m_LocalPosition: {x: 0.0038338117, y: 0.017292, z: -0.0036943364}
   m_LocalScale: {x: 0.02462385, y: 0.02462385, z: 0.02462385}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2425,7 +2560,7 @@ SpriteRenderer:
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 11, y: 5.444162}
+  m_Size: {x: 11, y: 4.255788}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2869,6 +3004,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1719924486}
+  - component: {fileID: 1719924487}
   m_Layer: 0
   m_Name: Brain
   m_TagString: Untagged
@@ -2895,6 +3031,102 @@ Transform:
   - {fileID: 930828197}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1719924487
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719924485}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1913648264
 GameObject:
   m_ObjectHideFlags: 0
@@ -3098,8 +3330,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.5181, y: -0.0039}
-  m_SizeDelta: {x: 9.2535, y: 4.1784}
+  m_AnchoredPosition: {x: -0.5181, y: 0.0834}
+  m_SizeDelta: {x: 9.2535, y: 3.6043}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2055598305
 MonoBehaviour:
@@ -3151,11 +3383,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4.44
+  m_fontSize: 3.8
   m_fontSizeBase: 4.44
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 0
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -3403,3 +3635,4 @@ SceneRoots:
   - {fileID: 1562942995}
   - {fileID: 614326944}
   - {fileID: 535856591}
+  - {fileID: 1393076003}
