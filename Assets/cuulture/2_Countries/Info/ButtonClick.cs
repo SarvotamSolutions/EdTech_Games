@@ -82,6 +82,8 @@ public class ButtonClick : MonoBehaviour
     }
     public void NextButton()
     {
+        if (totorialcheck.totorialplaying)
+            return;
 
         if (iconset)
         {
@@ -160,6 +162,8 @@ public class ButtonClick : MonoBehaviour
 
     public void ShowInfo()
     {
+        if (totorialcheck.totorialplaying)
+            return;
         if (nametext.transform.parent.GetComponent<BoxCollider2D>())
         {
             nametext.transform.parent.GetComponent<BoxCollider2D>().enabled = false;

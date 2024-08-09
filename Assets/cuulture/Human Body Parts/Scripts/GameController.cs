@@ -18,7 +18,7 @@ namespace Human_Body_Part.Puzzle
         public SpriteRenderer Object_Name_BG;
         public SpriteRenderer Object_Image;
         public Sprite ObjetNameSuccessImage;
-
+        public bool clicked;
 
         protected override void Start()
         {

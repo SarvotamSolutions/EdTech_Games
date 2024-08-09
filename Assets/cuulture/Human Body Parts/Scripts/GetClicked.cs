@@ -19,18 +19,31 @@ namespace Human_Body_Part.Puzzle
         {
             this_position = transform.position;
         }
+        private void OnMouseEnter()
+        {
+            Debug.Log("enteredobject" + this.gameObject.name);
+            if (controller.clicked)
+            {
+                Debug.Log("clicked");
+                OnMouseDown(); 
+            }
+        }
+
+        private void OnMouseDown()
+        {
+
+            if (controller.totorial.totorialplaying)
+                return;
+            controller.clicked = true;
+            controller.firstClickedObject = this.gameObject;
+            controller.isFirstClicked = true;
+        }
         private void OnMouseUp()
         {
-            if(controller.isFirstClicked == false)
-            {
-                controller.firstClickedObject = this.gameObject;
-                controller.isFirstClicked = true;
-            }
-            else
-            {
-                controller.secondClickedObject = this.gameObject;
-                controller.isFirstClicked = false;
-            }
+            controller.clicked = false;
+            controller.secondClickedObject = this.gameObject;
+            controller.isFirstClicked = false;
+           
 
             controller.SwitchingData();
         }
