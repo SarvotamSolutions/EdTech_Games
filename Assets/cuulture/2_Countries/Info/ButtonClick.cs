@@ -9,7 +9,7 @@ using TMPro;
 public class ButtonClick : MonoBehaviour
 {
     public Totorial totorialcheck;
-    public GameObject nextwindow,currectnWindow;
+    public GameObject nextwindow, currectnWindow;
     public GameObject LevleComplet;
     public UnityEvent Events;
     public SpriteRenderer icon;
@@ -19,7 +19,7 @@ public class ButtonClick : MonoBehaviour
     public bool iconset;
     public Sprite[] allicon;
     public Sprite[] Background;
-    [TextArea(5,20)]
+    [TextArea(5, 20)]
     public string[] allinfo;
     public string[] allname;
     public AudioClip[] allsounds;
@@ -33,23 +33,24 @@ public class ButtonClick : MonoBehaviour
     public bool SolorSystem;
     public GameObject background_solorSystem;
     public AudioSource sound;
+    public int EndWait = 2;
     private void Start()
     {
-        if (selection )
+        if (selection)
         {
             StartCoroutine(addmoneyanimation());
 
 
         }
 
-        
-        
+
+
     }
 
 
     private void Update()
     {
-        if (SolorSystem )
+        if (SolorSystem)
         {
             if (!totorialcheck.totorialplaying)
             {
@@ -57,7 +58,7 @@ public class ButtonClick : MonoBehaviour
                 Debug.Log("checkingtime");
                 nametext.transform.parent.gameObject.SetActive(true);
                 icon.gameObject.SetActive(true);
-                
+
                 background_solorSystem.SetActive(false);
                 this.GetComponent<SpriteRenderer>().enabled = true;
                 this.GetComponent<BoxCollider2D>().enabled = true;
@@ -85,14 +86,14 @@ public class ButtonClick : MonoBehaviour
         if (iconset)
         {
             no++;
-       
+
             if (no >= allicon.Length)
             {
                 if (soundplay)
                 {
 
                     sound.Stop();
-                  //  sound.PlayOneShot(allsounds[no]);
+                    //  sound.PlayOneShot(allsounds[no]);
                 }
                 StartCoroutine(LevelComplete());
             }
@@ -127,8 +128,8 @@ public class ButtonClick : MonoBehaviour
                         allColider[no - 1].gameObject.SetActive(false);
                         allColider[no].gameObject.SetActive(true);
                     }
-                    if(BackgroundImage)
-                    BackgroundImage.sprite = Background[no];
+                    if (BackgroundImage)
+                        BackgroundImage.sprite = Background[no];
                     icon.sprite = allicon[no];
                     infotext.text = allinfo[no];
                     nametext.text = allname[no];
@@ -171,7 +172,7 @@ public class ButtonClick : MonoBehaviour
         infotext.text = allinfo[no];
         if (soundplay)
         {
-           
+
             sound.Stop();
             sound.PlayOneShot(allsounds[no]);
         }
@@ -179,7 +180,7 @@ public class ButtonClick : MonoBehaviour
     IEnumerator LevelComplete()
     {
         LevleComplet.SetActive(true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(EndWait);
         SceneManager.LoadScene(0);
     }
 }
