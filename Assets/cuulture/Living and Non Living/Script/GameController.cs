@@ -47,7 +47,7 @@ namespace culture.LivingandNonLiving.DragandDrop
         {
             Party_pop.SetActive(true);
 
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(CorrectAnswer_delayTime);
             Party_pop.SetActive(false);
             for (int i = 0; i < droping_place.Length; i++)
             {
@@ -202,7 +202,7 @@ namespace culture.LivingandNonLiving.DragandDrop
             selectedoption.transform.parent = droping_place[i].transform;
             selectedoption.transform.position = selectedoption.lastpos;
             wrongAnswer_animtion.SetActive(true);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(WrongAnswer_delayTime);
             wrongAnswer_animtion.SetActive(false);
             droping_place[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = Normalbutton;
             droping_place[i].transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshPro>().color = PreviousText;

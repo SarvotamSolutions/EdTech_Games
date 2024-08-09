@@ -637,25 +637,33 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: allbutton.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
       propertyPath: panels.Array.data[0]
       value: 
-      objectReference: {fileID: 4317735642857310516}
+      objectReference: {fileID: 1289641058}
     - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
       propertyPath: timeholding.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
+      propertyPath: allbutton.Array.data[0]
+      value: 
+      objectReference: {fileID: 1289641059}
     - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
       propertyPath: totorialsound.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
       propertyPath: timeholding.Array.data[0]
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4040746409338431834, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
       propertyPath: totorialsound.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 9a5e6554d4f582448873f4dc6d6368cc, type: 3}
     - target: {fileID: 4040746409338431835, guid: 1ad829503b309744685b7d41b5ab42ac, type: 3}
       propertyPath: m_Name
       value: totorial
@@ -1470,14 +1478,19 @@ MonoBehaviour:
   iconset: 1
   allicon:
   - {fileID: 21300000, guid: 20eb4480728fa934984f68dda2eec0f2, type: 3}
+  - {fileID: 21300000, guid: 20eb4480728fa934984f68dda2eec0f2, type: 3}
+  - {fileID: 21300000, guid: 42530b06515cc104d9506e9d502c65c5, type: 3}
   - {fileID: 21300000, guid: 42530b06515cc104d9506e9d502c65c5, type: 3}
   Background:
   - {fileID: 21300000, guid: 5f0e44cb541fde449b369928864580b3, type: 3}
+  - {fileID: 21300000, guid: 5f0e44cb541fde449b369928864580b3, type: 3}
+  - {fileID: 21300000, guid: 60da9c0a69aeec64b84163cbe39cf37d, type: 3}
   - {fileID: 21300000, guid: 60da9c0a69aeec64b84163cbe39cf37d, type: 3}
   allinfo:
   - "- make's its own food from carbon dioxide and water \n- does not move\n- takes
     in carbon dioxide and gives off oxygen  \n- does not have a nervous system \n-
     can grow indefinitely, branching out in many directions"
+  - "Let\u2019s look at some examples of plants."
   - '- feeds on plants or other animals
 
     - can move
@@ -1489,20 +1502,32 @@ MonoBehaviour:
 
     - has a fixed growth
     and life span'
+  - "Let\u2019s look at some examples of Animals. "
   allname:
   - Plants
+  - Plants
   - Animals
-  allsounds: []
-  allnames: []
+  - Animals
+  allsounds:
+  - {fileID: 8300000, guid: 4190f5ca1bcacf44bb1e3175ae889fba, type: 3}
+  - {fileID: 8300000, guid: 998c7d90d832717489a385e5dd3f0e3e, type: 3}
+  - {fileID: 8300000, guid: 2dc0eeb3a397c954f8983f2ef20e7888, type: 3}
+  - {fileID: 8300000, guid: d5768f2260194754f8a4e5d6a7bc33bc, type: 3}
+  allnames:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   allColider: []
   inforWindow: {fileID: 4317735642857310518}
   selection: 1
   addmoneyimage: {fileID: 212102461}
   nextButton: {fileID: 930828196}
-  soundplay: 0
+  soundplay: 1
   SolorSystem: 0
   background_solorSystem: {fileID: 0}
-  sound: {fileID: 0}
+  sound: {fileID: 1719924487}
+  EndWait: 3
 --- !u!61 &930828199
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2048,6 +2073,92 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a736133a72797240be1cdf5a2700156, type: 3}
+--- !u!1001 &1289641057
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 385178761, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_text
+      value: "Hello, little scientists! Today, we\u2019re going to learn about plants
+        and animals. Let\u2019s find out what makes them special!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737056, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_Name
+      value: Totrial1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737056, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.00073797
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526260737058, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067827526831497201, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.153
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+--- !u!1 &1289641058 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6067827526260737056, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+  m_PrefabInstance: {fileID: 1289641057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1289641059 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8817235467556160287, guid: 5d4869f00c257744290397ac6527e462, type: 3}
+  m_PrefabInstance: {fileID: 1289641057}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1343344435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2209,6 +2320,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CurrectAnswerAnimation
       objectReference: {fileID: 0}
+    - target: {fileID: 1904386020975237305, guid: 85a7961caf0da3a48bd3d52e71c502c8, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 26343cab983f19941a77ff2433395f97, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2468,6 +2583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1719924486}
+  - component: {fileID: 1719924487}
   m_Layer: 0
   m_Name: SolorSystem
   m_TagString: Untagged
@@ -2493,6 +2609,102 @@ Transform:
   - {fileID: 930828197}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1719924487
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719924485}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1755288513
 GameObject:
   m_ObjectHideFlags: 0
@@ -3007,3 +3219,4 @@ SceneRoots:
   - {fileID: 774950716}
   - {fileID: 4317735642857310518}
   - {fileID: 389222323}
+  - {fileID: 1289641057}
